@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+//最初に読み込んでおくべき変数やmixinなどを読み込み
+@import "../../src-common-scss/main";
+
+// --------------------------------
+// l-btn-frame-0001
+//---------------------------------
+.l-btn-frame-0001{
+  text-align: center;
+  .l-btn-frame-0001__first-wrap{
+    vertical-align: top;
+    display: inline-block;
+    @include clearfix();
+  }
+  .l-btn-frame-0001__column{
+    display: block;
+    float: right;
+    width:296px;
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+
+
+  &.vr-400px{
+    .l-btn-frame-0001__column{
+      width:400px;
+    }
+  }
+
+
+
+}
+
+
+
+// --------------------------------
+// l-btn-frame-0001
+//---------------------------------

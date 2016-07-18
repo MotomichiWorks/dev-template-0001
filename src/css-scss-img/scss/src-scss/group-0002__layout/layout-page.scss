@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+//最初に読み込んでおくべき変数やmixinなどを読み込み
+@import "../../src-common-scss/main";
+
+
+
+// --------------------------------
+// l-page-0001
+//---------------------------------
+.l-page-0001{
+  .l-page__outer-wrap{
+
+  }
+  .l-page__first-area{
+
+  }
+  .l-page__second-area{
+    width: 1296px;
+    margin:0 auto;
+    padding:0 12px;
+    box-sizing:border-box;
+  }
+  .l-page__second-area__top-column{
+  }
+  .l-page__second-area__left-column{
+  }
+  .l-page__second-area__center-column{
+  }
+  .l-page__second-area__right-column{
+  }
+  .l-page__second-area__bottom-column{
+  }
+  .l-page__third-area{
+
+  }
+}

@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+//最初に読み込んでおくべき変数やmixinなどを読み込み
+@import "../../src-common-scss/main";
+
+
+
+// --------------------------------
+// mod-tool-tip-0001
+// --------------------------------
+@mixin mod-tool-tip-0001($moduleFlg){
+  @if $moduleFlg == TRUE {
+    .mod-tool-tip-0001{
+      .tool-tip__first-wrap{
+
+      }
+      .tool-tip__contents-wrap{
+        display: none;
+        @include clearfix();
+        &.is-show{
+          display: block;
+        }
+      }
+      .tool-tip__icon{
+        $element-size: 20px;
+        display: block;
+        cursor: pointer;
+        background: $general__gray-color--0009;
+        color: $general__white-color;
+        font-size:12px;
+        font-weight: 700;
+        text-align: center;
+        text-decoration: none;
+        line-height:$element-size;
+        height: $element-size;
+        width: $element-size;
+        border-radius: $element-size/2;
+      }
+    }
+  }
+}
+
+
+
+
+
+// --------------------------------
+// generate
+// --------------------------------
+@include mod-tool-tip-0001(TRUE);

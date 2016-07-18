@@ -1,0 +1,8 @@
+@charset "utf-8";
+
+// ---------------------------------------------------
+// 各モジュール、各レイアウトで使用するbackground-imageのmixinを以下に定義
+// ---------------------------------------------------
+@mixin icon__loading(){
+  background-image: url('/assets/img/icon__loading.gif');
+}

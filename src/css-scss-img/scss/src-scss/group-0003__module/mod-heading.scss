@@ -1,0 +1,477 @@
+@charset "utf-8";
+
+//最初に読み込んでおくべき変数やmixinなどを読み込み
+@import "../../src-common-scss/main";
+
+
+
+// --------------------------------
+// mod-heading-0001-lv1
+// --------------------------------
+@mixin mod-heading-0001-lv1($moduleFlg){
+  @if $moduleFlg == TRUE {
+    .mod-heading-0001-lv1{
+      $heading__font-size : 32px;
+      .heading__first-wrap{
+      }
+      .heading__second-wrap{
+        color: $general__gray-color--0010;
+        position: relative;
+        padding: 0px 12px 0px 0px;
+        background: none;
+      }
+      .heading__sub-label{
+        font-size:14px;
+      }
+      .heading__h-element{
+        font-weight: 700;
+        font-size: $heading__font-size;
+        line-height: $heading__font-size * 1.5;
+        word-break:break-all;
+        word-wrap: break-word;
+      }
+      .heading__icon{
+        // @include bg-sprite-group-icon-heading-0001-lv1();
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .heading__btn-wrap{
+        display: none;
+        position: absolute;
+        top: 50%;
+        margin-top:20px / 2; //ボタン高さ/2
+        right: 12px;
+        width: 240px;
+      }
+      &.is-btn-show{
+        .heading__h-element{
+          padding-right: 264px;
+        }
+        .heading__btn-wrap{
+          display: block;
+        }
+      }
+      &.is-icon-show{
+        .heading__sub-label{
+          padding-left: 24px;
+        }
+        .heading__h-element{
+          padding-left: 24px;
+        }
+        .heading__icon{
+          display: block;
+        }
+      }
+
+
+
+      @if $smartphone-styles == true {
+        @include media($breakpoint-sp){
+
+        }
+      }// @if $smartphone-styles == true
+    }
+  }
+}// end of mod-heading-0001-lv1
+
+
+
+// --------------------------------
+// mod-heading-0001-lv2
+// --------------------------------
+@mixin mod-heading-0001-lv2($moduleFlg){
+  @if $moduleFlg == TRUE {
+    .mod-heading-0001-lv2{
+      $heading__font-size : 18px;
+      $heading__padding-top-bottom : 13px;
+      .heading__first-wrap{
+      }
+      .heading__second-wrap{
+        position: relative;
+        padding: $heading__padding-top-bottom 12px $heading__padding-top-bottom 12px;
+        border-bottom: 4px solid darken($general__key-color--0001,10%);
+        background: $general__key-color--0001;
+      }
+      .heading__sub-label{
+        font-size:12px;
+      }
+      .heading__h-element{
+        color: $general__white-color;
+        font-weight: 700;
+        font-size: $heading__font-size;
+        line-height: $heading__font-size * 1.5;
+        word-break:break-all;
+        word-wrap: break-word;
+      }
+      .heading__icon{
+        // @include bg-sprite-group-icon-heading-0001-lv1();
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .heading__btn-wrap{
+        display: none;
+        position: absolute;
+        top: 50%;
+        margin-top:20px / 2; //ボタン高さ/2
+        right: 12px;
+        width: 240px;
+      }
+      &.is-btn-show{
+        .heading__h-element{
+          padding-right: 264px;
+        }
+        .heading__btn-wrap{
+          display: block;
+        }
+      }
+      &.is-icon-show{
+        .heading__sub-label{
+          padding-left: 24px;
+        }
+        .heading__h-element{
+          padding-left: 24px;
+        }
+        .heading__icon{
+          display: block;
+        }
+      }
+      &.form-hide{
+        display: none;
+      }
+
+
+      @if $smartphone-styles == true {
+        @include media($breakpoint-sp){
+
+        }
+      }// @if $smartphone-styles == true
+    }
+  }
+}// end of mod-heading-0001-lv1
+
+
+
+// --------------------------------
+// mod-heading-0001-lv3
+// --------------------------------
+@mixin mod-heading-0001-lv3($moduleFlg){
+  @if $moduleFlg == TRUE {
+    .mod-heading-0001-lv3{
+      $heading__font-size : 16px;
+      $heading__padding-top-bottom : 11px;
+      .heading__first-wrap{
+      }
+      .heading__second-wrap{
+        position: relative;
+        color: $general__body-text-color;
+        padding: $heading__padding-top-bottom 12px $heading__padding-top-bottom 0px;
+        border-bottom: 4px solid darken($general__key-color--0001,0%);
+        background: lighten($general__key-color--0001,45%);
+      }
+      .heading__sub-label{
+        font-size:12px;
+      }
+      .heading__h-element{
+        font-weight: 700;
+        font-size: $heading__font-size;
+        line-height: $heading__font-size * 1.5;
+        word-break:break-all;
+        word-wrap: break-word;
+      }
+      .heading__icon{
+        // @include bg-sprite-group-icon-heading-0001-lv1();
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .heading__btn-wrap{
+        display: none;
+        position: absolute;
+        top: 50%;
+        margin-top:20px / 2; //ボタン高さ/2
+        right: 12px;
+        width: 240px;
+      }
+      &.is-btn-show{
+        .heading__h-element{
+          padding-right: 264px;
+        }
+        .heading__btn-wrap{
+          display: block;
+        }
+      }
+      &.is-icon-show{
+        .heading__sub-label{
+          padding-left: 24px;
+        }
+        .heading__h-element{
+          padding-left: 24px;
+        }
+        .heading__icon{
+          display: block;
+        }
+      }
+
+
+
+      @if $smartphone-styles == true {
+        @include media($breakpoint-sp){
+
+        }
+      }// @if $smartphone-styles == true
+    }
+  }
+}// end of mod-heading-0001-lv1
+
+
+
+// --------------------------------
+// mod-heading-0001-lv4
+// --------------------------------
+@mixin mod-heading-0001-lv4($moduleFlg){
+  @if $moduleFlg == TRUE {
+    .mod-heading-0001-lv4{
+      $heading__font-size : 14px;
+      $heading__padding-top-bottom : 8px;
+      .heading__first-wrap{
+      }
+      .heading__second-wrap{
+        position: relative;
+        color: $general__body-text-color;
+        padding: $heading__padding-top-bottom 12px $heading__padding-top-bottom 0px;
+        border-bottom: 2px solid $general__gray-color--0007;
+        background: $general__gray-color--0002;
+      }
+      .heading__sub-label{
+        font-size:12px;
+      }
+      .heading__h-element{
+        font-weight: 700;
+        font-size: $heading__font-size;
+        line-height: $heading__font-size * 1.5;
+        word-break:break-all;
+        word-wrap: break-word;
+      }
+      .heading__icon{
+        // @include bg-sprite-group-icon-heading-0001-lv1();
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .heading__btn-wrap{
+        display: none;
+        position: absolute;
+        top: 50%;
+        margin-top:20px / 2; //ボタン高さ/2
+        right: 12px;
+        width: 240px;
+      }
+      &.is-btn-show{
+        .heading__h-element{
+          padding-right: 264px;
+        }
+        .heading__btn-wrap{
+          display: block;
+        }
+      }
+      &.is-icon-show{
+        .heading__sub-label{
+          padding-left: 24px;
+        }
+        .heading__h-element{
+          padding-left: 24px;
+        }
+        .heading__icon{
+          display: block;
+        }
+      }
+
+
+
+      @if $smartphone-styles == true {
+        @include media($breakpoint-sp){
+
+        }
+      }// @if $smartphone-styles == true
+    }
+  }
+}// end of mod-heading-0001-lv1
+
+
+
+// --------------------------------
+// mod-heading-0001-lv5
+// --------------------------------
+@mixin mod-heading-0001-lv5($moduleFlg){
+  @if $moduleFlg == TRUE {
+    .mod-heading-0001-lv5{
+      $heading__font-size : 14px;
+      $heading__padding-top-bottom : 6px;
+      .heading__first-wrap{
+      }
+      .heading__second-wrap{
+        position: relative;
+        color: $general__body-text-color;
+        padding: $heading__padding-top-bottom 12px $heading__padding-top-bottom 0px;
+        border-bottom: 1px solid $general__gray-color--0007;
+        background: none;
+      }
+      .heading__sub-label{
+        font-size:12px;
+      }
+      .heading__h-element{
+        font-weight: 700;
+        font-size: $heading__font-size;
+        line-height: $heading__font-size * 1.5;
+        word-break:break-all;
+        word-wrap: break-word;
+      }
+      .heading__icon{
+        // @include bg-sprite-group-icon-heading-0001-lv1();
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .heading__btn-wrap{
+        display: none;
+        position: absolute;
+        top: 50%;
+        margin-top:20px / 2; //ボタン高さ/2
+        right: 12px;
+        width: 240px;
+      }
+      &.is-btn-show{
+        .heading__h-element{
+          padding-right: 264px;
+        }
+        .heading__btn-wrap{
+          display: block;
+        }
+      }
+      &.is-icon-show{
+        .heading__sub-label{
+          padding-left: 24px;
+        }
+        .heading__h-element{
+          padding-left: 24px;
+        }
+        .heading__icon{
+          display: block;
+        }
+      }
+
+
+
+      @if $smartphone-styles == true {
+        @include media($breakpoint-sp){
+
+        }
+      }// @if $smartphone-styles == true
+    }
+  }
+}// end of mod-heading-0001-lv1
+
+
+
+// --------------------------------
+// mod-heading-0001-lv6
+// --------------------------------
+@mixin mod-heading-0001-lv6($moduleFlg){
+  @if $moduleFlg == TRUE {
+    .mod-heading-0001-lv6{
+      $heading__font-size : 14px;
+      $heading__padding-top-bottom : 6px;
+      .heading__first-wrap{
+      }
+      .heading__second-wrap{
+        position: relative;
+        color: $general__body-text-color;
+        padding: $heading__padding-top-bottom 12px $heading__padding-top-bottom 0px;
+        border-bottom: none;
+        background: none;
+      }
+      .heading__sub-label{
+        font-size:10px;
+      }
+      .heading__h-element{
+        font-weight: 700;
+        font-size: $heading__font-size;
+        line-height: $heading__font-size * 1.5;
+        word-break:break-all;
+        word-wrap: break-word;
+      }
+      .heading__icon{
+        // @include bg-sprite-group-icon-heading-0001-lv1();
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .heading__btn-wrap{
+        display: none;
+        position: absolute;
+        top: 50%;
+        margin-top:20px / 2; //ボタン高さ/2
+        right: 12px;
+        width: 240px;
+      }
+      &.is-btn-show{
+        .heading__h-element{
+          padding-right: 264px;
+        }
+        .heading__btn-wrap{
+          display: block;
+        }
+      }
+      &.is-icon-show{
+        .heading__sub-label{
+          padding-left: 24px;
+        }
+        .heading__h-element{
+          padding-left: 24px;
+        }
+        .heading__icon{
+          display: block;
+        }
+      }
+
+
+
+      @if $smartphone-styles == true {
+        @include media($breakpoint-sp){
+
+        }
+      }// @if $smartphone-styles == true
+    }
+  }
+}// end of mod-heading-0001-lv1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// --------------------------------
+// generate
+// --------------------------------
+@include mod-heading-0001-lv1(TRUE);
+@include mod-heading-0001-lv2(TRUE);
+@include mod-heading-0001-lv3(TRUE);
+@include mod-heading-0001-lv4(TRUE);
+@include mod-heading-0001-lv5(TRUE);
+@include mod-heading-0001-lv6(TRUE);

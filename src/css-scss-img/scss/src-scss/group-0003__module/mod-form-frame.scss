@@ -1,0 +1,374 @@
+@charset "utf-8";
+
+//最初に読み込んでおくべき変数やmixinなどを読み込み
+@import "../../src-common-scss/main";
+
+
+
+// --------------------------------
+// mod-form-frame-0001
+// --------------------------------
+@mixin mod-form-frame-0001($moduleFlg){
+  @if $moduleFlg == TRUE {
+    .mod-form-frame-0001{
+      .form-frame__first-wrap{}
+      .form-frame__second-wrap{}
+      .form-frame__third-wrap{
+        display: block;
+        color: $general__gray-color--0007;
+        background: $general__gray-color--0001;
+        border-radius: 4px;
+      }
+      .form-frame__like-table{
+        padding:0px 12px;
+      }
+      .form-frame__like-tr{
+        display: block;
+        padding-top:16px;
+        padding-bottom:16px;
+        @include clearfix();
+        &+.form-frame__like-tr{
+          border-top:1px solid $general__white-color;
+        }
+      }
+      .error-message,
+      .form-frame__error-message{
+        color: $general__warning-color--0001;
+        padding: 6px 8px 0 8px;
+        font-size:12px;
+        line-height: 1.5;
+        display: block;
+      }
+      .form-frame__left-column{
+        display: block;
+        float: left;
+        width:30%;
+      }
+      .form-frame__left-column__middle-wrap{}
+      .form-frame__left-column__inner-wrap{
+        @include clearfix();
+      }
+      .form-frame__left-column__text{
+        display: block;
+        color: $general__body-text-color;
+        float: left;
+        line-height: 1.5;
+        padding-top:6px;
+      }
+      .form-frame__right-column__text{
+        padding-left: 8px;
+      }
+      .form-frame__left-column__badge-wrap{
+        display: block;
+        float: left;
+        padding:6px 0px 0px 4px;
+      }
+      .form-frame__left-column__tool-tip-wrap{
+        display: block;
+        float: left;
+        padding:6px 0px 0px 4px;
+      }
+      .form-frame__right-column{
+        display: block;
+        width:70%;
+        float: right;
+        // &.is-warning{
+        //   .form-frame__warning-text{
+        //     display: block;
+        //   }
+        // }
+      }
+      .form-frame__right-column__middle-wrap{}
+      .form-frame__right-column__inner-wrap{
+        @include clearfix();
+      }
+      .form-frame__right-column__content-wrap--block,
+      .form-frame__right-column__content-wrap--15p,
+      .form-frame__right-column__content-wrap--20p,
+      .form-frame__right-column__content-wrap--25p,
+      .form-frame__right-column__content-wrap--33p,
+      .form-frame__right-column__content-wrap--50p,
+      .form-frame__right-column__content-wrap--auto{
+        @include clearfix();
+        &+.form-frame__right-column__example-side{
+          padding-left: 8px;
+        }
+      }
+      .form-frame__right-column__content-wrap--auto{
+        position: relative;
+        display:block;
+        float: left;
+        height: 32px;
+        line-height: 32px;
+        box-sizing: border-box;
+        padding-left: 8px;
+      }
+      .form-frame__right-column__content-wrap--50p{
+        position: relative;
+        display:block;
+        float: left;
+        width: 50%;
+        box-sizing: border-box;
+        padding-left: 8px;
+      }
+      .form-frame__right-column__content-wrap--33p{
+        position: relative;
+        display:block;
+        float: left;
+        width: 33%;
+        box-sizing: border-box;
+        padding-left: 8px;
+      }
+      .form-frame__right-column__content-wrap--25p{
+        position: relative;
+        display:block;
+        float: left;
+        width: 25%;
+        box-sizing: border-box;
+        padding-left: 8px;
+      }
+      .form-frame__right-column__content-wrap--20p{
+        position: relative;
+        display:block;
+        float: left;
+        width: 20%;
+        box-sizing: border-box;
+        padding-left: 8px;
+      }
+      .form-frame__right-column__content-wrap--15p{
+        position: relative;
+        display:block;
+        float: left;
+        width: 15%;
+        box-sizing: border-box;
+        padding-left: 8px;
+      }
+      .form-frame__right-column__content-wrap--block{
+        position: relative;
+        display:block;
+        float: left;
+        width:100%;
+        line-height: 32px;
+        padding-left: 8px;
+        box-sizing: border-box;
+      }
+      .form-frame__right-column__content-wrap--hyphen{
+        position: relative;
+        display:block;
+        float: left;
+        width: 1em;
+        text-align: center;
+        height: 32px;
+        line-height: 32px;
+        padding-left: 8px;
+      }
+      .form-frame__right-column__content-wrap--paragraph--gray{
+        position: relative;
+        display:block;
+        float: left;
+        width:100%;
+        line-height: 24px;
+        padding-top:4px;
+        padding-left: 8px;
+        box-sizing: border-box;
+        color:$general__body-text-color;
+      }
+      .form-frame__right-column__content-wrap--paragraph--warning{
+        position: relative;
+        display:block;
+        float: left;
+        width:100%;
+        line-height: 24px;
+        padding-top:4px;
+        padding-left: 8px;
+        color: $general__warning-color--0001;
+        box-sizing: border-box;
+      }
+      .form-frame__right-column__example-side{
+        display: block;
+        height: 32px;
+        line-height: 32px;
+        font-size: 12px;
+        float: left;
+      }
+      .form-frame__right-column__example-top{
+        padding-top:6px;
+        padding-left: 8px;
+        font-size:12px;
+        line-height: 1.5;
+        display: block;
+        &+.form-frame__right-column__inner-wrap{
+          margin-top:8px;
+        }
+      }
+      .form-frame__right-column__example-bottom{
+        padding-top:6px;
+        padding-left: 8px;
+        font-size:12px;
+        line-height: 1.5;
+        display: block;
+      }
+      .form-frame__right-column__notes-ul{
+        padding-left: 8px;
+      }
+      .form-frame__right-column__notes-li{
+        font-size: 12px;
+        line-height: 1.5;
+        &+.form-frame__right-column__notes-li{
+          padding-top:17px;
+        }
+      }
+      .form-frame__right-column__notes-heading{}
+      .form-frame__right-column__notes-text{
+        margin-top:5px;
+      }
+      .form-frame__right-column__commentary-ul{
+        padding-left: 8px;
+      }
+      .form-frame__right-column__commentary-li{
+        font-size: 12px;
+        line-height: 1.5;
+        padding-left: 1em;
+        &+.form-frame__right-column__commentary-li{
+          padding-top:17px;
+        }
+      }
+      .form-frame__right-column__commentary-heading{
+        text-indent: -1em;
+      }
+      .form-frame__right-column__commentary-text{
+        margin-top:5px;
+      }
+      .form-frame__right-column__inner-wrap + .form-frame__right-column__notes-ul,
+      .form-frame__right-column__inner-wrap + .form-frame__right-column__commentary-ul{
+        padding-top:6px;
+      }
+      .form-frame__right-column__example-bottom + .form-frame__right-column__notes-ul,
+      .form-frame__right-column__example-bottom + .form-frame__right-column__commentary-ul,
+      .form-frame__warning-text + .form-frame__right-column__notes-ul,
+      .form-frame__warning-text + .form-frame__right-column__commentary-ul,
+      .form-frame__right-column__commentary-ul + .form-frame__right-column__notes-ul,
+      .form-frame__right-column__notes-ul + .form-frame__right-column__commentary-ul{
+        padding-top:17px;
+      }
+      .form-frame__btn-outer-wrap{
+        display: block;
+        text-align: center;
+      }
+      .form-frame__btn-middle-wrap{
+        display: inline-block;
+      }
+      .form-frame__btn-inner-wrap{
+        width:240px;
+        float: left;
+        padding:17px 12px 29px 12px;
+        box-sizing: border-box;
+      }
+
+
+
+      @if $smartphone-styles == true {
+        @include media($breakpoint-sp){
+          .form-frame__left-column{
+            width:100%;
+          }
+          .form-frame__left-column__text{
+            font-weight: 700;
+          }
+          .form-frame__right-column{
+            width:100%;
+          }
+          .form-frame__right-column__content-wrap--block,
+          .form-frame__right-column__content-wrap--15p,
+          .form-frame__right-column__content-wrap--20p,
+          .form-frame__right-column__content-wrap--25p,
+          .form-frame__right-column__content-wrap--33p,
+          .form-frame__right-column__content-wrap--50p,
+          .form-frame__right-column__content-wrap--auto{
+            width:100%;
+            margin-top: 8px;
+          }
+          .form-frame__right-column__example-top{
+            color: $general__gray-color--0007;
+            &+.form-frame__right-column__inner-wrap{
+              margin-top:0px;
+            }
+          }
+          .form-frame__right-column__example-bottom{
+            color: $general__gray-color--0007;
+          }
+        }
+      }
+
+
+
+    }
+  }
+}
+
+
+
+// --------------------------------
+// mod-form-frame-0002
+// --------------------------------
+@mixin mod-form-frame-0002($moduleFlg){
+  @if $moduleFlg == TRUE {
+    .mod-form-frame-0002{
+      .form-frame__first-wrap{}
+      .form-frame__second-wrap{}
+      .form-frame__third-wrap{
+        display: block;
+        padding: 32px;
+        background: $general__gray-color--0001;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .form-frame__table{
+        display: table;
+        width: 100%;
+      }
+      .form-frame__tr{
+        display: table-row;
+      }
+      .form-frame__th{
+        display: table-cell;
+        width: 1%;
+        padding: 8px;
+        white-space: nowrap;
+        vertical-align: middle;
+      }
+      .form-frame__td{
+        padding: 8px;
+      }
+      .form-frame__checkbox-wrap-0001{
+        display: block;
+        padding: 4px 8px;
+      }
+      .form-frame__text-link-wrap-0001{
+        display: block;
+        padding: 4px 8px;
+      }
+      .form-frame__text-link-wrap-0001__anchor-element{
+
+      }
+      .form-frame__btn-wrap-0001{
+        display: block;
+        width: 60%;
+        padding-top: 8px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+}// end of @mixin mod-form-frame-0002
+
+
+
+// --------------------------------
+// generate
+// --------------------------------
+@include mod-form-frame-0001(TRUE);
+@include mod-form-frame-0002(TRUE);

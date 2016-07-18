@@ -1,0 +1,58 @@
+@charset "utf-8";
+
+//最初に読み込んでおくべき変数やmixinなどを読み込み
+@import "../../src-common-scss/main";
+
+
+
+// --------------------------------
+// FlashMessage0001
+//---------------------------------
+@mixin FlashMessage0001($moduleFlg){
+  @if $moduleFlg == TRUE {
+    .FlashMessage0001{
+      .FlashMessage__FirstWrap{
+        background: $general__white-color;
+        padding: 2px;
+      }
+      .FlashMessage__SecondWrap{
+        padding:32px;
+      }
+      &.FlashMessage0001-ColorNeutral{
+        .FlashMessage__FirstWrap{
+          border:2px solid $general__gray-color--0007;
+        }
+        .FlashMessage__SecondWrap{
+          background: $general__gray-color--0002;
+          color: $general__gray-color--0007;
+        }
+      }
+      &.FlashMessage0001-ColorSafety{
+        .FlashMessage__FirstWrap{
+          border:2px solid $general__safety-color--0001;
+        }
+        .FlashMessage__SecondWrap{
+          background: lighten($general__safety-color--0001, 70%);
+          color: $general__safety-color--0001;
+        }
+      }
+      &.FlashMessage0001-ColorWorning{
+        .FlashMessage__FirstWrap{
+          border:2px solid $general__warning-color--0001;
+        }
+        .FlashMessage__SecondWrap{
+          background: lighten($general__warning-color--0001, 46%);
+          color: $general__warning-color--0001;
+        }
+      }
+    }
+  }
+}// end of @mixin FlashMessage0001
+
+
+
+
+// --------------------------------
+// moduleを生成
+//---------------------------------
+@include FlashMessage0001(TRUE);

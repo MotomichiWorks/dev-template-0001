@@ -1,0 +1,170 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+.mod-header-0001 .header__second-wrap {
+  display: block; }
+.mod-header-0001 .header__third-wrap {
+  width: 1296px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  padding-left: 12px;
+  padding-right: 12px;
+  zoom: 1; }
+  .mod-header-0001 .header__third-wrap:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    overflow: hidden;
+    font-size: 0.1em;
+    line-height: 0; }
+.mod-header-0001 .header__logo-wrap {
+  float: left; }
+.mod-header-0001 .header__logo-text {
+  color: #333333;
+  display: block;
+  font-size: 18px;
+  line-height: 40px;
+  height: 40px;
+  font-weight: 700;
+  text-decoration: none; }
+  .mod-header-0001 .header__logo-text:hover {
+    color: #666666; }
+.mod-header-0001 .header__user-nav {
+  float: right;
+  padding-top: 8px; }
+.mod-header-0001 .header__global-nav {
+  background: #0099cc; }
+.mod-header-0001 .header__global-nav__ul-lv1 {
+  background: #0099cc;
+  width: 1296px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 12px;
+  zoom: 1; }
+  .mod-header-0001 .header__global-nav__ul-lv1:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    overflow: hidden;
+    font-size: 0.1em;
+    line-height: 0; }
+.mod-header-0001 .header__global-nav__li-lv1 {
+  float: left;
+  width: 20%;
+  border-right: 2px solid #ffffff; }
+  .mod-header-0001 .header__global-nav__li-lv1:first-child {
+    border-left: 2px solid #ffffff; }
+.mod-header-0001 .header__global-nav__anchor-lv1 {
+  display: block;
+  padding-left: 12px;
+  padding-right: 12px;
+  line-height: 40px;
+  height: 40px;
+  font-size: 16px;
+  color: #ffffff;
+  background: #0099cc;
+  text-decoration: none;
+  text-align: center; }
+  .mod-header-0001 .header__global-nav__anchor-lv1:hover {
+    background: #00b4f0; }
+.mod-header-0001 .header__info {
+  float: right;
+  display: block;
+  padding-left: 24px;
+  padding-right: 24px;
+  line-height: 40px;
+  height: 40px; }
+.mod-header-0001 .header__mypage-nav {
+  background: #0099cc;
+  margin-top: 12px; }
+.mod-header-0001 .header__mypage-nav__ul-lv1 {
+  background: #0099cc;
+  width: 1296px;
+  margin: 0 auto;
+  padding: 0 12px;
+  box-sizing: border-box;
+  zoom: 1; }
+  .mod-header-0001 .header__mypage-nav__ul-lv1:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    overflow: hidden;
+    font-size: 0.1em;
+    line-height: 0; }
+.mod-header-0001 .header__mypage-nav__li-lv1 {
+  float: left;
+  width: 16.66666667%;
+  border-right: 2px solid #ffffff;
+  background: #0099cc;
+  position: relative;
+  z-index: 1; }
+  .mod-header-0001 .header__mypage-nav__li-lv1:first-child {
+    border-left: 2px solid #ffffff; }
+.mod-header-0001 .header__mypage-nav__anchor-lv1 {
+  display: block;
+  padding-left: 12px;
+  padding-right: 12px;
+  line-height: 32px;
+  height: 32px;
+  color: #ffffff;
+  text-decoration: none;
+  text-align: center; }
+  .mod-header-0001 .header__mypage-nav__anchor-lv1:hover {
+    background: #00b4f0; }
+.mod-header-0001 .header__mypage-nav__ul-lv2 {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  border-top: 1px solid #ffffff; }
+  .mod-header-0001 .header__mypage-nav__ul-lv2.is-show {
+    display: block; }
+.mod-header-0001 .header__mypage-nav__li-lv2 {
+  background: #0099cc; }
+.mod-header-0001 .header__mypage-nav__anchor-lv2 {
+  display: block;
+  padding-left: 12px;
+  padding-right: 12px;
+  line-height: 32px;
+  height: 32px;
+  color: #ffffff;
+  text-decoration: none;
+  text-align: center; }
+  .mod-header-0001 .header__mypage-nav__anchor-lv2:hover {
+    background: #00b4f0; }

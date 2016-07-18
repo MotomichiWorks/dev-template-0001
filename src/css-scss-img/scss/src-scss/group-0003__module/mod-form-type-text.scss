@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+//最初に読み込んでおくべき変数やmixinなどを読み込み
+@import "../../src-common-scss/main";
+
+// --------------------------------
+// +mod-form-type-text-0001
+// --------------------------------
+@mixin mod-form-type-text-0001($moduleFlg){
+  @if $moduleFlg == TRUE {
+    .mod-form-type-text-0001{
+      .form-type-text__input-element{
+        display: block;
+        width: 100%;
+        border: 1px solid $general__gray-color--0003;
+        font-size: 14px;
+        height: 32px;
+        line-height: 32px;
+        padding:4px 4px 4px 6px;
+        color:$general__body-text-color;
+        outline: none;
+        box-shadow: none;
+        box-sizing: border-box;
+        border-radius: 2px;
+        &.is-worning,
+        &.form-error{
+          border-color: $general__warning-color--0001;
+          background-color: lighten( $general__warning-color--0001, 45% );
+        }
+        &[disabled],
+        &.is-disabled{
+          background-color: $general__gray-color--0001;
+        }
+        &[readonly]{
+          border: 1px solid transparent;
+          background-color: transparent;
+        }
+      }
+      &.vr-0001{
+        .form-type-text__input-element{
+          height: 44px;
+          line-height: 44px;
+        }
+        .form-type-text__anchor-element{
+          height:44px;
+        }
+      }
+      &.vr-0002{
+        .form-type-text__input-element{
+          height: 20px;
+          line-height: 20px;
+        }
+        .form-type-text__anchor-element{
+          height:20px;
+          // @include pc-bg-solo__icon-search-0002();
+          background-position:50% 50%;
+          height: 20px;
+          width: 48px;
+        }
+      }
+
+
+
+      @if $smartphone-styles == true {
+        @include media($breakpoint-sp){
+          .form-type-text__input-element{
+            appearance:none;
+            box-shadow: none;
+          }
+          .mod-form-frame-0002 &,
+          .mod-form-frame-0001 &{
+            .vr-postcode-form{
+              width: 35%;
+            }
+            .vr-postcode-btn{
+              width: 65%;
+            }
+            .form-type-text__input-element{
+              height:44px;
+            }
+          }
+        }
+      }
+
+
+
+    }
+  }
+}
+
+
+
+
+// --------------------------------
+// generate
+// --------------------------------
+@include mod-form-type-text-0001(TRUE);

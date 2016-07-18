@@ -1,0 +1,58 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+.mod-footer-0001 .footer__first-wrap {
+  margin-top: 160px; }
+.mod-footer-0001 .footer__second-wrap {
+  display: block;
+  background: #333333;
+  zoom: 1; }
+  .mod-footer-0001 .footer__second-wrap:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    overflow: hidden;
+    font-size: 0.1em;
+    line-height: 0; }
+.mod-footer-0001 .footer__copy-wrap {
+  text-align: center;
+  display: block;
+  width: 1296px;
+  margin: 0 auto;
+  padding: 0 12px;
+  box-sizing: border-box;
+  line-height: 36px;
+  height: 36px; }
+.mod-footer-0001 .footer__copy {
+  font-weight: 400;
+  text-decoration: none;
+  color: #ffffff; }
