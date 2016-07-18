@@ -1,0 +1,109 @@
+@charset "utf-8";
+
+//最初に読み込んでおくべき変数やmixinなどを読み込み
+@import "../../src-common-scss/main";
+
+
+
+// --------------------------------
+// mod-paginator-0001
+//---------------------------------
+@mixin mod-paginator-0001($moduleFlg){
+  @if $moduleFlg == TRUE {
+    .mod-paginator-0001{
+      .paginator__first-wrap{
+      }
+      .paginator__second-wrap{
+        display: block;
+      }
+      .paginator__info-wrap{
+        padding-top: 8px;
+        padding-bottom: 8px;
+        @include clearfix();
+      }
+      .paginator__info{
+        float: left;
+        line-height: 1;
+        color: $general__gray-color--0007;
+        &+.paginator__info{
+          padding-left:8px;
+          border-left:1px solid $general__gray-color--0007;
+          margin-left:8px;
+        }
+      }
+      .paginator__ul-ol-element{
+        @include clearfix();
+      }
+      .paginator__li-element-first{
+        float: left;
+        width: 80px;
+        &+.paginator__li-element-prev{
+          padding-left:8px;
+        }
+      }
+      .paginator__li-element-prev{
+        float: left;
+        width: 64px;
+      }
+      .paginator__li-element-next{
+        float: left;
+        width: 64px;
+        padding-left:8px;
+      }
+      .paginator__li-element-last{
+        float: left;
+        width: 80px;
+        padding-left:8px;
+      }
+      .paginator__li-element-number{
+        float: left;
+        width: 32px;
+        padding-left:8px;
+      }
+      .paginator__anchor-element{
+        @include mod-btn__clickable-element-property--general();
+        height: 32px;
+        line-height: 32px;
+        background: $btn__main-color--light;
+        color: $general__white-color;
+        border-radius: 4px;
+        &:hover{
+          background: $btn__main-color--light--hover;
+        }
+      }
+      .is-current{
+        .paginator__anchor-element{
+          color: $btn__main-color--light;
+          border:1px solid $btn__main-color--light;
+          background: lighten($btn__main-color--light, 40%);
+        }
+      }
+      .is-ellipsis{
+        .paginator__anchor-element{
+          color: $general__body-text-color;
+          border:1px solid $general__body-bg-color;
+          background: $general__body-bg-color;
+        }
+      }
+      .is-disabled{
+        .paginator__anchor-element{
+          @include mod-btn__clickable-element-property--general();
+          height: 32px;
+          line-height: 32px;
+          background: $btn__disabled-color;
+          color: $btn__text__disabled-color;
+          cursor: default!important;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}// end of @mixin mod-paginator-0001
+
+
+
+
+// --------------------------------
+// moduleを生成
+//---------------------------------
+@include mod-paginator-0001(TRUE);

@@ -1,0 +1,337 @@
+@charset "utf-8";
+
+
+
+//-------------------------------------
+// $range__(色の変化割合の設定)
+//-------------------------------------
+$range-hover-s               : 5%;//ボタンやその他、hoverしたときにlightenする量(小)
+$range-hover-m               : 7%;//ボタンやその他、hoverしたときにlightenする量(中)
+$range-hover-l               : 9%;//ボタンやその他、hoverしたときにlightenする量(大)
+$range-gradation-s           : 5%;//ボタンやその他、グラデーションカラーの下端から上端に向けてlightenする量(小)
+$range-gradation-m           : 7%;//ボタンやその他、グラデーションカラーの下端から上端に向けてlightenする量(中)
+$range-gradation-l           : 9%;//ボタンやその他、グラデーションカラーの下端から上端に向けてlightenする量(大)
+
+
+
+//-------------------------------------
+// $general__(無彩色のベースカラーの設定)
+//-------------------------------------
+$general__white-color           : #ffffff;//white
+$general__black-color           : #000000;//black
+$general__gray-color--0001      : #f6f6f6;//$general__gray-color-min
+$general__gray-color--0002      : #e5e5e5;//lighten($general__gray-color,43%)
+$general__gray-color--0003      : #c9c9c9;//lighten($general__gray-color,31%)
+$general__gray-color--0004      : #bdbdbd;//lighten($general__gray-color,27%)
+$general__gray-color--0005      : #b1b1b1;//lighten($general__gray-color,23%)
+$general__gray-color--0006      : #999999;//lighten($general__gray-color,13%)
+$general__gray-color--0007      : #777777;//$general__gray-color
+$general__gray-color--0008      : #666666;//darken($general__gray-color,6%)
+$general__gray-color--0009      : #333333;//darken($general__gray-color,27%)
+$general__gray-color--0010      : #222222;//darken($general__gray-color,33%)
+$general__gray-color--0011      : #111111;//darken($general__gray-color,40%)
+
+
+
+//-------------------------------------
+// $general__(無彩色のベースカラーの設定 全体を薄めにするときの色)
+//-------------------------------------
+// $general__white-color            : #ffffff;//white
+// $general__black-color            : #000000;//black
+// $general__gray-color--0001      : #f6f6f6;//$general__gray-color-min
+// $general__gray-color--0002      : #eeeeee;//lighten($general__gray-color,43%)
+// $general__gray-color--0003      : #dddddd;//lighten($general__gray-color,31%)
+// $general__gray-color--0004      : #cccccc;//lighten($general__gray-color,27%)
+// $general__gray-color--0005      : #bbbbbb;//lighten($general__gray-color,23%)
+// $general__gray-color--0006      : #aaaaaa;//lighten($general__gray-color,13%)
+// $general__gray-color--0007      : #999999;//$general__gray-color
+// $general__gray-color--0008      : #777777;//darken($general__gray-color,6%)
+// $general__gray-color--0009      : #555555;//darken($general__gray-color,27%)
+// $general__gray-color--0010      : #444444;//darken($general__gray-color,33%)
+// $general__gray-color--0011      : #444444;//darken($general__gray-color,40%)
+
+
+//-------------------------------------
+// $general__(無彩色のベースカラーの設定 全体を濃いめにするときの色)
+//-------------------------------------
+// $general__white-color            : #ffffff;
+// $general__black-color            : #000000;
+// $general__gray-color--0001      : #f1f1f1;
+// $general__gray-color--0002      : #dddddd;
+// $general__gray-color--0003      : #cccccc;
+// $general__gray-color--0004      : #aaaaaa;
+// $general__gray-color--0005      : #777777;
+// $general__gray-color--0006      : #666666;
+// $general__gray-color--0007      : #555555;
+// $general__gray-color--0008      : #444444;
+// $general__gray-color--0009      : #333333;
+// $general__gray-color--0010      : #222222;
+// $general__gray-color--0011      : #111111;
+
+
+//-------------------------------------
+// $general__(特定の意味・特定の要素に関するベースカラーの設定)
+//-------------------------------------
+$general__body-bg-color         : $general__white-color;//white
+$general__body-text-color       : $general__gray-color--0009;//gray
+$general__key-color--0001       : #0099cc;//blue
+$general__key-color--0002       : #f37813;//orange
+$general__link-text-color--0001 : #0099cc;//for light background
+$general__link-text-color--0002 : #ffffff;//for dark background
+$general__emphasis-color--0001  : #158000;//green
+$general__warning-color--0001   : #ff0000;//red
+$general__safety-color--0001    : #158000;//green
+$general__price-color--0001     : #ff0000;//red
+$general__extra-color--0001     : #000000;//undefined
+$general__extra-color--0002     : #000000;//undefined
+
+
+
+//-------------------------------------
+// $btn__(ボタン色の設定)
+//-------------------------------------
+$btn__main-color--dark                  : #e88a38;//メイン濃い
+$btn__main-color--dark--hover           : lighten($btn__main-color--dark,$range-hover-l);//メイン濃い--hover
+$btn__text__main-color--dark            : #ffffff;//ボタンテキスト
+$btn__grdation-flg__main-color--dark    : false;
+$btn__grdation-range__main-color--dark  : $range-gradation-s;
+
+$btn__main-color--light                 : #e8c138;//メイン薄い
+$btn__main-color--light--hover          : lighten($btn__main-color--light,$range-hover-l);//メイン薄い--hover
+$btn__text__main-color--light           : #ffffff;//ボタンテキスト
+$btn__grdation-flg__main-color--light   : false;
+$btn__grdation-range__main-color--light : $range-gradation-s;
+
+$btn__emphasis-color                    : #158000;//強調
+$btn__emphasis-color--hover             : lighten($btn__emphasis-color,$range-hover-l);//強調--hover
+$btn__text__emphasis-color              : #ffffff;//ボタンテキスト
+$btn__grdation-flg__emphasis-color      : false;
+$btn__grdation-range__emphasis-color    : $range-gradation-s;
+
+$btn__warning-color                     : #ff3333;//警告
+$btn__warning-color--hover              : lighten($btn__warning-color,$range-hover-l);//警告--hover
+$btn__text__warning-color               : #ffffff;//ボタンテキスト
+$btn__grdation-flg__warning-color       : false;
+$btn__grdation-range__warning-color     : $range-gradation-s;
+
+$btn__neutral-color                     : #999999;//中立
+$btn__neutral-color--hover              : lighten($btn__neutral-color,$range-hover-l);//中立--hover
+$btn__text__neutral-color               : #ffffff;//ボタンテキスト
+$btn__grdation-flg__neutral-color       : false;
+$btn__grdation-range__neutral-color     : $range-gradation-s;
+
+$btn__disabled-color                    : #f6f6f6;//無効
+$btn__disabled-color--hover             : lighten($btn__disabled-color,$range-hover-l);//無効--hover
+$btn__text__disabled-color              : #dddddd;//ボタンテキスト
+$btn__grdation-flg__disabled-color      : false;
+$btn__grdation-range__disabled-color    : $range-gradation-s;
+
+$btn__extra-color--0001                 : #cc00cc;//臨時
+$btn__extra-color--0001--hover          : lighten($btn__extra-color--0001,$range-hover-l);//臨時--hover
+$btn__text__extra-color--0001           : #ffffff;//ボタンテキスト
+$btn__grdation-flg__extra-color--0001   : false;
+$btn__grdation-range__extra-color--0001 : $range-gradation-s;
+
+$btn__extra-color--0002                 : #333333;//臨時
+$btn__extra-color--0002--hover          : lighten($btn__extra-color--0002,$range-hover-l);//臨時--hover
+$btn__text__extra-color--0002           : #ffffff;//ボタンテキスト
+$btn__grdation-flg__extra-color--0002   : false;
+$btn__grdation-range__extra-color--0002 : $range-gradation-s;
+
+//-------------------------------------
+// $badge__(バッジ色の設定)
+//-------------------------------------
+$badge__color--0001:#ff6969;//red
+$badge__color--0002:#ffb469;//yellow orange
+$badge__color--0003:#ffff69;//shocking yellow
+$badge__color--0004:#b4ff69;//shocking pale green
+$badge__color--0005:#69ff69;//shocking green
+$badge__color--0006:#69ffb4;//shocking blue green
+$badge__color--0007:#69ffff;//shocking pale blue
+$badge__color--0008:#69b4ff;//blue
+$badge__color--0009:#6969ff;//blue purple
+$badge__color--0010:#b469ff;//purple
+$badge__color--0011:#ff69ff;//purple pink
+$badge__color--0012:#ff69b4;//pink
+
+
+
+//-------------------------------------
+// module色
+// 
+// モジュール個別の設定はむやみに増やさないこと!!!!!
+// 現状許可しているのはヘッダー、フッター、グローバルナビの3つのみ
+// その他のモジュール色変更はa/scss/common/modules/**-override.scssを作成して対応してください
+//-------------------------------------
+
+//$mod-m-header-0001-default
+$header-0001__palette-01-default        : #666666;// (ヘッダー上部の帯色)
+$header-0001__palette-02-default        : #0099cc;// (ナビのBG)
+$header-0001__palette-02-default--hover : lighten($header-0001__palette-02-default,$range-hover-m);// (ナビのBG--hover)
+$header-0001__palette-03-default        : #333333;// (ナビのテキスト)
+$header-0001__palette-04-default        : #e5e5e5;// (ナビの罫線)
+$header-0001__palette-05-default        : $general__white-color;// (ヘッダーのBG)
+
+//$mod-m-header-0001-sp
+$header-0001__palette-01-sp             : $general__white-color;// (ヘッダーのBG)
+$header-0001__palette-02-sp             : #f6f6f6;// (ナビのBG 第一階層)
+$header-0001__palette-03-sp             : #333333;// (ナビのテキスト,アロー 第一階層)
+$header-0001__palette-04-sp             : #c9c9c9;// (ナビの罫線 第一階層)
+$header-0001__palette-05-sp             : #f6f6f6;// (ナビのBG 第二階層)
+$header-0001__palette-06-sp             : #333333;// (ナビのテキスト,アロー 第二階層)
+$header-0001__palette-07-sp             : #c9c9c9;// (ナビの罫線 第二階層)
+$header-0001__palette-08-sp             : #f6f6f6;// (ようこそ**さんエリアのBG)
+$header-0001__palette-09-sp             : $general__key-color--0001;// (メニューボタンのBG, )
+$header-0001__palette-09-sp--active     : $header-0001__palette-02-sp;// (メニューボタンのBG--active, )
+$header-0001__palette-10-sp             : #333333;// (閉じるボタンのテキストの色)
+$header-0001__palette-11-sp             : #ffffff;// (閉じるボタンの×の色)
+$header-0001__palette-12-sp             : #333333;// (閉じるボタンの×のBG)
+
+//$mod-m-footer-0001-default
+$footer-0001__palette-01-default        : #222222;// (フッターのBG, ページトップへBG)
+$footer-0001__palette-01-default--hover : lighten($footer-0001__palette-01-default,$range-hover-s);// (フッターのBG, ページトップへBG)
+$footer-0001__palette-02-default        : #333333;// (フッターの罫線)
+$footer-0001__palette-03-default        : $general__link-text-color--0002;// (リンクテキスト)
+$footer-0001__palette-03-default--hover : lighten($general__link-text-color--0002,$range-hover-m);// (リンクテキスト)
+$footer-0001__palette-04-default        : #b1b1b1;// (プレーンテキスト)
+
+//$mod-m-footer-0001-sp
+$footer-0001__palette-01-sp        : $footer-0001__palette-01-default;// (フッターのBG, ページトップへBG)
+$footer-0001__palette-02-sp        : $footer-0001__palette-02-default;// (フッターの罫線)
+$footer-0001__palette-03-sp        : $general__link-text-color--0002;// (リンクテキスト,アロー)
+$footer-0001__palette-04-sp        : $footer-0001__palette-04-default;// (プレーンテキスト)
+
+
+
+
+
+
+
+
+
+
+
+// //-------------------------------------
+// // arrow-color
+// //-------------------------------------
+// $arrow-color-0001: #ffffff;//white
+// $arrow-color-0002: #000000;//black
+
+
+
+// //-------------------------------------
+// // border-color
+// //-------------------------------------
+// $bdr-color-0001: #ffffff;//white
+// $bdr-color-0002: #000000;//black
+// $bdr-color-0003: #ff0000;//red
+// $bdr-color-0004: #000000;//undifind
+// $bdr-color-0005: #000000;//undifind
+// $bdr-color-0006: #000000;//undifind
+// $bdr-color-0007: #000000;//undifind
+// $bdr-color-0008: #000000;//undifind
+
+
+
+// //-------------------------------------
+// // background-color
+// //-------------------------------------
+// $bg-color-0001: #ffffff;//white
+// $bg-color-0002: #000000;//black
+// $bg-color-0003: #666666;//gray
+// $bg-color-0004: #ffe5e5;//light red
+// $bg-color-0005: #eeeeee;//gray
+// $bg-color-0006: #000000;//undifind
+// $bg-color-0007: #000000;//undifind
+// $bg-color-0008: #000000;//undifind
+// $bg-color-0009: #000000;//undifind
+// $bg-color-0010: #000000;//undifind
+
+
+
+// //-------------------------------------
+// // gradation-color
+// //-------------------------------------
+// $brightness-base-color-0001:#ffffff;//white
+// $brightness-base-color-0002:#000000;//black
+// $brightness-base-color-base:#289cc9;//aqua
+
+
+// //-------------------------------------
+// // gradation-color
+// //-------------------------------------
+// @mixin gradation-color-0001() {
+// 	background-color: #f9f3e7; // Old browsers
+// 	@include filter-gradient(#f9f3e7, #f9dcaa, vertical); // IE6-9
+// 	@include background-image(linear-gradient(top,  #f9f3e7 1%,#fcecce 28%,#f9dcaa 89%,#f9dcaa 100%));
+// }
+
+// @mixin gradation-color-0002() {
+// 	background-color: #ffffff; // Old browsers
+// 	@include filter-gradient(#ffffff, #fdeccc, vertical); // IE6-9
+// 	@include background-image(linear-gradient(top,  #ffffff 5%,#fdeccc 100%));
+// }
+
+// @mixin gradation-color-0003() {
+// 	background-color: #c4d981; // Old browsers
+// 	@include filter-gradient(#c4d981, #a7c645, vertical); // IE6-9
+// 	@include background-image(linear-gradient(top,  #c4d981 5%,#a7c645 100%));
+// }
+
+// //45度回転させている要素に使用するgradation
+// @mixin gradation-color-0004() {
+// 	$grd-color-0001:#ffffff;
+// 	$grd-color-0002:#fdeccc;
+// 	$grd-color-0003:#fdeccc;
+// 	background-color: $grd-color-0001; // Old browsers
+// 	@include filter-gradient($grd-color-0001, $grd-color-0002, horizontal); // IE6-9 fallback on horizontal gradient
+// 	@include background-image(linear-gradient(left top, $grd-color-0001 0%,$grd-color-0002 95%,$grd-color-0003 100%));
+// }
+
+// @mixin gradation-color-0005() {
+// 	$grd-color-0001:#eea309;
+// 	$grd-color-0002:#f6dba3;
+// 	$grd-color-0003:#f6dba3;
+// 	background-color: $grd-color-0001; // Old browsers
+// 	@include filter-gradient($grd-color-0001, $grd-color-0002, vertical); // IE6-9
+// 	@include background-image(linear-gradient(top, $grd-color-0001 0%,$grd-color-0002 95%,$grd-color-0003 100%));
+// }
+
+
+
+// //-------------------------------------
+// // shadow-color
+// //-------------------------------------
+// $sdw-color-0001: #ffffff;//white
+// $sdw-color-0002: #000000;//black
+// $sdw-color-0003: rgba(0,0,0,0.1);//black 0.1
+
+
+
+// //-------------------------------------
+// // text-color
+// //-------------------------------------
+// $text-color-0001: #ffffff;//white
+// $text-color-0002: #000000;//black
+// $text-color-0003: #333333;//gray
+// $text-color-0004: #222222;//gray
+// $text-color-0005: #ff0000;//red
+// $text-color-0006: #000000;//undifind
+// $text-color-0007: #000000;//undifind
+// $text-color-0008: #000000;//undifind
+// $text-color-0009: #000000;//undifind
+// $text-color-0010: #000000;//undifind
+
+
+
+// //-------------------------------------
+// // triangle-color
+// //-------------------------------------
+// $triangle-color-0001: #ffffff;//white
+// $triangle-color-0002: #000000;//black
+// $triangle-color-0003: #000000;//undifind
+// $triangle-color-0004: #000000;//undifind
+// $triangle-color-0005: #000000;//undifind
+// $triangle-color-0006: #000000;//undifind
+
+

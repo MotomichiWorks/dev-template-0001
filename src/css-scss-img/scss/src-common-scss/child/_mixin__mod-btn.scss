@@ -1,0 +1,271 @@
+@charset "utf-8";
+
+// --------------------------------
+// clickableElementスタイルmixin
+// --------------------------------
+// .btn__clickable-elementの全ての要素に共通して適用するプロパティ
+@mixin mod-btn__clickable-element-property--general(){
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  font-weight:400;
+  box-sizing: border-box;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+  &+input{
+    display: none;
+  }
+}
+
+// input[type="button"].btn__clickable-element,
+// input[type="submit"].btn__clickable-element
+// に共通して適用するプロパティ
+@mixin mod-btn__clickable-element-property--input(){
+  text-shadow:none;
+  box-shadow:none;
+  cursor: pointer;
+  width:100%;
+  border:none;
+  appearance:none;
+}
+
+// --------------------------------
+// disabledスタイルmixin
+// --------------------------------
+@mixin mod-btn__disabled-color(){
+  &.is-disabled{
+    .btn__clickable-element{
+      background: #{$btn__disabled-color}!important;
+      color: #{$btn__text__disabled-color}!important;
+      cursor: default!important;
+    }
+  }
+  &:disabled{
+    background: #{$btn__disabled-color}!important;
+    color: #{$btn__text__disabled-color}!important;
+    cursor: default!important;
+  }
+}//end of @mixin mod-btn__disabled-color
+
+
+
+// --------------------------------
+// ボタンアロー用mixin
+// --------------------------------
+@mixin mod-btn__arrow(){
+  &.vr-btn-arrow--white{
+    .btn__clickable-element{
+      position: relative;
+      padding-right:24px;
+      &:before{
+        // @include bg-sprite-group-icon-arrow-0001-20px-pc();
+        position: absolute;
+        top:50%;
+        right:12px;
+        margin-top:#{20/-2}px;
+        content: "";
+      }
+    }
+  }
+}
+
+
+
+// // --------------------------------
+// // +ボタンアイコン用mixin
+// // --------------------------------
+// @mixin mod-btn__Icons(){
+//  &.icon-cart-32px{
+//    .btn__label{
+//      position: relative;
+//      padding-left: 22px;
+//      &:before{
+//        position: absolute;
+//        top:50%;
+//        left:0px;
+//        margin-top:#{32/-2}px;
+//        content: "";
+//        @include bg-sprite-group-icon-cart-32px-pc();
+//      }
+//    }
+//  }
+//  &.icon-favorite-20px{
+//    .btn__label{
+//      position: relative;
+//      padding-left: 20px;
+//      &:before{
+//        position: absolute;
+//        top:50%;
+//        left:0px;
+//        margin-top:#{20/-2}px;
+//        content: "";
+//        @include bg-sprite-group-icon-favorite-20px-pc();
+//      }
+//    }
+//  }
+// }
+
+
+
+
+// // --------------------------------
+// // +ajax-loading-icon表示用mixin
+// // --------------------------------
+// @mixin loadingIcon(){
+//  &.is-loading{
+//    .btn__first-wrap{
+//      display: none;
+//    }
+//    &:before{
+//      @include pc-bg-solo__icon-lodaing-32px;
+//      content: "";
+//      z-index:2;
+//      position: absolute;
+//      top:50%;
+//      left: 50%;
+//      margin-top:#{32/-2}px;
+//      margin-left:#{32/-2}px;
+//    }
+//  }
+// }
+
+
+
+// --------------------------------
+// ボタン色 default,0001~0006に関するmixin
+// --------------------------------
+//
+@mixin mod-btn__gradation-color($bottom,$top){
+  // background: $bottom; // Old browsers
+  // @include filter-gradient($top, $bottom, vertical); // IE6-8
+  // // IE9 SVG, needs conditional override of 'filter' to 'none'
+  // $experimental-support-for-svg: true;
+  // @include background-image(linear-gradient(top, $top 0%,$bottom 100%));
+}
+
+// ボタンthemeクラス生成用mixin
+@mixin mod-btn__color-generator($suffix, $default-color, $hover-color, $text-color, $grdation-flg, $range-gradation){
+  @if $grdation-flg == true {
+    //グラデーションを使用する、tm-default、tm-0001から0006
+    $color-bottom : $default-color;
+    $color-top    : lighten($color-bottom,$range-gradation);
+    $color-bottom--hover : $hover-color;
+    $color-top--hover    : lighten($color-bottom--hover,$range-gradation);
+    &.tm-#{$suffix}{
+      a.btn__anchor-element:link,
+      a.btn__anchor-element:visited,
+      a.btn__anchor-element,
+      input[type="button"].btn__anchor-element,
+      input[type="submit"].btn__anchor-element,
+      .btn__anchor-element{
+        color:$text-color;
+        cursor: pointer;
+        @include mod-btn__gradation-color($color-bottom,$color-top);
+      }
+      a.btn__anchor-element:hover,
+      input[type="button"].btn__anchor-element:hover,
+      input[type="submit"].btn__anchor-element:hover,
+      .btn__anchor-element:hover{
+        @include mod-btn__gradation-color($color-bottom--hover,$color-top--hover);
+      }
+      input[type="button"].btn__anchor-element,
+      input[type="submit"].btn__anchor-element,
+      a.btn__anchor-element:active{
+        @include mod-btn__gradation-color($color-bottom,$color-top);
+      }
+    }
+  }@else{
+    //グラデーションを使用しない、tm-default、tm-0001から0006
+    &.tm-#{$suffix}{
+      .btn__clickable-element{
+        color:$text-color;
+        background: $default-color;
+      }
+      input[type="button"].btn__clickable-element,
+      input[type="submit"].btn__clickable-element,
+      .btn__clickable-element{
+        &:hover{
+          background: $hover-color;
+        }
+      }
+    }
+  }// end @if $grdation-flg == true
+}// end of @mixin mod-btn__color-generator
+
+//
+@mixin mod-btn__themes(){
+  //使い方
+  //@include mod-btn__color-generator(
+  //  "クラス接尾辞",
+  //  ボタンBG色,
+  //  ボタンBG色--hover,
+  //  ボタン文字色,
+  //  グラデ使用ON||OFF,
+  //  グラデ下端から上端までの変色割合
+  // );
+
+  //メイン濃い
+  @include mod-btn__color-generator(
+    "default",
+    $btn__main-color--dark,
+    $btn__main-color--dark--hover,
+    $btn__text__main-color--dark,
+    $btn__grdation-flg__main-color--dark,
+    $btn__grdation-range__main-color--dark
+  );
+  //メイン薄い
+  @include mod-btn__color-generator(
+    "0001",
+    $btn__main-color--light,
+    $btn__main-color--light--hover,
+    $btn__text__main-color--light,
+    $btn__grdation-flg__main-color--light,
+    $btn__grdation-range__main-color--light
+  );
+  //強調
+  @include mod-btn__color-generator(
+    "0002",
+    $btn__emphasis-color,
+    $btn__emphasis-color--hover,
+    $btn__text__emphasis-color,
+    $btn__grdation-flg__emphasis-color,
+    $btn__grdation-range__emphasis-color
+  );
+  //警告
+  @include mod-btn__color-generator(
+    "0003",
+    $btn__warning-color,
+    $btn__warning-color--hover,
+    $btn__text__warning-color,
+    $btn__grdation-flg__warning-color,
+    $btn__grdation-range__warning-color
+  );
+  //中立
+  @include mod-btn__color-generator(
+    "0004",
+    $btn__neutral-color,
+    $btn__neutral-color--hover,
+    $btn__text__neutral-color,
+    $btn__grdation-flg__neutral-color,
+    $btn__grdation-range__neutral-color
+  );
+  //臨時
+  @include mod-btn__color-generator(
+    "0005",
+    $btn__extra-color--0001,
+    $btn__extra-color--0001--hover,
+    $btn__text__extra-color--0001,
+    $btn__grdation-flg__extra-color--0001,
+    $btn__grdation-range__extra-color--0001
+  );
+  //臨時
+  @include mod-btn__color-generator(
+    "0006",
+    $btn__extra-color--0002,
+    $btn__extra-color--0002--hover,
+    $btn__text__extra-color--0002,
+    $btn__grdation-flg__extra-color--0002,
+    $btn__grdation-range__extra-color--0002
+  );
+}

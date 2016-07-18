@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+//最初に読み込んでおくべき変数やmixinなどを読み込み
+@import "../../src-common-scss/main";
+
+/**
+ * 自分で追記したresetスタイル
+ */
+body{
+	font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+	background-color: $general__body-bg-color;
+	color: $general__body-text-color;
+	// font-size: $root-font-size#{px};
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+    display: none !important;
+}

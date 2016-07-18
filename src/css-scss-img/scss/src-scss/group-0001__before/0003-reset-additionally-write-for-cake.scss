@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+//最初に読み込んでおくべき変数やmixinなどを読み込み
+@import "../../src-common-scss/main";
+
+/**
+ * cake.generic.cssをoverrideするスタイル
+ */
+
+form{
+  width:100%;
+}
+form div{
+  margin-bottom: 0;
+  padding: 0;
+}

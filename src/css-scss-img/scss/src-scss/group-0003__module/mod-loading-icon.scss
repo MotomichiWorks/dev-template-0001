@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+//最初に読み込んでおくべき変数やmixinなどを読み込み
+@import "../../src-common-scss/main";
+
+
+
+// --------------------------------
+// LoadingIcon0001
+//---------------------------------
+@mixin LoadingIcon0001($moduleFlg){
+  @if $moduleFlg == TRUE {
+    .LoadingIcon0001{
+      $size : 80px;
+      $padding : 8px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height:$size;
+      width:$size;
+      margin-top: (-1 * $size/2) - $padding;
+      margin-left: (-1 * $size/2) - $padding;
+      background-size: $size auto;
+      background-color: $general__white-color;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      padding: $padding;
+      border-radius:4px;
+      z-index:10000;
+      @include icon__loading();
+
+      &.LoadingIcon0001-40px{
+        $size : 40px;
+        height:$size;
+        width:$size;
+        margin-top: (-1 * $size/2) - $padding;
+        margin-left: (-1 * $size/2) - $padding;
+        background-size: $size auto;
+      }
+
+    }
+  }
+}// end of @mixin mod-loading-icon-0001
+
+
+
+
+// --------------------------------
+// moduleを生成
+//---------------------------------
+@include LoadingIcon0001(TRUE);

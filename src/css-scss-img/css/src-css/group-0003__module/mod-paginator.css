@@ -1,0 +1,127 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+.mod-paginator-0001 .paginator__second-wrap {
+  display: block; }
+.mod-paginator-0001 .paginator__info-wrap {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  zoom: 1; }
+  .mod-paginator-0001 .paginator__info-wrap:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    overflow: hidden;
+    font-size: 0.1em;
+    line-height: 0; }
+.mod-paginator-0001 .paginator__info {
+  float: left;
+  line-height: 1;
+  color: #777777; }
+  .mod-paginator-0001 .paginator__info + .paginator__info {
+    padding-left: 8px;
+    border-left: 1px solid #777777;
+    margin-left: 8px; }
+.mod-paginator-0001 .paginator__ul-ol-element {
+  zoom: 1; }
+  .mod-paginator-0001 .paginator__ul-ol-element:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    overflow: hidden;
+    font-size: 0.1em;
+    line-height: 0; }
+.mod-paginator-0001 .paginator__li-element-first {
+  float: left;
+  width: 80px; }
+  .mod-paginator-0001 .paginator__li-element-first + .paginator__li-element-prev {
+    padding-left: 8px; }
+.mod-paginator-0001 .paginator__li-element-prev {
+  float: left;
+  width: 64px; }
+.mod-paginator-0001 .paginator__li-element-next {
+  float: left;
+  width: 64px;
+  padding-left: 8px; }
+.mod-paginator-0001 .paginator__li-element-last {
+  float: left;
+  width: 80px;
+  padding-left: 8px; }
+.mod-paginator-0001 .paginator__li-element-number {
+  float: left;
+  width: 32px;
+  padding-left: 8px; }
+.mod-paginator-0001 .paginator__anchor-element {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 400;
+  box-sizing: border-box;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+  height: 32px;
+  line-height: 32px;
+  background: #e8c138;
+  color: #ffffff;
+  border-radius: 4px; }
+  .mod-paginator-0001 .paginator__anchor-element + input {
+    display: none; }
+  .mod-paginator-0001 .paginator__anchor-element:hover {
+    background: #edce61; }
+.mod-paginator-0001 .is-current .paginator__anchor-element {
+  color: #e8c138;
+  border: 1px solid #e8c138;
+  background: #fdfaef; }
+.mod-paginator-0001 .is-ellipsis .paginator__anchor-element {
+  color: #333333;
+  border: 1px solid #ffffff;
+  background: #ffffff; }
+.mod-paginator-0001 .is-disabled .paginator__anchor-element {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 400;
+  box-sizing: border-box;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+  height: 32px;
+  line-height: 32px;
+  background: #f6f6f6;
+  color: #dddddd;
+  cursor: default !important;
+  border-radius: 4px; }
+  .mod-paginator-0001 .is-disabled .paginator__anchor-element + input {
+    display: none; }
