@@ -1,15 +1,9 @@
 /************************************************
  * コマンドラインから実行するtaskとその概要
  ************************************************/
- /**
-  * コマンド : gulp browserify
-  *     - jscompile()を実行
-  */
 
  /**
   * コマンド : gulp watch
-  *     - watchify
-  *         - JS__SRC__PATHの変更をトリガーにして、jscompile()を実行
   *     - build
   *         - scssファイルをsassでコンパイル
   *         - cssファイルを結合して、webrootにdest
@@ -20,28 +14,24 @@
   *     - spritesmithを実行して、scssとpngを生成
   */
 
+  /**
+   * コマンド : gulp lint
+   *     - jsの文法チェック
+   */
+
 
 
 /************************************************
  * モジュール読み込み
  ************************************************/
-var gulp        = require( 'gulp' );
-var babel       = require('gulp-babel');
-var sourcemaps  = require('gulp-sourcemaps');
-var browserify  = require( 'browserify' );
-var watchify    = require( 'watchify' );
-var babelify    = require('babelify');
-var uglify      = require( 'gulp-uglify' );
-var source      = require( 'vinyl-source-stream' );
-var buffer      = require( 'vinyl-buffer' );
-var rubysass    = require( 'gulp-ruby-sass' );
-var cleanCSS    = require('gulp-clean-css');
-var spritesmith = require( 'gulp.spritesmith' );
-var mergeStream = require( 'merge-stream' );
-var concat      = require( 'gulp-concat' );
-var eslint      = require('gulp-eslint');
+var gulp         = require('gulp');
+var rubysass     = require('gulp-ruby-sass');
+var cleanCSS     = require('gulp-clean-css');
+var spritesmith  = require('gulp.spritesmith');
+var mergeStream  = require('merge-stream');
+var concat       = require('gulp-concat');
+var eslint       = require('gulp-eslint');
 var autoprefixer = require('gulp-autoprefixer');
-// var rename      = require( 'gulp-rename' );
 
 
 
@@ -55,8 +45,6 @@ var SASS__SRC__PATH           = './src/css-scss-img/scss/src-scss';
 var SASS__RESULT__PATH        = './src/css-scss-img/css/src-css';
 var MINIFY_CSS__SRC__PATH     = SASS__RESULT__PATH;
 var MINIFY_CSS__RESULT__PATH  = './var/www/webroot/assets/css'; // 完成品のCSSが出力されるディレクトリ
-var JS__SRC__PATH             = './src/js';
-var JS__RESULT__PATH          = './var/www/webroot/assets/js'; // 完成品のJSが出力されるディレクトリ
 var GULP_WATCH__PATH          = './src/css-scss-img/**/*.*';
 
 
@@ -66,60 +54,11 @@ var GULP_WATCH__PATH          = './src/css-scss-img/**/*.*';
  ************************************************/
 
 /**
- * JS__SRC__PATHに対するコンパイルを一回実行するタスク
+ * SASS__SRC__PATH をトリガーとして監視するタスク
  *
  * @return {Object} gulp ストリーム
  */
-gulp.task('browserify',function(){
-  return jscompile(false);//引数がfalseなので監視しない
-});
-
-/**
- * JS__SRC__PATHを監視して、JS__SRC__PATHに対するコンパイルを繰り返し実行するタスク
- *
- * @return {Object} gulp ストリーム
- */
-gulp.task('watchify',function(){
-  return jscompile(true);//引数がtrueなので監視する
-});
-
-// jscompile関数を定義
-function jscompile(is_watch){
-  // 変数bundlerにwatchify()またはbrowserify()を格納
-  var bundler;
-  if(is_watch){
-    bundler = watchify(browserify(JS__SRC__PATH + '/main.js'));
-  }else{
-    bundler = browserify(JS__SRC__PATH + '/main.js');
-  }
-  //関数rebundleを定義
-  function rebundle(){
-    return bundler
-      .transform(babelify, {"presets": ["es2015", "react"]})
-      .bundle()
-      .on('error', function (err) { console.log('Error : ' + err.message); })
-      .pipe(source('main.js'))
-      .pipe(buffer())
-      // .pipe(uglify())
-      .pipe(gulp.dest(JS__RESULT__PATH));
-    }
-    bundler.on('update',function(){
-      rebundle();
-    });
-    bundler.on('log',function(message){
-      console.log( message );
-    });
-    return rebundle();
-  }
-
-/**
- * SASS__SRC__PATH JS__SRC__PATHをトリガーとして監視するタスク
- * scssの監視は、gulp.watchで監視
- * jsの監視は、watchify+browserifyで監視
- *
- * @return {Object} gulp ストリーム
- */
-gulp.task('watch',['watchify'], function() {
+gulp.task('watch', function() {
   gulp.watch(GULP_WATCH__PATH,['build'])
     .on('change', function(event){
       eventObj = event;
@@ -129,9 +68,7 @@ gulp.task('watch',['watchify'], function() {
 
 
 /**
- * 以下の役割を持ったタスクです。
- *
- * - sprite画像を作成して、それに対応するscssファイルを生成する
+ * sprite画像を作成して、それに対応するscssファイルを生成するタスク
  *
  * @return {Object} gulp ストリーム
  */
@@ -238,6 +175,13 @@ gulp.task('build',function (callback){
   }
 });
 
+
+
+/**
+ * jsの文法チェックをするタスク
+ *
+ * @return {Object} gulp ストリーム
+ */
 gulp.task('lint', function() {
   return gulp.src([
       './src/js/main.js',
