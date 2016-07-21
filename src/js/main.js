@@ -1,10 +1,14 @@
-import jquery from 'jquery';
+// jq-components
+require('./child/jq-components/foo');
+
+// react-components
 import React from 'react';
 import ReactDom from 'react-dom';
 import Hoge from './child/react-components/hoge';
-import Foo from './child/jq-components/foo';
 
 ReactDom.render(<Hoge />, document.getElementById('example'));
+
+
 
 // angular
 // angular = require('./child/lib/angular.min');

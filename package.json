@@ -4,12 +4,17 @@
   "description": "description",
   "main": "index.js",
   "scripts": {
+    "wp-pro": "webpack -p",
+    "wp-dev": "webpack -d",
+    "wp-wat": "webpack -d --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "motomichi",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.11.4",
     "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
     "babelify": "^7.3.0",
@@ -36,6 +41,7 @@
     "react-dom": "^15.2.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.7.0"
+    "watchify": "^3.7.0",
+    "webpack": "^1.13.1"
   }
 }
