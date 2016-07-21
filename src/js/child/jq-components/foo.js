@@ -1,5 +1,5 @@
 import jquery from 'jquery';
 
-(function($) {
+(function ($) {
   console.log('#example : ' + $('#example').length);
 })(jquery);
