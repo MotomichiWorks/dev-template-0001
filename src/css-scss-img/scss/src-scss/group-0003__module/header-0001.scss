@@ -1,0 +1,156 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+.header-0001{
+  .header-0001__first-wrap{
+  }
+  .header-0001__second-wrap{
+    display: block;
+  }
+  .header-0001__third-wrap{
+    width: 1296px;
+    margin-left: auto;
+    margin-right:auto;
+    box-sizing:border-box;
+    padding-left:12px;
+    padding-right:12px;
+    @include clearfix();
+  }
+  .header-0001__fourth-wrap{
+  }
+  .header-0001__logo-wrap{
+    float: left;
+  }
+  .header-0001__logo-text{
+    color: $general__gray-color-0009;
+    display: block;
+    font-size: 18px;
+    line-height: 40px;
+    height: 40px;
+    font-weight: 700;
+    text-decoration: none;
+    &:hover{
+      color: $general__gray-color-0008;
+    }
+  }
+  .header-0001__user-nav{
+    float: right;
+    padding-top: 8px;
+  }
+  .header-0001__user-nav__text-wrap{
+
+  }
+  .header-0001__user-nav__anc-elm{
+
+  }
+  .header-0001__global-nav{
+    background: $general__key-color-0001;
+  }
+  .header-0001__global-nav__ul-lv-1{
+    background: $general__key-color-0001;
+    width: 1296px;
+    margin:0 auto;
+    box-sizing:border-box;
+    padding:0 12px;
+    @include clearfix();
+  }
+  .header-0001__global-nav__li-lv-1{
+    float: left;
+    width: 20%;
+    border-right:2px solid $general__white-color;
+    &:first-child{
+      border-left:2px solid $general__white-color;
+    }
+  }
+  .header-0001__global-nav__anc-lv-1{
+    display: block;
+    padding-left: 12px;
+    padding-right: 12px;
+    line-height: 40px;
+    height: 40px;
+    font-size: 16px;
+    color: $general__white-color;
+    background: $general__key-color-0001;
+    text-decoration: none;
+    text-align: center;
+    &:hover{
+      background: lighten($general__key-color-0001, $range-hover-s);
+    }
+  }
+  .header-0001__info{
+    float:right;
+    display: block;
+    padding-left: 24px;
+    padding-right: 24px;
+    line-height: 40px;
+    height: 40px;
+  }
+  .header-0001__mypage-nav{
+    background: $general__key-color-0001;
+    margin-top:12px;
+  }
+  .header-0001__mypage-nav__ul-lv-1{
+    background: $general__key-color-0001;
+    width: 1296px;
+    margin:0 auto;
+    padding:0 12px;
+    box-sizing:border-box;
+    @include clearfix();
+  }
+  .header-0001__mypage-nav__li-lv-1{
+    float: left;
+    width: 16.66666667%;
+    border-right:2px solid $general__white-color;
+    background: $general__key-color-0001;
+    position: relative;
+    z-index: 1;
+    &:first-child{
+      border-left:2px solid $general__white-color;
+    }
+  }
+  .header-0001__mypage-nav__anc-lv-1{
+    display: block;
+    padding-left: 12px;
+    padding-right: 12px;
+    line-height: 32px;
+    height: 32px;
+    color: $general__white-color;
+    text-decoration: none;
+    text-align: center;
+    &:hover{
+      background: lighten($general__key-color-0001, $range-hover-s);
+    }
+  }
+  .header-0001__mypage-nav__ul-lv-2{
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    border-top:1px solid $general__white-color;
+    &.is-show{
+      display: block;
+    }
+  }
+  .header-0001__mypage-nav__li-lv-2{
+    background: $general__key-color-0001;
+  }
+  .header-0001__mypage-nav__anchor-lv-2{
+    display: block;
+    padding-left: 12px;
+    padding-right: 12px;
+    line-height: 32px;
+    height: 32px;
+    color: $general__white-color;
+    text-decoration: none;
+    text-align: center;
+    &:hover{
+      background: lighten($general__key-color-0001, $range-hover-s);
+    }
+  }
+}

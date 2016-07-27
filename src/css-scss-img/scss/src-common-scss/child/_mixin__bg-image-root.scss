@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+
+
+// cssスプライトしない、単体背景画像用のmixin
+@import "grandson/_mixin__bg-image__solo";
+
+// spritesmithの実行によって生成されるファイル
+@import "grandson/_mixin__bg-image__spritesmith";
+
+
+
+/**
+ * このファイルは上記のファイルを@importする為だけのファイルなので、mixinはここには記述しません。
+ * - CSSスプライトを使用しない単体のbackground-imageのmixinは「_mixin__bg-image__solo.scss」に手書きします。
+ * - CSSスプライトをするbackground-imageのmixinは「_mixin__bg-image__spritesmith.scss」として自動生成されます。
+ *
+ * 上記の2ファイル内に定義されたmixinを各モジュール内で実行することとし、画像ファイルのパスを各モジュール内に書くことを禁止しています。
+ *
+ */

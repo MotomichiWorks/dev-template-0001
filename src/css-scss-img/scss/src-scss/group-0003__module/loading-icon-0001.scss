@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+.loading-icon-0001{
+  $padding : 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: $general__white-color;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  padding: $padding;
+  border-radius:4px;
+  z-index:10000;
+  @include icon-loading();
+
+  &.loading-icon-0001--l{
+    $size : 80px;
+    height:$size;
+    width:$size;
+    margin-top: (-1 * $size/2) - $padding;
+    margin-left: (-1 * $size/2) - $padding;
+    background-size: $size auto;
+  }
+  &.loading-icon-0001--m{
+    $size : 40px;
+    height:$size;
+    width:$size;
+    margin-top: (-1 * $size/2) - $padding;
+    margin-left: (-1 * $size/2) - $padding;
+    background-size: $size auto;
+  }
+  &.loading-icon-0001--s{
+    $size : 20px;
+    height:$size;
+    width:$size;
+    margin-top: (-1 * $size/2) - $padding;
+    margin-left: (-1 * $size/2) - $padding;
+    background-size: $size auto;
+  }
+}

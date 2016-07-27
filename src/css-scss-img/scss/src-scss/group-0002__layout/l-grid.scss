@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+// --------------------------------
+// l-grid
+//---------------------------------
+.l-grid-1 {width: 8.33333333%;}
+.l-grid-2 {width: 16.66666667%;}
+.l-grid-3 {width: 25%;}
+.l-grid-4 {width: 33.33333333%;}
+.l-grid-5 {width: 41.66666667%;}
+.l-grid-6 {width: 50%;}
+.l-grid-7 {width: 58.33333333%;}
+.l-grid-8 {width: 66.66666667%;}
+.l-grid-9 {width: 75%;}
+.l-grid-10 {width: 83.33333333%;}
+.l-grid-11 {width: 91.66666667%;}
+.l-grid-12 {width: 100%;}

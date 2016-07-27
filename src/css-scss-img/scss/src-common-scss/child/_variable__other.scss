@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+// ----------------------------
+// font-size
+// ----------------------------
+$font-size__0001:8;
+$font-size__0002:10;
+$font-size__0003:12;
+$font-size__0004:14;
+$font-size__0005:16;
+$font-size__0006:20;
+$font-size__0007:24;
+$font-size__0008:32;
+$font-size__0009:40;
+$font-size__0010:48;
+
+// ----------------------------
+// breakpoint (defaultとして960pxのpcを想定して、scssを記述しています)
+// ----------------------------
+$breakpoint__size-xl        : 1272px; // window幅が、$breakpoint__size-xl以上のとき、xl設定のスタイルが適用される
+$breakpoint__size-xl-enable : FALSE;
+
+$breakpoint__size-m         : 959px; // window幅が、$breakpoint__size-m以下のとき、m設定のスタイルが適用される
+$breakpoint__size-m-enable  : FALSE;
+
+$breakpoint__size-s         : 768px; // window幅が、$breakpoint__size-s以下のとき、s設定のスタイルが適用される
+$breakpoint__size-s-enable  : FALSE;
+
+$breakpoint__size-xs        : 540px; // window幅が、$breakpoint__size-xs以下のとき、xs設定のスタイルが適用される
+$breakpoint__size-xs-enable : FALSE;

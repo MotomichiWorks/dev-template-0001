@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+.tooltip-0001{
+  .tooltip-0001__contents-wrap{
+    display: none;
+    @include clearfix();
+    &.tooltip-0001__contents-wrap--visible{
+      display: block;
+    }
+  }
+  .tooltip-0001__icon{
+    $element-size: 20px;
+    display: block;
+    cursor: pointer;
+    background: $general__gray-color-0010;
+    color: $general__white-color;
+    font-size:12px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    line-height:$element-size;
+    height: $element-size;
+    width: $element-size;
+    border-radius: $element-size/2;
+    &:hover{
+      background: $general__gray-color-0009;
+    }
+  }
+}

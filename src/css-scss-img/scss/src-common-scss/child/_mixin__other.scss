@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+// ----------------------------
+// clearfix
+// ----------------------------
+@mixin clearfix(){
+	zoom: 1;
+	&:after{
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+		overflow:hidden;
+		font-size:0.1em;
+		line-height:0;
+	}
+}
+
+// ----------------------------
+// media-queries
+// ----------------------------
+
+//
+//使うときは以下のような感じで書く
+//@include media($breakpoint__size-xl){
+//	.hoge{
+//		padding:10px;
+//	}
+//}
+//
+@mixin media($i_value){
+  @if $breakpoint__size-xl-enable == TRUE {
+    @if $i_value == $breakpoint__size-xl {
+  		@media screen and (min-width:$breakpoint__size-xl) {
+  			@content;
+  		}
+  	}
+  }
+  @if $breakpoint__size-m-enable == TRUE {
+    @if $i_value == $breakpoint__size-m {
+  		@media screen and (max-width:$breakpoint__size-m) {
+  			@content;
+  		}
+  	}
+  }
+  @if $breakpoint__size-s-enable == TRUE {
+    @if $i_value == $breakpoint__size-s {
+  		@media screen and (max-width:$breakpoint__size-s) {
+  			@content;
+  		}
+  	}
+  }
+  @if $breakpoint__size-xs-enable == TRUE {
+    @if $i_value == $breakpoint__size-xs {
+  		@media screen and (max-width:$breakpoint__size-xs) {
+  			@content;
+  		}
+  	}
+  }
+}
+
+// ----------------------------
+// transform-deg
+// ----------------------------
+@mixin transform-deg($i_value:45deg) {
+	-webkit-transform: rotate($i_value);
+	transform: rotate($i_value);
+	-ms-transform: rotate($i_value);
+}

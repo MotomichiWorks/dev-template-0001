@@ -1,10 +1,10 @@
 @charset "utf-8";
 
-//最初に読み込んでおくべき変数やmixinなどを読み込み
-@import "../../src-common-scss/main";
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
 
 /**
- * cake.generic.cssをoverrideするスタイル
+ * cake.generic.cssの不都合な箇所を上書きするスタイル
  */
 
 form{
