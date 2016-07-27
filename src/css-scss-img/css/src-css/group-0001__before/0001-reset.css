@@ -1,3 +1,7 @@
+@charset "UTF-8";
+/**
+ * 各モジュール、各レイアウトで使用するbackground-imageのmixinを以下に手書きで定義
+ */
 /*
 SCSS variables are information about icon's compiled state, stored under its original file name
 
@@ -21,6 +25,21 @@ The provided mixins are intended to be used with the array-like variables
 .icon-email {
   @include sprite($icon-email);
 }
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
 */
 /*
 The `sprites` mixin generates identical output to the CSS template
@@ -28,12 +47,21 @@ The `sprites` mixin generates identical output to the CSS template
 
 @include sprites($spritesheet-sprites);
 */
-/*! --------------------------------------------------
+/**
+ * このファイルは上記のファイルを@importする為だけのファイルなので、mixinはここには記述しません。
+ * - CSSスプライトを使用しない単体のbackground-imageのmixinは「_mixin__bg-image__solo.scss」に手書きします。
+ * - CSSスプライトをするbackground-imageのmixinは「_mixin__bg-image__spritesmith.scss」として自動生成されます。
+ *
+ * 上記の2ファイル内に定義されたmixinを各モジュール内で実行することとし、画像ファイルのパスを各モジュール内に書くことを禁止しています。
+ *
+ */
+/*
 html5doctor.com Reset Stylesheet
-v1.4
-2009-07-27
+v1.6.1
+Last Updated: 2010-09-17
 Author: Richard Clark - http://richclarkdesign.com
--------------------------------------------------- */
+Twitter: @rich_clark
+*/
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code,
@@ -43,8 +71,8 @@ b, i,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, dialog, figure, footer, header,
-hgroup, menu, nav, section,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
 time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -52,18 +80,16 @@ time, mark, audio, video {
   outline: 0;
   font-size: 100%;
   vertical-align: baseline;
-  background: transparent;
-  -webkit-text-size-adjust: 100%;
-  font-style: normal; }
+  background: transparent; }
 
 body {
   line-height: 1; }
 
-article, aside, dialog, figure, footer, header,
-hgroup, nav, section {
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
   display: block; }
 
-ol, ul {
+nav ul {
   list-style: none; }
 
 blockquote, q {
@@ -77,25 +103,17 @@ q:before, q:after {
 a {
   margin: 0;
   padding: 0;
-  border: 0;
   font-size: 100%;
   vertical-align: baseline;
-  background: transparent;
-  text-decoration: underline;
-  color: #0099cc; }
+  background: transparent; }
 
-a:hover {
-  color: #00bbfa;
-  text-decoration: none; }
-
+/* change colours to suit your needs */
 ins {
   background-color: #ff9;
   color: #000;
   text-decoration: none; }
 
-img {
-  vertical-align: text-bottom; }
-
+/* change colours to suit your needs */
 mark {
   background-color: #ff9;
   color: #000;
@@ -106,27 +124,20 @@ del {
   text-decoration: line-through; }
 
 abbr[title], dfn[title] {
-  border-bottom: 1px dotted #000;
+  border-bottom: 1px dotted;
   cursor: help; }
 
 table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+/* change border colour to suit your needs */
 hr {
   display: block;
   height: 1px;
   border: 0;
   border-top: 1px solid #cccccc;
   margin: 1em 0;
-  padding: 0; }
-
-hr.spacer {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #cccccc;
-  margin: 16px 0;
   padding: 0; }
 
 input, select {

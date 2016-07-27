@@ -1,0 +1,85 @@
+@charset "UTF-8";
+/**
+ * 各モジュール、各レイアウトで使用するbackground-imageのmixinを以下に手書きで定義
+ */
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+/**
+ * このファイルは上記のファイルを@importする為だけのファイルなので、mixinはここには記述しません。
+ * - CSSスプライトを使用しない単体のbackground-imageのmixinは「_mixin__bg-image__solo.scss」に手書きします。
+ * - CSSスプライトをするbackground-imageのmixinは「_mixin__bg-image__spritesmith.scss」として自動生成されます。
+ *
+ * 上記の2ファイル内に定義されたmixinを各モジュール内で実行することとし、画像ファイルのパスを各モジュール内に書くことを禁止しています。
+ *
+ */
+.form-type-text-0001 .form-type-text-0001__input-element {
+  display: block;
+  width: 100%;
+  border: 1px solid #c9c9c9;
+  font-size: 14px;
+  padding: 4px 4px 4px 6px;
+  color: #444444;
+  outline: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  border-radius: 2px; }
+  .form-type-text-0001 .form-type-text-0001__input-element.form-type-text-0001__input-element--warning, .form-type-text-0001 .form-type-text-0001__input-element.form-error {
+    border-color: #ff0000;
+    background-color: #ffe6e6; }
+  .form-type-text-0001 .form-type-text-0001__input-element[disabled], .form-type-text-0001 .form-type-text-0001__input-element.form-type-text-0001__input-element--disabled {
+    background-color: #f3f3f3; }
+  .form-type-text-0001 .form-type-text-0001__input-element[readonly] {
+    border: 1px solid transparent;
+    background-color: transparent; }
+.form-type-text-0001.form-type-text-0001--form-height-s .form-type-text-0001__input-element {
+  height: 20px;
+  line-height: 20px; }
+.form-type-text-0001.form-type-text-0001--form-height-m .form-type-text-0001__input-element {
+  height: 32px;
+  line-height: 32px; }
+.form-type-text-0001.form-type-text-0001--form-height-l .form-type-text-0001__input-element {
+  height: 44px;
+  line-height: 44px; }

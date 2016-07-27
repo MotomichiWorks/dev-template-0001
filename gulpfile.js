@@ -40,7 +40,7 @@ var autoprefixer = require('gulp-autoprefixer');
  ************************************************/
 var SPRITE__SRC__PATH         = './src/css-scss-img/img/src-img';
 var SPRITE__RESULT__SCSS_PATH = './src/css-scss-img/scss/src-common-scss/child';
-var SPRITE__RESULT__IMG_PATH  = './webroot/assets/img';
+var SPRITE__RESULT__IMG_PATH  = './var/www/webroot/assets/img';
 var SASS__SRC__PATH           = './src/css-scss-img/scss/src-scss';
 var SASS__RESULT__PATH        = './src/css-scss-img/css/src-css';
 var MINIFY_CSS__SRC__PATH     = SASS__RESULT__PATH;

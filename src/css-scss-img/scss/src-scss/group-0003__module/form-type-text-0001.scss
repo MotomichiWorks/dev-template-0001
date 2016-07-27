@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+.form-type-text-0001{
+  .form-type-text-0001__input-element{
+    display: block;
+    width: 100%;
+    border: 1px solid $general__gray-color-0003;
+    font-size: 14px;
+    padding:4px 4px 4px 6px;
+    color:$general__body-text-color;
+    outline: none;
+    box-shadow: none;
+    box-sizing: border-box;
+    border-radius: 2px;
+    &.form-type-text-0001__input-element--warning,
+    &.form-error{
+      border-color: $general__warning-color-0001;
+      background-color: lighten( $general__warning-color-0001, 45% );
+    }
+    &[disabled],
+    &.form-type-text-0001__input-element--disabled{
+      background-color: $general__gray-color-0001;
+    }
+    &[readonly]{
+      border: 1px solid transparent;
+      background-color: transparent;
+    }
+  }
+
+  &.form-type-text-0001--form-height-s{
+    .form-type-text-0001__input-element{
+      height: 20px;
+      line-height: 20px;
+    }
+  }
+
+  &.form-type-text-0001--form-height-m{
+    .form-type-text-0001__input-element{
+      height: 32px;
+      line-height: 32px;
+    }
+  }
+
+  &.form-type-text-0001--form-height-l{
+    .form-type-text-0001__input-element{
+      height: 44px;
+      line-height: 44px;
+    }
+  }
+
+
+
+  @include media($breakpoint__size-s){
+
+  }
+}

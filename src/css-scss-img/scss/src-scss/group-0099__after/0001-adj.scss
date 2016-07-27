@@ -1,82 +1,16 @@
 @charset "utf-8";
 
-//最初に読み込んでおくべき変数やmixinなどを読み込み
-@import "../../src-common-scss/main";
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
 
 
 
 // --------------------------------
-// FlashMessage0001-Adj
-//---------------------------------
-.adj-l-0001 + .FlashMessage0001-Adj{margin-top:12px;}
-
-
-
-// --------------------------------
-// adj-form-frame-0001
-//---------------------------------
-.adj-heading-0001-lv2 + .adj-form-frame-0001{margin-top:12px;}
-
-
-
-// --------------------------------
-// adj-form-frame-0002
-//---------------------------------
-.adj-heading-0001-lv1 + .adj-form-frame-0002{margin-top:32px;}
-
-
-
-// --------------------------------
-// adj-heading-0001-lv1
-//---------------------------------
-.FlashMessage0001-Adj + .adj-heading-0001-lv1{margin-top:32px;}
-.adj-l-0001 + .adj-heading-0001-lv1{margin-top:32px;}
-
-
-
-// --------------------------------
-// adj-heading-0001-lv2
+// flash-message-0001--adj
 //---------------------------------
 
 
 
 // --------------------------------
-// adj-l-0001
+// table-like-0001--adj
 //---------------------------------
-
-
-
-// --------------------------------
-// adj-l-btn-frame-0001
-//---------------------------------
-.adj-l-btn-frame-0001{margin-top:12px;}
-
-
-
-// --------------------------------
-// adj-l-h2-section
-//---------------------------------
-.adj-heading-0001-lv1 + .adj-l-h2-section{margin-top:32px;}
-.adj-l-h2-section + .adj-l-h2-section{margin-top:72px;}
-
-
-
-// --------------------------------
-// adj-list-0002
-//---------------------------------
-.adj-paginator-0001 + .adj-list-0002{margin-top:12px;}
-
-
-
-// --------------------------------
-// adj-paginator-0001
-//---------------------------------
-.adj-heading-0001-lv2 + .adj-paginator-0001{margin-top:4px;}
-.adj-list-0002 + .adj-paginator-0001{margin-top:4px;}
-
-
-
-// --------------------------------
-// TableLike0001-Adj
-//---------------------------------
-.adj-heading-0001-lv2 + .TableLike0001-Adj{margin-top:12px;}

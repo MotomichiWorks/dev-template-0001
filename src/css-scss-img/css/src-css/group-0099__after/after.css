@@ -1,3 +1,7 @@
+@charset "UTF-8";
+/**
+ * 各モジュール、各レイアウトで使用するbackground-imageのmixinを以下に手書きで定義
+ */
 /*
 SCSS variables are information about icon's compiled state, stored under its original file name
 
@@ -21,6 +25,21 @@ The provided mixins are intended to be used with the array-like variables
 .icon-email {
   @include sprite($icon-email);
 }
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
 */
 /*
 The `sprites` mixin generates identical output to the CSS template
@@ -28,3 +47,11 @@ The `sprites` mixin generates identical output to the CSS template
 
 @include sprites($spritesheet-sprites);
 */
+/**
+ * このファイルは上記のファイルを@importする為だけのファイルなので、mixinはここには記述しません。
+ * - CSSスプライトを使用しない単体のbackground-imageのmixinは「_mixin__bg-image__solo.scss」に手書きします。
+ * - CSSスプライトをするbackground-imageのmixinは「_mixin__bg-image__spritesmith.scss」として自動生成されます。
+ *
+ * 上記の2ファイル内に定義されたmixinを各モジュール内で実行することとし、画像ファイルのパスを各モジュール内に書くことを禁止しています。
+ *
+ */

@@ -1,7 +1,7 @@
 @charset "utf-8";
 
-//最初に読み込んでおくべき変数やmixinなどを読み込み
-@import "../../src-common-scss/main";
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
 
 /**
  * 自分で追記したresetスタイル
@@ -16,6 +16,27 @@ body{
 	line-height: 1.5;
 }
 
+a {
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:100%;
+  font-weight: 400;
+	vertical-align:baseline;
+	background:transparent;
+	text-decoration: underline;
+	color: $general__link-text-color-0001;
+}
+a:link{}
+a:visited{}
+a:hover{
+	color: lighten($general__link-text-color-0001,$range-hover-l);
+	text-decoration: none;
+}
+a:active{}
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
     display: none !important;
 }
+
+li{list-style: none;}

@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+.footer-0001{
+  .footer-0001__first-wrap{
+    margin-top:160px;
+  }
+  .footer-0001__second-wrap{
+    display: block;
+    background: $general__gray-color-0009;
+    @include clearfix();
+  }
+  .footer-0001__copy-wrap{
+    text-align: center;
+    display: block;
+    width:1296px;
+    margin:0 auto;
+    padding:0 12px;
+    box-sizing:border-box;
+    line-height: 36px;
+    height: 36px;
+  }
+  .footer-0001__copy{
+    font-weight: 400;
+    text-decoration: none;
+    color: $general__white-color;
+  }
+}
