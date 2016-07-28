@@ -1,9 +1,8 @@
-// jq-components
+// jQueryを使う場合はこれを有効化
 require('./child/jq-components/foo');
 
-// react-components
-import React from 'react';
-import ReactDom from 'react-dom';
-import Hoge from './child/react-components/hoge';
+// reactを使う場合はこれを有効化
+require('./child/react/react-wrapper');
 
-ReactDom.render(<Hoge />, document.getElementById('example'));
+// vueを使う場合はこれを有効化
+require('./child/vue/vue-model');

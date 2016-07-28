@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default class Hoge extends Component {
+export default class Btn0001 extends Component {
   constructor (props) {
     super(props);
   }
@@ -8,7 +8,7 @@ export default class Hoge extends Component {
   render () {
     return (
       <div className='hoge'>
-        hoge element.
+        Btn0001 element.
       </div>
     );
   }
