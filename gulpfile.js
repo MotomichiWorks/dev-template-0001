@@ -25,6 +25,7 @@
  * モジュール読み込み
  ************************************************/
 var gulp         = require('gulp');
+var fs           = require('fs');
 var rubysass     = require('gulp-ruby-sass');
 var cleanCSS     = require('gulp-clean-css');
 var spritesmith  = require('gulp.spritesmith');
@@ -52,6 +53,38 @@ var GULP_WATCH__PATH          = './src/css-scss-img/**/*.*';
 /************************************************
  * tasks
  ************************************************/
+
+/**
+ * minifyCss
+ *
+ * filePathSuffixList {Array}
+ * fileName {String}
+ * @return {Object} gulpストリーム
+ */
+var minifyCss = function (filePathSuffixList, fileName) {
+  var filePathList = [];
+
+  filePathSuffixList.forEach(function(filePathItem){
+    filePathList.push(MINIFY_CSS__SRC__PATH + filePathItem);
+  });
+
+  var stream = gulp.src(filePathList)
+    .pipe(concat(fileName))
+    .pipe(autoprefixer({
+      browsers: [
+        // 'iOS 7',
+        // 'Android 2.3',
+        // 'not ie <= 8',
+        'last 2 versions'
+      ]
+    }))
+    .pipe(cleanCSS({
+      compatibility: 'ie8'
+    }))
+    .pipe(gulp.dest(MINIFY_CSS__RESULT__PATH));
+
+  return stream;
+}
 
 /**
  * SASS__SRC__PATH をトリガーとして監視するタスク
@@ -113,14 +146,28 @@ gulp.task('build',function (callback){
   var _group;
   console.log('eventObj.typeは'+eventObj.type);//イベントタイプを出力(chenged,added,deletedなど)
   console.log('eventObj.pathは'+eventObj.path);//イベントパスを出力
+
   //src-common-scss/*.scssが変更されたときに全てのscssをコンパイル
   if(eventObj.path.match('src-common-scss')){
     console.log("scssを全てコンパイルします。");
-    return rubysass( SASS__SRC__PATH + '/')
-      .on('error', function (err) {
-        console.error('Error!', err.message);
-      })
-      .pipe(gulp.dest(SASS__RESULT__PATH + '/'));
+
+    var srcDirList = fs.readdirSync (SASS__SRC__PATH);
+    var srcFileList = [];
+    var filePath;
+
+    srcDirList.forEach(function(dirName){
+      srcFileList = fs.readdirSync (SASS__SRC__PATH + '/' + dirName);
+      srcFileList.forEach(function(fileName){
+        filePath = SASS__SRC__PATH + '/' + dirName + '/' + fileName;
+        rubysass(filePath)
+          .on('error', function (err) {
+            console.error('Error!', err.message);
+          })
+          .pipe(gulp.dest(SASS__RESULT__PATH + '/' + dirName + '/'));
+      });
+    });
+
+    callback();
   }
   //src-scss/*.scssが変更されたときに当該のファイルだけをコンパイル
   else if(eventObj.path.match('src-scss')){
@@ -135,38 +182,27 @@ gulp.task('build',function (callback){
   //style.cssを生成
   else if(eventObj.path.match('src-css')){
     console.log("style1.css, style2.css, を生成します。");
-    // style1を生成
-    var stream1 = gulp.src(MINIFY_CSS__SRC__PATH + '/group-0001__before/*.css')
-      .pipe(concat('style1.css'))
-      .pipe(autoprefixer({
-        browsers: ['last 2 versions']
-      }))
-      .pipe(cleanCSS({
-        compatibility: 'ie8'
-      }))
-      .pipe(gulp.dest(MINIFY_CSS__RESULT__PATH));
-    // style2を生成
-    var stream2 = gulp.src([
-        MINIFY_CSS__SRC__PATH + '/group-0002__layout/*.css',
-        MINIFY_CSS__SRC__PATH + '/group-0003__module/*.css',
-        MINIFY_CSS__SRC__PATH + '/group-0004__module/*.css',
-        MINIFY_CSS__SRC__PATH + '/group-0099__after/*.css'
-      ])
-      .pipe(concat('style2.css'))
-      .pipe(autoprefixer({
-        browsers: [
-          // 'iOS 7',
-          // 'Android 2.3',
-          // 'not ie <= 8',
-          'last 2 versions'
-        ]
-      }))
-      .pipe(cleanCSS({
-        compatibility: 'ie8'
-      }))
-      .pipe(gulp.dest(MINIFY_CSS__RESULT__PATH));
+
+    // srcディレクトリを設定
+    var srcPathSuffixObj = {
+      list1: [
+        '/group-0001__before/*.css'
+      ],
+      list2:  [
+        '/group-0002__layout/*.css',
+        '/group-0003__module/*.css',
+        '/group-0004__module/*.css',
+        '/group-0099__after/*.css'
+      ]
+    };
+
+    // style1.css, style2.cssを生成
+    var stream1 = minifyCss(srcPathSuffixObj.list1, 'style1.css');
+    var stream2 = minifyCss(srcPathSuffixObj.list2, 'style2.css');
+
     // streamをマージ
     var merged = mergeStream(stream1, stream2);
+
     // streamをreturn
     return merged;
   }
