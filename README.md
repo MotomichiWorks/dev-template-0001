@@ -15,25 +15,29 @@ CakePHP2.6.7とgulp3.9.1とwebpack1.13.1で作る開発雛型です。
 
 例として、sample-project-0001リポジトリ
 
+1． GitHubとかBitbucketとかでリモートリポジトリを作成する。
+2. リポジトリをローカルにcloneする。
+
 ## vagrant box add する
 
-1. package__20160721をダウンロードする。
-2. package__20160721のあるディレクトリで`vagrant box add centos67box-20160721 package__20160721.box`を実行する。
+1. package__20160722をダウンロードする。
+2. package__20160722のあるディレクトリで`vagrant box add centos67box-20160722 package__20160722.box`を実行する。
 
 ## vagrant up をする
 
-1. GitBashなどで、sample-project-0001ディレクトリに移動し`vagrant init centos67box-20160721`する。
+1. GitBashなどで、sample-project-0001ディレクトリに移動し`vagrant init centos67box-20160722`する。
 2. Vagrantfileの`#config.vm.network "private_network", ip: "192.168.33.10"`の#を削除してコメント解除する。
 3. `vagrant up`する。
 4. たぶん vagrant up でエラーが出るので、 http://motomichi-works.hatenablog.com/entry/2014/12/16/130302 の手順を実行する。
-5. 一旦`vagrant halt`する。
+5. [4]の手順を実行したら、192.168.33.10でapacheのスタートページが閲覧できたと思う。
+6. 一旦`vagrant halt`する。
 
-## ひな形zipをダウンロードして配置し、ローカル環境のブラウジング
+## 開発ひな形のzipをダウンロードして配置し、ローカル環境のブラウジング
 
 1. dev-template-0001-master.zip をダウンロード
 2. zipを展開すると`dev-template-0001-master/dev-template-0001-master/中身`みたいな構造になっている。
 3. 中身のVagrantfile以外を、sample-project-0001リポジトリに移動する。
-4. dev-template-0001-master/dev-template-0001-master/Vagrantfile の中の`config.vm.synced_folder "./var/www/webroot", "/var/www/webroot", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']`と`config.vm.synced_folder "./var/www/cake", "/var/www/cake", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']`の二行を、sample-project-0001/Vagrantfileの`# config.vm.synced_folder "../data", "/vagrant_data"`の下にコピペする。
+4. 展開した dev-template-0001-master/dev-template-0001-master/Vagrantfileを開いて `config.vm.synced_folder "./var/www/webroot", "/var/www/webroot", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']`と`config.vm.synced_folder "./var/www/cake", "/var/www/cake", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']`の二行を、sample-project-0001/Vagrantfileの`# config.vm.synced_folder "../data", "/vagrant_data"`の行の下にコピペする。
 5. `vagrant up`する。
 6. http://192.168.33.10/ にアクセスするとCakePHPのスタートページが表示されたら環境構築はおおよそできたことになる。
 7. gitのブランチ切って、開発ひな形をコミットしてプッシュする。
@@ -61,6 +65,15 @@ CREATE DATABASE sample_db CHARACTER SET utf8;
 1. Security.saltを編集する
 2. Security.cipherSeedを編集する
 3. database.php.defaultを複製して、database.phpを作成し編集をする
+
+## hostsに一行追記する
+
+C:/Windows/System32/drivers/etc/hosts に下記の一行を追記する。
+`192.168.33.10 example.com`
+
+## npm installする
+
+package.jsonに記載されているパッケージがインストールされる。
 
 ## 環境構築完了
 
