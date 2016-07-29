@@ -9,40 +9,49 @@ CakePHP2.6.7とgulp3.9.1とwebpack1.13.1で作る開発雛型です。
 - MySQL 5.1.73
 - PHP 5.3.3
 
-
+Sass、React.jsやVue.jsがすぐに使用できます。
 
 ## リモートリポジトリを作成して、ローカルにcloneする
 
 例として、sample-project-0001リポジトリ
 
-1． GitHubとかBitbucketとかでリモートリポジトリを作成する。
+1. GitHubとかBitbucketとかでリモートリポジトリを作成する。
 2. リポジトリをローカルにcloneする。
 
 ## vagrant box add する
 
-1. package__20160722をダウンロードする。
-2. package__20160722のあるディレクトリで`vagrant box add centos67box-20160722 package__20160722.box`を実行する。
+1. vagrant用のpackage--dev-template-0001.boxをダウンロードする。
+2. package--dev-template-0001.boxのあるディレクトリで`vagrant box add centos67box--dev-template-0001 package--dev-template-0001.box`を実行する。
 
 ## vagrant up をする
 
-1. GitBashなどで、sample-project-0001ディレクトリに移動し`vagrant init centos67box-20160722`する。
-2. Vagrantfileの`#config.vm.network "private_network", ip: "192.168.33.10"`の#を削除してコメント解除する。
-3. `vagrant up`する。
-4. たぶん vagrant up でエラーが出るので、 http://motomichi-works.hatenablog.com/entry/2014/12/16/130302 の手順を実行する。
-5. [4]の手順を実行したら、192.168.33.10でapacheのスタートページが閲覧できたと思う。
-6. 一旦`vagrant halt`する。
+1. GitBashなどで、sample-project-0001ディレクトリに移動し`vagrant init centos67box--dev-template-0001`する。
+2. `vagrant up`コマンドで起動する。
+3. `vagrant ssh`コマンドで仮想サーバにログインする。
+4. `su`コマンドで管理者にスイッチする。
+5. 管理者パスワード`vagrant`を入力する。
+6. `ln -s -f /dev/null /etc/udev/rules.d/70-persistent-net.rules`コマンドを実行する。
+7. `exit`で管理者から通常ユーザーにスイッチする。
+8. `exit`で仮想サーバからログアウトする。
+9. Vagrantfileの`#config.vm.network "private_network", ip: "192.168.33.10"`の#を削除してコメント解除する。
+10. `vagrant reload`で仮想サーバを再起動する。
+11. ブラウザでhttp://192.168.33.10にアクセスして、apacheのスタートページが閲覧できたら成功です。
+
+上記はエラーが出ないように、前もって以下の記事内容を実行したという感じです。  
+http://motomichi-works.hatenablog.com/entry/2014/12/16/130302
 
 ## 開発ひな形のzipをダウンロードして配置し、ローカル環境のブラウジング
 
-1. dev-template-0001-master.zip をダウンロード
+1. https://github.com/MotomichiWorks/dev-template-0001 からdev-template-0001-master.zip をダウンロードする。
 2. zipを展開すると`dev-template-0001-master/dev-template-0001-master/中身`みたいな構造になっている。
 3. 中身のVagrantfile以外を、sample-project-0001リポジトリに移動する。
-4. 展開した dev-template-0001-master/dev-template-0001-master/Vagrantfileを開いて `config.vm.synced_folder "./var/www/webroot", "/var/www/webroot", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']`と`config.vm.synced_folder "./var/www/cake", "/var/www/cake", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']`の二行を、sample-project-0001/Vagrantfileの`# config.vm.synced_folder "../data", "/vagrant_data"`の行の下にコピペする。
+4. 展開した dev-template-0001-master/dev-template-0001-master/ に残しておいた Vagrantfile を開いて `config.vm.synced_folder "./var/www/webroot", "/var/www/webroot", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']`と`config.vm.synced_folder "./var/www/cake", "/var/www/cake", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']`の二行を、sample-project-0001/Vagrantfileの`# config.vm.synced_folder "../data", "/vagrant_data"`の行の下にコピペする。
 5. `vagrant up`する。
 6. http://192.168.33.10/ にアクセスするとCakePHPのスタートページが表示されたら環境構築はおおよそできたことになる。
-7. gitのブランチ切って、開発ひな形をコミットしてプッシュする。
-8. リモートリポジトリ上でmasterにマージする。
-9. `git pull origin master`する。
+7. `npm install`を実行すると、package.jsonに記載されているパッケージがインストールされる。
+8. gitのブランチ切って、開発ひな形をコミットしてプッシュする。
+9. リモートリポジトリ上でmasterにマージする。
+10. `git pull origin master`する。
 
 ## HeidiSQLまたはSequelproで、MySQLホストに接続する
 
@@ -58,7 +67,7 @@ CREATE DATABASE データベース名 CHARACTER SET utf8;
 
 みたいな感じで、SQLを実行して作成するので、sample_dbというデータベース名の場合は以下の通り。
 
-CREATE DATABASE sample_db CHARACTER SET utf8;
+`CREATE DATABASE sample_db CHARACTER SET utf8;``
 
 ## CakePHPの初期設定をする
 
@@ -66,14 +75,12 @@ CREATE DATABASE sample_db CHARACTER SET utf8;
 2. Security.cipherSeedを編集する
 3. database.php.defaultを複製して、database.phpを作成し編集をする
 
-## hostsに一行追記する
+## hostsに一行追記して、仮想サーバに設定してあるドメインにアクセスできるようにする
 
 C:/Windows/System32/drivers/etc/hosts に下記の一行を追記する。
 `192.168.33.10 example.com`
 
-## npm installする
-
-package.jsonに記載されているパッケージがインストールされる。
+vagrantの仮想サーバ内のhostsやconfファイルは設定済みなので、 http://example.com と https://example.com の閲覧ができるようになります。
 
 ## 環境構築完了
 
