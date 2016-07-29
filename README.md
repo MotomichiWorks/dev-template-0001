@@ -67,7 +67,7 @@ CREATE DATABASE データベース名 CHARACTER SET utf8;
 
 みたいな感じで、SQLを実行して作成するので、sample_dbというデータベース名の場合は以下の通り。
 
-`CREATE DATABASE sample_db CHARACTER SET utf8;``
+`CREATE DATABASE sample_db CHARACTER SET utf8;`
 
 ## CakePHPの初期設定をする
 
