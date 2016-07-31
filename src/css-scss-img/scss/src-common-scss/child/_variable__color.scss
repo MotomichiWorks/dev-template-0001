@@ -19,7 +19,7 @@ $range-gradation-l           : 9%;//ボタンやその他、グラデーショ�
 $general__white-color          : #ffffff;//white
 $general__black-color          : #000000;//black
 $general__gray-color-0001      : #f3f3f3;//$general__gray-color-min
-$general__gray-color-0002      : #eeeeee;//lighten($general__gray-color,43%)
+$general__gray-color-0002      : #e9e9e9;//lighten($general__gray-color,43%)
 $general__gray-color-0003      : #c9c9c9;//lighten($general__gray-color,31%)
 $general__gray-color-0004      : #bdbdbd;//lighten($general__gray-color,27%)
 $general__gray-color-0005      : #aaaaaa;//lighten($general__gray-color,23%)
@@ -58,11 +58,11 @@ $general__body-text-color      : $general__gray-color-0009;//gray
 $general__key-color-0001       : #196ad8;//blue
 $general__key-color-0002       : #db8915;//orange
 $general__link-text-color-0001 : $general__key-color-0001;//for light background
-$general__link-text-color-0002 : $general__key-color-0001;//for dark background
+$general__link-text-color-0002 : #8ab4ec;//for dark background
 $general__emphasis-color-0001  : #158000;//green
-$general__warning-color-0001   : #ff0000;//red
+$general__warning-color-0001   : #ff3333;//red
 $general__safety-color-0001    : #158000;//green
-$general__price-color-0001     : #ff0000;//red
+$general__price-color-0001     : #ff3333;//red
 $general__extra-color-0001     : #000000;//undefined
 $general__extra-color-0002     : #000000;//undefined
 
@@ -122,18 +122,18 @@ $btn-extra-color-0002__grdation-range   : $range-gradation-s;
 //-------------------------------------
 // $badge__(バッジ色の設定)
 //-------------------------------------
-$badge__color-0001:#ff3333;//red
-$badge__color-0002:#ffb469;//yellow orange
-$badge__color-0003:#ffff69;//shocking yellow
-$badge__color-0004:#b4ff69;//shocking pale green
-$badge__color-0005:#69ff69;//shocking green
-$badge__color-0006:#69ffb4;//shocking blue green
-$badge__color-0007:#69ffff;//shocking pale blue
-$badge__color-0008:#69b4ff;//blue
-$badge__color-0009:#6969ff;//blue purple
-$badge__color-0010:#b469ff;//purple
-$badge__color-0011:#ff69ff;//purple pink
-$badge__color-0012:#ff69b4;//pink
+$badge__color-0001:#e04646;//red
+$badge__color-0002:#e09346;//yellow orange
+$badge__color-0003:#e0e046;//shocking yellow
+$badge__color-0004:#93e046;//shocking pale green
+$badge__color-0005:#46e046;//shocking green
+$badge__color-0006:#46e093;//shocking blue green
+$badge__color-0007:#46e0e0;//shocking pale blue
+$badge__color-0008:#4693e0;//blue
+$badge__color-0009:#4646e0;//blue purple
+$badge__color-0010:#9346e0;//purple
+$badge__color-0011:#e046e0;//purple pink
+$badge__color-0012:#e04693;//pink
 
 
 

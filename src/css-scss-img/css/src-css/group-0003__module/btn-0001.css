@@ -183,11 +183,11 @@ The `sprites` mixin generates identical output to the CSS template
       width: 24px;
       height: 24px; }
   .btn-0001.btn-0001--disabled .btn-0001__clickable-elm {
-    background: #eeeeee!important;
+    background: #e9e9e9!important;
     color: #bdbdbd!important;
     cursor: default !important; }
   .btn-0001 .btn-0001__clickable-elm:disabled {
-    background: #eeeeee!important;
+    background: #e9e9e9!important;
     color: #bdbdbd!important;
     cursor: default !important; }
   .btn-0001.btn-0001--color-0001 .btn-0001__clickable-elm {

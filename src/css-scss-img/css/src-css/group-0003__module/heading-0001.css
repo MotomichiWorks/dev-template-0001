@@ -184,7 +184,7 @@ The `sprites` mixin generates identical output to the CSS template
   .heading-0001.heading-0001--lv-5 .heading-0001__btn-wrap {
     padding: 6px 12px 0 0; }
 .heading-0001.heading-0001--lv-6 {
-  background: #eeeeee; }
+  background: #e9e9e9; }
   .heading-0001.heading-0001--lv-6 .heading-0001__table {
     border-bottom: 1px solid #333333; }
   .heading-0001.heading-0001--lv-6 .heading-0001__icon-wrap {
@@ -195,7 +195,7 @@ The `sprites` mixin generates identical output to the CSS template
     width: 12px;
     height: 12px; }
   .heading-0001.heading-0001--lv-6 .heading-0001__h-elm {
-    background: #eeeeee;
+    background: #e9e9e9;
     padding: 4px 0 4px 12px;
     line-height: 24px;
     font-size: 16px;
