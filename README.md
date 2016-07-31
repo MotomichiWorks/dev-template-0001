@@ -35,7 +35,7 @@ Sass、React.jsやVue.jsがすぐに使用できます。
 8. `exit`で仮想サーバからログアウトする。
 9. Vagrantfileの`#config.vm.network "private_network", ip: "192.168.33.10"`の#を削除してコメント解除する。
 10. `vagrant reload`で仮想サーバを再起動する。
-11. ブラウザで http://192.168.33.10 にアクセスして、apacheのスタートページが閲覧できたら成功です。
+11. ブラウザで http://192.168.33.10 にアクセスして、apacheのテストページが閲覧できたら成功です。
 
 上記はエラーが出ないように、前もって以下の記事内容を実行したという感じです。  
 http://motomichi-works.hatenablog.com/entry/2014/12/16/130302
