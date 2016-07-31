@@ -177,31 +177,35 @@ gulp.task('build',function (callback){
       .on('error', function (err) {
         console.error('Error!', err.message);
       })
-      .pipe(gulp.dest(SASS__RESULT__PATH + '/' + _group+ '/'));
+      .pipe(gulp.dest(SASS__RESULT__PATH + '/' + _group + '/'));
   }
   //style.cssを生成
   else if(eventObj.path.match('src-css')){
-    console.log("style1.css, style2.css, を生成します。");
+    console.log("style1.css, style2.css, styleguide.css, を生成します。");
 
     // srcディレクトリを設定
     var srcPathSuffixObj = {
       list1: [
         '/group-0001__before/*.css'
       ],
-      list2:  [
+      list2: [
         '/group-0002__layout/*.css',
         '/group-0003__module/*.css',
         '/group-0004__module/*.css',
         '/group-0099__after/*.css'
+      ],
+      list3: [
+        '/group-0100__styleguide/*.css'
       ]
     };
 
     // style1.css, style2.cssを生成
     var stream1 = minifyCss(srcPathSuffixObj.list1, 'style1.css');
     var stream2 = minifyCss(srcPathSuffixObj.list2, 'style2.css');
+    var streamStyleguide = minifyCss(srcPathSuffixObj.list3, 'styleguide.css');
 
     // streamをマージ
-    var merged = mergeStream(stream1, stream2);
+    var merged = mergeStream(stream1, stream2, streamStyleguide);
 
     // streamをreturn
     return merged;

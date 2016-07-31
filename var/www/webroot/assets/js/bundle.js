@@ -41961,7 +41961,7 @@
   \***********************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div>vue-btn-0001 です。</div>\n";
+	module.exports = "<div>vue-btn-0001 です。</div>\r\n";
 
 /***/ },
 /* 180 */
@@ -41970,7 +41970,7 @@
   \***************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div>vue-heading-0001 です。</div>\n";
+	module.exports = "<div>vue-heading-0001 です。</div>\r\n";
 
 /***/ }
 /******/ ]);

@@ -62,7 +62,7 @@ The `sprites` mixin generates identical output to the CSS template
     font-size: 12px;
     line-height: 12px;
     padding: 3px 8px;
-    border: 1px solid #ff3333;
-    color: #ff3333;
-    background: #fff0f0;
+    border: 1px solid #e04646;
+    color: #e04646;
+    background: #fbe8e8;
     border-radius: 2px; }

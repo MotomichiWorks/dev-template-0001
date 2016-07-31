@@ -63,7 +63,7 @@ The `sprites` mixin generates identical output to the CSS template
 .flash-message-0001.flash-message-0001--color-neutral .flash-message-0001__first-wrap {
   border: 2px solid #777777; }
 .flash-message-0001.flash-message-0001--color-neutral .flash-message-0001__second-wrap {
-  background: #eeeeee;
+  background: #e9e9e9;
   color: #777777; }
 .flash-message-0001.flash-message-0001--color-safety .flash-message-0001__first-wrap {
   border: 2px solid #158000; }
@@ -71,7 +71,7 @@ The `sprites` mixin generates identical output to the CSS template
   background: #eaffe6;
   color: #158000; }
 .flash-message-0001.flash-message-0001--color-warning .flash-message-0001__first-wrap {
-  border: 2px solid #ff0000; }
+  border: 2px solid #ff3333; }
 .flash-message-0001.flash-message-0001--color-warning .flash-message-0001__second-wrap {
-  background: #ffebeb;
-  color: #ff0000; }
+  background: white;
+  color: #ff3333; }

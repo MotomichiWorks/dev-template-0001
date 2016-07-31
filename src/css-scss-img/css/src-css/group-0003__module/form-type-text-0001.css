@@ -67,8 +67,8 @@ The `sprites` mixin generates identical output to the CSS template
   box-sizing: border-box;
   border-radius: 2px; }
   .form-type-text-0001 .form-type-text-0001__input-element.form-type-text-0001__input-element--warning, .form-type-text-0001 .form-type-text-0001__input-element.form-error {
-    border-color: #ff0000;
-    background-color: #ffe6e6; }
+    border-color: #ff3333;
+    background-color: white; }
   .form-type-text-0001 .form-type-text-0001__input-element[disabled], .form-type-text-0001 .form-type-text-0001__input-element.form-type-text-0001__input-element--disabled {
     background-color: #f3f3f3; }
   .form-type-text-0001 .form-type-text-0001__input-element[readonly] {
