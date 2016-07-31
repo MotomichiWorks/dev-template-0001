@@ -30,6 +30,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
   echo $this->Html->css('cake.generic');
   echo $this->Html->css('/assets/css/style1');
   echo $this->Html->css('/assets/css/style2');
+  echo $this->Html->script('/assets/js/bundle');
   echo $this->fetch('meta');
   echo $this->fetch('css');
   echo $this->fetch('script');
