@@ -15,8 +15,8 @@ echo $this->Html->css( '/assets/css/styleguide.css');
     <ul class="sg-header-0001__view-area-width-changer-ul">
       <li class="sg-header-0001__view-area-width-changer-li js-sg-header-0001__view-area-width-changer-li">320</li>
       <li class="sg-header-0001__view-area-width-changer-li js-sg-header-0001__view-area-width-changer-li">768</li>
+      <li class="sg-header-0001__view-area-width-changer-li js-sg-header-0001__view-area-width-changer-li">984</li>
       <li class="sg-header-0001__view-area-width-changer-li js-sg-header-0001__view-area-width-changer-li">1320</li>
-      <li class="sg-header-0001__view-area-width-changer-li js-sg-header-0001__view-area-width-changer-li">2000</li>
     </ul>
     <div class="sg-header-0001__index-wrap js-sg-header-0001__index-wrap">
       <span class="sg-header-0001__index-heading">index</span>

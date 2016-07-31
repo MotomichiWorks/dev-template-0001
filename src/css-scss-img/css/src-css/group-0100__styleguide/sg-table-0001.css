@@ -11,11 +11,14 @@
     background: #ffecd2;
     line-height: 1.5;
     font-size: 16px; }
+  .sg-table-0001 .sg-table-0001__table-wrap {
+    overflow: auto; }
   .sg-table-0001 .sg-table-0001__table {
     display: table;
     width: 100%;
     margin-top: 24px;
-    border-collapse: collapse; }
+    border-collapse: collapse;
+    box-sizing: border-box; }
   .sg-table-0001 .sg-table-0001__tr {
     display: table-row;
     list-style: none; }
@@ -44,6 +47,8 @@
   .sg-table-0001 .sg-table-0001__display-cell-inner {
     width: 960px;
     position: relative; }
+  .sg-table-0001 .sg-table-0001__sample-code-cell-inner {
+    min-width: 320px; }
   .sg-table-0001 .sg-table-0001__textarea-elm {
     display: block;
     font-size: 16px;
