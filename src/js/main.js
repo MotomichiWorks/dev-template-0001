@@ -5,4 +5,4 @@ require('./child/jquery/jq-main');
 // require('./child/react/react-main');
 
 // vueを使う場合はこれを有効化
-// require('./child/vue/vue-main');
+require('./child/vue/vue-main');

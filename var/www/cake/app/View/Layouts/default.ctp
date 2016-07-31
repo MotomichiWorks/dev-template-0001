@@ -18,7 +18,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
-<html>
+<html id="vue-app">
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
@@ -30,7 +30,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
   echo $this->Html->css('cake.generic');
   echo $this->Html->css('/assets/css/style1');
   echo $this->Html->css('/assets/css/style2');
-  echo $this->Html->script('/assets/js/bundle');
   echo $this->fetch('meta');
   echo $this->fetch('css');
   echo $this->fetch('script');
@@ -41,7 +40,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<div id="header">
 			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
 		</div>
-		<div id="content">
+		<div>
 
 			<?php echo $this->Session->flash(); ?>
 
@@ -60,5 +59,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
+  <?php echo $this->Html->script('/assets/js/bundle'); ?>
 </body>
 </html>
