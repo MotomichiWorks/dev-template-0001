@@ -1,13 +1,10 @@
 import Vue from 'vue';
 
 var app = new Vue({
-  el : '#app',
+  el : '#vue-app',
   components: {
-    'btn-0001': {
-      template: require('./module/btn-0001.html')
-    },
-    'heading-0001': {
-      template: require('./module/heading-0001.html')
-    },
+    'vue-badge-0001': require('./module/vue-badge-0001'),
+    'vue-btn-0001': require('./module/vue-btn-0001'),
+    'vue-heading-0001': require('./module/vue-heading-0001'),
   }
 });

@@ -6,15 +6,101 @@
 
 
 .badge-0001{
-  display: inline-block;
-  font-size: 0;
+  display:block;
+  @include clearfix();
   .badge-0001__first-wrap{
+    display: block;
+    float: left;
     font-size: 12px;
     line-height: 12px;
     padding: 3px 8px;
-    border: 1px solid $badge__color-0001;
-    color: $badge__color-0001;
-    background: lighten($badge__color-0001, 37%);
     border-radius: 2px;
+    border: 1px solid $general__gray-color-0007;
+    color: $general__gray-color-0007;
+    background: $general__gray-color-0001;
+  }
+  &.badge-0001--color-0001 {
+    .badge-0001__first-wrap {
+      border: 1px solid $badge__color-0001;
+      color: $badge__color-0001;
+      background: lighten($badge__color-0001, 37%);
+    }
+  }
+  &.badge-0001--color-0002 {
+    .badge-0001__first-wrap {
+      border: 1px solid $badge__color-0002;
+      color: $badge__color-0002;
+      background: lighten($badge__color-0002, 37%);
+    }
+  }
+  &.badge-0001--color-0003 {
+    .badge-0001__first-wrap {
+      border: 1px solid $badge__color-0003;
+      color: $badge__color-0003;
+      background: lighten($badge__color-0003, 37%);
+    }
+  }
+  &.badge-0001--color-0004 {
+    .badge-0001__first-wrap {
+      border: 1px solid $badge__color-0004;
+      color: $badge__color-0004;
+      background: lighten($badge__color-0004, 37%);
+    }
+  }
+  &.badge-0001--color-0005 {
+    .badge-0001__first-wrap {
+      border: 1px solid $badge__color-0005;
+      color: $badge__color-0005;
+      background: lighten($badge__color-0005, 37%);
+    }
+  }
+  &.badge-0001--color-0006 {
+    .badge-0001__first-wrap {
+      border: 1px solid $badge__color-0006;
+      color: $badge__color-0006;
+      background: lighten($badge__color-0006, 37%);
+    }
+  }
+  &.badge-0001--color-0007 {
+    .badge-0001__first-wrap {
+      border: 1px solid $badge__color-0007;
+      color: $badge__color-0007;
+      background: lighten($badge__color-0007, 37%);
+    }
+  }
+  &.badge-0001--color-0008 {
+    .badge-0001__first-wrap {
+      border: 1px solid $badge__color-0008;
+      color: $badge__color-0008;
+      background: lighten($badge__color-0008, 37%);
+    }
+  }
+  &.badge-0001--color-0009 {
+    .badge-0001__first-wrap {
+      border: 1px solid $badge__color-0009;
+      color: $badge__color-0009;
+      background: lighten($badge__color-0009, 37%);
+    }
+  }
+  &.badge-0001--color-0010 {
+    .badge-0001__first-wrap {
+      border: 1px solid $badge__color-0010;
+      color: $badge__color-0010;
+      background: lighten($badge__color-0010, 37%);
+    }
+  }
+  &.badge-0001--color-0011 {
+    .badge-0001__first-wrap {
+      border: 1px solid $badge__color-0011;
+      color: $badge__color-0011;
+      background: lighten($badge__color-0011, 37%);
+    }
+  }
+  &.badge-0001--color-0012 {
+    .badge-0001__first-wrap {
+      border: 1px solid $badge__color-0012;
+      color: $badge__color-0012;
+      background: lighten($badge__color-0012, 37%);
+    }
   }
 }
