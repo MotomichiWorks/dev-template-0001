@@ -15,7 +15,7 @@ Sass、React.jsやVue.jsがすぐに使用できます。
 
 例として、sample-project-0001リポジトリ
 
-1. GitHubとかBitbucketとかでリモートリポジトリを作成する。
+1. GitHubでリモートリポジトリを作成する。
 2. リポジトリをローカルにcloneする。
 
 ## vagrant box add する
