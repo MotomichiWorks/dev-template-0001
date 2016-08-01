@@ -3,8 +3,8 @@ $modifier_desc = <<<EOT
 //---説明文を書くところ(ここから)
 
 
-カラー1<br>
-0度
+カラー5<br>
+120度
 
 
 //---説明文を書くところ(ここまで)
@@ -13,7 +13,7 @@ $display_sample = <<<EOT
 //---表示サンプルとコピペ用コード(ここから)
 
 
-<vue-badge-0001 :obj="{text: '必須', modifier: {color: 'badge-0001--color-0001'}}"></vue-badge-0001>
+<vue-badge-0001 :txt="{main: '必須'}" :modifier="{color: 'badge-0001--color-0005'}"></vue-badge-0001>
 
 
 //---表示サンプルとコピペ用コード(ここまで)
