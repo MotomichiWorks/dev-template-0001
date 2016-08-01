@@ -1,10 +1,22 @@
 <?php
-// modifier説明文
-$desc_string = '0度';
+$modifier_desc = <<<EOT
+//---説明文を書くところ(ここから)
 
-// 表示サンプルとコピペ用サンプル
-$html_string = <<<EOT
+
+カラー1<br>
+0度
+
+
+//---説明文を書くところ(ここまで)
+EOT;
+$display_sample = <<<EOT
+//---表示サンプルとコピペ用コード(ここから)
+
+
 <vue-badge-0001 :obj="{text: '必須', modifier: {color: 'badge-0001--color-0001'}}"></vue-badge-0001>
+
+
+//---表示サンプルとコピペ用コード(ここまで)
 EOT;
 ?>
 
@@ -12,16 +24,24 @@ EOT;
 
 
 
+
+
+
+
+
 <?php
+$modifier_desc = str_replace('//---説明文を書くところ(ここから)', '', $modifier_desc);
+$modifier_desc = str_replace('//---説明文を書くところ(ここまで)', '', $modifier_desc);
+$modifier_desc = trim($modifier_desc);
+$display_sample = str_replace('//---表示サンプルとコピペ用コード(ここから)', '', $display_sample);
+$display_sample = str_replace('//---表示サンプルとコピペ用コード(ここまで)', '', $display_sample);
+$display_sample = trim($display_sample);
 echo $this->SgTable0001->createTr();
 echo $this->SgTable0001->descCell();
-//説明文を描画
-echo $desc_string;
+echo $modifier_desc;
 echo $this->SgTable0001->displayCell();
-//表示サンプルを描画
-echo $html_string;
+echo $display_sample;
 echo $this->SgTable0001->sampleCodeCell();
-//コピペ用サンプルを描画
-echo $html_string;
+echo $display_sample;
 echo $this->SgTable0001->endTr();
 ?>
