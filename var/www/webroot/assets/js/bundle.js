@@ -20436,8 +20436,32 @@
 	'use strict';
 	
 	module.exports = {
-	  props: ['obj'],
-	  template: __webpack_require__(/*! ./vue-badge-0001.html */ 9)
+	  props: {
+	    // 属性の宣言と初期値の設定
+	    txt: {
+	      type: Object,
+	      default: function _default() {
+	        return {
+	          main: '必須'
+	        };
+	      }
+	    },
+	    // 属性の宣言と初期値の設定
+	    modifier: {
+	      type: Object,
+	      default: function _default() {
+	        return {
+	          color: ''
+	        };
+	      }
+	    }
+	  },
+	  template: __webpack_require__(/*! ./vue-badge-0001.html */ 9),
+	  data: function data() {
+	    return {
+	      modifierColor: this.modifier.color
+	    };
+	  }
 	};
 
 /***/ },
@@ -20447,7 +20471,7 @@
   \*****************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"badge-0001 {{obj.modifier.color}}\">\r\n  <p class=\"badge-0001__first-wrap\">\r\n    {{obj.text}}\r\n  </p>\r\n</div>\r\n";
+	module.exports = "<div class=\"badge-0001\" v-bind:class=\"[modifierColor]\">\r\n  <p class=\"badge-0001__first-wrap\">\r\n    {{txt.main}}\r\n  </p>\r\n</div>\r\n";
 
 /***/ },
 /* 10 */
