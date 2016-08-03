@@ -2,8 +2,13 @@
   echo $this->SgTable0001->createSection(array('is_deprecated'=>FALSE, 'heading_text'=>$dir_name));
 ?>
 
-バッヂに表示させる文字列と色が引数で変更できます。<br>
-色相を0度から30度刻みで変化させています。
+input要素のボタンです。<br>
+
+ボタンのheightはスタイルガイドから省いて一つだけにしていますが、以下の三種類のmodifierが用意されています。<br><br>
+
+btn-0001__height-s<br>
+btn-0001__height-m<br>
+btn-0001__height-l<br>
 
 
 
