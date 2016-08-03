@@ -64,12 +64,14 @@ The `sprites` mixin generates identical output to the CSS template
   border-radius: 4px; }
 .form-frame-0001 .form-frame-0001__like-table {
   display: block;
+  margin: 0;
   padding: 0px 12px;
   table-layout: fixed; }
 .form-frame-0001 .form-frame-0001__like-tr {
   display: block;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  margin: 0;
+  padding: 16px 0;
+  list-style: none;
   zoom: 1; }
   .form-frame-0001 .form-frame-0001__like-tr:after {
     content: ".";
@@ -97,9 +99,14 @@ The `sprites` mixin generates identical output to the CSS template
   padding: 0 48px 0 0; }
 .form-frame-0001 .form-frame-0001__left-column__table {
   display: table;
-  width: 100%; }
+  width: 100%;
+  margin: 0;
+  padding: 0; }
 .form-frame-0001 .form-frame-0001__left-column__tr {
-  display: table-row; }
+  display: table-row;
+  margin: 0;
+  padding: 0;
+  list-style: none; }
 .form-frame-0001 .form-frame-0001__left-column__text-wrap {
   display: table-cell;
   color: #444444;
@@ -124,6 +131,8 @@ The `sprites` mixin generates identical output to the CSS template
   width: 70%;
   float: right; }
 .form-frame-0001 .form-frame-0001__right-column__inner-wrap {
+  margin: 0;
+  padding: 0;
   zoom: 1; }
   .form-frame-0001 .form-frame-0001__right-column__inner-wrap:after {
     content: ".";
@@ -141,6 +150,8 @@ The `sprites` mixin generates identical output to the CSS template
 .form-frame-0001 .form-frame-0001__right-column__content-wrap--33-p,
 .form-frame-0001 .form-frame-0001__right-column__content-wrap--50-p,
 .form-frame-0001 .form-frame-0001__right-column__content-wrap--auto {
+  margin: 0;
+  padding: 0;
   zoom: 1; }
   .form-frame-0001 .form-frame-0001__right-column__content-wrap--block:after,
   .form-frame-0001 .form-frame-0001__right-column__content-wrap--15-p:after,
@@ -266,8 +277,12 @@ The `sprites` mixin generates identical output to the CSS template
   line-height: 1.5;
   display: block; }
 .form-frame-0001 .form-frame-0001__right-column__notes-ul {
-  padding-left: 8px; }
+  margin: 0;
+  padding: 0 0 0 8px; }
 .form-frame-0001 .form-frame-0001__right-column__notes-li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   font-size: 12px;
   line-height: 1.5; }
   .form-frame-0001 .form-frame-0001__right-column__notes-li + .form-frame-0001__right-column__notes-li {
@@ -275,11 +290,14 @@ The `sprites` mixin generates identical output to the CSS template
 .form-frame-0001 .form-frame-0001__right-column__notes-text {
   margin-top: 5px; }
 .form-frame-0001 .form-frame-0001__right-column__commentary-ul {
-  padding-left: 8px; }
+  margin: 0;
+  padding: 0 0 0 8px; }
 .form-frame-0001 .form-frame-0001__right-column__commentary-li {
+  margin: 0;
+  padding: 0 0 0 1em;
+  list-style: none;
   font-size: 12px;
-  line-height: 1.5;
-  padding-left: 1em; }
+  line-height: 1.5; }
   .form-frame-0001 .form-frame-0001__right-column__commentary-li + .form-frame-0001__right-column__commentary-li {
     padding-top: 17px; }
 .form-frame-0001 .form-frame-0001__right-column__commentary-heading {

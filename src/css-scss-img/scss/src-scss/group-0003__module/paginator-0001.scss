@@ -53,10 +53,15 @@
   }
   .paginator-0001__ul-ol-elm{
     @include clearfix();
+    margin: 0;
+    padding: 0;
   }
   .paginator-0001__li-elm-first{
     float: left;
     width: 80px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
     &+.paginator-0001__li-elm-prev{
       padding-left:8px;
     }
@@ -64,21 +69,32 @@
   .paginator-0001__li-elm-prev{
     float: left;
     width: 64px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
   .paginator-0001__li-elm-next{
     float: left;
     width: 64px;
-    padding-left:8px;
+    margin: 0;
+    padding: 0 0 0 8px;
+    list-style: none;
   }
   .paginator-0001__li-elm-last{
     float: left;
     width: 80px;
     padding-left:8px;
+    margin: 0;
+    padding: 0 0 0 8px;
+    list-style: none;
   }
   .paginator-0001__li-elm-num{
     float: left;
     width: 32px;
-    padding-left:8px;
+    margin: 0;
+    padding: 0 0 0 8px;
+    list-style: none;
+    box-sizing: content-box;
   }
   .paginator-0001__anc-elm{
     @include paginator-0001__anc-elm-props-general();

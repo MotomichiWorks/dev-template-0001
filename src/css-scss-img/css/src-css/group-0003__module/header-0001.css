@@ -110,7 +110,10 @@ The `sprites` mixin generates identical output to the CSS template
 .header-0001 .header-0001__global-nav__li-lv-1 {
   float: left;
   width: 20%;
-  border-right: 2px solid #ffffff; }
+  border-right: 2px solid #ffffff;
+  margin: 0;
+  padding: 0;
+  list-style: none; }
   .header-0001 .header-0001__global-nav__li-lv-1:first-child {
     border-left: 2px solid #ffffff; }
 .header-0001 .header-0001__global-nav__anc-lv-1 {
@@ -158,7 +161,10 @@ The `sprites` mixin generates identical output to the CSS template
   border-right: 2px solid #ffffff;
   background: #196ad8;
   position: relative;
-  z-index: 1; }
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none; }
   .header-0001 .header-0001__mypage-nav__li-lv-1:first-child {
     border-left: 2px solid #ffffff; }
 .header-0001 .header-0001__mypage-nav__anc-lv-1 {
@@ -183,7 +189,10 @@ The `sprites` mixin generates identical output to the CSS template
   .header-0001 .header-0001__mypage-nav__ul-lv-2.is-show {
     display: block; }
 .header-0001 .header-0001__mypage-nav__li-lv-2 {
-  background: #196ad8; }
+  background: #196ad8;
+  margin: 0;
+  padding: 0;
+  list-style: none; }
 .header-0001 .header-0001__mypage-nav__anchor-lv-2 {
   display: block;
   padding-left: 12px;

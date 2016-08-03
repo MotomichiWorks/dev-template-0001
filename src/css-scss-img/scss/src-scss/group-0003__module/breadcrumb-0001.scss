@@ -10,9 +10,14 @@
   }
   .breadcrumb-0001__ul-ol-elm{
     @include clearfix();
+    margin: 0;
+    padding: 0;
     .breadcrumb-0001__li-elm{
       float: left;
       font-size: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
       &:after{
         content: '>';
         padding: 0 4px;

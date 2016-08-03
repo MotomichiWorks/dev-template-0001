@@ -56,7 +56,9 @@ The `sprites` mixin generates identical output to the CSS template
  *
  */
 .breadcrumb-0001 .breadcrumb-0001__ul-ol-elm {
-  zoom: 1; }
+  zoom: 1;
+  margin: 0;
+  padding: 0; }
   .breadcrumb-0001 .breadcrumb-0001__ul-ol-elm:after {
     content: ".";
     display: block;
@@ -68,7 +70,10 @@ The `sprites` mixin generates identical output to the CSS template
     line-height: 0; }
   .breadcrumb-0001 .breadcrumb-0001__ul-ol-elm .breadcrumb-0001__li-elm {
     float: left;
-    font-size: 0; }
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none; }
     .breadcrumb-0001 .breadcrumb-0001__ul-ol-elm .breadcrumb-0001__li-elm:after {
       content: '>';
       padding: 0 4px;

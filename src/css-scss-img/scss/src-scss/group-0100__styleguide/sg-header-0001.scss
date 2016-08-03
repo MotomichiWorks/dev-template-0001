@@ -29,6 +29,7 @@
     font-size: 24px;
     color: #eeeeee;
     margin: 0;
+    background: #333333;
   }
   .sg-header-0001__view-area-width-changer-ul {
     float: left;
@@ -89,6 +90,8 @@
     margin: 0;
     padding: 0;
     .sg-header-0001__index-li {
+      margin: 0;
+      padding: 0;
       &:last-child {
         padding-bottom: 200px;
         background-color: #444444;
