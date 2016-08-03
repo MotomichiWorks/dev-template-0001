@@ -19,13 +19,15 @@
   }
   .form-frame-0001__like-table{
     display: block;
+    margin: 0;
     padding:0px 12px;
     table-layout: fixed;
   }
   .form-frame-0001__like-tr{
     display: block;
-    padding-top:16px;
-    padding-bottom:16px;
+    margin: 0;
+    padding: 16px 0;
+    list-style: none;
     @include clearfix();
     &+.form-frame-0001__like-tr{
       border-top:1px solid $general__white-color;
@@ -49,9 +51,14 @@
   .form-frame-0001__left-column__table{
     display: table;
     width: 100%;
+    margin: 0;
+    padding: 0;
   }
   .form-frame-0001__left-column__tr{
     display: table-row;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
   .form-frame-0001__left-column__text-wrap{
     display: table-cell;
@@ -82,6 +89,8 @@
   }
   .form-frame-0001__right-column__middle-wrap{}
   .form-frame-0001__right-column__inner-wrap{
+    margin: 0;
+    padding: 0;
     @include clearfix();
   }
   .form-frame-0001__right-column__content-wrap--block,
@@ -91,6 +100,8 @@
   .form-frame-0001__right-column__content-wrap--33-p,
   .form-frame-0001__right-column__content-wrap--50-p,
   .form-frame-0001__right-column__content-wrap--auto{
+    margin: 0;
+    padding: 0;
     @include clearfix();
     &+.form-frame-0001__right-column__example-side{
       padding-left: 8px;
@@ -211,9 +222,13 @@
     display: block;
   }
   .form-frame-0001__right-column__notes-ul{
-    padding-left: 8px;
+    margin: 0;
+    padding: 0 0 0 8px;
   }
   .form-frame-0001__right-column__notes-li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
     font-size: 12px;
     line-height: 1.5;
     &+.form-frame-0001__right-column__notes-li{
@@ -225,12 +240,15 @@
     margin-top:5px;
   }
   .form-frame-0001__right-column__commentary-ul{
-    padding-left: 8px;
+    margin: 0;
+    padding: 0 0 0 8px;
   }
   .form-frame-0001__right-column__commentary-li{
+    margin: 0;
+    padding: 0 0 0 1em;
+    list-style: none;
     font-size: 12px;
     line-height: 1.5;
-    padding-left: 1em;
     &+.form-frame-0001__right-column__commentary-li{
       padding-top:17px;
     }
