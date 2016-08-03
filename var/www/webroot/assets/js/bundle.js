@@ -20483,7 +20483,75 @@
 	'use strict';
 	
 	module.exports = {
-	  template: __webpack_require__(/*! ./vue-btn-0001.html */ 11)
+	  props: {
+	    // 属性の宣言と初期値の設定
+	    txt: {
+	      type: Object,
+	      default: function _default() {
+	        return {
+	          main: 'ボタンラベル'
+	        };
+	      }
+	    },
+	    // 属性の宣言と初期値の設定
+	    modifier: {
+	      type: Object,
+	      default: function _default() {
+	        return {
+	          color: 'btn-0001--color-0001',
+	          height: 'btn-0001--height-s'
+	        };
+	      }
+	    },
+	    // 属性の宣言と初期値の設定
+	    btnType: {
+	      type: String,
+	      default: function _default() {
+	        return 'anchor';
+	      }
+	    },
+	    // 属性の宣言と初期値の設定
+	    aHref: {
+	      type: String,
+	      default: function _default() {
+	        return '#';
+	      }
+	    },
+	    // 属性の宣言と初期値の設定
+	    inputName: {
+	      type: String,
+	      default: function _default() {
+	        return 'name-undefined';
+	      }
+	    },
+	    // 属性の宣言と初期値の設定
+	    isDisabled: {
+	      default: function _default() {
+	        return false;
+	      }
+	    }
+	  },
+	  template: __webpack_require__(/*! ./vue-btn-0001.html */ 11),
+	  data: function data() {
+	    return {
+	      modifierColor: this.modifier.color,
+	      modifierHeight: this.modifier.height
+	    };
+	  },
+	  methods: {
+	    clicked: function clicked(event) {
+	      if (this.isDisabled) {
+	        event.preventDefault();
+	        return;
+	      }
+	
+	      if (this.btnType === 'composite') {
+	        event.preventDefault();
+	        this.$el.querySelector('.btn-0001__type-submit-elm').click();
+	        return;
+	      }
+	    }
+	  }
 	};
 
 /***/ },
@@ -20493,7 +20561,7 @@
   \***************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div>vue-btn-0001 です。</div>\r\n";
+	module.exports = "<div class=\"btn-0001\" v-bind:class=\"[modifierColor, modifierHeight, {'btn-0001--disabled': isDisabled}]\">\r\n\r\n  <!--aタグのボタン-->\r\n  <div class=\"btn-0001__first-wrap\" v-if=\"btnType === 'a'\">\r\n    <a class=\"btn-0001__clickable-elm\" href=\"{{aHref}}\" v-on:click=\"clicked\">\r\n      <span class=\"btn-0001__label\">\r\n        {{txt.main}}\r\n      </span>\r\n    </a>\r\n  </div>\r\n\r\n  <!--aタグをクリックすることでsubmitするボタン-->\r\n  <div class=\"btn-0001__first-wrap\" v-if=\"btnType === 'composite'\">\r\n    <a class=\"btn-0001__clickable-elm\" href=\"#\" v-on:click=\"clicked\">\r\n      <span class=\"btn-0001__label\">\r\n        {{txt.main}}\r\n      </span>\r\n    </a>\r\n    <input class=\"btn-0001__type-submit-elm\" type=\"submit\" name=\"{{inputName}}\" value=\"{{txt.main}}\" v-bind:disabled=\"isDisabled\">\r\n  </div>\r\n\r\n  <!--inputタグのボタン-->\r\n  <div class=\"btn-0001__first-wrap\" v-if=\"btnType === 'input'\">\r\n    <input class=\"btn-0001__clickable-elm\" type=\"submit\" name=\"{{inputName}}\" value=\"{{txt.main}}\" v-bind:disabled=\"isDisabled\">\r\n  </div>\r\n\r\n</div>\r\n";
 
 /***/ },
 /* 12 */
