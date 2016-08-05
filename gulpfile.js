@@ -125,7 +125,6 @@ gulp.task('smith', function() {
   }));
   //画像を保存
   var imgStream = spriteData.img
-    // .pipe(imagemin())
     .pipe(gulp.dest( SPRITE__RESULT__IMG_PATH + '/'));
   //scssを保存
   var cssStream = spriteData.css
