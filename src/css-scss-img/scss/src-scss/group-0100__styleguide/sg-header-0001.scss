@@ -21,7 +21,7 @@
       line-height: 0;
     }
   }
-  .sg-header-0001__heading {
+  .sg-header-0001__heading-wrap {
     padding: 0px 16px;
     float: left;
     height: 64px;
@@ -30,6 +30,16 @@
     color: #eeeeee;
     margin: 0;
     background: #333333;
+  }
+  .sg-header-0001__heading {
+    color: #ffffff;
+    &:link,
+    &:hover,
+    &:visited,
+    &:active {
+      color: #ffffff;
+      text-decoration: none;
+    }
   }
   .sg-header-0001__view-area-width-changer-ul {
     float: left;
@@ -85,6 +95,7 @@
     top: 100%;
     left: 0;
     width: 100%;
+    max-height: 600px;
     z-index: 99999;
     overflow: auto;
     margin: 0;

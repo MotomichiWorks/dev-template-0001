@@ -6,11 +6,11 @@ echo $this->Html->css( '/assets/css/styleguide.css');
 
 
 
-
+<div id="page-top"></div>
 <header class="sg-header-0001">
   <div class="sg-header-0001__first-wrap">
-    <h1 class="sg-header-0001__heading">
-      スタイルガイド
+    <h1 class="sg-header-0001__heading-wrap">
+      <a class="sg-header-0001__heading" href="#page-top">スタイルガイド</a>
     </h1>
     <ul class="sg-header-0001__view-area-width-changer-ul">
       <li class="sg-header-0001__view-area-width-changer-li js-sg-header-0001__view-area-width-changer-li">320</li>
@@ -1222,88 +1222,3 @@ foreach ($obj['dir_list'] as $key => $dir_name) {
 </div>
 
 <br><br>
-
-<h2>a要素のボタン</h2>
-
-<div class="btn-0001 btn-0001--disabled btn-0001--height-s btn-0001--icon-circle">
-  <a class="btn-0001__clickable-elm" href="#">
-    <span class="btn-0001__label">
-      ボタンラベル
-    </span>
-  </a>
-</div>
-
-<br><br>
-
-<div class="btn-0001 btn-0001--disabled btn-0001--height-m btn-0001--icon-circle">
-  <a class="btn-0001__clickable-elm" href="#">
-    <span class="btn-0001__label">
-      ボタンラベル
-    </span>
-  </a>
-</div>
-
-<br><br>
-
-<div class="btn-0001 btn-0001--disabled btn-0001--height-l btn-0001--icon-circle">
-  <a class="btn-0001__clickable-elm" href="#">
-    <span class="btn-0001__label">
-      ボタンラベル
-    </span>
-  </a>
-</div>
-
-<br><br>
-
-<h2>a要素のボタンでJSでsubmit</h2>
-
-<div class="btn-0001 btn-0001--color-0002 btn-0001--height-s">
-  <a class="btn-0001__clickable-elm" href="#">
-    <span class="btn-0001__label">
-      ボタンラベル
-    </span>
-  </a>
-  <input class="btn-0001__type-submit-elm" type="submit" name="name" value="value">
-</div>
-
-<br><br>
-
-<div class="btn-0001 btn-0001--color-0002 btn-0001--height-m">
-  <a class="btn-0001__clickable-elm" href="#">
-    <span class="btn-0001__label">
-      ボタンラベル
-    </span>
-  </a>
-  <input class="btn-0001__type-submit-elm" type="submit" name="name" value="value">
-</div>
-
-<br><br>
-
-<div class="btn-0001 btn-0001--color-0002 btn-0001--height-l">
-  <a class="btn-0001__clickable-elm" href="#">
-    <span class="btn-0001__label">
-      ボタンラベル
-    </span>
-  </a>
-  <input class="btn-0001__type-submit-elm" type="submit" name="name" value="value">
-</div>
-
-<br><br>
-
-<h2>input要素のボタン</h2>
-
-<div class="btn-0001 btn-0001--color-0003 btn-0001--height-s">
-  <input class="btn-0001__clickable-elm" type="submit" name="name" value="ボタンラベル" disabled>
-</div>
-
-<br><br>
-
-<div class="btn-0001 btn-0001--color-0003 btn-0001--height-m">
-  <input class="btn-0001__clickable-elm" type="submit" name="name" value="ボタンラベル" disabled>
-</div>
-
-<br><br>
-
-<div class="btn-0001 btn-0001--color-0003 btn-0001--height-l">
-  <input class="btn-0001__clickable-elm" type="submit" name="name" value="ボタンラベル" disabled>
-</div>
