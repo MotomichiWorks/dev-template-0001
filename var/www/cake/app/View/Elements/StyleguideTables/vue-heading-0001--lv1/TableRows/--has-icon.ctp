@@ -3,9 +3,9 @@ $modifier_desc = <<<EOT
 //---説明文を書くところ(ここから)
 
 
-一番シンプルなバージョンです。<br><br>
+見出し文字の前にアイコンがあるバージョンです。<br><br>
 
-txt属性のmainキーに設定した文字列が見出しとして表示されます。
+has-icon属性をtrueにすることでアイコンが表示されます。
 
 
 //---説明文を書くところ(ここまで)
@@ -17,7 +17,8 @@ $display_sample = <<<EOT
 <vue-heading-0001
   :txt="{main: '見出し 見出し 見出し'}"
   :modifier="{lv: 'heading-0001--lv-1'}"
-  :tag-name="'h1'" />
+  :tag-name="'h1'"
+  :has-icon="true" />
 
 
 //---表示サンプルとコピペ用コード(ここまで)
