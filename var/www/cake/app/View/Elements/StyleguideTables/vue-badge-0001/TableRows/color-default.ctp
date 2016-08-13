@@ -13,7 +13,8 @@ $display_sample = <<<EOT
 //---表示サンプルとコピペ用コード(ここから)
 
 
-<vue-badge-0001 :txt="{main: '必須'}"></vue-badge-0001>
+<vue-badge-0001
+  :txt="{main: '必須'}" />
 
 
 //---表示サンプルとコピペ用コード(ここまで)

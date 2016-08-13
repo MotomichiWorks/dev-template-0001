@@ -13,7 +13,9 @@ $display_sample = <<<EOT
 //---表示サンプルとコピペ用コード(ここから)
 
 
-<vue-badge-0001 :txt="{main: '必須'}" :modifier="{color: 'badge-0001--color-0005'}"></vue-badge-0001>
+<vue-badge-0001
+  :txt="{main: '必須'}"
+  :modifier="{color: 'badge-0001--color-0005'}" />
 
 
 //---表示サンプルとコピペ用コード(ここまで)
