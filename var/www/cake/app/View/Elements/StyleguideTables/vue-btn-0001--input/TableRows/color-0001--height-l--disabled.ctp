@@ -14,7 +14,12 @@ $display_sample = <<<EOT
 //---表示サンプルとコピペ用コード(ここから)
 
 
-<vue-btn-0001 :txt="{main: 'ボタンラベル'}" :modifier="{color: 'btn-0001--color-0001', height: 'btn-0001--height-l'}" :is-disabled="true" :btn-type="'input'" :input-name="'hoge'" />
+<vue-btn-0001
+  :txt="{main: 'ボタンラベル'}"
+  :modifier="{color: 'btn-0001--color-0001', height: 'btn-0001--height-l'}"
+  :is-disabled="true"
+  :btn-type="'input'"
+  :input-name="'hoge'" />
 
 
 //---表示サンプルとコピペ用コード(ここまで)

@@ -3,9 +3,9 @@ $modifier_desc = <<<EOT
 //---説明文を書くところ(ここから)
 
 
-disabledのボタンです。<br><br>
+一番シンプルなバージョンです。<br><br>
 
-:is-disabled="true" 属性を付与することでdisabledになり、クリックも無効になります。
+txt属性のmainキーに設定した文字列が見出しとして表示されます。
 
 
 //---説明文を書くところ(ここまで)
@@ -15,17 +15,9 @@ $display_sample = <<<EOT
 
 
 <vue-heading-0001
-  :txt="{main: '見出し 見出し 見出し', sub: '見出し小 見出し小 見出し小'}"
+  :txt="{main: '見出し 見出し 見出し'}"
   :modifier="{lv: 'heading-0001--lv-1'}"
-  :tag-name="'h1'"
-  :has-icon="true"
-  :has-btn="true"
-  :btn-txt="{main: 'ボタンラベル'}"
-  :btn-modifier="{color: 'btn-0001--color-0001', height: 'btn-0001--height-s'}"
-  :btn-btn-type="'a'"
-  :btn-a-href="'http://example.com'"
-  :btn-input-name="'sample-name'"
-  :btn-is-disabled="false" />
+  :tag-name="'h1'" />
 
 
 //---表示サンプルとコピペ用コード(ここまで)

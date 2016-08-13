@@ -3,8 +3,9 @@ $modifier_desc = <<<EOT
 //---説明文を書くところ(ここから)
 
 
-カラー4<br>
-90度
+見出し文字の前にアイコンがあるバージョンです。<br><br>
+
+has-icon属性をtrueにすることでアイコンが表示されます。
 
 
 //---説明文を書くところ(ここまで)
@@ -13,9 +14,11 @@ $display_sample = <<<EOT
 //---表示サンプルとコピペ用コード(ここから)
 
 
-<vue-badge-0001
-  :txt="{main: '必須'}"
-  :modifier="{color: 'badge-0001--color-0004'}" />
+<vue-heading-0001
+  :txt="{main: '見出し 見出し 見出し'}"
+  :modifier="{lv: 'heading-0001--lv-1'}"
+  :tag-name="'h1'"
+  :has-icon="true" />
 
 
 //---表示サンプルとコピペ用コード(ここまで)
