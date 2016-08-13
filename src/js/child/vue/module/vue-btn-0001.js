@@ -23,7 +23,7 @@ module.exports = {
     btnType: {
       type: String,
       default: function () {
-        return 'anchor';
+        return 'a';
       }
     },
     // 属性の宣言と初期値の設定

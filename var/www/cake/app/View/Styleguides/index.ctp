@@ -1048,32 +1048,7 @@ foreach ($obj['dir_list'] as $key => $dir_name) {
 
 <br><br>
 
-<div class="heading-0001 heading-0001--lv-1">
-  <div class="heading-0001__table">
-    <span class="heading-0001__tr">
-      <div class="heading-0001__icon-wrap">
-        <div class="heading-0001__icon">
-          <!--icon-->
-        </div>
-      </div>
-      <h1 class="heading-0001__h-elm">
-        h1 アイコン付きタイトル
-        <span class="heading-0001__sub-heading">
-          サブタイトル
-        </span>
-      </h1>
-      <span class="heading-0001__btn-wrap">
-        <div class="btn-0001 btn-0001--color-0001 btn-0001--height-s">
-          <a class="btn-0001__clickable-elm" href="#">
-            <span class="btn-0001__label">
-              ボタンラベル
-            </span>
-          </a>
-        </div>
-      </span>
-    </span>
-  </div>
-</div>
+
 
 <br><br>
 

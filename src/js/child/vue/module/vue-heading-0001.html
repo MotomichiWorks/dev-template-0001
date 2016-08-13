@@ -1,1 +1,54 @@
-<div>vue-heading-0001 です。</div>
+<div class="heading-0001 {{modifierLv}}">
+  <div class="heading-0001__table">
+    <span class="heading-0001__tr">
+      <div class="heading-0001__icon-wrap">
+        <div v-if="hasIcon" class="heading-0001__icon">
+          <!--icon-->
+        </div>
+      </div>
+      <h1 v-if="tagName === 'h1'" class="heading-0001__h-elm">
+        {{txt.main}}
+        <span class="heading-0001__sub-heading" v-if="txt.sub !== ''">
+          {{txt.sub}}
+        </span>
+      </h1>
+      <h2 v-if="tagName === 'h2'" class="heading-0001__h-elm">
+        {{txt.main}}
+        <span class="heading-0001__sub-heading" v-if="txt.sub !== ''">
+          {{txt.sub}}
+        </span>
+      </h2>
+      <h3 v-if="tagName === 'h3'" class="heading-0001__h-elm">
+        {{txt.main}}
+        <span class="heading-0001__sub-heading" v-if="txt.sub !== ''">
+          {{txt.sub}}
+        </span>
+      </h3>
+      <h4 v-if="tagName === 'h4'" class="heading-0001__h-elm">
+        {{txt.main}}
+        <span class="heading-0001__sub-heading" v-if="txt.sub !== ''">
+          {{txt.sub}}
+        </span>
+      </h4>
+      <h5 v-if="tagName === 'h5'" class="heading-0001__h-elm">
+        {{txt.main}}
+        <span class="heading-0001__sub-heading" v-if="txt.sub !== ''">
+          {{txt.sub}}
+        </span>
+      </h5>
+      <h6 v-if="tagName === 'h6'" class="heading-0001__h-elm">
+        {{txt.main}}
+        <span class="heading-0001__sub-heading" v-if="txt.sub !== ''">
+          {{txt.sub}}
+        </span>
+      </h6>
+      <span v-if="hasBtn" class="heading-0001__btn-wrap">
+        <vue-btn-0001
+          :txt="{main: btnTxt.main}"
+          :modifier="{color: btnModifier.color, height: btnModifier.height}"
+          :btn-type="btnBtnType"
+          :a-href="btnAHref" />
+      </span>
+    </span>
+  </div>
+</div>
