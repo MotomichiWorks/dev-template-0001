@@ -20,7 +20,7 @@ Sass、React.jsやVue.jsがすぐに使用できます。
 
 ## vagrant box add する
 
-1. vagrant用のpackage--dev-template-0001.boxをダウンロードする。
+1. http://utility.sakura.ne.jp/package-box/index.html でvagrant用のpackage--dev-template-0001.boxをダウンロードする。
 2. package--dev-template-0001.boxのあるディレクトリで`vagrant box add centos67box--dev-template-0001 package--dev-template-0001.box`を実行する。
 
 ## vagrant up をする
