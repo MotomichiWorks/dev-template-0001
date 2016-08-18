@@ -6,14 +6,10 @@
 
 
 .loading-icon-0001{
-  $padding : 8px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
   background-color: $general__white-color;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  padding: $padding;
+  padding: 8px;
   border-radius:4px;
   z-index:10000;
   @include icon-loading();
@@ -22,24 +18,18 @@
     $size : 80px;
     height:$size;
     width:$size;
-    margin-top: (-1 * $size/2) - $padding;
-    margin-left: (-1 * $size/2) - $padding;
     background-size: $size auto;
   }
   &.loading-icon-0001--m{
     $size : 40px;
     height:$size;
     width:$size;
-    margin-top: (-1 * $size/2) - $padding;
-    margin-left: (-1 * $size/2) - $padding;
     background-size: $size auto;
   }
   &.loading-icon-0001--s{
     $size : 20px;
     height:$size;
     width:$size;
-    margin-top: (-1 * $size/2) - $padding;
-    margin-left: (-1 * $size/2) - $padding;
     background-size: $size auto;
   }
 }
