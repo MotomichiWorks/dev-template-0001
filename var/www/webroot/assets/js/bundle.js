@@ -10211,7 +10211,8 @@
 	  components: {
 	    'vue-badge-0001': __webpack_require__(/*! ./module/vue-badge-0001 */ 8),
 	    'vue-btn-0001': __webpack_require__(/*! ./module/vue-btn-0001 */ 10),
-	    'vue-heading-0001': __webpack_require__(/*! ./module/vue-heading-0001 */ 12)
+	    'vue-heading-0001': __webpack_require__(/*! ./module/vue-heading-0001 */ 12),
+	    'vue-loading-icon-0001': __webpack_require__(/*! ./module/vue-loading-icon-0001 */ 14)
 	  }
 	});
 
@@ -20678,6 +20679,44 @@
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"heading-0001 {{modifierLv}}\">\r\n  <div class=\"heading-0001__table\">\r\n    <span class=\"heading-0001__tr\">\r\n      <div v-if=\"hasIcon\" class=\"heading-0001__icon-wrap\">\r\n        <div class=\"heading-0001__icon\">\r\n          <!--icon-->\r\n        </div>\r\n      </div>\r\n      <h1 v-if=\"tagName === 'h1'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h1>\r\n      <h2 v-if=\"tagName === 'h2'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h2>\r\n      <h3 v-if=\"tagName === 'h3'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h3>\r\n      <h4 v-if=\"tagName === 'h4'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h4>\r\n      <h5 v-if=\"tagName === 'h5'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h5>\r\n      <h6 v-if=\"tagName === 'h6'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h6>\r\n      <span v-if=\"hasBtn\" class=\"heading-0001__btn-wrap\">\r\n        <vue-btn-0001\r\n          :txt=\"{main: btnTxt.main}\"\r\n          :modifier=\"{color: btnModifier.color, height: btnModifier.height}\"\r\n          :btn-type=\"btnBtnType\"\r\n          :a-href=\"btnAHref\" />\r\n      </span>\r\n    </span>\r\n  </div>\r\n</div>\r\n";
+
+/***/ },
+/* 14 */
+/*!**********************************************************!*\
+  !*** ./src/js/child/vue/module/vue-loading-icon-0001.js ***!
+  \**********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = {
+	  props: {
+	    // 属性の宣言と初期値の設定
+	    modifier: {
+	      type: Object,
+	      default: function _default() {
+	        return {
+	          size: 'loading-icon-0001--l'
+	        };
+	      }
+	    }
+	  },
+	  template: __webpack_require__(/*! ./vue-loading-icon-0001.html */ 15),
+	  data: function data() {
+	    return {
+	      modifierSize: this.modifier.size
+	    };
+	  }
+	};
+
+/***/ },
+/* 15 */
+/*!************************************************************!*\
+  !*** ./src/js/child/vue/module/vue-loading-icon-0001.html ***!
+  \************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"loading-icon-0001\" v-bind:class=\"[modifierSize]\"></div>\r\n";
 
 /***/ }
 /******/ ]);

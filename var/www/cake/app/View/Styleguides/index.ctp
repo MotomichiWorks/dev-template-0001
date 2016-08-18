@@ -213,23 +213,7 @@ foreach ($obj['dir_list'] as $key => $dir_name) {
 
 <br><br>
 
-<h2>loading-icon</h2>
-<div style="position:relative; height:80px;">
-  <div class="loading-icon-0001 loading-icon-0001--l"></div>
-</div>
 
-<br>
-
-<div style="position:relative; height:40px;">
-  <div class="loading-icon-0001 loading-icon-0001--m"></div>
-</div>
-
-<br>
-<div style="position:relative; height:20px;">
-  <div class="loading-icon-0001 loading-icon-0001--s"></div>
-</div>
-
-<br><br>
 
 <h2>step-info-0001</h2>
 <div class="step-info-0001 step-info-0001--4-column">
