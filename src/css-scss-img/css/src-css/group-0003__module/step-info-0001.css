@@ -89,11 +89,11 @@ The `sprites` mixin generates identical output to the CSS template
     border-color: transparent transparent transparent #c9c9c9;
     top: 16px;
     left: -6px; }
-  .step-info-0001 .step-info-0001__li-elm.step-info-0001__li-elm--current .step-info-0001__num {
+  .step-info-0001 .step-info-0001__li-elm.step-info-0001__li-elm--active .step-info-0001__num {
     border: 4px solid #db8915;
     color: #db8915;
     background: #fbeeda; }
-  .step-info-0001 .step-info-0001__li-elm.step-info-0001__li-elm--current .step-info-0001__text {
+  .step-info-0001 .step-info-0001__li-elm.step-info-0001__li-elm--active .step-info-0001__text {
     color: #db8915; }
 .step-info-0001 .step-info-0001__num {
   display: block;
@@ -109,10 +109,16 @@ The `sprites` mixin generates identical output to the CSS template
   color: #c9c9c9;
   background: #f3f3f3;
   border-radius: 20px; }
+  .step-info-0001 .step-info-0001__num.step-info-0001__num--active {
+    border: 4px solid #db8915;
+    color: #db8915;
+    background: #fbeeda; }
 .step-info-0001 .step-info-0001__text {
   padding-top: 8px;
   text-align: center;
   color: #c9c9c9; }
+  .step-info-0001 .step-info-0001__text.step-info-0001__text--active {
+    color: #db8915; }
 .step-info-0001.step-info-0001--3-column .step-info-0001__li-elm {
   width: 33.33333333%; }
 .step-info-0001.step-info-0001--4-column .step-info-0001__li-elm {
