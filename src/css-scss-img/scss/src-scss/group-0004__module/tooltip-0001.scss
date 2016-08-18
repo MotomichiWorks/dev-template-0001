@@ -6,16 +6,11 @@
 
 
 .tooltip-0001{
-  .tooltip-0001__contents-wrap{
-    display: none;
-    @include clearfix();
-    &.tooltip-0001__contents-wrap--visible{
-      display: block;
-    }
-  }
+  $element-size: 20px;
+  position: relative;
   .tooltip-0001__icon{
-    $element-size: 20px;
     display: block;
+    position: relative;
     cursor: pointer;
     background: $general__gray-color-0010;
     color: $general__white-color;
@@ -29,6 +24,42 @@
     border-radius: $element-size/2;
     &:hover{
       background: $general__gray-color-0009;
+    }
+  }
+  .tooltip-0001__contents-wrap{
+    display: none;
+    position: absolute;
+    bottom: $element-size + 12;
+    left: -16px;
+    padding: 12px;
+    color: $general__white-color;
+    background: $general__gray-color-0010;
+    z-index: 10000;
+    border-radius: 2px;
+    @include clearfix();
+    &.tooltip-0001__contents-wrap--visible{
+      display: block;
+    }
+  }
+  &.is-active {
+    .tooltip-0001__contents-wrap {
+      display: block;
+    }
+    .tooltip-0001__icon {
+      &:before {
+        display: block;
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        cursor: default;
+        margin: 0 0 0 -8px;
+        content: "";
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 12px 8px 0 8px;
+        border-color: $general__gray-color-0010 transparent transparent transparent;
+      }
     }
   }
 }

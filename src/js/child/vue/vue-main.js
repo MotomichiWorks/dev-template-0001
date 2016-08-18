@@ -9,5 +9,6 @@ var app = new Vue({
     'vue-heading-0001': require('./module/vue-heading-0001'),
     'vue-loading-icon-0001': require('./module/vue-loading-icon-0001'),
     'vue-step-info-0001': require('./module/vue-step-info-0001'),
+    'vue-tooltip-0001': require('./module/vue-tooltip-0001'),
   }
 });

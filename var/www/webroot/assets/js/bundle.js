@@ -10214,7 +10214,8 @@
 	    'vue-header-0001': __webpack_require__(/*! ./module/vue-header-0001 */ 12),
 	    'vue-heading-0001': __webpack_require__(/*! ./module/vue-heading-0001 */ 14),
 	    'vue-loading-icon-0001': __webpack_require__(/*! ./module/vue-loading-icon-0001 */ 16),
-	    'vue-step-info-0001': __webpack_require__(/*! ./module/vue-step-info-0001 */ 18)
+	    'vue-step-info-0001': __webpack_require__(/*! ./module/vue-step-info-0001 */ 18),
+	    'vue-tooltip-0001': __webpack_require__(/*! ./module/vue-tooltip-0001 */ 20)
 	  }
 	});
 
@@ -20783,7 +20784,6 @@
 	  },
 	  template: __webpack_require__(/*! ./vue-step-info-0001.html */ 19),
 	  data: function data() {
-	    console.log(this.items.length);
 	    return {
 	      modifierColumn: 'step-info-0001--' + this.items.length + '-column'
 	    };
@@ -20798,6 +20798,37 @@
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"step-info-0001\" v-bind:class=\"[modifierColumn]\">\r\n  <div class=\"step-info-0001__first-wrap\">\r\n    <ul class=\"step-info-0001__ul-ol-elm\">\r\n      <li class=\"step-info-0001__li-elm\" v-for=\"item in items\">\r\n        <div class=\"step-info-0001__num\" v-bind:class=\"{ 'step-info-0001__num--active': item.isActive }\">\r\n          {{$index + 1}}\r\n        </div>\r\n        <span class=\"step-info-0001__text\" v-bind:class=\"{ 'step-info-0001__text--active': item.isActive }\">\r\n          {{item.text}}\r\n        </span>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n";
+
+/***/ },
+/* 20 */
+/*!*****************************************************!*\
+  !*** ./src/js/child/vue/module/vue-tooltip-0001.js ***!
+  \*****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = {
+	  props: {
+	    // 属性の宣言と初期値の設定
+	    contents: {
+	      type: String,
+	      default: function _default() {
+	        return 'デフォルトコンテンツ';
+	      }
+	    }
+	  },
+	  template: __webpack_require__(/*! ./vue-tooltip-0001.html */ 21)
+	};
+
+/***/ },
+/* 21 */
+/*!*******************************************************!*\
+  !*** ./src/js/child/vue/module/vue-tooltip-0001.html ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"tooltip-0001\">\r\n  <div class=\"tooltip-0001__contents-wrap\">\r\n    <slot name=\"slot-0001\"></slot>\r\n  </div>\r\n  <a class=\"tooltip-0001__icon\" href=\"#\">\r\n    ?\r\n  </a>\r\n</div>\r\n";
 
 /***/ }
 /******/ ]);

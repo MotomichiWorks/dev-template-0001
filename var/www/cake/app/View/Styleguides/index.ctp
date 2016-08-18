@@ -758,14 +758,7 @@ foreach ($obj['dir_list'] as $key => $dir_name) {
 </div>
 
 
-<h2>tool-tip</h2>
-<div class="tooltip-0001">
-  <div class="tooltip-0001__contents-wrap">
-    ここにコンテンツを挿入
-  </div>
-  <a class="tooltip-0001__icon" href="#">
-    ?
-  </a>
-</div>
+
+
 
 <br><br>
