@@ -402,19 +402,6 @@ foreach ($obj['dir_list'] as $key => $dir_name) {
 
 
 
-<h2>footer</h2>
-<footer class="footer-0001">
-  <div class="footer-0001__first-wrap">
-    <span class="footer-0001__second-wrap">
-      <small class="footer-0001__copy-wrap">
-        <a class="footer-0001__copy" href="/">
-          (c)MotomichiWorks
-        </a>
-      </small>
-    </span>
-  </div>
-</footer>
-
 <h2>flash-message</h2>
 <div class="flash-message-0001 flash-message-0001--color-neutral">
   <div class="flash-message-0001__first-wrap">

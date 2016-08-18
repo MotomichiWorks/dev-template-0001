@@ -78,7 +78,8 @@ The `sprites` mixin generates identical output to the CSS template
   padding: 0 12px;
   box-sizing: border-box;
   line-height: 36px;
-  height: 36px; }
+  height: 36px;
+  background: #444444; }
 .footer-0001 .footer-0001__copy {
   font-weight: 400;
   text-decoration: none;
