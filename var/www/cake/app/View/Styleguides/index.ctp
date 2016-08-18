@@ -215,50 +215,6 @@ foreach ($obj['dir_list'] as $key => $dir_name) {
 
 
 
-<h2>step-info-0001</h2>
-<div class="step-info-0001 step-info-0001--4-column">
-  <div class="step-info-0001__first-wrap">
-    <ul class="step-info-0001__ul-ol-elm">
-      <li class="step-info-0001__li-elm step-info-0001__li-elm--current">
-        <div class="step-info-0001__num">
-          1
-        </div>
-        <span class="step-info-0001__text">
-          テキスト
-        </span>
-      </li>
-      <li class="step-info-0001__li-elm">
-        <div class="step-info-0001__num">
-          2
-        </div>
-        <span class="step-info-0001__text">
-          テキスト
-        </span>
-      </li>
-      <li class="step-info-0001__li-elm">
-        <div class="step-info-0001__num">
-          3
-        </div>
-        <span class="step-info-0001__text">
-          テキスト
-        </span>
-      </li>
-      <li class="step-info-0001__li-elm">
-        <div class="step-info-0001__num">
-          4
-        </div>
-        <span class="step-info-0001__text">
-          テキスト
-        </span>
-      </li>
-    </ul>
-  </div>
-</div>
-
-
-
-<br><br>
-
 <div class="table-like-0001">
   <div class="table-like-0001__first-wrap">
     <span class="table-like-0001__second-wrap">

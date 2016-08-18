@@ -37,7 +37,7 @@
         left: -6px;
       }
     }
-    &.step-info-0001__li-elm--current{
+    &.step-info-0001__li-elm--active{
       .step-info-0001__num{
         border:4px solid $general__key-color-0002;
         color: $general__key-color-0002;
@@ -62,11 +62,19 @@
     color: $general__gray-color-0003;
     background: $general__gray-color-0001;
     border-radius: 20px;
+    &.step-info-0001__num--active {
+      border:4px solid $general__key-color-0002;
+      color: $general__key-color-0002;
+      background: lighten($general__key-color-0002, 45%);
+    }
   }
   .step-info-0001__text{
     padding-top:8px;
     text-align: center;
     color: $general__gray-color-0003;
+    &.step-info-0001__text--active {
+      color: $general__key-color-0002;
+    }
   }
   &.step-info-0001--3-column{
     .step-info-0001__li-elm{

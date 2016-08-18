@@ -10212,7 +10212,8 @@
 	    'vue-badge-0001': __webpack_require__(/*! ./module/vue-badge-0001 */ 8),
 	    'vue-btn-0001': __webpack_require__(/*! ./module/vue-btn-0001 */ 10),
 	    'vue-heading-0001': __webpack_require__(/*! ./module/vue-heading-0001 */ 12),
-	    'vue-loading-icon-0001': __webpack_require__(/*! ./module/vue-loading-icon-0001 */ 14)
+	    'vue-loading-icon-0001': __webpack_require__(/*! ./module/vue-loading-icon-0001 */ 14),
+	    'vue-step-info-0001': __webpack_require__(/*! ./module/vue-step-info-0001 */ 16)
 	  }
 	});
 
@@ -20717,6 +20718,55 @@
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"loading-icon-0001\" v-bind:class=\"[modifierSize]\"></div>\r\n";
+
+/***/ },
+/* 16 */
+/*!*******************************************************!*\
+  !*** ./src/js/child/vue/module/vue-step-info-0001.js ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = {
+	  props: {
+	    // 属性の宣言と初期値の設定
+	    items: {
+	      type: Array,
+	      default: function _default() {
+	        return [{
+	          text: 'ステップ1',
+	          isActive: true
+	        }, {
+	          text: 'ステップ2',
+	          isActive: false
+	        }, {
+	          text: 'ステップ3',
+	          isActive: false
+	        }, {
+	          text: 'ステップ4',
+	          isActive: false
+	        }];
+	      }
+	    }
+	  },
+	  template: __webpack_require__(/*! ./vue-step-info-0001.html */ 17),
+	  data: function data() {
+	    console.log(this.items.length);
+	    return {
+	      modifierColumn: 'step-info-0001--' + this.items.length + '-column'
+	    };
+	  }
+	};
+
+/***/ },
+/* 17 */
+/*!*********************************************************!*\
+  !*** ./src/js/child/vue/module/vue-step-info-0001.html ***!
+  \*********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"step-info-0001\" v-bind:class=\"[modifierColumn]\">\r\n  <div class=\"step-info-0001__first-wrap\">\r\n    <ul class=\"step-info-0001__ul-ol-elm\">\r\n      <li class=\"step-info-0001__li-elm\" v-for=\"item in items\">\r\n        <div class=\"step-info-0001__num\" v-bind:class=\"{ 'step-info-0001__num--active': item.isActive }\">\r\n          {{$index + 1}}\r\n        </div>\r\n        <span class=\"step-info-0001__text\" v-bind:class=\"{ 'step-info-0001__text--active': item.isActive }\">\r\n          {{item.text}}\r\n        </span>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n";
 
 /***/ }
 /******/ ]);
