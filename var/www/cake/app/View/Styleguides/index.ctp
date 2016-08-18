@@ -332,80 +332,14 @@ foreach ($obj['dir_list'] as $key => $dir_name) {
 
 <br><br>
 
-<h2>header-0001</h2>
-<header class="header-0001">
-  <div class="header-0001__first-wrap">
-    <span class="header-0001__second-wrap">
-      <div class="header-0001__third-wrap">
-        <div class="header-0001__logo-wrap">
-          <a class="header-0001__logo-text" href="#">Practice.MotomichiWorks</a>
-        </div>
-        <nav class="header-0001__user-nav">
-          <span class="header-0001__user-nav__text-wrap">
-            [&nbsp;
-          </span>
-          <span class="header-0001__user-nav__text-wrap">
-            <a class="header-0001__user-nav__anc-elm" href="#">
-              ログアウト
-            </a>
-          </span>
-          <span class="header-0001__user-nav__text-wrap">
-            &nbsp;]
-          </span>
-        </nav>
-        <div class="header-0001__info">サンプルユーザーさん</div>
-      </div>
-      <div class="header-0001__fourth-wrap">
-        <nav class="header-0001__global-nav">
-          <ul class="header-0001__global-nav__ul-lv-1">
-            <li class="header-0001__global-nav__li-lv-1">
-              <a class="header-0001__global-nav__anc-lv-1" href="#">トップ</a>
-            </li>
-            <li class="header-0001__global-nav__li-lv-1">
-              <a class="header-0001__global-nav__anc-lv-1" href="#">お問い合わせ</a>
-            </li>
-            <li class="header-0001__global-nav__li-lv-1">
-              <a class="header-0001__global-nav__anc-lv-1" href="#" target="_blank">スタイルガイド</a>
-            </li>
-          </ul>
-        </nav>
-        <nav class="header-0001__mypage-nav">
-          <ul class="header-0001__mypage-nav__ul-lv-1">
-            <li class="header-0001__mypage-nav__li-lv-1">
-              <a class="header-0001__mypage-nav__anc-lv-1" href="#">
-                マイページ
-              </a>
-            </li>
-            <li class="header-0001__mypage-nav__li-lv-1">
-              <a class="header-0001__mypage-nav__anc-lv-1" href="#">
-                記事管理
-              </a>
-              <ul class="header-0001__mypage-nav__ul-lv-2">
-                <li class="header-0001__mypage-nav__li-lv-2">
-                  <a class="header-0001__mypage-nav__anchor-lv-2" href="#">
-                    記事投稿
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="header-0001__mypage-nav__li-lv-1">
-              <a class="header-0001__mypage-nav__anc-lv-1" href="#">
-                タグ管理
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </span>
-  </div>
-</header>
-
 
 
 <h2>form-type-textarea-0001</h2>
 <div class="form-type-textarea-0001">
   <textarea class="form-type-textarea-0001__input-elm"></textarea>
 </div>
+
+
 
 <h2>form-frame</h2>
 <div class="form-frame-0002">
@@ -461,6 +395,8 @@ foreach ($obj['dir_list'] as $key => $dir_name) {
     </span>
   </div>
 </div>
+
+
 
 <br><br>
 

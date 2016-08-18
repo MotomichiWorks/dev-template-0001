@@ -5,6 +5,7 @@ var app = new Vue({
   components: {
     'vue-badge-0001': require('./module/vue-badge-0001'),
     'vue-btn-0001': require('./module/vue-btn-0001'),
+    'vue-header-0001': require('./module/vue-header-0001'),
     'vue-heading-0001': require('./module/vue-heading-0001'),
     'vue-loading-icon-0001': require('./module/vue-loading-icon-0001'),
     'vue-step-info-0001': require('./module/vue-step-info-0001'),

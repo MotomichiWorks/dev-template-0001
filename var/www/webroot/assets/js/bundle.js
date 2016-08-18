@@ -10211,9 +10211,10 @@
 	  components: {
 	    'vue-badge-0001': __webpack_require__(/*! ./module/vue-badge-0001 */ 8),
 	    'vue-btn-0001': __webpack_require__(/*! ./module/vue-btn-0001 */ 10),
-	    'vue-heading-0001': __webpack_require__(/*! ./module/vue-heading-0001 */ 12),
-	    'vue-loading-icon-0001': __webpack_require__(/*! ./module/vue-loading-icon-0001 */ 14),
-	    'vue-step-info-0001': __webpack_require__(/*! ./module/vue-step-info-0001 */ 16)
+	    'vue-header-0001': __webpack_require__(/*! ./module/vue-header-0001 */ 12),
+	    'vue-heading-0001': __webpack_require__(/*! ./module/vue-heading-0001 */ 14),
+	    'vue-loading-icon-0001': __webpack_require__(/*! ./module/vue-loading-icon-0001 */ 16),
+	    'vue-step-info-0001': __webpack_require__(/*! ./module/vue-step-info-0001 */ 18)
 	  }
 	});
 
@@ -20567,6 +20568,36 @@
 
 /***/ },
 /* 12 */
+/*!****************************************************!*\
+  !*** ./src/js/child/vue/module/vue-header-0001.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = {
+	  props: {
+	    // 属性の宣言と初期値の設定
+	    isLoggedIn: {
+	      default: function _default() {
+	        return false;
+	      }
+	    }
+	  },
+	  template: __webpack_require__(/*! ./vue-header-0001.html */ 13)
+	};
+
+/***/ },
+/* 13 */
+/*!******************************************************!*\
+  !*** ./src/js/child/vue/module/vue-header-0001.html ***!
+  \******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<header class=\"header-0001\">\r\n  <div class=\"header-0001__first-wrap\">\r\n    <span class=\"header-0001__second-wrap\">\r\n      <div class=\"header-0001__third-wrap\">\r\n        <div class=\"header-0001__logo-wrap\">\r\n          <a class=\"header-0001__logo-text\" href=\"#\">Practice.MotomichiWorks</a>\r\n        </div>\r\n\r\n        <nav v-if=\"isLoggedIn\" class=\"header-0001__user-nav\">\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            [&nbsp;\r\n          </span>\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            <a class=\"header-0001__user-nav__anc-elm\" href=\"#\">\r\n              ログアウト\r\n            </a>\r\n          </span>\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            &nbsp;]\r\n          </span>\r\n        </nav>\r\n        <div v-if=\"isLoggedIn\" class=\"header-0001__info\">サンプルユーザーさん</div>\r\n\r\n        <nav v-else class=\"header-0001__user-nav\">\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            [&nbsp;\r\n          </span>\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            <a class=\"header-0001__user-nav__anc-elm\" href=\"#\">\r\n              ログイン\r\n            </a>\r\n          </span>\r\n          &nbsp;|&nbsp;\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            <a class=\"header-0001__user-nav__anc-elm\" href=\"#\">\r\n              会員登録\r\n            </a>\r\n          </span>\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            &nbsp;]\r\n          </span>\r\n        </nav>\r\n\r\n      </div>\r\n      <div class=\"header-0001__fourth-wrap\">\r\n        <nav class=\"header-0001__global-nav\">\r\n          <ul class=\"header-0001__global-nav__ul-lv-1\">\r\n            <li class=\"header-0001__global-nav__li-lv-1\">\r\n              <a class=\"header-0001__global-nav__anc-lv-1\" href=\"#\">トップ</a>\r\n            </li>\r\n            <li class=\"header-0001__global-nav__li-lv-1\">\r\n              <a class=\"header-0001__global-nav__anc-lv-1\" href=\"#\">お問い合わせ</a>\r\n            </li>\r\n            <li class=\"header-0001__global-nav__li-lv-1\">\r\n              <a class=\"header-0001__global-nav__anc-lv-1\" href=\"#\" target=\"_blank\">スタイルガイド</a>\r\n            </li>\r\n          </ul>\r\n        </nav>\r\n\r\n        <nav v-if=\"isLoggedIn\" class=\"header-0001__mypage-nav\">\r\n          <ul class=\"header-0001__mypage-nav__ul-lv-1\">\r\n            <li class=\"header-0001__mypage-nav__li-lv-1\">\r\n              <a class=\"header-0001__mypage-nav__anc-lv-1\" href=\"#\">\r\n                マイページ\r\n              </a>\r\n            </li>\r\n            <li class=\"header-0001__mypage-nav__li-lv-1\">\r\n              <a class=\"header-0001__mypage-nav__anc-lv-1\" href=\"#\">\r\n                記事管理\r\n              </a>\r\n              <ul class=\"header-0001__mypage-nav__ul-lv-2\">\r\n                <li class=\"header-0001__mypage-nav__li-lv-2\">\r\n                  <a class=\"header-0001__mypage-nav__anchor-lv-2\" href=\"#\">\r\n                    記事投稿\r\n                  </a>\r\n                </li>\r\n              </ul>\r\n            </li>\r\n            <li class=\"header-0001__mypage-nav__li-lv-1\">\r\n              <a class=\"header-0001__mypage-nav__anc-lv-1\" href=\"#\">\r\n                タグ管理\r\n              </a>\r\n            </li>\r\n          </ul>\r\n        </nav>\r\n\r\n      </div>\r\n    </span>\r\n  </div>\r\n</header>\r\n";
+
+/***/ },
+/* 14 */
 /*!*****************************************************!*\
   !*** ./src/js/child/vue/module/vue-heading-0001.js ***!
   \*****************************************************/
@@ -20664,7 +20695,7 @@
 	      }
 	    }
 	  },
-	  template: __webpack_require__(/*! ./vue-heading-0001.html */ 13),
+	  template: __webpack_require__(/*! ./vue-heading-0001.html */ 15),
 	  data: function data() {
 	    return {
 	      modifierLv: this.modifier.lv
@@ -20673,7 +20704,7 @@
 	};
 
 /***/ },
-/* 13 */
+/* 15 */
 /*!*******************************************************!*\
   !*** ./src/js/child/vue/module/vue-heading-0001.html ***!
   \*******************************************************/
@@ -20682,7 +20713,7 @@
 	module.exports = "<div class=\"heading-0001 {{modifierLv}}\">\r\n  <div class=\"heading-0001__table\">\r\n    <span class=\"heading-0001__tr\">\r\n      <div v-if=\"hasIcon\" class=\"heading-0001__icon-wrap\">\r\n        <div class=\"heading-0001__icon\">\r\n          <!--icon-->\r\n        </div>\r\n      </div>\r\n      <h1 v-if=\"tagName === 'h1'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h1>\r\n      <h2 v-if=\"tagName === 'h2'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h2>\r\n      <h3 v-if=\"tagName === 'h3'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h3>\r\n      <h4 v-if=\"tagName === 'h4'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h4>\r\n      <h5 v-if=\"tagName === 'h5'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h5>\r\n      <h6 v-if=\"tagName === 'h6'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h6>\r\n      <span v-if=\"hasBtn\" class=\"heading-0001__btn-wrap\">\r\n        <vue-btn-0001\r\n          :txt=\"{main: btnTxt.main}\"\r\n          :modifier=\"{color: btnModifier.color, height: btnModifier.height}\"\r\n          :btn-type=\"btnBtnType\"\r\n          :a-href=\"btnAHref\" />\r\n      </span>\r\n    </span>\r\n  </div>\r\n</div>\r\n";
 
 /***/ },
-/* 14 */
+/* 16 */
 /*!**********************************************************!*\
   !*** ./src/js/child/vue/module/vue-loading-icon-0001.js ***!
   \**********************************************************/
@@ -20702,7 +20733,7 @@
 	      }
 	    }
 	  },
-	  template: __webpack_require__(/*! ./vue-loading-icon-0001.html */ 15),
+	  template: __webpack_require__(/*! ./vue-loading-icon-0001.html */ 17),
 	  data: function data() {
 	    return {
 	      modifierSize: this.modifier.size
@@ -20711,7 +20742,7 @@
 	};
 
 /***/ },
-/* 15 */
+/* 17 */
 /*!************************************************************!*\
   !*** ./src/js/child/vue/module/vue-loading-icon-0001.html ***!
   \************************************************************/
@@ -20720,7 +20751,7 @@
 	module.exports = "<div class=\"loading-icon-0001\" v-bind:class=\"[modifierSize]\"></div>\r\n";
 
 /***/ },
-/* 16 */
+/* 18 */
 /*!*******************************************************!*\
   !*** ./src/js/child/vue/module/vue-step-info-0001.js ***!
   \*******************************************************/
@@ -20750,7 +20781,7 @@
 	      }
 	    }
 	  },
-	  template: __webpack_require__(/*! ./vue-step-info-0001.html */ 17),
+	  template: __webpack_require__(/*! ./vue-step-info-0001.html */ 19),
 	  data: function data() {
 	    console.log(this.items.length);
 	    return {
@@ -20760,7 +20791,7 @@
 	};
 
 /***/ },
-/* 17 */
+/* 19 */
 /*!*********************************************************!*\
   !*** ./src/js/child/vue/module/vue-step-info-0001.html ***!
   \*********************************************************/
