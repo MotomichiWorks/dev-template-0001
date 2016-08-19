@@ -393,48 +393,6 @@ foreach ($obj['dir_list'] as $key => $dir_name) {
 
 <br><br>
 
-<h2>form-type-checkbox</h2>
-<div class="form-type-checkbox-0001">
-  <div class="form-type-checkbox-0001__first-wrap">
-    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox">
-    <label class="form-type-checkbox-0001__label-elm" for="checkbox">
-      ラベル文字列
-    </label>
-  </div>
-</div>
-
-<br>
-
-<div class="form-type-checkbox-0001">
-  <div class="form-type-checkbox-0001__first-wrap">
-    <input class="form-type-checkbox-0001__input-elm form-type-checkbox-0001__input-elm--error" type="checkbox" id="checkbox-error">
-    <label class="form-type-checkbox-0001__label-elm" for="checkbox-error">
-      ラベル文字列
-    </label>
-  </div>
-</div>
-
-<br>
-
-<div class="form-type-checkbox-0001">
-  <div class="form-type-checkbox-0001__first-wrap">
-    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox-disabeld" disabled>
-    <label class="form-type-checkbox-0001__label-elm" for="checkbox-disabled">
-      ラベル文字列
-    </label>
-  </div>
-</div>
-
-<br>
-
-<div class="form-type-checkbox-0001">
-  <div class="form-type-checkbox-0001__first-wrap">
-    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox-disabled-checked" disabled checked>
-    <label class="form-type-checkbox-0001__label-elm" for="checkbox-disabled-checked">
-      ラベル文字列
-    </label>
-  </div>
-</div>
 
 <h2>form-type-text</h2>
 <div class="form-type-text-0001 form-type-text-0001--form-height-s">

@@ -105,7 +105,8 @@ The `sprites` mixin generates identical output to the CSS template
       width: 20px;
       height: 20px; }
     .form-type-checkbox-0001 .form-type-checkbox-0001__input-elm:disabled + .form-type-checkbox-0001__label-elm {
-      cursor: default; }
+      cursor: default;
+      color: #c9c9c9; }
 .form-type-checkbox-0001 .form-type-checkbox-0001__label-elm {
   float: left;
   padding: 0 0 0 4px;
