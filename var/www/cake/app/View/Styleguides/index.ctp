@@ -343,53 +343,8 @@ foreach ($obj['dir_list'] as $key => $dir_name) {
 
 
 
-<h2>flash-message</h2>
-<div class="flash-message-0001 flash-message-0001--color-neutral">
-  <div class="flash-message-0001__first-wrap">
-    <div class="flash-message-0001__second-wrap">
-      フラッシュメッセージ
-    </div>
-  </div>
-</div>
 
-<br>
 
-<div class="flash-message-0001 flash-message-0001--color-warning">
-  <div class="flash-message-0001__first-wrap">
-    <div class="flash-message-0001__second-wrap">
-      フラッシュメッセージ
-    </div>
-  </div>
-</div>
-
-<br>
-
-<div class="flash-message-0001 flash-message-0001--color-safety">
-  <div class="flash-message-0001__first-wrap">
-    <div class="flash-message-0001__second-wrap">
-      フラッシュメッセージ
-    </div>
-  </div>
-</div>
-
-<br><br>
-
-<h2>breadcrumb</h2>
-<div class="breadcrumb-0001">
-  <div class="breadcrumb-0001__first-wrap">
-    <ul class="breadcrumb-0001__ul-ol-elm">
-      <li class="breadcrumb-0001__li-elm">
-        <a class="breadcrumb-0001__label" href="#">トップ</a>
-      </li>
-      <li class="breadcrumb-0001__li-elm">
-        <a class="breadcrumb-0001__label" href="#">商品一覧</a>
-      </li>
-      <li class="breadcrumb-0001__li-elm">
-        <span class="breadcrumb-0001__label">商品詳細</span>
-      </li>
-    </ul>
-  </div>
-</div>
 
 
 
