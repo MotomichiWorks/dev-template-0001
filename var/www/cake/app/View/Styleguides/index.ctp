@@ -148,66 +148,7 @@ foreach ($obj['dir_list'] as $key => $dir_name) {
 
 <h1>スタイルガイド</h1>
 
-<h2>table-like-0001</h2>
 
-<div class="paginator-0001">
-  <div class="paginator-0001__first-wrap">
-    <span class="paginator-0001__second-wrap">
-      <div class="paginator-0001__info-wrap">
-        <p class="paginator-0001__info">
-          10ページ中 6ページ目
-        </p>
-        <p class="paginator-0001__info">
-          100件中 51-60件目
-        </p>
-      </div>
-      <ul class="paginator-0001__ul-ol-elm">
-        <li class="paginator-0001__li-elm-first paginator-0001__li-elm-first--disabled">
-          <a class="paginator-0001__anc-elm" href="#">&lt;&lt;</a>
-        </li>
-        <li class="paginator-0001__li-elm-prev paginator-0001__li-elm-prev--disabled">
-          <a class="paginator-0001__anc-elm" href="#">&lt;</a>
-        </li>
-        <li class="paginator-0001__li-elm-num">
-          <a class="paginator-0001__anc-elm" href="#">1</a>
-        </li>
-        <li class="paginator-0001__li-elm-num paginator-0001__li-elm-num--ellipsis">
-          <a class="paginator-0001__anc-elm" href="#">...</a>
-        </li>
-        <li class="paginator-0001__li-elm-num">
-          <a class="paginator-0001__anc-elm" href="#">4</a>
-        </li>
-        <li class="paginator-0001__li-elm-num paginator-0001__li-elm-num--disabled">
-          <a class="paginator-0001__anc-elm" href="#">5</a>
-        </li>
-        <li class="paginator-0001__li-elm-num paginator-0001__li-elm-num--current">
-          <a class="paginator-0001__anc-elm" href="#">6</a>
-        </li>
-        <li class="paginator-0001__li-elm-num">
-          <a class="paginator-0001__anc-elm" href="#">7</a>
-        </li>
-        <li class="paginator-0001__li-elm-num">
-          <a class="paginator-0001__anc-elm" href="#">8</a>
-        </li>
-        <li class="paginator-0001__li-elm-num">
-          <a class="paginator-0001__anc-elm" href="#">9</a>
-        </li>
-        <li class="paginator-0001__li-elm-num paginator-0001__li-elm-num--ellipsis">
-          <a class="paginator-0001__anc-elm" href="#">...</a>
-        </li>
-        <li class="paginator-0001__li-elm-num">
-          <a class="paginator-0001__anc-elm" href="#">10</a>
-        </li>
-        <li class="paginator-0001__li-elm-next">
-          <a class="paginator-0001__anc-elm" href="#">&gt;</a>
-        </li>
-        <li class="paginator-0001__li-elm-last paginator-0001__li-elm-last--disabled">
-          <a class="paginator-0001__anc-elm" href="#">&gt;&gt;</a>
-        </li>
-      </ul>
-    </span>
-  </div>
-</div>
 
 
 

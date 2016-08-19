@@ -10215,8 +10215,9 @@
 	    'vue-header-0001': __webpack_require__(/*! ./module/vue-header-0001 */ 14),
 	    'vue-heading-0001': __webpack_require__(/*! ./module/vue-heading-0001 */ 16),
 	    'vue-loading-icon-0001': __webpack_require__(/*! ./module/vue-loading-icon-0001 */ 18),
-	    'vue-step-info-0001': __webpack_require__(/*! ./module/vue-step-info-0001 */ 20),
-	    'vue-tooltip-0001': __webpack_require__(/*! ./module/vue-tooltip-0001 */ 22)
+	    'vue-paginator-0001': __webpack_require__(/*! ./module/vue-paginator-0001 */ 20),
+	    'vue-step-info-0001': __webpack_require__(/*! ./module/vue-step-info-0001 */ 21),
+	    'vue-tooltip-0001': __webpack_require__(/*! ./module/vue-tooltip-0001 */ 23)
 	  }
 	});
 
@@ -20791,6 +20792,42 @@
 /***/ },
 /* 20 */
 /*!*******************************************************!*\
+  !*** ./src/js/child/vue/module/vue-paginator-0001.js ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = {
+	  props: {
+	    // 属性の宣言と初期値の設定
+	    params: {
+	      type: Object,
+	      default: function _default() {
+	        return {
+	          itemsLength: 100,
+	          itemsPerPage: 10,
+	          currentPage: 6
+	        };
+	      }
+	    }
+	  },
+	  template: __webpack_require__(/*! ./vue-paginator-0001.html */ 25),
+	  data: function data() {
+	    return {
+	      itemsLength: this.params.itemsLength,
+	      itemsPerPage: this.params.itemsPerPage,
+	      pagesLength: Math.ceil(this.params.itemsLength / this.params.itemsPerPage),
+	      currentPage: this.params.currentPage,
+	      startIndex: this.params.itemsPerPage * (this.params.currentPage - 1) + 1,
+	      endIndex: this.params.itemsPerPage * this.params.currentPage
+	    };
+	  }
+	};
+
+/***/ },
+/* 21 */
+/*!*******************************************************!*\
   !*** ./src/js/child/vue/module/vue-step-info-0001.js ***!
   \*******************************************************/
 /***/ function(module, exports, __webpack_require__) {
@@ -20819,7 +20856,7 @@
 	      }
 	    }
 	  },
-	  template: __webpack_require__(/*! ./vue-step-info-0001.html */ 21),
+	  template: __webpack_require__(/*! ./vue-step-info-0001.html */ 22),
 	  data: function data() {
 	    return {
 	      modifierColumn: 'step-info-0001--' + this.items.length + '-column'
@@ -20828,7 +20865,7 @@
 	};
 
 /***/ },
-/* 21 */
+/* 22 */
 /*!*********************************************************!*\
   !*** ./src/js/child/vue/module/vue-step-info-0001.html ***!
   \*********************************************************/
@@ -20837,7 +20874,7 @@
 	module.exports = "<div class=\"step-info-0001\" v-bind:class=\"[modifierColumn]\">\r\n  <div class=\"step-info-0001__first-wrap\">\r\n    <ul class=\"step-info-0001__ul-ol-elm\">\r\n      <li class=\"step-info-0001__li-elm\" v-for=\"item in items\">\r\n        <div class=\"step-info-0001__num\" v-bind:class=\"{ 'step-info-0001__num--active': item.isActive }\">\r\n          {{$index + 1}}\r\n        </div>\r\n        <span class=\"step-info-0001__text\" v-bind:class=\"{ 'step-info-0001__text--active': item.isActive }\">\r\n          {{item.text}}\r\n        </span>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n";
 
 /***/ },
-/* 22 */
+/* 23 */
 /*!*****************************************************!*\
   !*** ./src/js/child/vue/module/vue-tooltip-0001.js ***!
   \*****************************************************/
@@ -20855,17 +20892,26 @@
 	      }
 	    }
 	  },
-	  template: __webpack_require__(/*! ./vue-tooltip-0001.html */ 23)
+	  template: __webpack_require__(/*! ./vue-tooltip-0001.html */ 24)
 	};
 
 /***/ },
-/* 23 */
+/* 24 */
 /*!*******************************************************!*\
   !*** ./src/js/child/vue/module/vue-tooltip-0001.html ***!
   \*******************************************************/
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"tooltip-0001\">\r\n  <div class=\"tooltip-0001__contents-wrap\">\r\n    <slot name=\"slot-0001\"></slot>\r\n  </div>\r\n  <a class=\"tooltip-0001__icon\" href=\"#\">\r\n    ?\r\n  </a>\r\n</div>\r\n";
+
+/***/ },
+/* 25 */
+/*!*********************************************************!*\
+  !*** ./src/js/child/vue/module/vue-paginator-0001.html ***!
+  \*********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"paginator-0001\">\r\n  <div class=\"paginator-0001__first-wrap\">\r\n    <span class=\"paginator-0001__second-wrap\">\r\n      <div class=\"paginator-0001__info-wrap\">\r\n        <p class=\"paginator-0001__info\">\r\n          {{pagesLength}}ページ中 {{currentPage}}ページ目\r\n        </p>\r\n        <p class=\"paginator-0001__info\">\r\n          {{itemsLength}}件中 {{startIndex}}-{{endIndex}}件目\r\n        </p>\r\n      </div>\r\n      <ul class=\"paginator-0001__ul-ol-elm\">\r\n        <li class=\"paginator-0001__li-elm-first paginator-0001__li-elm-first--disabled\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&lt;&lt;</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-prev paginator-0001__li-elm-prev--disabled\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&lt;</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">1</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--ellipsis\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">...</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">4</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--disabled\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">5</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--current\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">6</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">7</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">8</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">9</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--ellipsis\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">...</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">10</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-next\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&gt;</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-last paginator-0001__li-elm-last--disabled\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&gt;&gt;</a>\r\n        </li>\r\n      </ul>\r\n    </span>\r\n  </div>\r\n</div>\r\n";
 
 /***/ }
 /******/ ]);
