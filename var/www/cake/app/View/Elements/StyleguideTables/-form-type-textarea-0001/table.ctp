@@ -3,7 +3,10 @@
 ?>
 
 
-特になし
+form-type-text-0001--form-height-s<br>
+form-type-text-0001--form-height-m<br>
+form-type-text-0001--form-height-l<br>
+の三種類の高さが選べます。
 
 
 <?php

@@ -275,13 +275,6 @@ foreach ($obj['dir_list'] as $key => $dir_name) {
 
 
 
-<h2>form-type-textarea-0001</h2>
-<div class="form-type-textarea-0001">
-  <textarea class="form-type-textarea-0001__input-elm"></textarea>
-</div>
-
-
-
 <h2>form-frame</h2>
 <div class="form-frame-0002">
   <div class="form-frame-0002__first-wrap">

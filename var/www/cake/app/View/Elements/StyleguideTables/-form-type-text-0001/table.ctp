@@ -2,9 +2,8 @@
   echo $this->SgTable0001->createSection(array('is_deprecated'=>FALSE, 'heading_text'=>$dir_name));
 ?>
 
-バッヂに表示させる文字列と色が引数で変更できます。<br>
-色相を0度から30度刻みで変化させています。
 
+特になし
 
 
 <?php
