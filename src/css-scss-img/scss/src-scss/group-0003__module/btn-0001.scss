@@ -233,20 +233,19 @@
   /**
    * スタイルを定義
    */
-  // heightSmall
-  &.btn-0001--height-s {
+  // heightExtraSmall
+  &.btn-0001--height-xs {
     .btn-0001__clickable-elm {
-      min-height:20px;
+      min-height:22px;
       font-size: 12px;
-      padding:3px 8px 0px;
+      padding:4px 8px 0px;
       line-height: 14px;
       @include btn-0001__clickable-elm-props--general();
     }
     input[type="button"].btn-0001__clickable-elm,
     input[type="submit"].btn-0001__clickable-elm {
-      min-height:20px;
       font-size: 12px;
-      padding:2px 8px 0px;
+      padding:0px 8px 0px;
       @include btn-0001__clickable-elm-props--input();
     }
     &.btn-0001--icon-circle{
@@ -265,20 +264,51 @@
     }
   }
 
-  // heightMidium
-  &.btn-0001--height-m {
+  // heightSmall
+  &.btn-0001--height-sm {
     .btn-0001__clickable-elm {
-      min-height:32px;
+      min-height:30px;
       font-size: 12px;
-      padding:8px 8px;
+      padding:7px 8px;
       line-height: 16px;
       @include btn-0001__clickable-elm-props--general();
     }
     input[type="button"].btn-0001__clickable-elm,
     input[type="submit"].btn-0001__clickable-elm {
-      min-height:32px;
       font-size: 12px;
-      padding:7px 8px;
+      padding:6px 8px;
+      @include btn-0001__clickable-elm-props--input();
+    }
+
+    &.btn-0001--icon-circle{
+      .btn-0001__label{
+        position: relative;
+        padding-left: 22px;
+        &:before{
+          position: absolute;
+          top:50%;
+          left:0px;
+          margin: -8px 0 0 0;
+          content: "";
+          @include sprite($sprite-icon-circle-gray-16px-16px);
+        }
+      }
+    }
+  }
+
+  // heightMidium
+  &.btn-0001--height-md {
+    .btn-0001__clickable-elm {
+      min-height:34px;
+      font-size: 14px;
+      padding:9px 8px;
+      line-height: 16px;
+      @include btn-0001__clickable-elm-props--general();
+    }
+    input[type="button"].btn-0001__clickable-elm,
+    input[type="submit"].btn-0001__clickable-elm {
+      font-size: 14px;
+      padding:8px 8px;
       @include btn-0001__clickable-elm-props--input();
     }
 
@@ -299,19 +329,18 @@
   }
 
   // heightLarge
-  &.btn-0001--height-l {
+  &.btn-0001--height-lg {
     .btn-0001__clickable-elm {
-      min-height:44px;
-      font-size: 14px;
-      padding:11px 8px 11px;
+      min-height:46px;
+      font-size: 18px;
+      padding:13px 8px 10px;
       line-height: 22px;
       @include btn-0001__clickable-elm-props--general();
     }
     input[type="button"].btn-0001__clickable-elm,
     input[type="submit"].btn-0001__clickable-elm {
-      min-height:44px;
-      font-size: 14px;
-      padding:10px 8px 9px;
+      font-size: 18px;
+      padding:11px 8px 9px;
       @include btn-0001__clickable-elm-props--input();
     }
     &.btn-0001--icon-circle{

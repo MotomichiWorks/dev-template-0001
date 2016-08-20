@@ -62,10 +62,10 @@ The `sprites` mixin generates identical output to the CSS template
   /**
    * スタイルを定義
    */ }
-  .btn-0001.btn-0001--height-s .btn-0001__clickable-elm {
-    min-height: 20px;
+  .btn-0001.btn-0001--height-xs .btn-0001__clickable-elm {
+    min-height: 22px;
     font-size: 12px;
-    padding: 3px 8px 0px;
+    padding: 4px 8px 0px;
     line-height: 14px;
     display: block;
     text-decoration: none;
@@ -76,23 +76,22 @@ The `sprites` mixin generates identical output to the CSS template
     transition-property: background-color;
     transition-duration: 0.3s;
     transition-timing-function: linear; }
-    .btn-0001.btn-0001--height-s .btn-0001__clickable-elm + input {
+    .btn-0001.btn-0001--height-xs .btn-0001__clickable-elm + input {
       display: none; }
-  .btn-0001.btn-0001--height-s input[type="button"].btn-0001__clickable-elm,
-  .btn-0001.btn-0001--height-s input[type="submit"].btn-0001__clickable-elm {
-    min-height: 20px;
+  .btn-0001.btn-0001--height-xs input[type="button"].btn-0001__clickable-elm,
+  .btn-0001.btn-0001--height-xs input[type="submit"].btn-0001__clickable-elm {
     font-size: 12px;
-    padding: 2px 8px 0px;
+    padding: 0px 8px 0px;
     text-shadow: none;
     box-shadow: none;
     cursor: pointer;
     width: 100%;
     border: none;
     appearance: none; }
-  .btn-0001.btn-0001--height-s.btn-0001--icon-circle .btn-0001__label {
+  .btn-0001.btn-0001--height-xs.btn-0001--icon-circle .btn-0001__label {
     position: relative;
     padding-left: 18px; }
-    .btn-0001.btn-0001--height-s.btn-0001--icon-circle .btn-0001__label:before {
+    .btn-0001.btn-0001--height-xs.btn-0001--icon-circle .btn-0001__label:before {
       position: absolute;
       top: 50%;
       left: 0px;
@@ -102,10 +101,10 @@ The `sprites` mixin generates identical output to the CSS template
       background-position: 0px 0px;
       width: 12px;
       height: 12px; }
-  .btn-0001.btn-0001--height-m .btn-0001__clickable-elm {
-    min-height: 32px;
+  .btn-0001.btn-0001--height-sm .btn-0001__clickable-elm {
+    min-height: 30px;
     font-size: 12px;
-    padding: 8px 8px;
+    padding: 7px 8px;
     line-height: 16px;
     display: block;
     text-decoration: none;
@@ -116,23 +115,22 @@ The `sprites` mixin generates identical output to the CSS template
     transition-property: background-color;
     transition-duration: 0.3s;
     transition-timing-function: linear; }
-    .btn-0001.btn-0001--height-m .btn-0001__clickable-elm + input {
+    .btn-0001.btn-0001--height-sm .btn-0001__clickable-elm + input {
       display: none; }
-  .btn-0001.btn-0001--height-m input[type="button"].btn-0001__clickable-elm,
-  .btn-0001.btn-0001--height-m input[type="submit"].btn-0001__clickable-elm {
-    min-height: 32px;
+  .btn-0001.btn-0001--height-sm input[type="button"].btn-0001__clickable-elm,
+  .btn-0001.btn-0001--height-sm input[type="submit"].btn-0001__clickable-elm {
     font-size: 12px;
-    padding: 7px 8px;
+    padding: 6px 8px;
     text-shadow: none;
     box-shadow: none;
     cursor: pointer;
     width: 100%;
     border: none;
     appearance: none; }
-  .btn-0001.btn-0001--height-m.btn-0001--icon-circle .btn-0001__label {
+  .btn-0001.btn-0001--height-sm.btn-0001--icon-circle .btn-0001__label {
     position: relative;
     padding-left: 22px; }
-    .btn-0001.btn-0001--height-m.btn-0001--icon-circle .btn-0001__label:before {
+    .btn-0001.btn-0001--height-sm.btn-0001--icon-circle .btn-0001__label:before {
       position: absolute;
       top: 50%;
       left: 0px;
@@ -142,10 +140,49 @@ The `sprites` mixin generates identical output to the CSS template
       background-position: 0px -22px;
       width: 16px;
       height: 16px; }
-  .btn-0001.btn-0001--height-l .btn-0001__clickable-elm {
-    min-height: 44px;
+  .btn-0001.btn-0001--height-md .btn-0001__clickable-elm {
+    min-height: 34px;
     font-size: 14px;
-    padding: 11px 8px 11px;
+    padding: 9px 8px;
+    line-height: 16px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 400;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: linear; }
+    .btn-0001.btn-0001--height-md .btn-0001__clickable-elm + input {
+      display: none; }
+  .btn-0001.btn-0001--height-md input[type="button"].btn-0001__clickable-elm,
+  .btn-0001.btn-0001--height-md input[type="submit"].btn-0001__clickable-elm {
+    font-size: 14px;
+    padding: 8px 8px;
+    text-shadow: none;
+    box-shadow: none;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    appearance: none; }
+  .btn-0001.btn-0001--height-md.btn-0001--icon-circle .btn-0001__label {
+    position: relative;
+    padding-left: 22px; }
+    .btn-0001.btn-0001--height-md.btn-0001--icon-circle .btn-0001__label:before {
+      position: absolute;
+      top: 50%;
+      left: 0px;
+      margin: -8px 0 0 0;
+      content: "";
+      background-image: url(/assets/img/sprite.png);
+      background-position: 0px -22px;
+      width: 16px;
+      height: 16px; }
+  .btn-0001.btn-0001--height-lg .btn-0001__clickable-elm {
+    min-height: 46px;
+    font-size: 18px;
+    padding: 13px 8px 10px;
     line-height: 22px;
     display: block;
     text-decoration: none;
@@ -156,23 +193,22 @@ The `sprites` mixin generates identical output to the CSS template
     transition-property: background-color;
     transition-duration: 0.3s;
     transition-timing-function: linear; }
-    .btn-0001.btn-0001--height-l .btn-0001__clickable-elm + input {
+    .btn-0001.btn-0001--height-lg .btn-0001__clickable-elm + input {
       display: none; }
-  .btn-0001.btn-0001--height-l input[type="button"].btn-0001__clickable-elm,
-  .btn-0001.btn-0001--height-l input[type="submit"].btn-0001__clickable-elm {
-    min-height: 44px;
-    font-size: 14px;
-    padding: 10px 8px 9px;
+  .btn-0001.btn-0001--height-lg input[type="button"].btn-0001__clickable-elm,
+  .btn-0001.btn-0001--height-lg input[type="submit"].btn-0001__clickable-elm {
+    font-size: 18px;
+    padding: 11px 8px 9px;
     text-shadow: none;
     box-shadow: none;
     cursor: pointer;
     width: 100%;
     border: none;
     appearance: none; }
-  .btn-0001.btn-0001--height-l.btn-0001--icon-circle .btn-0001__label {
+  .btn-0001.btn-0001--height-lg.btn-0001--icon-circle .btn-0001__label {
     position: relative;
     padding-left: 30px; }
-    .btn-0001.btn-0001--height-l.btn-0001--icon-circle .btn-0001__label:before {
+    .btn-0001.btn-0001--height-lg.btn-0001--icon-circle .btn-0001__label:before {
       position: absolute;
       top: 50%;
       left: 0px;
