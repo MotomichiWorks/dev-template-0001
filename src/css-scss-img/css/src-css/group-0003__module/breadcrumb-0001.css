@@ -56,18 +56,12 @@ The `sprites` mixin generates identical output to the CSS template
  *
  */
 .breadcrumb-0001 .breadcrumb-0001__ul-ol-elm {
-  zoom: 1;
   margin: 0;
   padding: 0; }
   .breadcrumb-0001 .breadcrumb-0001__ul-ol-elm:after {
-    content: ".";
-    display: block;
-    height: 0;
+    content: "";
     clear: both;
-    visibility: hidden;
-    overflow: hidden;
-    font-size: 0.1em;
-    line-height: 0; }
+    display: block; }
   .breadcrumb-0001 .breadcrumb-0001__ul-ol-elm .breadcrumb-0001__li-elm {
     float: left;
     font-size: 0;

@@ -63,17 +63,11 @@ The `sprites` mixin generates identical output to the CSS template
   margin-right: auto;
   box-sizing: border-box;
   padding-left: 12px;
-  padding-right: 12px;
-  zoom: 1; }
+  padding-right: 12px; }
   .header-0001 .header-0001__third-wrap:after {
-    content: ".";
-    display: block;
-    height: 0;
+    content: "";
     clear: both;
-    visibility: hidden;
-    overflow: hidden;
-    font-size: 0.1em;
-    line-height: 0; }
+    display: block; }
 .header-0001 .header-0001__logo-wrap {
   float: left; }
 .header-0001 .header-0001__logo-text {
@@ -96,17 +90,11 @@ The `sprites` mixin generates identical output to the CSS template
   width: 1296px;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: 0 12px;
-  zoom: 1; }
+  padding: 0 12px; }
   .header-0001 .header-0001__global-nav__ul-lv-1:after {
-    content: ".";
-    display: block;
-    height: 0;
+    content: "";
     clear: both;
-    visibility: hidden;
-    overflow: hidden;
-    font-size: 0.1em;
-    line-height: 0; }
+    display: block; }
 .header-0001 .header-0001__global-nav__li-lv-1 {
   float: left;
   width: 20%;
@@ -144,17 +132,11 @@ The `sprites` mixin generates identical output to the CSS template
   width: 1296px;
   margin: 0 auto;
   padding: 0 12px;
-  box-sizing: border-box;
-  zoom: 1; }
+  box-sizing: border-box; }
   .header-0001 .header-0001__mypage-nav__ul-lv-1:after {
-    content: ".";
-    display: block;
-    height: 0;
+    content: "";
     clear: both;
-    visibility: hidden;
-    overflow: hidden;
-    font-size: 0.1em;
-    line-height: 0; }
+    display: block; }
 .header-0001 .header-0001__mypage-nav__li-lv-1 {
   float: left;
   width: 16.66666667%;

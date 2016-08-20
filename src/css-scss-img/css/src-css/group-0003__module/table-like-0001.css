@@ -90,18 +90,12 @@ The `sprites` mixin generates identical output to the CSS template
 .table-like-0001 .table-like-0001__th-inner,
 .table-like-0001 .table-like-0001__td-inner {
   display: block;
-  padding: 12px 0 12px 12px;
-  zoom: 1; }
+  padding: 12px 0 12px 12px; }
   .table-like-0001 .table-like-0001__th-inner:after,
   .table-like-0001 .table-like-0001__td-inner:after {
-    content: ".";
-    display: block;
-    height: 0;
+    content: "";
     clear: both;
-    visibility: hidden;
-    overflow: hidden;
-    font-size: 0.1em;
-    line-height: 0; }
+    display: block; }
 .table-like-0001 .table-like-0001__translucent-layer {
   background: #000000;
   position: absolute;

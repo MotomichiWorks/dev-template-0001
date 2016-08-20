@@ -59,17 +59,11 @@ The `sprites` mixin generates identical output to the CSS template
   text-align: center; }
   .l-btn-frame-0001 .l-btn-frame-0001__first-wrap {
     vertical-align: top;
-    display: inline-block;
-    zoom: 1; }
+    display: inline-block; }
     .l-btn-frame-0001 .l-btn-frame-0001__first-wrap:after {
-      content: ".";
-      display: block;
-      height: 0;
+      content: "";
       clear: both;
-      visibility: hidden;
-      overflow: hidden;
-      font-size: 0.1em;
-      line-height: 0; }
+      display: block; }
   .l-btn-frame-0001 .l-btn-frame-0001__column {
     display: block;
     float: right;

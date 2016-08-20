@@ -4,16 +4,10 @@
 // clearfix
 // ----------------------------
 @mixin clearfix(){
-	zoom: 1;
 	&:after{
-		content: ".";
-		display: block;
-		height: 0;
-		clear: both;
-		visibility: hidden;
-		overflow:hidden;
-		font-size:0.1em;
-		line-height:0;
+    content: "";
+    clear: both;
+    display: block;
 	}
 }
 
