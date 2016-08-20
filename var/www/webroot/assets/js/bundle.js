@@ -10210,10 +10210,16 @@
 	  el: '#vue-app',
 	  components: {
 	    'vue-badge-0001': __webpack_require__(/*! ./module/vue-badge-0001 */ 8),
-	    'vue-btn-0001': __webpack_require__(/*! ./module/vue-btn-0001 */ 10),
-	    'vue-heading-0001': __webpack_require__(/*! ./module/vue-heading-0001 */ 12),
-	    'vue-loading-icon-0001': __webpack_require__(/*! ./module/vue-loading-icon-0001 */ 14),
-	    'vue-step-info-0001': __webpack_require__(/*! ./module/vue-step-info-0001 */ 16)
+	    'vue-breadcrumb-0001': __webpack_require__(/*! ./module/vue-breadcrumb-0001 */ 10),
+	    'vue-btn-0001': __webpack_require__(/*! ./module/vue-btn-0001 */ 12),
+	    'vue-flash-message-0001': __webpack_require__(/*! ./module/vue-flash-message-0001 */ 14),
+	    'vue-footer-0001': __webpack_require__(/*! ./module/vue-footer-0001 */ 16),
+	    'vue-header-0001': __webpack_require__(/*! ./module/vue-header-0001 */ 18),
+	    'vue-heading-0001': __webpack_require__(/*! ./module/vue-heading-0001 */ 20),
+	    'vue-loading-icon-0001': __webpack_require__(/*! ./module/vue-loading-icon-0001 */ 22),
+	    'vue-paginator-0001': __webpack_require__(/*! ./module/vue-paginator-0001 */ 24),
+	    'vue-step-info-0001': __webpack_require__(/*! ./module/vue-step-info-0001 */ 26),
+	    'vue-tooltip-0001': __webpack_require__(/*! ./module/vue-tooltip-0001 */ 28)
 	  }
 	});
 
@@ -20477,6 +20483,37 @@
 
 /***/ },
 /* 10 */
+/*!********************************************************!*\
+  !*** ./src/js/child/vue/module/vue-breadcrumb-0001.js ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = {
+	  props: {
+	    // 属性の宣言と初期値の設定
+	    items: {
+	      type: Array,
+	      default: function _default() {
+	        return [];
+	      }
+	    }
+	  },
+	  template: __webpack_require__(/*! ./vue-breadcrumb-0001.html */ 11)
+	};
+
+/***/ },
+/* 11 */
+/*!**********************************************************!*\
+  !*** ./src/js/child/vue/module/vue-breadcrumb-0001.html ***!
+  \**********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div v-if=\"1 < items.length\" class=\"breadcrumb-0001\">\r\n  <div class=\"breadcrumb-0001__first-wrap\">\r\n    <ul class=\"breadcrumb-0001__ul-ol-elm\">\r\n      <li class=\"breadcrumb-0001__li-elm\" v-for=\"item in items\">\r\n        <a v-if=\"0 < item.aHref.length\" class=\"breadcrumb-0001__label\" href=\"{{item.aHref}}\">{{item.txt}}</a>\r\n        <span v-else class=\"breadcrumb-0001__label\">{{item.txt}}</span>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n";
+
+/***/ },
+/* 12 */
 /*!*************************************************!*\
   !*** ./src/js/child/vue/module/vue-btn-0001.js ***!
   \*************************************************/
@@ -20533,7 +20570,7 @@
 	      }
 	    }
 	  },
-	  template: __webpack_require__(/*! ./vue-btn-0001.html */ 11),
+	  template: __webpack_require__(/*! ./vue-btn-0001.html */ 13),
 	  data: function data() {
 	    return {
 	      modifierColor: this.modifier.color,
@@ -20557,7 +20594,7 @@
 	};
 
 /***/ },
-/* 11 */
+/* 13 */
 /*!***************************************************!*\
   !*** ./src/js/child/vue/module/vue-btn-0001.html ***!
   \***************************************************/
@@ -20566,7 +20603,111 @@
 	module.exports = "<div class=\"btn-0001\" v-bind:class=\"[modifierColor, modifierHeight, {'btn-0001--disabled': isDisabled}]\">\r\n\r\n  <!--aタグのボタン-->\r\n  <div class=\"btn-0001__first-wrap\" v-if=\"btnType === 'a'\">\r\n    <a class=\"btn-0001__clickable-elm\" href=\"{{aHref}}\" v-on:click=\"clicked\">\r\n      <span class=\"btn-0001__label\">\r\n        {{txt.main}}\r\n      </span>\r\n    </a>\r\n  </div>\r\n\r\n  <!--aタグをクリックすることでsubmitするボタン-->\r\n  <div class=\"btn-0001__first-wrap\" v-if=\"btnType === 'composite'\">\r\n    <a class=\"btn-0001__clickable-elm\" href=\"#\" v-on:click=\"clicked\">\r\n      <span class=\"btn-0001__label\">\r\n        {{txt.main}}\r\n      </span>\r\n    </a>\r\n    <input class=\"btn-0001__type-submit-elm\" type=\"submit\" name=\"{{inputName}}\" value=\"{{txt.main}}\" v-bind:disabled=\"isDisabled\">\r\n  </div>\r\n\r\n  <!--inputタグのボタン-->\r\n  <div class=\"btn-0001__first-wrap\" v-if=\"btnType === 'input'\">\r\n    <input class=\"btn-0001__clickable-elm\" type=\"submit\" name=\"{{inputName}}\" value=\"{{txt.main}}\" v-bind:disabled=\"isDisabled\">\r\n  </div>\r\n\r\n</div>\r\n";
 
 /***/ },
-/* 12 */
+/* 14 */
+/*!***********************************************************!*\
+  !*** ./src/js/child/vue/module/vue-flash-message-0001.js ***!
+  \***********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = {
+	  props: {
+	    // 属性の宣言と初期値の設定
+	    modifier: {
+	      type: Object,
+	      default: function _default() {
+	        return {
+	          color: 'flash-message-0001--color-neutral'
+	        };
+	      }
+	    }
+	  },
+	  template: __webpack_require__(/*! ./vue-flash-message-0001.html */ 15),
+	  data: function data() {
+	    return {
+	      modifierColor: this.modifier.color
+	    };
+	  }
+	};
+
+/***/ },
+/* 15 */
+/*!*************************************************************!*\
+  !*** ./src/js/child/vue/module/vue-flash-message-0001.html ***!
+  \*************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"flash-message-0001\" v-bind:class=\"[modifierColor]\">\r\n  <div class=\"flash-message-0001__first-wrap\">\r\n    <div class=\"flash-message-0001__second-wrap\">\r\n      <slot name=\"slot-0001\"></slot>\r\n    </div>\r\n  </div>\r\n</div>\r\n";
+
+/***/ },
+/* 16 */
+/*!****************************************************!*\
+  !*** ./src/js/child/vue/module/vue-footer-0001.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = {
+	  props: {
+	    // 属性の宣言と初期値の設定
+	    params: {
+	      type: Object,
+	      default: function _default() {
+	        return {
+	          logo: {
+	            txt: '(c)MotomichiWorks',
+	            aHref: '#'
+	          }
+	        };
+	      }
+	    }
+	  },
+	  template: __webpack_require__(/*! ./vue-footer-0001.html */ 17)
+	};
+
+/***/ },
+/* 17 */
+/*!******************************************************!*\
+  !*** ./src/js/child/vue/module/vue-footer-0001.html ***!
+  \******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<footer class=\"footer-0001\">\r\n  <div class=\"footer-0001__first-wrap\">\r\n    <span class=\"footer-0001__second-wrap\">\r\n      <small class=\"footer-0001__copy-wrap\">\r\n        <a class=\"footer-0001__copy\" href=\"{{params.logo.aHref}}\">\r\n          {{params.logo.txt}}\r\n        </a>\r\n      </small>\r\n    </span>\r\n  </div>\r\n</footer>\r\n";
+
+/***/ },
+/* 18 */
+/*!****************************************************!*\
+  !*** ./src/js/child/vue/module/vue-header-0001.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = {
+	  props: {
+	    // 属性の宣言と初期値の設定
+	    isLoggedIn: {
+	      default: function _default() {
+	        return false;
+	      }
+	    }
+	  },
+	  template: __webpack_require__(/*! ./vue-header-0001.html */ 19)
+	};
+
+/***/ },
+/* 19 */
+/*!******************************************************!*\
+  !*** ./src/js/child/vue/module/vue-header-0001.html ***!
+  \******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<header class=\"header-0001\">\r\n  <div class=\"header-0001__first-wrap\">\r\n    <span class=\"header-0001__second-wrap\">\r\n      <div class=\"header-0001__third-wrap\">\r\n        <div class=\"header-0001__logo-wrap\">\r\n          <a class=\"header-0001__logo-text\" href=\"#\">Practice.MotomichiWorks</a>\r\n        </div>\r\n\r\n        <nav v-if=\"isLoggedIn\" class=\"header-0001__user-nav\">\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            [&nbsp;\r\n          </span>\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            <a class=\"header-0001__user-nav__anc-elm\" href=\"#\">\r\n              ログアウト\r\n            </a>\r\n          </span>\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            &nbsp;]\r\n          </span>\r\n        </nav>\r\n        <div v-if=\"isLoggedIn\" class=\"header-0001__info\">サンプルユーザーさん</div>\r\n\r\n        <nav v-else class=\"header-0001__user-nav\">\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            [&nbsp;\r\n          </span>\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            <a class=\"header-0001__user-nav__anc-elm\" href=\"#\">\r\n              ログイン\r\n            </a>\r\n          </span>\r\n          &nbsp;|&nbsp;\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            <a class=\"header-0001__user-nav__anc-elm\" href=\"#\">\r\n              会員登録\r\n            </a>\r\n          </span>\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            &nbsp;]\r\n          </span>\r\n        </nav>\r\n\r\n      </div>\r\n      <div class=\"header-0001__fourth-wrap\">\r\n        <nav class=\"header-0001__global-nav\">\r\n          <ul class=\"header-0001__global-nav__ul-lv-1\">\r\n            <li class=\"header-0001__global-nav__li-lv-1\">\r\n              <a class=\"header-0001__global-nav__anc-lv-1\" href=\"#\">トップ</a>\r\n            </li>\r\n            <li class=\"header-0001__global-nav__li-lv-1\">\r\n              <a class=\"header-0001__global-nav__anc-lv-1\" href=\"#\">お問い合わせ</a>\r\n            </li>\r\n            <li class=\"header-0001__global-nav__li-lv-1\">\r\n              <a class=\"header-0001__global-nav__anc-lv-1\" href=\"#\" target=\"_blank\">スタイルガイド</a>\r\n            </li>\r\n          </ul>\r\n        </nav>\r\n\r\n        <nav v-if=\"isLoggedIn\" class=\"header-0001__mypage-nav\">\r\n          <ul class=\"header-0001__mypage-nav__ul-lv-1\">\r\n            <li class=\"header-0001__mypage-nav__li-lv-1\">\r\n              <a class=\"header-0001__mypage-nav__anc-lv-1\" href=\"#\">\r\n                マイページ\r\n              </a>\r\n            </li>\r\n            <li class=\"header-0001__mypage-nav__li-lv-1\">\r\n              <a class=\"header-0001__mypage-nav__anc-lv-1\" href=\"#\">\r\n                記事管理\r\n              </a>\r\n              <ul class=\"header-0001__mypage-nav__ul-lv-2\">\r\n                <li class=\"header-0001__mypage-nav__li-lv-2\">\r\n                  <a class=\"header-0001__mypage-nav__anchor-lv-2\" href=\"#\">\r\n                    記事投稿\r\n                  </a>\r\n                </li>\r\n              </ul>\r\n            </li>\r\n            <li class=\"header-0001__mypage-nav__li-lv-1\">\r\n              <a class=\"header-0001__mypage-nav__anc-lv-1\" href=\"#\">\r\n                タグ管理\r\n              </a>\r\n            </li>\r\n          </ul>\r\n        </nav>\r\n\r\n      </div>\r\n    </span>\r\n  </div>\r\n</header>\r\n";
+
+/***/ },
+/* 20 */
 /*!*****************************************************!*\
   !*** ./src/js/child/vue/module/vue-heading-0001.js ***!
   \*****************************************************/
@@ -20576,7 +20717,7 @@
 	
 	module.exports = {
 	  components: {
-	    'vue-btn-0001': __webpack_require__(/*! ./vue-btn-0001 */ 10)
+	    'vue-btn-0001': __webpack_require__(/*! ./vue-btn-0001 */ 12)
 	  },
 	  props: {
 	    // 属性の宣言と初期値の設定
@@ -20664,7 +20805,7 @@
 	      }
 	    }
 	  },
-	  template: __webpack_require__(/*! ./vue-heading-0001.html */ 13),
+	  template: __webpack_require__(/*! ./vue-heading-0001.html */ 21),
 	  data: function data() {
 	    return {
 	      modifierLv: this.modifier.lv
@@ -20673,7 +20814,7 @@
 	};
 
 /***/ },
-/* 13 */
+/* 21 */
 /*!*******************************************************!*\
   !*** ./src/js/child/vue/module/vue-heading-0001.html ***!
   \*******************************************************/
@@ -20682,7 +20823,7 @@
 	module.exports = "<div class=\"heading-0001 {{modifierLv}}\">\r\n  <div class=\"heading-0001__table\">\r\n    <span class=\"heading-0001__tr\">\r\n      <div v-if=\"hasIcon\" class=\"heading-0001__icon-wrap\">\r\n        <div class=\"heading-0001__icon\">\r\n          <!--icon-->\r\n        </div>\r\n      </div>\r\n      <h1 v-if=\"tagName === 'h1'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h1>\r\n      <h2 v-if=\"tagName === 'h2'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h2>\r\n      <h3 v-if=\"tagName === 'h3'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h3>\r\n      <h4 v-if=\"tagName === 'h4'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h4>\r\n      <h5 v-if=\"tagName === 'h5'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h5>\r\n      <h6 v-if=\"tagName === 'h6'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h6>\r\n      <span v-if=\"hasBtn\" class=\"heading-0001__btn-wrap\">\r\n        <vue-btn-0001\r\n          :txt=\"{main: btnTxt.main}\"\r\n          :modifier=\"{color: btnModifier.color, height: btnModifier.height}\"\r\n          :btn-type=\"btnBtnType\"\r\n          :a-href=\"btnAHref\" />\r\n      </span>\r\n    </span>\r\n  </div>\r\n</div>\r\n";
 
 /***/ },
-/* 14 */
+/* 22 */
 /*!**********************************************************!*\
   !*** ./src/js/child/vue/module/vue-loading-icon-0001.js ***!
   \**********************************************************/
@@ -20702,7 +20843,7 @@
 	      }
 	    }
 	  },
-	  template: __webpack_require__(/*! ./vue-loading-icon-0001.html */ 15),
+	  template: __webpack_require__(/*! ./vue-loading-icon-0001.html */ 23),
 	  data: function data() {
 	    return {
 	      modifierSize: this.modifier.size
@@ -20711,7 +20852,7 @@
 	};
 
 /***/ },
-/* 15 */
+/* 23 */
 /*!************************************************************!*\
   !*** ./src/js/child/vue/module/vue-loading-icon-0001.html ***!
   \************************************************************/
@@ -20720,7 +20861,52 @@
 	module.exports = "<div class=\"loading-icon-0001\" v-bind:class=\"[modifierSize]\"></div>\r\n";
 
 /***/ },
-/* 16 */
+/* 24 */
+/*!*******************************************************!*\
+  !*** ./src/js/child/vue/module/vue-paginator-0001.js ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = {
+	  props: {
+	    // 属性の宣言と初期値の設定
+	    params: {
+	      type: Object,
+	      default: function _default() {
+	        return {
+	          itemsLength: 100,
+	          itemsPerPage: 10,
+	          currentPage: 6
+	        };
+	      }
+	    }
+	  },
+	  template: __webpack_require__(/*! ./vue-paginator-0001.html */ 25),
+	  data: function data() {
+	    return {
+	      itemsLength: this.params.itemsLength,
+	      itemsPerPage: this.params.itemsPerPage,
+	      pagesLength: Math.ceil(this.params.itemsLength / this.params.itemsPerPage),
+	      currentPage: this.params.currentPage,
+	      startIndex: this.params.itemsPerPage * (this.params.currentPage - 1) + 1,
+	      endIndex: this.params.itemsPerPage * this.params.currentPage
+	    };
+	  }
+	};
+
+/***/ },
+/* 25 */
+/*!*********************************************************!*\
+  !*** ./src/js/child/vue/module/vue-paginator-0001.html ***!
+  \*********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"paginator-0001\">\r\n  <div class=\"paginator-0001__first-wrap\">\r\n    <span class=\"paginator-0001__second-wrap\">\r\n      <div class=\"paginator-0001__info-wrap\">\r\n        <p class=\"paginator-0001__info\">\r\n          {{pagesLength}}ページ中 {{currentPage}}ページ目\r\n        </p>\r\n        <p class=\"paginator-0001__info\">\r\n          {{itemsLength}}件中 {{startIndex}}-{{endIndex}}件目\r\n        </p>\r\n      </div>\r\n      <ul class=\"paginator-0001__ul-ol-elm\">\r\n        <li class=\"paginator-0001__li-elm-first paginator-0001__li-elm-first--disabled\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&lt;&lt;</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-prev paginator-0001__li-elm-prev--disabled\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&lt;</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">1</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--ellipsis\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">...</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">4</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--disabled\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">5</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--current\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">6</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">7</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">8</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">9</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--ellipsis\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">...</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">10</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-next\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&gt;</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-last paginator-0001__li-elm-last--disabled\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&gt;&gt;</a>\r\n        </li>\r\n      </ul>\r\n    </span>\r\n  </div>\r\n</div>\r\n";
+
+/***/ },
+/* 26 */
 /*!*******************************************************!*\
   !*** ./src/js/child/vue/module/vue-step-info-0001.js ***!
   \*******************************************************/
@@ -20750,9 +20936,8 @@
 	      }
 	    }
 	  },
-	  template: __webpack_require__(/*! ./vue-step-info-0001.html */ 17),
+	  template: __webpack_require__(/*! ./vue-step-info-0001.html */ 27),
 	  data: function data() {
-	    console.log(this.items.length);
 	    return {
 	      modifierColumn: 'step-info-0001--' + this.items.length + '-column'
 	    };
@@ -20760,13 +20945,44 @@
 	};
 
 /***/ },
-/* 17 */
+/* 27 */
 /*!*********************************************************!*\
   !*** ./src/js/child/vue/module/vue-step-info-0001.html ***!
   \*********************************************************/
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"step-info-0001\" v-bind:class=\"[modifierColumn]\">\r\n  <div class=\"step-info-0001__first-wrap\">\r\n    <ul class=\"step-info-0001__ul-ol-elm\">\r\n      <li class=\"step-info-0001__li-elm\" v-for=\"item in items\">\r\n        <div class=\"step-info-0001__num\" v-bind:class=\"{ 'step-info-0001__num--active': item.isActive }\">\r\n          {{$index + 1}}\r\n        </div>\r\n        <span class=\"step-info-0001__text\" v-bind:class=\"{ 'step-info-0001__text--active': item.isActive }\">\r\n          {{item.text}}\r\n        </span>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n";
+
+/***/ },
+/* 28 */
+/*!*****************************************************!*\
+  !*** ./src/js/child/vue/module/vue-tooltip-0001.js ***!
+  \*****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = {
+	  props: {
+	    // 属性の宣言と初期値の設定
+	    contents: {
+	      type: String,
+	      default: function _default() {
+	        return 'デフォルトコンテンツ';
+	      }
+	    }
+	  },
+	  template: __webpack_require__(/*! ./vue-tooltip-0001.html */ 29)
+	};
+
+/***/ },
+/* 29 */
+/*!*******************************************************!*\
+  !*** ./src/js/child/vue/module/vue-tooltip-0001.html ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"tooltip-0001\">\r\n  <div class=\"tooltip-0001__contents-wrap\">\r\n    <slot name=\"slot-0001\"></slot>\r\n  </div>\r\n  <a class=\"tooltip-0001__icon\" href=\"#\">\r\n    ?\r\n  </a>\r\n</div>\r\n";
 
 /***/ }
 /******/ ]);

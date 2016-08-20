@@ -18,10 +18,19 @@
     box-shadow: none;
     box-sizing: border-box;
     border-radius: 2px;
-    &.is-warning,
+    &.form-type-textarea-0001__input-elm--error,
     &.form-error{
       border-color: $general__warning-color-0001;
-      background-color: lighten( $general__warning-color-0001, 45% );
+      background-color: lighten( $general__warning-color-0001, 37% );
+    }
+    &[disabled],
+    &.form-type-text-0001__input-element--disabled{
+      background-color: $general__gray-color-0001;
+      color: $general__gray-color-0003;
+    }
+    &[readonly]{
+      border: 1px solid transparent;
+      background-color: transparent;
     }
   }
 }

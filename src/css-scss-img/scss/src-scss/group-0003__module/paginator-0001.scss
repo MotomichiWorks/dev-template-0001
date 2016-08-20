@@ -113,6 +113,7 @@
       color: $btn-main-color-light__bg;
       border:1px solid $btn-main-color-light__bg;
       background: lighten($btn-main-color-light__bg, 33%);
+      cursor: default;
     }
   }
 

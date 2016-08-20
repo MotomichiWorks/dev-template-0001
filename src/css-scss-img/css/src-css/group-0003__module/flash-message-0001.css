@@ -73,5 +73,5 @@ The `sprites` mixin generates identical output to the CSS template
 .flash-message-0001.flash-message-0001--color-warning .flash-message-0001__first-wrap {
   border: 2px solid #ff3333; }
 .flash-message-0001.flash-message-0001--color-warning .flash-message-0001__second-wrap {
-  background: white;
+  background: #fff0f0;
   color: #ff3333; }

@@ -154,7 +154,8 @@ The `sprites` mixin generates identical output to the CSS template
   .paginator-0001 .paginator-0001__li-elm-num--current .paginator-0001__anc-elm {
     color: #ebc951;
     border: 1px solid #ebc951;
-    background: #fcf8e8; }
+    background: #fcf8e8;
+    cursor: default; }
   .paginator-0001 .paginator-0001__li-elm-num--ellipsis .paginator-0001__anc-elm {
     color: #444444;
     border: 1px solid #ffffff;

@@ -27,7 +27,6 @@ module.exports = {
   },
   template: require('./vue-step-info-0001.html'),
   data: function () {
-    console.log(this.items.length);
     return {
       modifierColumn: 'step-info-0001--' + this.items.length + '-column',
     };
