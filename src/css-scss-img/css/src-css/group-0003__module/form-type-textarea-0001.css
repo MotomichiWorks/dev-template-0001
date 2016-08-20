@@ -70,3 +70,6 @@ The `sprites` mixin generates identical output to the CSS template
   .form-type-textarea-0001 .form-type-textarea-0001__input-elm.is-warning, .form-type-textarea-0001 .form-type-textarea-0001__input-elm.form-error {
     border-color: #ff3333;
     background-color: white; }
+  .form-type-textarea-0001 .form-type-textarea-0001__input-elm[disabled], .form-type-textarea-0001 .form-type-textarea-0001__input-elm.form-type-text-0001__input-element--disabled {
+    background-color: #f3f3f3;
+    color: #c9c9c9; }

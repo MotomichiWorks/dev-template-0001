@@ -338,80 +338,8 @@ foreach ($obj['dir_list'] as $key => $dir_name) {
 </div>
 
 
-
 <br><br>
 
-
-
-
-
-
-
-
-<h2>form-type-radio</h2>
-<div class="form-type-radio-0001">
-  <div class="form-type-radio-0001__first-wrap">
-    <input class="form-type-radio-0001__input-elm" type="radio" id="radio">
-    <label class="form-type-radio-0001__label-elm" for="radio">
-      ラベル文字列
-    </label>
-  </div>
-</div>
-
-<br>
-
-<div class="form-type-radio-0001">
-  <div class="form-type-radio-0001__first-wrap">
-    <input class="form-type-radio-0001__input-elm form-type-radio-0001__input-elm--error" type="radio" id="radio-error">
-    <label class="form-type-radio-0001__label-elm" for="radio-error">
-      ラベル文字列
-    </label>
-  </div>
-</div>
-
-<br>
-
-<div class="form-type-radio-0001">
-  <div class="form-type-radio-0001__first-wrap">
-    <input class="form-type-radio-0001__input-elm" type="radio" id="radio-disabeld" disabled>
-    <label class="form-type-radio-0001__label-elm" for="radio-disabled">
-      ラベル文字列
-    </label>
-  </div>
-</div>
-
-<br>
-
-<div class="form-type-radio-0001">
-  <div class="form-type-radio-0001__first-wrap">
-    <input class="form-type-radio-0001__input-elm" type="radio" id="radio-disabled-checked" disabled checked>
-    <label class="form-type-radio-0001__label-elm" for="radio-disabled-checked">
-      ラベル文字列
-    </label>
-  </div>
-</div>
-
-<br><br>
-
-
-<h2>form-type-text</h2>
-<div class="form-type-text-0001 form-type-text-0001--form-height-s">
-  <input class="form-type-text-0001__input-element" type="text">
-</div>
-
-<br>
-
-<div class="form-type-text-0001 form-type-text-0001--form-height-m">
-  <input class="form-type-text-0001__input-element" type="text">
-</div>
-
-<br>
-
-<div class="form-type-text-0001 form-type-text-0001--form-height-l">
-  <input class="form-type-text-0001__input-element" type="text">
-</div>
-
-<br><br>
 
 <h2>form-frame</h2>
 <div class="form-frame-0001">

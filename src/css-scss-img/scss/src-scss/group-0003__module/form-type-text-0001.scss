@@ -17,10 +17,10 @@
     box-shadow: none;
     box-sizing: border-box;
     border-radius: 2px;
-    &.form-type-text-0001__input-element--warning,
+    &.form-type-text-0001__input-element--error,
     &.form-error{
       border-color: $general__warning-color-0001;
-      background-color: lighten( $general__warning-color-0001, 45% );
+      background-color: lighten( $general__warning-color-0001, 37% );
     }
     &[disabled],
     &.form-type-text-0001__input-element--disabled{
