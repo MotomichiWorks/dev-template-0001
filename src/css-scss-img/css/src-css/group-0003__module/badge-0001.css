@@ -56,17 +56,11 @@ The `sprites` mixin generates identical output to the CSS template
  *
  */
 .badge-0001 {
-  display: block;
-  zoom: 1; }
+  display: block; }
   .badge-0001:after {
-    content: ".";
-    display: block;
-    height: 0;
+    content: "";
     clear: both;
-    visibility: hidden;
-    overflow: hidden;
-    font-size: 0.1em;
-    line-height: 0; }
+    display: block; }
   .badge-0001 .badge-0001__first-wrap {
     display: block;
     float: left;

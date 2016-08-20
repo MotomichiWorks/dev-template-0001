@@ -82,17 +82,11 @@ The `sprites` mixin generates identical output to the CSS template
     color: #ffffff;
     background: #333333;
     z-index: 10000;
-    border-radius: 2px;
-    zoom: 1; }
+    border-radius: 2px; }
     .tooltip-0001 .tooltip-0001__contents-wrap:after {
-      content: ".";
-      display: block;
-      height: 0;
+      content: "";
       clear: both;
-      visibility: hidden;
-      overflow: hidden;
-      font-size: 0.1em;
-      line-height: 0; }
+      display: block; }
     .tooltip-0001 .tooltip-0001__contents-wrap.tooltip-0001__contents-wrap--visible {
       display: block; }
   .tooltip-0001.is-active .tooltip-0001__contents-wrap {

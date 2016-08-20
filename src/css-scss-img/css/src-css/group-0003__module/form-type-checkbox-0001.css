@@ -55,17 +55,10 @@ The `sprites` mixin generates identical output to the CSS template
  * 上記の2ファイル内に定義されたmixinを各モジュール内で実行することとし、画像ファイルのパスを各モジュール内に書くことを禁止しています。
  *
  */
-.form-type-checkbox-0001 .form-type-checkbox-0001__first-wrap {
-  zoom: 1; }
-  .form-type-checkbox-0001 .form-type-checkbox-0001__first-wrap:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
-    overflow: hidden;
-    font-size: 0.1em;
-    line-height: 0; }
+.form-type-checkbox-0001 .form-type-checkbox-0001__first-wrap:after {
+  content: "";
+  clear: both;
+  display: block; }
 .form-type-checkbox-0001 .form-type-checkbox-0001__input-elm {
   float: left;
   margin: 0;

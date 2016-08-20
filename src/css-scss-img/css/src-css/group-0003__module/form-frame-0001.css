@@ -71,17 +71,11 @@ The `sprites` mixin generates identical output to the CSS template
   display: block;
   margin: 0;
   padding: 16px 0;
-  list-style: none;
-  zoom: 1; }
+  list-style: none; }
   .form-frame-0001 .form-frame-0001__like-tr:after {
-    content: ".";
-    display: block;
-    height: 0;
+    content: "";
     clear: both;
-    visibility: hidden;
-    overflow: hidden;
-    font-size: 0.1em;
-    line-height: 0; }
+    display: block; }
   .form-frame-0001 .form-frame-0001__like-tr + .form-frame-0001__like-tr {
     border-top: 1px solid #ffffff; }
 .form-frame-0001 .error-message,
@@ -132,17 +126,11 @@ The `sprites` mixin generates identical output to the CSS template
   float: right; }
 .form-frame-0001 .form-frame-0001__right-column__inner-wrap {
   margin: 0;
-  padding: 0;
-  zoom: 1; }
+  padding: 0; }
   .form-frame-0001 .form-frame-0001__right-column__inner-wrap:after {
-    content: ".";
-    display: block;
-    height: 0;
+    content: "";
     clear: both;
-    visibility: hidden;
-    overflow: hidden;
-    font-size: 0.1em;
-    line-height: 0; }
+    display: block; }
 .form-frame-0001 .form-frame-0001__right-column__content-wrap--block,
 .form-frame-0001 .form-frame-0001__right-column__content-wrap--15-p,
 .form-frame-0001 .form-frame-0001__right-column__content-wrap--20-p,
@@ -151,8 +139,7 @@ The `sprites` mixin generates identical output to the CSS template
 .form-frame-0001 .form-frame-0001__right-column__content-wrap--50-p,
 .form-frame-0001 .form-frame-0001__right-column__content-wrap--auto {
   margin: 0;
-  padding: 0;
-  zoom: 1; }
+  padding: 0; }
   .form-frame-0001 .form-frame-0001__right-column__content-wrap--block:after,
   .form-frame-0001 .form-frame-0001__right-column__content-wrap--15-p:after,
   .form-frame-0001 .form-frame-0001__right-column__content-wrap--20-p:after,
@@ -160,14 +147,9 @@ The `sprites` mixin generates identical output to the CSS template
   .form-frame-0001 .form-frame-0001__right-column__content-wrap--33-p:after,
   .form-frame-0001 .form-frame-0001__right-column__content-wrap--50-p:after,
   .form-frame-0001 .form-frame-0001__right-column__content-wrap--auto:after {
-    content: ".";
-    display: block;
-    height: 0;
+    content: "";
     clear: both;
-    visibility: hidden;
-    overflow: hidden;
-    font-size: 0.1em;
-    line-height: 0; }
+    display: block; }
   .form-frame-0001 .form-frame-0001__right-column__content-wrap--block + .form-frame-0001__right-column__example-side,
   .form-frame-0001 .form-frame-0001__right-column__content-wrap--15-p + .form-frame-0001__right-column__example-side,
   .form-frame-0001 .form-frame-0001__right-column__content-wrap--20-p + .form-frame-0001__right-column__example-side,

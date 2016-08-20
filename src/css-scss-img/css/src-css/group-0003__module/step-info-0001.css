@@ -59,17 +59,11 @@ The `sprites` mixin generates identical output to the CSS template
   width: 90%;
   margin: 0 auto;
   padding: 0;
-  zoom: 1;
   list-style: none; }
   .step-info-0001 .step-info-0001__ul-ol-elm:after {
-    content: ".";
-    display: block;
-    height: 0;
+    content: "";
     clear: both;
-    visibility: hidden;
-    overflow: hidden;
-    font-size: 0.1em;
-    line-height: 0; }
+    display: block; }
 .step-info-0001 .step-info-0001__li-elm {
   position: relative;
   padding: 0 12px;

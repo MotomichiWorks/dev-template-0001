@@ -59,17 +59,11 @@ The `sprites` mixin generates identical output to the CSS template
   margin-top: 160px; }
 .footer-0001 .footer-0001__second-wrap {
   display: block;
-  background: #444444;
-  zoom: 1; }
+  background: #444444; }
   .footer-0001 .footer-0001__second-wrap:after {
-    content: ".";
-    display: block;
-    height: 0;
+    content: "";
     clear: both;
-    visibility: hidden;
-    overflow: hidden;
-    font-size: 0.1em;
-    line-height: 0; }
+    display: block; }
 .footer-0001 .footer-0001__copy-wrap {
   text-align: center;
   display: block;

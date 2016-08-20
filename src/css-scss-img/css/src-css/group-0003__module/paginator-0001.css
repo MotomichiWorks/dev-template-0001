@@ -66,17 +66,11 @@ The `sprites` mixin generates identical output to the CSS template
     display: block; }
   .paginator-0001 .paginator-0001__info-wrap {
     padding-top: 8px;
-    padding-bottom: 8px;
-    zoom: 1; }
+    padding-bottom: 8px; }
     .paginator-0001 .paginator-0001__info-wrap:after {
-      content: ".";
-      display: block;
-      height: 0;
+      content: "";
       clear: both;
-      visibility: hidden;
-      overflow: hidden;
-      font-size: 0.1em;
-      line-height: 0; }
+      display: block; }
   .paginator-0001 .paginator-0001__info {
     float: left;
     line-height: 1;
@@ -86,18 +80,12 @@ The `sprites` mixin generates identical output to the CSS template
       border-left: 1px solid #777777;
       margin-left: 8px; }
   .paginator-0001 .paginator-0001__ul-ol-elm {
-    zoom: 1;
     margin: 0;
     padding: 0; }
     .paginator-0001 .paginator-0001__ul-ol-elm:after {
-      content: ".";
-      display: block;
-      height: 0;
+      content: "";
       clear: both;
-      visibility: hidden;
-      overflow: hidden;
-      font-size: 0.1em;
-      line-height: 0; }
+      display: block; }
   .paginator-0001 .paginator-0001__li-elm-first {
     float: left;
     width: 80px;
