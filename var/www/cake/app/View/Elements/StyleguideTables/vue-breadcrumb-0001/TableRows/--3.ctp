@@ -52,12 +52,14 @@ $modifier_desc = trim($modifier_desc);
 $display_sample = str_replace('//---表示サンプルとコピペ用コード(ここから)', '', $display_sample);
 $display_sample = str_replace('//---表示サンプルとコピペ用コード(ここまで)', '', $display_sample);
 $display_sample = trim($display_sample);
+$code_sample = str_replace('<', '&lt;', $display_sample);
+$code_sample = str_replace('>', '&gt;', $code_sample);
 echo $this->SgTable0001->createTr();
 echo $this->SgTable0001->descCell();
 echo $modifier_desc;
 echo $this->SgTable0001->displayCell();
 echo $display_sample;
 echo $this->SgTable0001->sampleCodeCell();
-echo $display_sample;
+echo $code_sample;
 echo $this->SgTable0001->endTr();
 ?>
