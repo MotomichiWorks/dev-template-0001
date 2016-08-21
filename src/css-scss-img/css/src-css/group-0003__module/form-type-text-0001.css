@@ -59,8 +59,6 @@ The `sprites` mixin generates identical output to the CSS template
   display: block;
   width: 100%;
   border: 1px solid #c9c9c9;
-  font-size: 14px;
-  padding: 4px 4px 4px 6px;
   color: #444444;
   outline: none;
   box-shadow: none;
@@ -75,12 +73,23 @@ The `sprites` mixin generates identical output to the CSS template
   .form-type-text-0001 .form-type-text-0001__input-element[readonly] {
     border: 1px solid transparent;
     background-color: transparent; }
-.form-type-text-0001.form-type-text-0001--form-height-s .form-type-text-0001__input-element {
+.form-type-text-0001.form-type-text-0001--form-height-xs .form-type-text-0001__input-element {
+  font-size: 12px;
   height: 20px;
-  line-height: 20px; }
-.form-type-text-0001.form-type-text-0001--form-height-m .form-type-text-0001__input-element {
-  height: 32px;
-  line-height: 32px; }
-.form-type-text-0001.form-type-text-0001--form-height-l .form-type-text-0001__input-element {
-  height: 44px;
-  line-height: 44px; }
+  line-height: 20px;
+  padding: 2px 8px; }
+.form-type-text-0001.form-type-text-0001--form-height-sm .form-type-text-0001__input-element {
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  padding: 4px 8px; }
+.form-type-text-0001.form-type-text-0001--form-height-md .form-type-text-0001__input-element {
+  font-size: 14px;
+  height: 34px;
+  line-height: 34px;
+  padding: 4px 8px; }
+.form-type-text-0001.form-type-text-0001--form-height-lg .form-type-text-0001__input-element {
+  font-size: 18px;
+  height: 46px;
+  line-height: 46px;
+  padding: 4px 8px; }
