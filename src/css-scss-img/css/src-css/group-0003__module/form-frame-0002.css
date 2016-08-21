@@ -55,11 +55,11 @@ The `sprites` mixin generates identical output to the CSS template
  * 上記の2ファイル内に定義されたmixinを各モジュール内で実行することとし、画像ファイルのパスを各モジュール内に書くことを禁止しています。
  *
  */
-.form-frame-0002 .form-frame-0002__third-wrap {
+.form-frame-0002 .form-frame-0002__second-wrap {
   display: block;
   padding: 32px;
   background: #f3f3f3;
-  width: 50%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   border-radius: 4px;

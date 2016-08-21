@@ -12,7 +12,7 @@ $display_sample = <<<EOT
 //---表示サンプルとコピペ用コード(ここから)
 
 
-<div class="form-type-text-0001 form-type-text-0001--form-height-m">
+<div class="form-type-text-0001 form-type-text-0001--form-height-md">
   <input class="form-type-text-0001__input-element" type="text" readonly>
 </div>
 

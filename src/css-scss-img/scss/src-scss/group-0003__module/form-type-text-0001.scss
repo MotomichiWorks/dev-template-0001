@@ -26,6 +26,7 @@
       color: $general__gray-color-0003;
     }
     &[readonly]{
+      cursor: text;
       border: 1px solid transparent;
       background-color: transparent;
     }
@@ -67,7 +68,13 @@
     }
   }
 
-
+  .form-frame-0001 & {
+    .form-type-text-0001__input-element {
+      &[readonly] {
+        padding-left: 0;
+      }
+    }
+  }
 
   @include media($breakpoint__size-s){
 

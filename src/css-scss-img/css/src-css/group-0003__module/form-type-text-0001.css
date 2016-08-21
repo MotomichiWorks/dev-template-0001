@@ -71,6 +71,7 @@ The `sprites` mixin generates identical output to the CSS template
     background-color: #f3f3f3;
     color: #c9c9c9; }
   .form-type-text-0001 .form-type-text-0001__input-element[readonly] {
+    cursor: text;
     border: 1px solid transparent;
     background-color: transparent; }
 .form-type-text-0001.form-type-text-0001--form-height-xs .form-type-text-0001__input-element {
@@ -93,3 +94,5 @@ The `sprites` mixin generates identical output to the CSS template
   height: 46px;
   line-height: 46px;
   padding: 4px 8px; }
+.form-frame-0001 .form-type-text-0001 .form-type-text-0001__input-element[readonly] {
+  padding-left: 0; }

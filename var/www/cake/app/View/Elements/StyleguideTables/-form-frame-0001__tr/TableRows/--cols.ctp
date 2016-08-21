@@ -50,8 +50,8 @@ $display_sample = <<<EOT
               <span class="form-frame-0001__right-cell__field-col form-frame-0001__right-cell__field-col--3">
                 <div class="form-type-checkbox-0001">
                   <div class="form-type-checkbox-0001__first-wrap">
-                    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox">
-                    <label class="form-type-checkbox-0001__label-elm" for="checkbox">
+                    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox--form-frame-0001-1">
+                    <label class="form-type-checkbox-0001__label-elm" for="checkbox--form-frame-0001-1">
                       ラベル文字列
                     </label>
                   </div>
@@ -60,8 +60,8 @@ $display_sample = <<<EOT
               <span class="form-frame-0001__right-cell__field-col form-frame-0001__right-cell__field-col--3">
                 <div class="form-type-checkbox-0001">
                   <div class="form-type-checkbox-0001__first-wrap">
-                    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox">
-                    <label class="form-type-checkbox-0001__label-elm" for="checkbox">
+                    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox--form-frame-0001-2">
+                    <label class="form-type-checkbox-0001__label-elm" for="checkbox--form-frame-0001-2">
                       ラベル文字列
                     </label>
                   </div>
@@ -70,8 +70,8 @@ $display_sample = <<<EOT
               <span class="form-frame-0001__right-cell__field-col form-frame-0001__right-cell__field-col--3">
                 <div class="form-type-checkbox-0001">
                   <div class="form-type-checkbox-0001__first-wrap">
-                    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox">
-                    <label class="form-type-checkbox-0001__label-elm" for="checkbox">
+                    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox--form-frame-0001-3">
+                    <label class="form-type-checkbox-0001__label-elm" for="checkbox--form-frame-0001-3">
                       ラベル文字列
                     </label>
                   </div>
@@ -80,8 +80,8 @@ $display_sample = <<<EOT
               <span class="form-frame-0001__right-cell__field-col form-frame-0001__right-cell__field-col--3">
                 <div class="form-type-checkbox-0001">
                   <div class="form-type-checkbox-0001__first-wrap">
-                    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox">
-                    <label class="form-type-checkbox-0001__label-elm" for="checkbox">
+                    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox--form-frame-0001-4">
+                    <label class="form-type-checkbox-0001__label-elm" for="checkbox--form-frame-0001-4">
                       ラベル文字列
                     </label>
                   </div>
@@ -90,8 +90,8 @@ $display_sample = <<<EOT
               <span class="form-frame-0001__right-cell__field-col form-frame-0001__right-cell__field-col--3">
                 <div class="form-type-checkbox-0001">
                   <div class="form-type-checkbox-0001__first-wrap">
-                    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox">
-                    <label class="form-type-checkbox-0001__label-elm" for="checkbox">
+                    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox--form-frame-0001-5">
+                    <label class="form-type-checkbox-0001__label-elm" for="checkbox--form-frame-0001-5">
                       ラベル文字列
                     </label>
                   </div>
@@ -100,8 +100,8 @@ $display_sample = <<<EOT
               <span class="form-frame-0001__right-cell__field-col form-frame-0001__right-cell__field-col--3">
                 <div class="form-type-checkbox-0001">
                   <div class="form-type-checkbox-0001__first-wrap">
-                    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox">
-                    <label class="form-type-checkbox-0001__label-elm" for="checkbox">
+                    <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox--form-frame-0001-6">
+                    <label class="form-type-checkbox-0001__label-elm" for="checkbox--form-frame-0001-6">
                       ラベル文字列
                     </label>
                   </div>

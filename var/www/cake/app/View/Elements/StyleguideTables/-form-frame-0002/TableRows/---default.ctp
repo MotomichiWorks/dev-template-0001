@@ -14,55 +14,53 @@ $display_sample = <<<EOT
 
 <div class="form-frame-0002">
   <div class="form-frame-0002__first-wrap">
-    <span class="form-frame-0002__second-wrap">
-      <div class="form-frame-0002__third-wrap">
-        <ul class="form-frame-0002__table">
-          <li class="form-frame-0002__tr">
-            <div class="form-frame-0002__th">
-              メールアドレス
-            </div>
-            <div class="form-frame-0002__td">
-              <div class="form-type-text-0001 form-type-text-0001--form-height-m">
-                <input class="form-type-text-0001__input-element" type="password">
-              </div>
-            </div>
-          </li>
-          <li class="form-frame-0002__tr">
-            <div class="form-frame-0002__th">
-              パスワード
-            </div>
-            <div class="form-frame-0002__td">
-              <div class="form-type-text-0001 form-type-text-0001--form-height-m">
-                <input class="form-type-text-0001__input-element" type="text">
-              </div>
-            </div>
-          </li>
-        </ul>
-        <span class="form-frame-0002__checkbox-wrap-0001">
-          <div class="form-type-checkbox-0001">
-            <div class="form-type-checkbox-0001__first-wrap">
-              <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="form-frame-0002-checkbox1">
-              <label class="form-type-checkbox-0001__label-elm" for="form-frame-0002-checkbox1">
-                次回からメールアドレスの入力を省略する
-              </label>
+    <div class="form-frame-0002__second-wrap">
+      <ul class="form-frame-0002__table">
+        <li class="form-frame-0002__tr">
+          <div class="form-frame-0002__th">
+            メールアドレス
+          </div>
+          <div class="form-frame-0002__td">
+            <div class="form-type-text-0001 form-type-text-0001--form-height-m">
+              <input class="form-type-text-0001__input-element" type="password">
             </div>
           </div>
-        </span>
-        <span class="form-frame-0002__text-link-wrap-0001">
-          パスワードを忘れた方は<a class="form-frame-0002__text-link-wrap-0001__anc-elm" href="#">こちら</a>
-        </span>
-        <span class="form-frame-0002__btn-wrap-0001">
-          <div class="btn-0001 btn-0001--color-0001 btn-0001--height-l">
-            <a class="btn-0001__clickable-elm" href="#">
-              <span class="btn-0001__label">
-                ボタンラベル
-              </span>
-            </a>
-            <input class="btn-0001__type-submit-elm" type="submit" name="name" value="value">
+        </li>
+        <li class="form-frame-0002__tr">
+          <div class="form-frame-0002__th">
+            パスワード
           </div>
-        </span>
-      </div>
-    </span>
+          <div class="form-frame-0002__td">
+            <div class="form-type-text-0001 form-type-text-0001--form-height-m">
+              <input class="form-type-text-0001__input-element" type="text">
+            </div>
+          </div>
+        </li>
+      </ul>
+      <span class="form-frame-0002__checkbox-wrap-0001">
+        <div class="form-type-checkbox-0001">
+          <div class="form-type-checkbox-0001__first-wrap">
+            <input class="form-type-checkbox-0001__input-elm" type="checkbox" id="checkbox--log-in">
+            <label class="form-type-checkbox-0001__label-elm" for="checkbox--log-in">
+              次回からメールアドレスの入力を省略する
+            </label>
+          </div>
+        </div>
+      </span>
+      <p class="form-frame-0002__text-link-wrap-0001">
+        パスワードを忘れた方は<a class="form-frame-0002__text-link-wrap-0001__anc-elm" href="#">こちら</a>
+      </p>
+      <span class="form-frame-0002__btn-wrap-0001">
+        <div class="btn-0001 btn-0001--color-0001 btn-0001--height-lg">
+          <a class="btn-0001__clickable-elm" href="#">
+            <span class="btn-0001__label">
+              ボタンラベル
+            </span>
+          </a>
+          <input class="btn-0001__type-submit-elm" type="submit" name="name" value="value">
+        </div>
+      </span>
+    </div>
   </div>
 </div>
 
