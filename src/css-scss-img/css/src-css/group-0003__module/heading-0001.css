@@ -118,7 +118,7 @@ The `sprites` mixin generates identical output to the CSS template
   .heading-0001.heading-0001--lv-2 .heading-0001__btn-wrap {
     padding: 20px 12px 0 0; }
 .heading-0001.heading-0001--lv-3 {
-  background: #5796ec; }
+  background: #69a1ee; }
   .heading-0001.heading-0001--lv-3 .heading-0001__table {
     border-bottom: 4px solid #1454aa; }
   .heading-0001.heading-0001--lv-3 .heading-0001__icon-wrap {
@@ -129,7 +129,7 @@ The `sprites` mixin generates identical output to the CSS template
     width: 16px;
     height: 16px; }
   .heading-0001.heading-0001--lv-3 .heading-0001__h-elm {
-    background: #5796ec;
+    background: #69a1ee;
     padding: 4px 0 4px 12px;
     line-height: 42px;
     font-size: 28px;
@@ -140,7 +140,7 @@ The `sprites` mixin generates identical output to the CSS template
   .heading-0001.heading-0001--lv-3 .heading-0001__btn-wrap {
     padding: 16px 12px 0 0; }
 .heading-0001.heading-0001--lv-4 {
-  background: #aaaaaa; }
+  background: #c9c9c9; }
   .heading-0001.heading-0001--lv-4 .heading-0001__table {
     border-bottom: 4px solid #333333; }
   .heading-0001.heading-0001--lv-4 .heading-0001__icon-wrap {
@@ -151,7 +151,7 @@ The `sprites` mixin generates identical output to the CSS template
     width: 16px;
     height: 16px; }
   .heading-0001.heading-0001--lv-4 .heading-0001__h-elm {
-    background: #aaaaaa;
+    background: #c9c9c9;
     padding: 4px 0 4px 12px;
     line-height: 30px;
     font-size: 20px;
@@ -162,7 +162,7 @@ The `sprites` mixin generates identical output to the CSS template
   .heading-0001.heading-0001--lv-4 .heading-0001__btn-wrap {
     padding: 10px 12px 0 0; }
 .heading-0001.heading-0001--lv-5 {
-  background: #c9c9c9; }
+  background: #f3f3f3; }
   .heading-0001.heading-0001--lv-5 .heading-0001__table {
     border-bottom: 2px solid #333333; }
   .heading-0001.heading-0001--lv-5 .heading-0001__icon-wrap {
@@ -173,7 +173,7 @@ The `sprites` mixin generates identical output to the CSS template
     width: 12px;
     height: 12px; }
   .heading-0001.heading-0001--lv-5 .heading-0001__h-elm {
-    background: #c9c9c9;
+    background: #f3f3f3;
     padding: 4px 0 4px 12px;
     line-height: 24px;
     font-size: 16px;
@@ -184,7 +184,7 @@ The `sprites` mixin generates identical output to the CSS template
   .heading-0001.heading-0001--lv-5 .heading-0001__btn-wrap {
     padding: 6px 12px 0 0; }
 .heading-0001.heading-0001--lv-6 {
-  background: #e9e9e9; }
+  background: transparent; }
   .heading-0001.heading-0001--lv-6 .heading-0001__table {
     border-bottom: 1px solid #333333; }
   .heading-0001.heading-0001--lv-6 .heading-0001__icon-wrap {
@@ -195,7 +195,7 @@ The `sprites` mixin generates identical output to the CSS template
     width: 12px;
     height: 12px; }
   .heading-0001.heading-0001--lv-6 .heading-0001__h-elm {
-    background: #e9e9e9;
+    background: transparent;
     padding: 4px 0 4px 12px;
     line-height: 24px;
     font-size: 16px;
