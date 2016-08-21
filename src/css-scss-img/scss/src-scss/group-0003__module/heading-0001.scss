@@ -94,7 +94,7 @@
 
   // lv-3
   &.heading-0001--lv-3{
-    background: lighten($general__key-color-0001, 16%);
+    background: lighten($general__key-color-0001, 20%);
     .heading-0001__table{
       border-bottom: 4px solid darken($general__key-color-0001, 10%);
     }
@@ -105,7 +105,7 @@
       @include sprite($sprite-icon-circle-gray-16px-16px);
     }
     .heading-0001__h-elm{
-      background: lighten($general__key-color-0001, 16%);
+      background: lighten($general__key-color-0001, 20%);
       padding: 4px 0 4px 12px;
       line-height: 42px;
       font-size: 28px;
@@ -124,7 +124,7 @@
 
   // lv-4
   &.heading-0001--lv-4{
-    background: $general__gray-color-0005;
+    background: $general__gray-color-0003;
     .heading-0001__table{
       border-bottom: 4px solid $general__gray-color-0010;
     }
@@ -135,7 +135,7 @@
       @include sprite($sprite-icon-circle-gray-16px-16px);
     }
     .heading-0001__h-elm{
-      background: $general__gray-color-0005;
+      background: $general__gray-color-0003;
       padding: 4px 0 4px 12px;
       line-height: 30px;
       font-size: 20px;
@@ -154,7 +154,7 @@
 
   // lv-5
   &.heading-0001--lv-5{
-    background: $general__gray-color-0003;
+    background: $general__gray-color-0001;
     .heading-0001__table{
       border-bottom: 2px solid $general__gray-color-0010;
     }
@@ -165,7 +165,7 @@
       @include sprite($sprite-icon-circle-gray-12px-12px);
     }
     .heading-0001__h-elm{
-      background: $general__gray-color-0003;
+      background: $general__gray-color-0001;
       padding: 4px 0 4px 12px;
       line-height: 24px;
       font-size: 16px;
@@ -184,7 +184,7 @@
 
   // lv-6
   &.heading-0001--lv-6{
-    background: $general__gray-color-0002;
+    background: transparent;
     .heading-0001__table{
       border-bottom: 1px solid $general__gray-color-0010;
     }
@@ -195,7 +195,7 @@
       @include sprite($sprite-icon-circle-gray-12px-12px);
     }
     .heading-0001__h-elm{
-      background: $general__gray-color-0002;
+      background: transparent;
       padding: 4px 0 4px 12px;
       line-height: 24px;
       font-size: 16px;
