@@ -5,11 +5,12 @@
 複合要素のボタンです。<br>
 見た目上はa要素ですが、クリックされたときに非表示状態のinput要素をJSでclick()して、フォームをsubmitします。<br><br>
 
-ボタンのheightはスタイルガイドから省いて一つだけにしていますが、以下の三種類のmodifierが用意されています。<br><br>
+ボタンのheightはスタイルガイドから省いて一つだけにしていますが、以下の四種類のmodifierが用意されています。<br><br>
 
-btn-0001__height-s<br>
-btn-0001__height-m<br>
-btn-0001__height-l<br>
+btn-0001__height-xs<br>
+btn-0001__height-sm<br>
+btn-0001__height-md<br>
+btn-0001__height-lg<br>
 
 
 <?php

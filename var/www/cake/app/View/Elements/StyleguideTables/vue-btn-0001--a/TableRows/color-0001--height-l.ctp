@@ -17,7 +17,7 @@ $display_sample = <<<EOT
 
 <vue-btn-0001
   :txt="{main: 'ボタンラベル'}"
-  :modifier="{color: 'btn-0001--color-0001', height: 'btn-0001--height-l'}"
+  :modifier="{color: 'btn-0001--color-0001', height: 'btn-0001--height-lg'}"
   :btn-type="'a'"
   :a-href="'http://example.com/styleguides/'" />
 

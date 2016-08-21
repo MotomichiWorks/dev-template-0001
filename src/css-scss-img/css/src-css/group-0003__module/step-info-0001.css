@@ -108,6 +108,7 @@ The `sprites` mixin generates identical output to the CSS template
     color: #db8915;
     background: #fbeeda; }
 .step-info-0001 .step-info-0001__text {
+  display: block;
   padding-top: 8px;
   text-align: center;
   color: #c9c9c9; }

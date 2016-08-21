@@ -120,25 +120,21 @@ foreach ($obj['dir_list'] as $key => $dir_name) {
 }
 ?>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-3">
-      3
-    </div>
-    <div class="col-xs-3">
-      3
-    </div>
-    <div class="col-xs-3">
-      3
-    </div>
-    <div class="col-xs-3">
-      3
-    </div>
-  </div>
-</div>
 
-<ul>
-  <li>
-    hoge
-  </li>
-</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br><br>

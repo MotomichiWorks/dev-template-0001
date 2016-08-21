@@ -1,2 +1,5 @@
 [v-cloak] {
   display: none; }
+
+ul, li {
+  list-style: none; }

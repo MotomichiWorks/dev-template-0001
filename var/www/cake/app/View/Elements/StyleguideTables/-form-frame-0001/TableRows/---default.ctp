@@ -15,13 +15,11 @@ $display_sample = <<<EOT
 <div class="form-frame-0001">
   <div class="form-frame-0001__first-wrap">
     <span class="form-frame-0001__second-wrap">
-      <div class="form-frame-0001__third-wrap">
-        <ul class="form-frame-0001__like-table">
+      <ul class="form-frame-0001__table">
 
 
 
-        </ul>
-      </div>
+      </ul>
     </span>
   </div>
 </div>
