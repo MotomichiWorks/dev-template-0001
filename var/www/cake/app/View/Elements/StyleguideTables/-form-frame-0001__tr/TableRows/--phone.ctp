@@ -3,14 +3,13 @@ $modifier_desc = <<<EOT
 //---説明文を書くところ(ここから)
 
 
-要素を全て盛り込んだ状態です。
+電話番号入力フォームです。
 
 
 //---説明文を書くところ(ここまで)
 EOT;
 $display_sample = <<<EOT
 //---表示サンプルHTML(ここから)
-
 
 
 <div class="form-frame-0001">
@@ -29,51 +28,38 @@ $display_sample = <<<EOT
                 :txt="{main: '必須'}"
                 :modifier="{color: 'badge-0001--color-0001'}" />
             </div>
-            <div class="form-frame-0001__left-cell__tooltip-wrap">
-              <vue-tooltip-0001 v-cloak>
-                <p slot="slot-0001" class="hoge">
-                  <span class="foo">
-                    コンテンツ<br>コンテンツ
-                  </span>
-                </p>
-              </vue-tooltip-0001>
-            </div>
           </div>
           <div class="form-frame-0001__right-cell">
-            <p class="form-frame-0001__right-cell__example-top">
-              例 : example-top
-            </p>
             <div class="form-frame-0001__right-cell__field-wrap">
-              <span class="form-frame-0001__right-cell__field-col form-frame-0001__right-cell__field-col--12">
+              <span class="form-frame-0001__right-cell__field-col form-frame-0001__right-cell__field-col--2">
+                <div class="form-type-text-0001 form-type-text-0001--form-height-md">
+                  <input class="form-type-text-0001__input-element" type="text">
+                </div>
+              </span>
+              <span class="form-frame-0001__right-cell__field-col">
+                <p class="form-frame-0001__right-cell__field-col__paragraph">
+                  -
+                </p>
+              </span>
+              <span class="form-frame-0001__right-cell__field-col form-frame-0001__right-cell__field-col--2">
+                <div class="form-type-text-0001 form-type-text-0001--form-height-md">
+                  <input class="form-type-text-0001__input-element" type="text">
+                </div>
+              </span>
+              <span class="form-frame-0001__right-cell__field-col">
+                <p class="form-frame-0001__right-cell__field-col__paragraph">
+                  -
+                </p>
+              </span>
+              <span class="form-frame-0001__right-cell__field-col form-frame-0001__right-cell__field-col--2">
                 <div class="form-type-text-0001 form-type-text-0001--form-height-md">
                   <input class="form-type-text-0001__input-element" type="text">
                 </div>
               </span>
             </div>
-            <p class="form-frame-0001__right-cell__error-message">
-              1文字以上入力してください。
-            </p>
             <p class="form-frame-0001__right-cell__example-bottom">
-              例 : example-bottom
+              例 : 03 - 1234 - 5678
             </p>
-            <ul class="form-frame-0001__right-cell__notes-ul">
-              <li class="form-frame-0001__right-cell__notes-li">
-                <div class="form-frame-0001__right-cell__notes-li__heading">
-                  タイトル
-                </div>
-                <div class="form-frame-0001__right-cell__notes-li__text">
-                  本文 本文 本文 本文 本文 本文 本文 本文 本文
-                </div>
-              </li>
-              <li class="form-frame-0001__right-cell__notes-li">
-                <div class="form-frame-0001__right-cell__notes-li__heading">
-                  タイトル
-                </div>
-                <div class="form-frame-0001__right-cell__notes-li__text">
-                  本文 本文 本文 本文 本文 本文 本文 本文 本文
-                </div>
-              </li>
-            </ul>
           </div>
         </li>
 
@@ -82,7 +68,6 @@ $display_sample = <<<EOT
     </span>
   </div>
 </div>
-<br><br><br>
 
 
 //---表示サンプルHTML(ここまで)
@@ -101,51 +86,38 @@ $copy_paste_code = <<<EOT
         :txt="{main: '必須'}"
         :modifier="{color: 'badge-0001--color-0001'}" />
     </div>
-    <div class="form-frame-0001__left-cell__tooltip-wrap">
-      <vue-tooltip-0001 v-cloak>
-        <p slot="slot-0001" class="hoge">
-          <span class="foo">
-            コンテンツ<br>コンテンツ
-          </span>
-        </p>
-      </vue-tooltip-0001>
-    </div>
   </div>
   <div class="form-frame-0001__right-cell">
-    <p class="form-frame-0001__right-cell__example-top">
-      例 : example-top
-    </p>
     <div class="form-frame-0001__right-cell__field-wrap">
-      <span class="form-frame-0001__right-cell__field-col form-frame-0001__right-cell__field-col--12">
+      <span class="form-frame-0001__right-cell__field-col form-frame-0001__right-cell__field-col--2">
+        <div class="form-type-text-0001 form-type-text-0001--form-height-md">
+          <input class="form-type-text-0001__input-element" type="text">
+        </div>
+      </span>
+      <span class="form-frame-0001__right-cell__field-col">
+        <p class="form-frame-0001__right-cell__field-col__paragraph">
+          -
+        </p>
+      </span>
+      <span class="form-frame-0001__right-cell__field-col form-frame-0001__right-cell__field-col--2">
+        <div class="form-type-text-0001 form-type-text-0001--form-height-md">
+          <input class="form-type-text-0001__input-element" type="text">
+        </div>
+      </span>
+      <span class="form-frame-0001__right-cell__field-col">
+        <p class="form-frame-0001__right-cell__field-col__paragraph">
+          -
+        </p>
+      </span>
+      <span class="form-frame-0001__right-cell__field-col form-frame-0001__right-cell__field-col--2">
         <div class="form-type-text-0001 form-type-text-0001--form-height-md">
           <input class="form-type-text-0001__input-element" type="text">
         </div>
       </span>
     </div>
-    <p class="form-frame-0001__right-cell__error-message">
-      1文字以上入力してください。
-    </p>
     <p class="form-frame-0001__right-cell__example-bottom">
-      例 : example-bottom
+      例 : 03 - 1234 - 5678
     </p>
-    <ul class="form-frame-0001__right-cell__notes-ul">
-      <li class="form-frame-0001__right-cell__notes-li">
-        <div class="form-frame-0001__right-cell__notes-li__heading">
-          タイトル
-        </div>
-        <div class="form-frame-0001__right-cell__notes-li__text">
-          本文 本文 本文 本文 本文 本文 本文 本文 本文
-        </div>
-      </li>
-      <li class="form-frame-0001__right-cell__notes-li">
-        <div class="form-frame-0001__right-cell__notes-li__heading">
-          タイトル
-        </div>
-        <div class="form-frame-0001__right-cell__notes-li__text">
-          本文 本文 本文 本文 本文 本文 本文 本文 本文
-        </div>
-      </li>
-    </ul>
   </div>
 </li>
 
