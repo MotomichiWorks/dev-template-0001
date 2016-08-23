@@ -14,17 +14,34 @@ $font-size__0008:32;
 $font-size__0009:40;
 $font-size__0010:48;
 
+
+
 // ----------------------------
-// breakpoint (defaultとして960pxのpcを想定して、scssを記述しています)
+// breakpoint
 // ----------------------------
-$breakpoint__size-xl        : 1272px; // window幅が、$breakpoint__size-xl以上のとき、xl設定のスタイルが適用される
-$breakpoint__size-xl-enable : FALSE;
 
-$breakpoint__size-m         : 959px; // window幅が、$breakpoint__size-m以下のとき、m設定のスタイルが適用される
-$breakpoint__size-m-enable  : FALSE;
-
-$breakpoint__size-s         : 768px; // window幅が、$breakpoint__size-s以下のとき、s設定のスタイルが適用される
-$breakpoint__size-s-enable  : FALSE;
-
-$breakpoint__size-xs        : 540px; // window幅が、$breakpoint__size-xs以下のとき、xs設定のスタイルが適用される
+$breakpoint__size-xs        : 480px; // window幅が、$breakpoint__size-xs以下のとき、xs設定のスタイルが適用される
 $breakpoint__size-xs-enable : FALSE;
+
+$breakpoint__size-sm        : 768px; // window幅が、$breakpoint__size-sm以下のとき、sm設定のスタイルが適用される
+$breakpoint__size-sm-enable : FALSE;
+
+$breakpoint__size-md        : 992px; // window幅が、$breakpoint__size-md以下のとき、md設定のスタイルが適用される
+$breakpoint__size-md-enable : FALSE;
+
+$breakpoint__size-lg        : 1200px; // window幅が、$breakpoint__size-lg以上のとき、lg設定のスタイルが適用される
+$breakpoint__size-lg-enable : FALSE;
+
+
+
+
+
+
+// ----------------------------
+// container幅
+// ----------------------------
+
+$container-xs: 100%; // window幅がxsのときのコンテンツ表示領域の幅
+$container-sm: 750px; // window幅がsmのときのコンテンツ表示領域の幅
+$container-md: 970px; // window幅がmdのときのコンテンツ表示領域の幅
+$container-lg: 1170px; // window幅がlgのときのコンテンツ表示領域の幅
