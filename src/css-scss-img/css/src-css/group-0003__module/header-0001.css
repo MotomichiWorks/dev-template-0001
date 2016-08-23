@@ -58,7 +58,7 @@ The `sprites` mixin generates identical output to the CSS template
 .header-0001 .header-0001__second-wrap {
   display: block; }
 .header-0001 .header-0001__third-wrap {
-  width: 1296px;
+  width: 1170px;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
@@ -87,7 +87,7 @@ The `sprites` mixin generates identical output to the CSS template
   background: #196ad8; }
 .header-0001 .header-0001__global-nav__ul-lv-1 {
   background: #196ad8;
-  width: 1296px;
+  width: 1170px;
   margin: 0 auto;
   box-sizing: border-box;
   padding: 0 12px; }
@@ -129,7 +129,7 @@ The `sprites` mixin generates identical output to the CSS template
   margin-top: 12px; }
 .header-0001 .header-0001__mypage-nav__ul-lv-1 {
   background: #196ad8;
-  width: 1296px;
+  width: 1170px;
   margin: 0 auto;
   padding: 0 12px;
   box-sizing: border-box; }
