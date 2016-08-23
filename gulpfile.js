@@ -224,8 +224,13 @@ gulp.task('build',function (callback){
 gulp.task('lint', function() {
   return gulp.src([
       './src/js/main.js',
-      './src/js/child/react-components/*.js',
-      './src/js/child/jq-components/*.js'
+      './src/js/child/jquery/*.js',
+      './src/js/child/jquery/module/*.js',
+      './src/js/child/react/*.js',
+      './src/js/child/react/module/*.js',
+      './src/js/child/utility/*.js',
+      './src/js/child/vue/*.js',
+      './src/js/child/vue/module/*.js',
     ])
     .pipe(eslint({useEslintrc: true}))
     .pipe(eslint.format())
