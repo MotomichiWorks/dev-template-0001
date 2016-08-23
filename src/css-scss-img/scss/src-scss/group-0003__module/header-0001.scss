@@ -12,7 +12,7 @@
     display: block;
   }
   .header-0001__third-wrap{
-    width: 1296px;
+    width: $container-lg;
     margin-left: auto;
     margin-right:auto;
     box-sizing:border-box;
@@ -52,7 +52,7 @@
   }
   .header-0001__global-nav__ul-lv-1{
     background: $general__key-color-0001;
-    width: 1296px;
+    width: $container-lg;
     margin:0 auto;
     box-sizing:border-box;
     padding:0 12px;
@@ -98,7 +98,7 @@
   }
   .header-0001__mypage-nav__ul-lv-1{
     background: $general__key-color-0001;
-    width: 1296px;
+    width: $container-lg;
     margin:0 auto;
     padding:0 12px;
     box-sizing:border-box;

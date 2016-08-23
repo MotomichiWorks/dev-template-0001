@@ -17,30 +17,30 @@
 
 //
 //使うときは以下のような感じで書く
-//@include media($breakpoint__size-xl){
+//@include media($breakpoint__size-lg){
 //	.hoge{
 //		padding:10px;
 //	}
 //}
 //
 @mixin media($i_value){
-  @if $breakpoint__size-xl-enable == TRUE {
-    @if $i_value == $breakpoint__size-xl {
-  		@media screen and (min-width:$breakpoint__size-xl) {
+  @if $breakpoint__size-lg-enable == TRUE {
+    @if $i_value == $breakpoint__size-lg {
+  		@media screen and (min-width:$breakpoint__size-lg) {
   			@content;
   		}
   	}
   }
-  @if $breakpoint__size-m-enable == TRUE {
-    @if $i_value == $breakpoint__size-m {
-  		@media screen and (max-width:$breakpoint__size-m) {
+  @if $breakpoint__size-md-enable == TRUE {
+    @if $i_value == $breakpoint__size-md {
+  		@media screen and (max-width:$breakpoint__size-md) {
   			@content;
   		}
   	}
   }
-  @if $breakpoint__size-s-enable == TRUE {
-    @if $i_value == $breakpoint__size-s {
-  		@media screen and (max-width:$breakpoint__size-s) {
+  @if $breakpoint__size-sm-enable == TRUE {
+    @if $i_value == $breakpoint__size-sm {
+  		@media screen and (max-width:$breakpoint__size-sm) {
   			@content;
   		}
   	}
