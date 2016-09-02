@@ -14,13 +14,14 @@
   "globals": {
       "window": true,
       "document": true,
-      "vueApp": true,
   },
   "rules": {
+    # "react/prefer-stateless-function" : 0,
+    "react/require-extension": [0, { "extensions": [".js", ".jsx"] }],
     "linebreak-style" : 0,
     "object-shorthand" : 1,
     "global-require" : 0, # このルールは本来どうするべきか再考の余地あり
-
+    "no-unused-vars": [2, { "vars": "all", "args": "after-used", "varsIgnorePattern": "vueApp" }],
 
 
     # "quote-props" : 1,
