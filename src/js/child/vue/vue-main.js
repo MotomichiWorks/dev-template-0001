@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-let app = new Vue({
+const vueApp = new Vue({
   el: '#vue-app',
   components: {
     'vue-badge-0001': require('./module/vue-badge-0001'),

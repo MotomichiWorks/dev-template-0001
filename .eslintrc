@@ -11,10 +11,15 @@
     # "es6": true,
     # "node": true
   },
+  "globals": {
+      "window": true,
+      "document": true,
+      "vueApp": true,
+  },
   "rules": {
     "linebreak-style" : 0,
     "object-shorthand" : 1,
-    "global-require" : 1,
+    "global-require" : 0, # このルールは本来どうするべきか再考の余地あり
 
 
 
