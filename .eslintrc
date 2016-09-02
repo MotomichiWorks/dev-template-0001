@@ -13,6 +13,8 @@
   },
   "rules": {
     "linebreak-style" : 0,
+    "object-shorthand" : 1,
+    "global-require" : 1,
 
 
 

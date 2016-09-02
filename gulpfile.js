@@ -226,9 +226,9 @@ gulp.task('lint', function() {
       './src/js/main.js',
       './src/js/child/jquery/*.js',
       './src/js/child/jquery/module/*.js',
-      './src/js/child/react/*.js',
-      './src/js/child/react/module/*.js',
-      './src/js/child/utility/*.js',
+      './src/js/child/react/*.jsx',
+      './src/js/child/react/module/*.jsx',
+      // './src/js/child/utility/*.js',
       './src/js/child/vue/*.js',
       './src/js/child/vue/module/*.js',
     ])

@@ -6,92 +6,92 @@ module.exports = {
     // 属性の宣言と初期値の設定
     txt: {
       type: Object,
-      default: function () {
+      default() {
         return {
           main: '',
           sub: '',
         };
-      }
+      },
     },
     // 属性の宣言と初期値の設定
     modifier: {
       type: Object,
-      default: function () {
+      default() {
         return {
-          lv: 'heading-0001--lv-2'
+          lv: 'heading-0001--lv-2',
         };
-      }
+      },
     },
     // 属性の宣言と初期値の設定
     tagName: {
       type: String,
-      default: function () {
+      default() {
         return 'h2';
-      }
+      },
     },
     // 属性の宣言と初期値の設定
     hasIcon: {
-      default: function () {
+      default() {
         return false;
-      }
+      },
     },
     // 属性の宣言と初期値の設定
     hasBtn: {
-      default: function () {
+      default() {
         return false;
-      }
+      },
     },
     // 属性の宣言と初期値の設定
     btnTxt: {
       type: Object,
-      default: function () {
+      default() {
         return {
-          main: 'ボタンラベル'
+          main: 'ボタンラベル',
         };
-      }
+      },
     },
     // 属性の宣言と初期値の設定
     btnModifier: {
       type: Object,
-      default: function () {
+      default() {
         return {
           color: 'btn-0001--color-0001',
           height: 'btn-0001--height-s',
         };
-      }
+      },
     },
     // 属性の宣言と初期値の設定
     btnBtnType: {
       type: String,
-      default: function () {
+      default() {
         return 'a';
-      }
+      },
     },
     // 属性の宣言と初期値の設定
     btnAHref: {
       type: String,
-      default: function () {
+      default() {
         return '#';
-      }
+      },
     },
     // 属性の宣言と初期値の設定
     btnInputName: {
       type: String,
-      default: function () {
+      default() {
         return 'name-undefined';
-      }
+      },
     },
     // 属性の宣言と初期値の設定
     btnIsDisabled: {
-      default: function () {
+      default() {
         return false;
-      }
+      },
     },
   },
   template: require('./vue-heading-0001.html'),
-  data: function () {
+  data() {
     return {
       modifierLv: this.modifier.lv,
     };
   },
-}
+};
