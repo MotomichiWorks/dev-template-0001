@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
-var app = new Vue({
-  el : '#vue-app',
+let app = new Vue({
+  el: '#vue-app',
   components: {
     'vue-badge-0001': require('./module/vue-badge-0001'),
     'vue-breadcrumb-0001': require('./module/vue-breadcrumb-0001'),
@@ -14,5 +14,5 @@ var app = new Vue({
     'vue-paginator-0001': require('./module/vue-paginator-0001'),
     'vue-step-info-0001': require('./module/vue-step-info-0001'),
     'vue-tooltip-0001': require('./module/vue-tooltip-0001'),
-  }
+  },
 });

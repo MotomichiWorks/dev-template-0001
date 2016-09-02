@@ -1,3 +1,5 @@
-var $ = require('jquery');
+const $ = require('jquery');
 
-var winWidth = $(window).width();
+const winWidth = $(window).width();
+
+console.log(winWidth);

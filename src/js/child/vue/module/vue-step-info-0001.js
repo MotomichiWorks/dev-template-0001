@@ -3,7 +3,7 @@ module.exports = {
     // 属性の宣言と初期値の設定
     items: {
       type: Array,
-      default: function () {
+      default() {
         return [
           {
             text: 'ステップ1',
@@ -22,13 +22,13 @@ module.exports = {
             isActive: false,
           },
         ];
-      }
+      },
     },
   },
   template: require('./vue-step-info-0001.html'),
-  data: function () {
+  data() {
     return {
-      modifierColumn: 'step-info-0001--' + this.items.length + '-column',
+      modifierColumn: `step-info-0001--${this.items.length}-column`,
     };
-  }
-}
+  },
+};

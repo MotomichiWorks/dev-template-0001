@@ -3,15 +3,15 @@ module.exports = {
     // 属性の宣言と初期値の設定
     params: {
       type: Object,
-      default: function () {
+      default() {
         return {
           logo: {
             txt: '(c)MotomichiWorks',
-            aHref: '#'
-          }
+            aHref: '#',
+          },
         };
-      }
+      },
     },
   },
   template: require('./vue-footer-0001.html'),
-}
+};
