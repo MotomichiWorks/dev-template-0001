@@ -40,6 +40,7 @@ config.vm.network "private_network", ip: "192.168.33.10"
   # config.vm.synced_folder "../data", "/vagrant_data"
 config.vm.synced_folder "./var/www/webroot", "/var/www/webroot", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']
 config.vm.synced_folder "./var/www/cake", "/var/www/cake", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']
+config.vm.synced_folder "./var/www/react-router__webroot", "/var/www/react-router__webroot", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
