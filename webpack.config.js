@@ -1,7 +1,8 @@
 module.exports = {
   entry: './src/js/main.js',
   output: {
-    path: __dirname + '/var/www/webroot/assets/js',
+    // path: __dirname + '/var/www/webroot/assets/js', // CakePHP
+    path: __dirname + '/var/www/react-router__webroot/js', // react-rooter
     filename: 'bundle.js'
   },
   module: {
