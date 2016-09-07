@@ -14,18 +14,16 @@ import InboxStats from './module/inbox-stats.jsx';
 import Message from './module/message.jsx';
 import NoMatch from './module/no-match.jsx';
 
-
-
 ReactDom.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
       <Route path="about" component={About} />
       <Route path="inbox" component={Inbox}>
-        <IndexRoute component={InboxStats}/>
+        <IndexRoute component={InboxStats} />
         <Route path="messages/:id" component={Message} />
       </Route>
-      <Route path="*" component={NoMatch}/>
+      <Route path="*" component={NoMatch} />
     </Route>
   </Router>,
   document.getElementById('reactApp')
