@@ -22,7 +22,7 @@
     "object-shorthand" : 1,
     "global-require" : 0, # このルールは本来どうするべきか再考の余地あり
     "no-unused-vars": [2, { "vars": "all", "args": "after-used", "varsIgnorePattern": "vueApp" }],
-
+    "react/prefer-stateless-function": 0,
 
     # "quote-props" : 1,
     #

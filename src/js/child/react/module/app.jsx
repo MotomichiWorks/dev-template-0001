@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
+import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 
 export default class App extends Component {
   render() {
@@ -16,6 +16,6 @@ export default class App extends Component {
         </ul>
         {this.props.children}
       </div>
-    )
+    );
   }
 }
