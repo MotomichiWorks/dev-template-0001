@@ -18,7 +18,7 @@ Sass、React.jsやVue.jsがすぐに使用できます。
 1. GitHubでリモートリポジトリを作成する。
 2. リポジトリをローカルにcloneする。
 
-## vagrant box add する
+## vagrant box add をする
 
 1. http://utility.sakura.ne.jp/package-box/index.html でvagrant用のpackage--dev-template-0001.boxをダウンロードする。
 2. package--dev-template-0001.boxのあるディレクトリで`vagrant box add centos67box--dev-template-0001 package--dev-template-0001.box`を実行する。
@@ -42,16 +42,20 @@ http://motomichi-works.hatenablog.com/entry/2014/12/16/130302
 
 ## 開発ひな形のzipをダウンロードして配置し、ローカル環境のブラウジング
 
-1. https://github.com/MotomichiWorks/dev-template-0001 からdev-template-0001-master.zip をダウンロードする。
+1. https://github.com/MotomichiWorks/dev-template-0001 から dev-template-0001-master.zip をダウンロードする。
 2. zipを展開すると`dev-template-0001-master/dev-template-0001-master/中身`みたいな構造になっている。
-3. 中身のVagrantfile以外を、sample-project-0001リポジトリに移動する。
-4. 展開した dev-template-0001-master/dev-template-0001-master/ に残しておいた Vagrantfile を開いて `config.vm.synced_folder "./var/www/webroot", "/var/www/webroot", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']`と`config.vm.synced_folder "./var/www/cake", "/var/www/cake", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']`の二行を、sample-project-0001/Vagrantfileの`# config.vm.synced_folder "../data", "/vagrant_data"`の行の下にコピペする。
-5. `vagrant up`する。
-6. http://192.168.33.10/ にアクセスするとCakePHPのスタートページが表示されたら環境構築はおおよそできたことになる。
+3. 中身の Vagrantfile と README.md 以外を、sample-project-0001リポジトリに移動する。
+4. 展開した dev-template-0001-master/dev-template-0001-master/ に残しておいた Vagrantfile を開いて  
+`config.vm.synced_folder "./var/www/webroot", "/var/www/webroot", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']`  
+`config.vm.synced_folder "./var/www/cake", "/var/www/cake", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']`  
+`config.vm.synced_folder "./var/www/react-router__webroot", "/var/www/react-router__webroot", owner: 'vagrant', group: 'apache', mount_options: ['dmode=777', 'fmode=666']`  
+の三行を、sample-project-0001/Vagrantfileの `# config.vm.synced_folder "../data", "/vagrant_data"` の行の下にコピペする。
+5. `vagrant reload`する。
+6. http://192.168.33.10/ にアクセスするとCakePHPのスタートページが表示されたらここまでは成功です。
 7. `npm install`を実行すると、package.jsonに記載されているパッケージがインストールされる。
-8. gitのブランチ切って、開発ひな形をコミットしてプッシュする。
+8. gitのブランチを切って、開発ひな形をプッシュする。
 9. リモートリポジトリ上でmasterにマージする。
-10. `git pull origin master`する。
+10. `git pull origin master` して、ローカルのmasterを最新状態にします。
 
 ## HeidiSQLまたはSequelproで、MySQLホストに接続する
 
@@ -75,12 +79,18 @@ CREATE DATABASE データベース名 CHARACTER SET utf8;
 2. Security.cipherSeedを編集する
 3. database.php.defaultを複製して、database.phpを作成し編集をする
 
-## hostsに一行追記して、仮想サーバに設定してあるドメインにアクセスできるようにする
+## hostsに二行追記して、仮想サーバに設定してあるドメインにアクセスできるようにする
 
-C:/Windows/System32/drivers/etc/hosts に下記の一行を追記する。
-`192.168.33.10 example.com`
+C:/Windows/System32/drivers/etc/hosts に下記の二行を追記する。
+`192.168.33.10 example.com`  
+`192.168.33.10 react-router.example.com`
 
-vagrantの仮想サーバ内のhostsやconfファイルは設定済みなので、 http://example.com と https://example.com の閲覧ができるようになります。
+vagrantの仮想サーバ内のhostsやconfファイルは設定済みなので、以下のURLの閲覧ができるようになります。
+
+- http://example.com
+- https://example.com
+- http://react-router.example.com
+- https://react-router.example.com
 
 ## 環境構築完了
 
