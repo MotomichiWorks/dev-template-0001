@@ -1,8 +1,8 @@
 module.exports = {
   entry: './src/js/main.js',
   output: {
-    // path: __dirname + '/var/www/webroot/assets/js', // CakePHP
-    path: __dirname + '/var/www/react-router__webroot/js', // react-rooter
+    path: __dirname + '/var/www/webroot/assets/js', // CakePHP
+    // path: __dirname + '/var/www/react-router__webroot/js', // react-rooter
     filename: 'bundle.js'
   },
   module: {
@@ -23,7 +23,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js'],
+    alias: {
+      'vue$': 'vue/dist/vue.common.js'
+    }
   },
   plugins: []
 }
