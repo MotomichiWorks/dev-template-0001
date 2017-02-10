@@ -1,0 +1,144 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+.paginator-0001{
+  /**
+   * paginator-0001用のmixinを定義
+   */
+
+  // .btn-0001__clickable-elmの全ての要素に共通して適用するプロパティ
+  @mixin paginator-0001__anc-elm-props-general(){
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    font-weight:400;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: linear;
+    &+input{
+      display: none;
+    }
+  }
+
+
+
+  /**
+   * スタイルを定義
+   */
+  .paginator-0001__first-wrap{
+  }
+  .paginator-0001__second-wrap{
+    display: block;
+  }
+  .paginator-0001__info-wrap{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    @include clearfix();
+  }
+  .paginator-0001__info{
+    float: left;
+    line-height: 1;
+    color: $general__gray-color-0007;
+    &+.paginator-0001__info{
+      padding-left:8px;
+      border-left:1px solid $general__gray-color-0007;
+      margin-left:8px;
+    }
+  }
+  .paginator-0001__ul-ol-elm{
+    @include clearfix();
+    margin: 0;
+    padding: 0;
+  }
+  .paginator-0001__li-elm-first{
+    float: left;
+    width: 80px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    &+.paginator-0001__li-elm-prev{
+      padding-left:8px;
+    }
+  }
+  .paginator-0001__li-elm-prev{
+    float: left;
+    width: 64px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .paginator-0001__li-elm-next{
+    float: left;
+    width: 64px;
+    margin: 0;
+    padding: 0 0 0 8px;
+    list-style: none;
+  }
+  .paginator-0001__li-elm-last{
+    float: left;
+    width: 80px;
+    padding-left:8px;
+    margin: 0;
+    padding: 0 0 0 8px;
+    list-style: none;
+  }
+  .paginator-0001__li-elm-num{
+    float: left;
+    width: 32px;
+    margin: 0;
+    padding: 0 0 0 8px;
+    list-style: none;
+    box-sizing: content-box;
+  }
+  .paginator-0001__anc-elm{
+    @include paginator-0001__anc-elm-props-general();
+    height: 32px;
+    line-height: 32px;
+    background: $btn-main-color-light__bg;
+    color: $general__white-color;
+    border-radius: 4px;
+    &:hover{
+      background: $btn-main-color-light__bg--hover;
+    }
+  }
+
+  .paginator-0001__li-elm-num--current{
+    .paginator-0001__anc-elm{
+      color: $btn-main-color-light__bg;
+      border:1px solid $btn-main-color-light__bg;
+      background: lighten($btn-main-color-light__bg, 33%);
+      cursor: default;
+    }
+  }
+
+  .paginator-0001__li-elm-num--ellipsis{
+    .paginator-0001__anc-elm{
+      color: $general__body-text-color;
+      border:1px solid $general__body-bg-color;
+      background: $general__body-bg-color;
+      cursor: default!important;
+    }
+  }
+
+  .paginator-0001__li-elm-num--disabled,
+  .paginator-0001__li-elm-first--disabled,
+  .paginator-0001__li-elm-prev--disabled,
+  .paginator-0001__li-elm-next--disabled,
+  .paginator-0001__li-elm-last--disabled{
+    .paginator-0001__anc-elm{
+      @include paginator-0001__anc-elm-props-general();
+      height: 32px;
+      line-height: 32px;
+      background: $btn-disabled-color__bg;
+      color: $btn-disabled-color__text;
+      cursor: default!important;
+      border-radius: 4px;
+    }
+  }
+}

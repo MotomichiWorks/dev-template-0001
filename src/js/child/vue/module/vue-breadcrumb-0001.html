@@ -1,0 +1,10 @@
+<div v-if="1 < items.length" class="breadcrumb-0001">
+  <div class="breadcrumb-0001__first-wrap">
+    <ul class="breadcrumb-0001__ul-ol-elm">
+      <li class="breadcrumb-0001__li-elm" v-for="item in items">
+        <a v-if="0 < item.aHref.length" class="breadcrumb-0001__label" href="{{item.aHref}}">{{item.txt}}</a>
+        <span v-else class="breadcrumb-0001__label">{{item.txt}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

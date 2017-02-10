@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+// globalな領域に定義された、変数による設定
+@import "child/variable__color";
+@import "child/variable__other";
+
+// globalな領域に定義された、background-imageプロパティを生成する為のmixin
+@import "child/mixin__bg-image-root";
+
+// globalな領域に定義されたmixin
+@import "child/mixin__other";

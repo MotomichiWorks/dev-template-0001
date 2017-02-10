@@ -1,0 +1,95 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+.step-info-0001{
+  .step-info-0001__first-wrap{
+  }
+  .step-info-0001__ul-ol-elm{
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+    @include clearfix();
+    list-style: none;
+  }
+  .step-info-0001__li-elm{
+    position: relative;
+    padding: 0 12px;
+    margin: 0;
+    float: left;
+    box-sizing: border-box;
+    text-align: center;
+    list-style: none;
+    &+.step-info-0001__li-elm{
+      &:before{
+        position:absolute;
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 8px 0 8px 12px;
+        border-color: transparent transparent transparent $general__gray-color-0003;
+        top: 16px;
+        left: -6px;
+      }
+    }
+    &.step-info-0001__li-elm--active{
+      .step-info-0001__num{
+        border:4px solid $general__key-color-0002;
+        color: $general__key-color-0002;
+        background: lighten($general__key-color-0002, 45%);
+      }
+      .step-info-0001__text{
+        color: $general__key-color-0002;
+      }
+    }
+  }
+  .step-info-0001__num{
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    border:4px solid $general__gray-color-0003;
+    color: $general__gray-color-0003;
+    background: $general__gray-color-0001;
+    border-radius: 20px;
+    &.step-info-0001__num--active {
+      border:4px solid $general__key-color-0002;
+      color: $general__key-color-0002;
+      background: lighten($general__key-color-0002, 45%);
+    }
+  }
+  .step-info-0001__text{
+    display: block;
+    padding-top:8px;
+    text-align: center;
+    color: $general__gray-color-0003;
+    &.step-info-0001__text--active {
+      color: $general__key-color-0002;
+    }
+  }
+  &.step-info-0001--3-column{
+    .step-info-0001__li-elm{
+      width: 33.33333333%;
+    }
+  }
+  &.step-info-0001--4-column{
+    .step-info-0001__li-elm{
+      width: 25%;
+    }
+  }
+  &.step-info-0001--5-column{
+    .step-info-0001__li-elm{
+      width: 20%;
+    }
+  }
+}

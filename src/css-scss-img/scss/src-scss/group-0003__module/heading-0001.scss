@@ -1,0 +1,212 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+.heading-0001 {
+  .heading-0001__table{
+    display: table;
+    width: 100%;
+  }
+  .heading-0001__tr{
+    display: table-row;
+  }
+  .heading-0001__icon-wrap{
+    display: table-cell;
+    vertical-align: top;
+    width: 1px;
+  }
+  .heading-0001__h-elm{
+    display: table-cell;
+    vertical-align: top;
+    font-weight: 700;
+  }
+  .heading-0001__sub-heading{
+    vertical-align: top;
+  }
+  .heading-0001__btn-wrap{
+    display: table-cell;
+    width: 1%;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+
+
+
+  // lv-1
+  &.heading-0001--lv-1{
+    background: $general__white-color;
+    .heading-0001__icon-wrap{
+      padding: 26px 0 0 12px;
+    }
+    .heading-0001__icon{
+      @include sprite($sprite-icon-circle-gray-24px-24px);
+    }
+    .heading-0001__h-elm{
+      background: $general__white-color;
+      padding: 8px 0 8px 12px;
+      line-height: 60px;
+      font-size: 40px;
+      color: $general__gray-color-0010;
+    }
+    .heading-0001__sub-heading{
+      font-size:18px;
+      color: $general__gray-color-0010;
+    }
+    .heading-0001__btn-wrap{
+      padding: 28px 12px 0 0;
+    }
+  }
+
+
+
+  // lv-2
+  &.heading-0001--lv-2{
+    background: $general__key-color-0001;
+    .heading-0001__table{
+      border-bottom: 6px solid darken($general__key-color-0001, 20%);
+    }
+    .heading-0001__icon-wrap{
+      padding: 18px 0 0 12px;
+    }
+    .heading-0001__icon{
+      @include sprite($sprite-icon-circle-gray-24px-24px);
+    }
+    .heading-0001__h-elm{
+      background: $general__key-color-0001;
+      padding: 6px 0 6px 12px;
+      line-height: 48px;
+      font-size: 32px;
+      color: $general__white-color;
+    }
+    .heading-0001__sub-heading{
+      font-size:16px;
+      color: $general__white-color;
+    }
+    .heading-0001__btn-wrap{
+      padding: 20px 12px 0 0;
+    }
+  }
+
+
+
+  // lv-3
+  &.heading-0001--lv-3{
+    background: lighten($general__key-color-0001, 20%);
+    .heading-0001__table{
+      border-bottom: 4px solid darken($general__key-color-0001, 10%);
+    }
+    .heading-0001__icon-wrap{
+      padding: 18px 0 0 12px;
+    }
+    .heading-0001__icon{
+      @include sprite($sprite-icon-circle-gray-16px-16px);
+    }
+    .heading-0001__h-elm{
+      background: lighten($general__key-color-0001, 20%);
+      padding: 4px 0 4px 12px;
+      line-height: 42px;
+      font-size: 28px;
+      color: $general__white-color;
+    }
+    .heading-0001__sub-heading{
+      font-size:16px;
+      color: $general__white-color;
+    }
+    .heading-0001__btn-wrap{
+      padding: 16px 12px 0 0;
+    }
+  }
+
+
+
+  // lv-4
+  &.heading-0001--lv-4{
+    background: $general__gray-color-0003;
+    .heading-0001__table{
+      border-bottom: 4px solid $general__gray-color-0010;
+    }
+    .heading-0001__icon-wrap{
+      padding: 11px 0 0 12px;
+    }
+    .heading-0001__icon{
+      @include sprite($sprite-icon-circle-gray-16px-16px);
+    }
+    .heading-0001__h-elm{
+      background: $general__gray-color-0003;
+      padding: 4px 0 4px 12px;
+      line-height: 30px;
+      font-size: 20px;
+      color: $general__gray-color-0010;
+    }
+    .heading-0001__sub-heading{
+      font-size:14px;
+      color: $general__gray-color-0010;
+    }
+    .heading-0001__btn-wrap{
+      padding: 10px 12px 0 0;
+    }
+  }
+
+
+
+  // lv-5
+  &.heading-0001--lv-5{
+    background: $general__gray-color-0001;
+    .heading-0001__table{
+      border-bottom: 2px solid $general__gray-color-0010;
+    }
+    .heading-0001__icon-wrap{
+      padding: 10px 0 0 12px;
+    }
+    .heading-0001__icon{
+      @include sprite($sprite-icon-circle-gray-12px-12px);
+    }
+    .heading-0001__h-elm{
+      background: $general__gray-color-0001;
+      padding: 4px 0 4px 12px;
+      line-height: 24px;
+      font-size: 16px;
+      color: $general__gray-color-0010;
+    }
+    .heading-0001__sub-heading{
+      font-size:12px;
+      color: $general__gray-color-0010;
+    }
+    .heading-0001__btn-wrap{
+      padding: 6px 12px 0 0;
+    }
+  }
+
+
+
+  // lv-6
+  &.heading-0001--lv-6{
+    background: transparent;
+    .heading-0001__table{
+      border-bottom: 1px solid $general__gray-color-0010;
+    }
+    .heading-0001__icon-wrap{
+      padding: 10px 0 0 12px;
+    }
+    .heading-0001__icon{
+      @include sprite($sprite-icon-circle-gray-12px-12px);
+    }
+    .heading-0001__h-elm{
+      background: transparent;
+      padding: 4px 0 4px 12px;
+      line-height: 24px;
+      font-size: 16px;
+      color: $general__gray-color-0010;
+    }
+    .heading-0001__sub-heading{
+      font-size:12px;
+      color: $general__gray-color-0010;
+    }
+    .heading-0001__btn-wrap{
+      padding: 6px 12px 0 0;
+    }
+  }
+}

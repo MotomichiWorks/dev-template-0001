@@ -1,0 +1,373 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+.btn-0001{
+  /**
+   * btn-0001用のmixinを定義
+   */
+
+  // .btn-0001__clickable-elmの全ての要素に共通して適用するプロパティ
+  @mixin btn-0001__clickable-elm-props--general(){
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    font-weight:400;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: linear;
+    &+input{
+      display: none;
+    }
+  }
+
+  // input[type="button"].btn-0001__clickable-elm,
+  // input[type="submit"].btn-0001__clickable-elm
+  // に共通して適用するプロパティ
+  @mixin btn-0001__clickable-elm-props--input(){
+    text-shadow:none;
+    box-shadow:none;
+    cursor: pointer;
+    width:100%;
+    border:none;
+    appearance:none;
+  }
+
+  // disabledスタイルmixin
+  @mixin btn-0001__disabled-color(){
+    &.btn-0001--disabled{
+      .btn-0001__clickable-elm{
+        background: #{$btn-disabled-color__bg}!important;
+        color: #{$btn-disabled-color__text}!important;
+        cursor: default!important;
+      }
+    }
+    .btn-0001__clickable-elm{
+      &:disabled{
+        background: #{$btn-disabled-color__bg}!important;
+        color: #{$btn-disabled-color__text}!important;
+        cursor: default!important;
+      }
+    }
+  }
+
+  // ボタンアロー用mixin
+  @mixin btn-0001__arrow(){
+    &.btn-0001--arrow-white{
+      .btn-0001__clickable-elm{
+        position: relative;
+        padding-right:24px;
+        &:before{
+          // @include bg-sprite-group-icon-arrow-0001-20px-pc();
+          position: absolute;
+          top:50%;
+          right:12px;
+          margin-top:#{20/-2}px;
+          content: "";
+        }
+      }
+    }
+  }
+
+  // +ajax-loading-icon表示用mixin
+  // @mixin loading-icon(){
+  //  &.is-loading{
+  //    .btn-0001__first-wrap{
+  //      display: none;
+  //    }
+  //    &:before{
+  //      @include pc-bg-solo__icon-lodaing-32px;
+  //      content: "";
+  //      z-index:2;
+  //      position: absolute;
+  //      top:50%;
+  //      left: 50%;
+  //      margin-top:#{32/-2}px;
+  //      margin-left:#{32/-2}px;
+  //    }
+  //  }
+  // }
+
+  // グラデーションカラープロパティ生成用mixin
+  @mixin btn-0001__gradation-color($bottom,$top){
+    // background: $bottom; // -old browsers
+    // @include filter-gradient($top, $bottom, vertical); // IE6-8
+    // // IE9 SVG, needs conditional override of 'filter' to 'none'
+    // $experimental-support-for-svg: true;
+    // @include background-image(linear-gradient(top, $top 0%,$bottom 100%));
+  }
+
+  // ボタン色のmodifierクラス生成用mixin (btn-0001__color-variationsの内部で実行するmixin)
+  @mixin btn-0001__color-generator($suffix, $default-color, $hover-color, $text-color, $grdation-flg, $range-gradation){
+    @if $grdation-flg == true {
+      //グラデーションを使用する、.btn-0001-color-0001から0007
+      $color-bottom : $default-color;
+      $color-top    : lighten($color-bottom,$range-gradation);
+      $color-bottom--hover : $hover-color;
+      $color-top--hover    : lighten($color-bottom--hover,$range-gradation);
+      &.btn-0001--color-#{$suffix}{
+        a.btn-0001__clickable-elm:link,
+        a.btn-0001__clickable-elm:visited,
+        a.btn-0001__clickable-elm,
+        input[type="button"].btn-0001__clickable-elm,
+        input[type="submit"].btn-0001__clickable-elm,
+        .btn-0001__clickable-elm{
+          color:$text-color;
+          cursor: pointer;
+          @include mod-btn__gradation-color($color-bottom,$color-top);
+        }
+        a.btn-0001__clickable-elm:hover,
+        input[type="button"].btn-0001__clickable-elm:hover,
+        input[type="submit"].btn-0001__clickable-elm:hover,
+        .btn-0001__clickable-elm:hover{
+          @include mod-btn__gradation-color($color-bottom--hover,$color-top--hover);
+        }
+        input[type="button"].btn-0001__clickable-elm,
+        input[type="submit"].btn-0001__clickable-elm,
+        a.btn-0001__clickable-elm:active{
+          @include mod-btn__gradation-color($color-bottom,$color-top);
+        }
+      }
+    }@else{
+      //グラデーションを使用しない、.btn-0001-color-0001から0007
+      &.btn-0001--color-#{$suffix}{
+        .btn-0001__clickable-elm{
+          color:$text-color;
+          background: $default-color;
+        }
+        input[type="button"].btn-0001__clickable-elm,
+        input[type="submit"].btn-0001__clickable-elm,
+        .btn-0001__clickable-elm{
+          &:hover{
+            background: $hover-color;
+          }
+        }
+      }
+    }
+  }
+
+  // ボタン色のmodifierクラス生成用mixin (btn-0001クラスの内部で最終的に実行するmixin)
+  @mixin btn-0001__color-variations(){
+    //使い方
+    //@include btn-0001__color-generator(
+    //  "クラス接尾辞",
+    //  ボタンBG色,
+    //  ボタンBG色--hover,
+    //  ボタン文字色,
+    //  グラデ使用ON||OFF,
+    //  グラデ下端から上端までの変色割合
+    // );
+
+    //メイン濃い
+    @include btn-0001__color-generator(
+      "0001",
+      $btn-main-color-dark__bg,
+      $btn-main-color-dark__bg--hover,
+      $btn-main-color-dark__text,
+      $btn-main-color-dark__grdation-flg,
+      $btn-main-color-dark__grdation-range
+    );
+    //メイン薄い
+    @include btn-0001__color-generator(
+      "0002",
+      $btn-main-color-light__bg,
+      $btn-main-color-light__bg--hover,
+      $btn-main-color-light__text,
+      $btn-main-color-light__grdation-flg,
+      $btn-main-color-light__grdation-range
+    );
+    //強調
+    @include btn-0001__color-generator(
+      "0003",
+      $btn-emphasis-color__bg,
+      $btn-emphasis-color__bg--hover,
+      $btn-emphasis-color__text,
+      $btn-emphasis-color__grdation-flg,
+      $btn-emphasis-color__grdation-range
+    );
+    //警告
+    @include btn-0001__color-generator(
+      "0004",
+      $btn-warning-color__bg,
+      $btn-warning-color__bg--hover,
+      $btn-warning-color__text,
+      $btn-warning-color__grdation-flg,
+      $btn-warning-color__grdation-range
+    );
+    //中立
+    @include btn-0001__color-generator(
+      "0005",
+      $btn-neutral-color__bg,
+      $btn-neutral-color__bg--hover,
+      $btn-neutral-color__text,
+      $btn-neutral-color__grdation-flg,
+      $btn-neutral-color__grdation-range
+    );
+    //臨時
+    @include btn-0001__color-generator(
+      "0006",
+      $btn-extra-color-0001__bg,
+      $btn-extra-color-0001__bg--hover,
+      $btn-extra-color-0001__text,
+      $btn-extra-color-0001__grdation-flg,
+      $btn-extra-color-0001__grdation-range
+    );
+    //臨時
+    @include btn-0001__color-generator(
+      "0007",
+      $btn-extra-color-0002__bg,
+      $btn-extra-color-0002__bg--hover,
+      $btn-extra-color-0002__text,
+      $btn-extra-color-0002__grdation-flg,
+      $btn-extra-color-0002__grdation-range
+    );
+  }
+
+
+
+  /**
+   * スタイルを定義
+   */
+  // heightExtraSmall
+  &.btn-0001--height-xs {
+    .btn-0001__clickable-elm {
+      min-height:22px;
+      font-size: 12px;
+      padding:4px 8px 0px;
+      line-height: 14px;
+      @include btn-0001__clickable-elm-props--general();
+    }
+    input[type="button"].btn-0001__clickable-elm,
+    input[type="submit"].btn-0001__clickable-elm {
+      font-size: 12px;
+      padding:0px 8px 0px;
+      @include btn-0001__clickable-elm-props--input();
+    }
+    &.btn-0001--icon-circle{
+      .btn-0001__label{
+        position: relative;
+        padding-left: 18px;
+        &:before{
+          position: absolute;
+          top:50%;
+          left:0px;
+          margin: -6px 0 0 0;
+          content: "";
+          @include sprite($sprite-icon-circle-gray-12px-12px);
+        }
+      }
+    }
+  }
+
+  // heightSmall
+  &.btn-0001--height-sm {
+    .btn-0001__clickable-elm {
+      min-height:30px;
+      font-size: 12px;
+      padding:7px 8px;
+      line-height: 16px;
+      @include btn-0001__clickable-elm-props--general();
+    }
+    input[type="button"].btn-0001__clickable-elm,
+    input[type="submit"].btn-0001__clickable-elm {
+      font-size: 12px;
+      padding:6px 8px;
+      @include btn-0001__clickable-elm-props--input();
+    }
+
+    &.btn-0001--icon-circle{
+      .btn-0001__label{
+        position: relative;
+        padding-left: 22px;
+        &:before{
+          position: absolute;
+          top:50%;
+          left:0px;
+          margin: -8px 0 0 0;
+          content: "";
+          @include sprite($sprite-icon-circle-gray-16px-16px);
+        }
+      }
+    }
+  }
+
+  // heightMidium
+  &.btn-0001--height-md {
+    .btn-0001__clickable-elm {
+      min-height:34px;
+      font-size: 14px;
+      padding:9px 8px;
+      line-height: 16px;
+      @include btn-0001__clickable-elm-props--general();
+    }
+    input[type="button"].btn-0001__clickable-elm,
+    input[type="submit"].btn-0001__clickable-elm {
+      font-size: 14px;
+      padding:8px 8px;
+      @include btn-0001__clickable-elm-props--input();
+    }
+
+    &.btn-0001--icon-circle{
+      .btn-0001__label{
+        position: relative;
+        padding-left: 22px;
+        &:before{
+          position: absolute;
+          top:50%;
+          left:0px;
+          margin: -8px 0 0 0;
+          content: "";
+          @include sprite($sprite-icon-circle-gray-16px-16px);
+        }
+      }
+    }
+  }
+
+  // heightLarge
+  &.btn-0001--height-lg {
+    .btn-0001__clickable-elm {
+      min-height:46px;
+      font-size: 18px;
+      padding:13px 8px 10px;
+      line-height: 22px;
+      @include btn-0001__clickable-elm-props--general();
+    }
+    input[type="button"].btn-0001__clickable-elm,
+    input[type="submit"].btn-0001__clickable-elm {
+      font-size: 18px;
+      padding:11px 8px 9px;
+      @include btn-0001__clickable-elm-props--input();
+    }
+    &.btn-0001--icon-circle{
+      .btn-0001__label{
+        position: relative;
+        padding-left: 30px;
+        &:before{
+          position: absolute;
+          top:50%;
+          left:0px;
+          margin: -12px 0 0 0;
+          content: "";
+          @include sprite($sprite-icon-circle-gray-24px-24px);
+        }
+      }
+    }
+  }
+
+  @include btn-0001__disabled-color();
+  @include btn-0001__color-variations();
+  @include btn-0001__arrow();
+
+  // @include loading-icon();//幅32px,高さ32pxのローディングアイコンを入れるときは32
+
+
+
+  @include media($breakpoint__size-sm){
+
+  }
+}

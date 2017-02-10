@@ -1,0 +1,56 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+.form-frame-0002{
+  .form-frame-0002__first-wrap{}
+  .form-frame-0002__second-wrap{
+    display: block;
+    padding: 32px;
+    background: $general__gray-color-0001;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .form-frame-0002__table{
+    display: table;
+    width: 100%;
+  }
+  .form-frame-0002__tr{
+    display: table-row;
+  }
+  .form-frame-0002__th{
+    display: table-cell;
+    width: 1%;
+    padding: 8px;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  .form-frame-0002__td{
+    padding: 8px;
+  }
+  .form-frame-0002__checkbox-wrap-0001{
+    display: block;
+    padding: 4px 8px;
+  }
+  .form-frame-0002__text-link-wrap-0001{
+    display: block;
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+  .form-frame-0002__text-link-wrap-0001__anc-elm{
+    font-size: 14px;
+  }
+  .form-frame-0002__btn-wrap-0001{
+    display: block;
+    width: 60%;
+    padding-top: 8px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

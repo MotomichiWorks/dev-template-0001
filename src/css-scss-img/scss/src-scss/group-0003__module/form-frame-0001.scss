@@ -1,0 +1,177 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+.form-frame-0001 {
+  .form-frame-0001__first-wrap {
+  }
+  .form-frame-0001__second-wrap {
+    display: block;
+    background: $general__gray-color-0001;
+    padding: 0 8px;
+    border-radius: 4px;
+  }
+  .form-frame-0001__table {
+    display: table;
+    width: 100%;
+  }
+  .form-frame-0001__tr {
+    display: table-row;
+    & + .form-frame-0001__tr {
+      .form-frame-0001__left-cell {
+        border-top: 1px solid $general__gray-color-0002;
+      }
+      .form-frame-0001__right-cell {
+        border-top: 1px solid $general__gray-color-0002;
+      }
+    }
+  }
+  .form-frame-0001__left-cell {
+    display: table-cell;
+    vertical-align: top;
+    width: 33.33333333%;
+    font-size: 0;
+    padding: 24px 0 24px 24px;
+  }
+  .form-frame-0001__right-cell {
+    display: table-cell;
+    vertical-align: top;
+    width: 66.66666666%;
+    padding: 0 20px 19px 0;
+  }
+  .form-frame-0001__left-cell__heading-wrap {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    padding: 0 8px 0 0;
+  }
+  .form-frame-0001__left-cell__badge-wrap {
+    display: inline-block;
+    padding: 2px 8px 0 0;
+    vertical-align: top;
+  }
+  .form-frame-0001__left-cell__tooltip-wrap {
+    display: inline-block;
+    padding: 2px 0 0 0;
+    vertical-align: top;
+  }
+  .form-frame-0001__right-cell__example-top {
+    font-size: 12px;
+    line-height: 18px;
+    color: $general__gray-color-0007;
+    padding: 28px 4px 0 4px;
+    & + .form-frame-0001__right-cell__field-wrap {
+      margin: -6px 0 0 0;
+      padding: 0 0 0 0;
+    }
+  }
+  .error-message,
+  .form-frame-0001__right-cell__error-message {
+    font-size: 12px;
+    line-height: 18px;
+    color: $general__warning-color-0001;
+    padding: 0 4px 0 4px;
+    & + .form-frame-0001__right-cell__example-bottom {
+      padding-top: 6px;
+    }
+    & + .form-frame-0001__right-cell__notes-ul {
+      padding-top: 8px;
+    }
+  }
+  .form-frame-0001__right-cell__example-bottom {
+    font-size: 12px;
+    line-height: 18px;
+    color: $general__gray-color-0007;
+    padding: 0 4px 0 4px;
+    & + .form-frame-0001__right-cell__notes-ul {
+      padding-top: 8px;
+    }
+  }
+  .form-frame-0001__right-cell__field-wrap {
+    padding: 5px 0 0 0;
+    @include clearfix();
+    & + .error-message,
+    & + .form-frame-0001__right-cell__error-message {
+      padding-top: 9px;
+    }
+    & + .form-frame-0001__right-cell__example-bottom {
+      padding-top: 9px;
+    }
+    & + .form-frame-0001__right-cell__notes-ul {
+      padding-top: 13px;
+    }
+  }
+  .form-frame-0001__right-cell__field-col {
+    float: left;
+    display: block;
+    height: 48px;
+    padding: 14px 4px 0;
+    box-sizing: border-box;
+  }
+  .form-frame-0001__right-cell__field-col--1 {
+    width: 8.33333333%;
+  }
+  .form-frame-0001__right-cell__field-col--2 {
+    width: 16.66666667%;
+  }
+  .form-frame-0001__right-cell__field-col--3 {
+    width: 25%;
+  }
+  .form-frame-0001__right-cell__field-col--4 {
+    width: 33.33333333%;
+  }
+  .form-frame-0001__right-cell__field-col--5 {
+    width: 41.66666667%;
+  }
+  .form-frame-0001__right-cell__field-col--6 {
+    width: 50%;
+  }
+  .form-frame-0001__right-cell__field-col--7 {
+    width: 58.33333333%;
+  }
+  .form-frame-0001__right-cell__field-col--8 {
+    width: 66.66666667%;
+  }
+  .form-frame-0001__right-cell__field-col--9 {
+    width: 75%;
+  }
+  .form-frame-0001__right-cell__field-col--10 {
+    width: 83.33333333%;
+  }
+  .form-frame-0001__right-cell__field-col--11 {
+    width: 91.66666667%;
+  }
+  .form-frame-0001__right-cell__field-col--12 {
+    width: 100%;
+  }
+  .form-frame-0001__right-cell__field-col__paragraph {
+    font-size: 14px;
+    line-height: 21px;
+    padding: 7px 0 0 0;
+  }
+  .form-frame-0001__right-cell__notes-ul {
+    padding: 0 4px 0;
+  }
+  .form-frame-0001__right-cell__notes-li {
+    font-size: 12px;
+    padding: 0 0 0 1em;
+    & + .form-frame-0001__right-cell__notes-li {
+      padding-top: 8px;
+    }
+  }
+  .form-frame-0001__right-cell__notes-li__heading {
+    margin: 0 0 0 -1em;
+    font-weight: 700;
+    line-height: 18px;
+    color: $general__gray-color-0007;
+  }
+  .form-frame-0001__right-cell__notes-li__text {
+    font-size: 12px;
+    line-height: 18px;
+    color: $general__gray-color-0007;
+  }
+}

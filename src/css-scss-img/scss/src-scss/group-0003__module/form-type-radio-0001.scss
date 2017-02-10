@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+.form-type-radio-0001{
+  .form-type-radio-0001__first-wrap{
+    @include clearfix();
+  }
+  .form-type-radio-0001__input-elm{
+    float: left;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    @include sprite($sprite-radio-false);
+    &:checked{
+      @include sprite($sprite-radio-true);
+    }
+    &.form-type-radio-0001__input-elm--error{
+      @include sprite($sprite-radio-error-false);
+      &:checked{
+        @include sprite($sprite-radio-error-true);
+      }
+    }
+    &:disabled{
+      cursor: default;
+      @include sprite($sprite-radio-disabled-false);
+      &:checked{
+        @include sprite($sprite-radio-disabled-true);
+      }
+      & + .form-type-radio-0001__label-elm{
+        cursor: default;
+        color: $general__gray-color-0003;
+      }
+    }
+  }
+  .form-type-radio-0001__label-elm{
+    float: left;
+    padding: 0 0 0 4px;
+    line-height: 20px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .form-frame-0001 &{
+    .form-type-radio-0001__first-wrap{
+      padding: 7px 12px 0 0;
+    }
+  }
+}

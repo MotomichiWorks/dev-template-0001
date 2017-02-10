@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+.flash-message-0001{
+  .flash-message-0001__first-wrap{
+    background: $general__white-color;
+    padding: 2px;
+  }
+  .flash-message-0001__second-wrap{
+    padding:32px;
+  }
+  &.flash-message-0001--color-neutral{
+    .flash-message-0001__first-wrap{
+      border:2px solid $general__gray-color-0007;
+    }
+    .flash-message-0001__second-wrap{
+      background: $general__gray-color-0002;
+      color: $general__gray-color-0007;
+    }
+  }
+  &.flash-message-0001--color-safety{
+    .flash-message-0001__first-wrap{
+      border:2px solid $general__safety-color-0001;
+    }
+    .flash-message-0001__second-wrap{
+      background: lighten($general__safety-color-0001, 70%);
+      color: $general__safety-color-0001;
+    }
+  }
+  &.flash-message-0001--color-warning{
+    .flash-message-0001__first-wrap{
+      border:2px solid $general__warning-color-0001;
+    }
+    .flash-message-0001__second-wrap{
+      background: lighten($general__warning-color-0001, 37%);
+      color: $general__warning-color-0001;
+    }
+  }
+}

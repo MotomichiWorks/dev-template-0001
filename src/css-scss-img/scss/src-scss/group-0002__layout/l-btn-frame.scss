@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+// --------------------------------
+// l-btn-frame-0001
+//---------------------------------
+.l-btn-frame-0001{
+  text-align: center;
+  .l-btn-frame-0001__first-wrap{
+    vertical-align: top;
+    display: inline-block;
+    @include clearfix();
+  }
+  .l-btn-frame-0001__column{
+    display: block;
+    float: right;
+    width:296px;
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+
+
+  &.l-btn-frame-0001--320-px{
+    .l-btn-frame-0001__column{
+      width:320px;
+    }
+  }
+
+
+
+}

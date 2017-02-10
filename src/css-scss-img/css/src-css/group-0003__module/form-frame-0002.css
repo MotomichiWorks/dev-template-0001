@@ -1,0 +1,94 @@
+@charset "UTF-8";
+/**
+ * 各モジュール、各レイアウトで使用するbackground-imageのmixinを以下に手書きで定義
+ */
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+/**
+ * このファイルは上記のファイルを@importする為だけのファイルなので、mixinはここには記述しません。
+ * - CSSスプライトを使用しない単体のbackground-imageのmixinは「_mixin__bg-image__solo.scss」に手書きします。
+ * - CSSスプライトをするbackground-imageのmixinは「_mixin__bg-image__spritesmith.scss」として自動生成されます。
+ *
+ * 上記の2ファイル内に定義されたmixinを各モジュール内で実行することとし、画像ファイルのパスを各モジュール内に書くことを禁止しています。
+ *
+ */
+.form-frame-0002 .form-frame-0002__second-wrap {
+  display: block;
+  padding: 32px;
+  background: #f3f3f3;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
+  box-sizing: border-box; }
+.form-frame-0002 .form-frame-0002__table {
+  display: table;
+  width: 100%; }
+.form-frame-0002 .form-frame-0002__tr {
+  display: table-row; }
+.form-frame-0002 .form-frame-0002__th {
+  display: table-cell;
+  width: 1%;
+  padding: 8px;
+  white-space: nowrap;
+  vertical-align: middle; }
+.form-frame-0002 .form-frame-0002__td {
+  padding: 8px; }
+.form-frame-0002 .form-frame-0002__checkbox-wrap-0001 {
+  display: block;
+  padding: 4px 8px; }
+.form-frame-0002 .form-frame-0002__text-link-wrap-0001 {
+  display: block;
+  padding: 4px 8px;
+  font-size: 14px; }
+.form-frame-0002 .form-frame-0002__text-link-wrap-0001__anc-elm {
+  font-size: 14px; }
+.form-frame-0002 .form-frame-0002__btn-wrap-0001 {
+  display: block;
+  width: 60%;
+  padding-top: 8px;
+  margin-left: auto;
+  margin-right: auto; }

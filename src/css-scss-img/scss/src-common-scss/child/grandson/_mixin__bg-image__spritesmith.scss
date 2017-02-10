@@ -1,0 +1,294 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+$sprite-checkbox-false-name: 'sprite-checkbox--false';
+$sprite-checkbox-false-x: 0px;
+$sprite-checkbox-false-y: 48px;
+$sprite-checkbox-false-offset-x: 0px;
+$sprite-checkbox-false-offset-y: -48px;
+$sprite-checkbox-false-width: 20px;
+$sprite-checkbox-false-height: 20px;
+$sprite-checkbox-false-total-width: 200px;
+$sprite-checkbox-false-total-height: 960px;
+$sprite-checkbox-false-image: '/assets/img/sprite.png';
+$sprite-checkbox-false: (0px, 48px, 0px, -48px, 20px, 20px, 200px, 960px, '/assets/img/sprite.png', 'sprite-checkbox--false', );
+$sprite-checkbox-true-name: 'sprite-checkbox--true';
+$sprite-checkbox-true-x: 0px;
+$sprite-checkbox-true-y: 228px;
+$sprite-checkbox-true-offset-x: 0px;
+$sprite-checkbox-true-offset-y: -228px;
+$sprite-checkbox-true-width: 20px;
+$sprite-checkbox-true-height: 20px;
+$sprite-checkbox-true-total-width: 200px;
+$sprite-checkbox-true-total-height: 960px;
+$sprite-checkbox-true-image: '/assets/img/sprite.png';
+$sprite-checkbox-true: (0px, 228px, 0px, -228px, 20px, 20px, 200px, 960px, '/assets/img/sprite.png', 'sprite-checkbox--true', );
+$sprite-checkbox-disabled-false-name: 'sprite-checkbox-disabled--false';
+$sprite-checkbox-disabled-false-x: 0px;
+$sprite-checkbox-disabled-false-y: 198px;
+$sprite-checkbox-disabled-false-offset-x: 0px;
+$sprite-checkbox-disabled-false-offset-y: -198px;
+$sprite-checkbox-disabled-false-width: 20px;
+$sprite-checkbox-disabled-false-height: 20px;
+$sprite-checkbox-disabled-false-total-width: 200px;
+$sprite-checkbox-disabled-false-total-height: 960px;
+$sprite-checkbox-disabled-false-image: '/assets/img/sprite.png';
+$sprite-checkbox-disabled-false: (0px, 198px, 0px, -198px, 20px, 20px, 200px, 960px, '/assets/img/sprite.png', 'sprite-checkbox-disabled--false', );
+$sprite-checkbox-disabled-true-name: 'sprite-checkbox-disabled--true';
+$sprite-checkbox-disabled-true-x: 0px;
+$sprite-checkbox-disabled-true-y: 168px;
+$sprite-checkbox-disabled-true-offset-x: 0px;
+$sprite-checkbox-disabled-true-offset-y: -168px;
+$sprite-checkbox-disabled-true-width: 20px;
+$sprite-checkbox-disabled-true-height: 20px;
+$sprite-checkbox-disabled-true-total-width: 200px;
+$sprite-checkbox-disabled-true-total-height: 960px;
+$sprite-checkbox-disabled-true-image: '/assets/img/sprite.png';
+$sprite-checkbox-disabled-true: (0px, 168px, 0px, -168px, 20px, 20px, 200px, 960px, '/assets/img/sprite.png', 'sprite-checkbox-disabled--true', );
+$sprite-checkbox-error-false-name: 'sprite-checkbox-error--false';
+$sprite-checkbox-error-false-x: 0px;
+$sprite-checkbox-error-false-y: 78px;
+$sprite-checkbox-error-false-offset-x: 0px;
+$sprite-checkbox-error-false-offset-y: -78px;
+$sprite-checkbox-error-false-width: 20px;
+$sprite-checkbox-error-false-height: 20px;
+$sprite-checkbox-error-false-total-width: 200px;
+$sprite-checkbox-error-false-total-height: 960px;
+$sprite-checkbox-error-false-image: '/assets/img/sprite.png';
+$sprite-checkbox-error-false: (0px, 78px, 0px, -78px, 20px, 20px, 200px, 960px, '/assets/img/sprite.png', 'sprite-checkbox-error--false', );
+$sprite-checkbox-error-true-name: 'sprite-checkbox-error--true';
+$sprite-checkbox-error-true-x: 0px;
+$sprite-checkbox-error-true-y: 108px;
+$sprite-checkbox-error-true-offset-x: 0px;
+$sprite-checkbox-error-true-offset-y: -108px;
+$sprite-checkbox-error-true-width: 20px;
+$sprite-checkbox-error-true-height: 20px;
+$sprite-checkbox-error-true-total-width: 200px;
+$sprite-checkbox-error-true-total-height: 960px;
+$sprite-checkbox-error-true-image: '/assets/img/sprite.png';
+$sprite-checkbox-error-true: (0px, 108px, 0px, -108px, 20px, 20px, 200px, 960px, '/assets/img/sprite.png', 'sprite-checkbox-error--true', );
+$sprite-icon-circle-gray-12px-12px-name: 'sprite-icon-circle-gray--12px-12px';
+$sprite-icon-circle-gray-12px-12px-x: 0px;
+$sprite-icon-circle-gray-12px-12px-y: 0px;
+$sprite-icon-circle-gray-12px-12px-offset-x: 0px;
+$sprite-icon-circle-gray-12px-12px-offset-y: 0px;
+$sprite-icon-circle-gray-12px-12px-width: 12px;
+$sprite-icon-circle-gray-12px-12px-height: 12px;
+$sprite-icon-circle-gray-12px-12px-total-width: 200px;
+$sprite-icon-circle-gray-12px-12px-total-height: 960px;
+$sprite-icon-circle-gray-12px-12px-image: '/assets/img/sprite.png';
+$sprite-icon-circle-gray-12px-12px: (0px, 0px, 0px, 0px, 12px, 12px, 200px, 960px, '/assets/img/sprite.png', 'sprite-icon-circle-gray--12px-12px', );
+$sprite-icon-circle-gray-16px-16px-name: 'sprite-icon-circle-gray--16px-16px';
+$sprite-icon-circle-gray-16px-16px-x: 0px;
+$sprite-icon-circle-gray-16px-16px-y: 22px;
+$sprite-icon-circle-gray-16px-16px-offset-x: 0px;
+$sprite-icon-circle-gray-16px-16px-offset-y: -22px;
+$sprite-icon-circle-gray-16px-16px-width: 16px;
+$sprite-icon-circle-gray-16px-16px-height: 16px;
+$sprite-icon-circle-gray-16px-16px-total-width: 200px;
+$sprite-icon-circle-gray-16px-16px-total-height: 960px;
+$sprite-icon-circle-gray-16px-16px-image: '/assets/img/sprite.png';
+$sprite-icon-circle-gray-16px-16px: (0px, 22px, 0px, -22px, 16px, 16px, 200px, 960px, '/assets/img/sprite.png', 'sprite-icon-circle-gray--16px-16px', );
+$sprite-icon-circle-gray-24px-24px-name: 'sprite-icon-circle-gray--24px-24px';
+$sprite-icon-circle-gray-24px-24px-x: 0px;
+$sprite-icon-circle-gray-24px-24px-y: 408px;
+$sprite-icon-circle-gray-24px-24px-offset-x: 0px;
+$sprite-icon-circle-gray-24px-24px-offset-y: -408px;
+$sprite-icon-circle-gray-24px-24px-width: 24px;
+$sprite-icon-circle-gray-24px-24px-height: 24px;
+$sprite-icon-circle-gray-24px-24px-total-width: 200px;
+$sprite-icon-circle-gray-24px-24px-total-height: 960px;
+$sprite-icon-circle-gray-24px-24px-image: '/assets/img/sprite.png';
+$sprite-icon-circle-gray-24px-24px: (0px, 408px, 0px, -408px, 24px, 24px, 200px, 960px, '/assets/img/sprite.png', 'sprite-icon-circle-gray--24px-24px', );
+$sprite-icon-circle-gray-32px-32px-name: 'sprite-icon-circle-gray--32px-32px';
+$sprite-icon-circle-gray-32px-32px-x: 0px;
+$sprite-icon-circle-gray-32px-32px-y: 442px;
+$sprite-icon-circle-gray-32px-32px-offset-x: 0px;
+$sprite-icon-circle-gray-32px-32px-offset-y: -442px;
+$sprite-icon-circle-gray-32px-32px-width: 32px;
+$sprite-icon-circle-gray-32px-32px-height: 32px;
+$sprite-icon-circle-gray-32px-32px-total-width: 200px;
+$sprite-icon-circle-gray-32px-32px-total-height: 960px;
+$sprite-icon-circle-gray-32px-32px-image: '/assets/img/sprite.png';
+$sprite-icon-circle-gray-32px-32px: (0px, 442px, 0px, -442px, 32px, 32px, 200px, 960px, '/assets/img/sprite.png', 'sprite-icon-circle-gray--32px-32px', );
+$sprite-radio-false-name: 'sprite-radio--false';
+$sprite-radio-false-x: 0px;
+$sprite-radio-false-y: 258px;
+$sprite-radio-false-offset-x: 0px;
+$sprite-radio-false-offset-y: -258px;
+$sprite-radio-false-width: 20px;
+$sprite-radio-false-height: 20px;
+$sprite-radio-false-total-width: 200px;
+$sprite-radio-false-total-height: 960px;
+$sprite-radio-false-image: '/assets/img/sprite.png';
+$sprite-radio-false: (0px, 258px, 0px, -258px, 20px, 20px, 200px, 960px, '/assets/img/sprite.png', 'sprite-radio--false', );
+$sprite-radio-true-name: 'sprite-radio--true';
+$sprite-radio-true-x: 0px;
+$sprite-radio-true-y: 288px;
+$sprite-radio-true-offset-x: 0px;
+$sprite-radio-true-offset-y: -288px;
+$sprite-radio-true-width: 20px;
+$sprite-radio-true-height: 20px;
+$sprite-radio-true-total-width: 200px;
+$sprite-radio-true-total-height: 960px;
+$sprite-radio-true-image: '/assets/img/sprite.png';
+$sprite-radio-true: (0px, 288px, 0px, -288px, 20px, 20px, 200px, 960px, '/assets/img/sprite.png', 'sprite-radio--true', );
+$sprite-radio-disabled-false-name: 'sprite-radio-disabled--false';
+$sprite-radio-disabled-false-x: 0px;
+$sprite-radio-disabled-false-y: 318px;
+$sprite-radio-disabled-false-offset-x: 0px;
+$sprite-radio-disabled-false-offset-y: -318px;
+$sprite-radio-disabled-false-width: 20px;
+$sprite-radio-disabled-false-height: 20px;
+$sprite-radio-disabled-false-total-width: 200px;
+$sprite-radio-disabled-false-total-height: 960px;
+$sprite-radio-disabled-false-image: '/assets/img/sprite.png';
+$sprite-radio-disabled-false: (0px, 318px, 0px, -318px, 20px, 20px, 200px, 960px, '/assets/img/sprite.png', 'sprite-radio-disabled--false', );
+$sprite-radio-disabled-true-name: 'sprite-radio-disabled--true';
+$sprite-radio-disabled-true-x: 0px;
+$sprite-radio-disabled-true-y: 348px;
+$sprite-radio-disabled-true-offset-x: 0px;
+$sprite-radio-disabled-true-offset-y: -348px;
+$sprite-radio-disabled-true-width: 20px;
+$sprite-radio-disabled-true-height: 20px;
+$sprite-radio-disabled-true-total-width: 200px;
+$sprite-radio-disabled-true-total-height: 960px;
+$sprite-radio-disabled-true-image: '/assets/img/sprite.png';
+$sprite-radio-disabled-true: (0px, 348px, 0px, -348px, 20px, 20px, 200px, 960px, '/assets/img/sprite.png', 'sprite-radio-disabled--true', );
+$sprite-radio-error-false-name: 'sprite-radio-error--false';
+$sprite-radio-error-false-x: 0px;
+$sprite-radio-error-false-y: 378px;
+$sprite-radio-error-false-offset-x: 0px;
+$sprite-radio-error-false-offset-y: -378px;
+$sprite-radio-error-false-width: 20px;
+$sprite-radio-error-false-height: 20px;
+$sprite-radio-error-false-total-width: 200px;
+$sprite-radio-error-false-total-height: 960px;
+$sprite-radio-error-false-image: '/assets/img/sprite.png';
+$sprite-radio-error-false: (0px, 378px, 0px, -378px, 20px, 20px, 200px, 960px, '/assets/img/sprite.png', 'sprite-radio-error--false', );
+$sprite-radio-error-true-name: 'sprite-radio-error--true';
+$sprite-radio-error-true-x: 0px;
+$sprite-radio-error-true-y: 138px;
+$sprite-radio-error-true-offset-x: 0px;
+$sprite-radio-error-true-offset-y: -138px;
+$sprite-radio-error-true-width: 20px;
+$sprite-radio-error-true-height: 20px;
+$sprite-radio-error-true-total-width: 200px;
+$sprite-radio-error-true-total-height: 960px;
+$sprite-radio-error-true-image: '/assets/img/sprite.png';
+$sprite-radio-error-true: (0px, 138px, 0px, -138px, 20px, 20px, 200px, 960px, '/assets/img/sprite.png', 'sprite-radio-error--true', );
+$sprite-sample-0001-name: 'sprite-sample-0001';
+$sprite-sample-0001-x: 0px;
+$sprite-sample-0001-y: 484px;
+$sprite-sample-0001-offset-x: 0px;
+$sprite-sample-0001-offset-y: -484px;
+$sprite-sample-0001-width: 128px;
+$sprite-sample-0001-height: 128px;
+$sprite-sample-0001-total-width: 200px;
+$sprite-sample-0001-total-height: 960px;
+$sprite-sample-0001-image: '/assets/img/sprite.png';
+$sprite-sample-0001: (0px, 484px, 0px, -484px, 128px, 128px, 200px, 960px, '/assets/img/sprite.png', 'sprite-sample-0001', );
+$sprite-sample-0002-name: 'sprite-sample-0002';
+$sprite-sample-0002-x: 0px;
+$sprite-sample-0002-y: 622px;
+$sprite-sample-0002-offset-x: 0px;
+$sprite-sample-0002-offset-y: -622px;
+$sprite-sample-0002-width: 128px;
+$sprite-sample-0002-height: 128px;
+$sprite-sample-0002-total-width: 200px;
+$sprite-sample-0002-total-height: 960px;
+$sprite-sample-0002-image: '/assets/img/sprite.png';
+$sprite-sample-0002: (0px, 622px, 0px, -622px, 128px, 128px, 200px, 960px, '/assets/img/sprite.png', 'sprite-sample-0002', );
+$sprite-sample-0003-name: 'sprite-sample-0003';
+$sprite-sample-0003-x: 0px;
+$sprite-sample-0003-y: 760px;
+$sprite-sample-0003-offset-x: 0px;
+$sprite-sample-0003-offset-y: -760px;
+$sprite-sample-0003-width: 200px;
+$sprite-sample-0003-height: 200px;
+$sprite-sample-0003-total-width: 200px;
+$sprite-sample-0003-total-height: 960px;
+$sprite-sample-0003-image: '/assets/img/sprite.png';
+$sprite-sample-0003: (0px, 760px, 0px, -760px, 200px, 200px, 200px, 960px, '/assets/img/sprite.png', 'sprite-sample-0003', );
+$spritesheet-width: 200px;
+$spritesheet-height: 960px;
+$spritesheet-image: '/assets/img/sprite.png';
+$spritesheet-sprites: ($sprite-checkbox-false, $sprite-checkbox-true, $sprite-checkbox-disabled-false, $sprite-checkbox-disabled-true, $sprite-checkbox-error-false, $sprite-checkbox-error-true, $sprite-icon-circle-gray-12px-12px, $sprite-icon-circle-gray-16px-16px, $sprite-icon-circle-gray-24px-24px, $sprite-icon-circle-gray-32px-32px, $sprite-radio-false, $sprite-radio-true, $sprite-radio-disabled-false, $sprite-radio-disabled-true, $sprite-radio-error-false, $sprite-radio-error-true, $sprite-sample-0001, $sprite-sample-0002, $sprite-sample-0003, );
+$spritesheet: (200px, 960px, '/assets/img/sprite.png', $spritesheet-sprites, );
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

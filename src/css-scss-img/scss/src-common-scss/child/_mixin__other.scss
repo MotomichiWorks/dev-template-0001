@@ -1,0 +1,64 @@
+@charset "utf-8";
+
+// ----------------------------
+// clearfix
+// ----------------------------
+@mixin clearfix(){
+	&:after{
+    content: "";
+    clear: both;
+    display: block;
+	}
+}
+
+// ----------------------------
+// media-queries
+// ----------------------------
+
+//
+//使うときは以下のような感じで書く
+//@include media($breakpoint__size-lg){
+//	.hoge{
+//		padding:10px;
+//	}
+//}
+//
+@mixin media($i_value){
+  @if $breakpoint__size-lg-enable == TRUE {
+    @if $i_value == $breakpoint__size-lg {
+  		@media screen and (min-width:$breakpoint__size-lg) {
+  			@content;
+  		}
+  	}
+  }
+  @if $breakpoint__size-md-enable == TRUE {
+    @if $i_value == $breakpoint__size-md {
+  		@media screen and (max-width:$breakpoint__size-md) {
+  			@content;
+  		}
+  	}
+  }
+  @if $breakpoint__size-sm-enable == TRUE {
+    @if $i_value == $breakpoint__size-sm {
+  		@media screen and (max-width:$breakpoint__size-sm) {
+  			@content;
+  		}
+  	}
+  }
+  @if $breakpoint__size-xs-enable == TRUE {
+    @if $i_value == $breakpoint__size-xs {
+  		@media screen and (max-width:$breakpoint__size-xs) {
+  			@content;
+  		}
+  	}
+  }
+}
+
+// ----------------------------
+// transform-deg
+// ----------------------------
+@mixin transform-deg($i_value:45deg) {
+	-webkit-transform: rotate($i_value);
+	transform: rotate($i_value);
+	-ms-transform: rotate($i_value);
+}

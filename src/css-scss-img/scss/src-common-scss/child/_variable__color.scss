@@ -1,0 +1,154 @@
+@charset "utf-8";
+
+
+//-------------------------------------
+// $range__(色の変化割合の設定)
+//-------------------------------------
+$range-hover-s               : 5%;//ボタンやその他、hoverしたときにlightenする量(小)
+$range-hover-m               : 7%;//ボタンやその他、hoverしたときにlightenする量(中)
+$range-hover-l               : 9%;//ボタンやその他、hoverしたときにlightenする量(大)
+$range-gradation-s           : 5%;//ボタンやその他、グラデーションカラーの下端から上端に向けてlightenする量(小)
+$range-gradation-m           : 7%;//ボタンやその他、グラデーションカラーの下端から上端に向けてlightenする量(中)
+$range-gradation-l           : 9%;//ボタンやその他、グラデーションカラーの下端から上端に向けてlightenする量(大)
+
+
+
+//-------------------------------------
+// $general__(無彩色のベースカラーの設定)
+//-------------------------------------
+$general__white-color          : #ffffff;//white
+$general__black-color          : #000000;//black
+$general__gray-color-0001      : #f3f3f3;//$general__gray-color-min
+$general__gray-color-0002      : #e9e9e9;//lighten($general__gray-color,43%)
+$general__gray-color-0003      : #c9c9c9;//lighten($general__gray-color,31%)
+$general__gray-color-0004      : #bdbdbd;//lighten($general__gray-color,27%)
+$general__gray-color-0005      : #aaaaaa;//lighten($general__gray-color,23%)
+$general__gray-color-0006      : #999999;//lighten($general__gray-color,13%)
+$general__gray-color-0007      : #777777;//$general__gray-color
+$general__gray-color-0008      : #666666;//darken($general__gray-color,6%)
+$general__gray-color-0009      : #444444;//darken($general__gray-color,27%)
+$general__gray-color-0010      : #333333;//darken($general__gray-color,33%)
+
+
+
+//-------------------------------------
+// $general__(無彩色のベースカラーの設定 全体を薄めにするときの色)
+//-------------------------------------
+// $general__white-color            : #ffffff;//white
+// $general__black-color            : #000000;//black
+// $general__gray-color-0001      : #f6f6f6;//$general__gray-color-min
+// $general__gray-color-0002      : #eeeeee;//lighten($general__gray-color,43%)
+// $general__gray-color-0003      : #dddddd;//lighten($general__gray-color,31%)
+// $general__gray-color-0004      : #cccccc;//lighten($general__gray-color,27%)
+// $general__gray-color-0005      : #bbbbbb;//lighten($general__gray-color,23%)
+// $general__gray-color-0006      : #aaaaaa;//lighten($general__gray-color,13%)
+// $general__gray-color-0007      : #999999;//$general__gray-color
+// $general__gray-color-0008      : #777777;//darken($general__gray-color,6%)
+// $general__gray-color-0009      : #555555;//darken($general__gray-color,27%)
+// $general__gray-color-0010      : #444444;//darken($general__gray-color,33%)
+// $general__gray-color-0011      : #444444;//darken($general__gray-color,40%)
+
+
+
+//-------------------------------------
+// $general__(特定の意味・特定の要素に関するベースカラーの設定)
+//-------------------------------------
+$general__body-bg-color        : $general__white-color;//white
+$general__body-text-color      : $general__gray-color-0009;//gray
+$general__key-color-0001       : #196ad8;//blue
+$general__key-color-0002       : #db8915;//orange
+$general__link-text-color-0001 : $general__key-color-0001;//for light background
+$general__link-text-color-0002 : #8ab4ec;//for dark background
+$general__emphasis-color-0001  : #158000;//green
+$general__warning-color-0001   : #ff3333;//red
+$general__safety-color-0001    : #158000;//green
+$general__price-color-0001     : #ff3333;//red
+$general__extra-color-0001     : #000000;//undefined
+$general__extra-color-0002     : #000000;//undefined
+
+
+
+//-------------------------------------
+// $btn__(ボタン色の設定)
+//-------------------------------------
+$btn-main-color-dark__bg                : #db8915;//メイン濃い
+$btn-main-color-dark__bg--hover         : lighten($btn-main-color-dark__bg,$range-hover-l);//メイン濃い--hover
+$btn-main-color-dark__text              : #ffffff;//ボタンテキスト
+$btn-main-color-dark__grdation-flg      : false;
+$btn-main-color-dark__grdation-range    : $range-gradation-s;
+
+$btn-main-color-light__bg               : #ebc951;//メイン薄い
+$btn-main-color-light__bg--hover        : lighten($btn-main-color-light__bg,$range-hover-l);//メイン薄い--hover
+$btn-main-color-light__text             : #ffffff;//ボタンテキスト
+$btn-main-color-light__grdation-flg     : false;
+$btn-main-color-light__grdation-range   : $range-gradation-s;
+
+$btn-emphasis-color__bg                 : #158000;//強調
+$btn-emphasis-color__bg--hover          : lighten($btn-emphasis-color__bg,$range-hover-l);//強調--hover
+$btn-emphasis-color__text               : #ffffff;//ボタンテキスト
+$btn-emphasis-color__grdation-flg       : false;
+$btn-emphasis-color__grdation-range     : $range-gradation-s;
+
+$btn-warning-color__bg                  : #ff3333;//警告
+$btn-warning-color__bg--hover           : lighten($btn-warning-color__bg,$range-hover-l);//警告--hover
+$btn-warning-color__text                : #ffffff;//ボタンテキスト
+$btn-warning-color__grdation-flg        : false;
+$btn-warning-color__grdation-range      : $range-gradation-s;
+
+$btn-neutral-color__bg                  : #999999;//中立
+$btn-neutral-color__bg--hover           : lighten($btn-neutral-color__bg,$range-hover-l);//中立--hover
+$btn-neutral-color__text                : #ffffff;//ボタンテキスト
+$btn-neutral-color__grdation-flg        : false;
+$btn-neutral-color__grdation-range      : $range-gradation-s;
+
+$btn-disabled-color__bg                 : $general__gray-color-0002;//無効
+$btn-disabled-color__bg--hover          : $general__gray-color-0002;//無効--hover
+$btn-disabled-color__text               : $general__gray-color-0004;//ボタンテキスト
+$btn-disabled-color__grdation-flg       : false;
+$btn-disabled-color__grdation-range     : $range-gradation-s;
+
+$btn-extra-color-0001__bg               : #cc00cc;//臨時
+$btn-extra-color-0001__bg--hover        : lighten($btn-extra-color-0001__bg,$range-hover-l);//臨時--hover
+$btn-extra-color-0001__text             : #ffffff;//ボタンテキスト
+$btn-extra-color-0001__grdation-flg     : false;
+$btn-extra-color-0001__grdation-range   : $range-gradation-s;
+
+$btn-extra-color-0002__bg               : #333333;//臨時
+$btn-extra-color-0002__bg--hover        : lighten($btn-extra-color-0002__bg,$range-hover-l);//臨時--hover
+$btn-extra-color-0002__text             : #ffffff;//ボタンテキスト
+$btn-extra-color-0002__grdation-flg     : false;
+$btn-extra-color-0002__grdation-range   : $range-gradation-s;
+
+//-------------------------------------
+// $badge__(バッジ色の設定)
+//-------------------------------------
+$badge__color-0001:#e04646;//red
+$badge__color-0002:#e09346;//yellow orange
+$badge__color-0003:#e0e046;//shocking yellow
+$badge__color-0004:#93e046;//shocking pale green
+$badge__color-0005:#46e046;//shocking green
+$badge__color-0006:#46e093;//shocking blue green
+$badge__color-0007:#46e0e0;//shocking pale blue
+$badge__color-0008:#4693e0;//blue
+$badge__color-0009:#4646e0;//blue purple
+$badge__color-0010:#9346e0;//purple
+$badge__color-0011:#e046e0;//purple pink
+$badge__color-0012:#e04693;//pink
+
+
+
+//-------------------------------------
+// module色
+//
+// モジュール個別の設定はむやみに増やさないこと!!!!!
+// 現状許可しているのはヘッダー、フッター、グローバルナビの3つのみ
+// その他のモジュール色変更はa/scss/common/modules/**-override.scssを作成して対応してください
+//-------------------------------------
+
+//$mod-m-header-0001-default
+
+//$mod-m-header-0001-sp
+
+//$mod-m-footer-0001-default
+
+//$mod-m-footer-0001-sp

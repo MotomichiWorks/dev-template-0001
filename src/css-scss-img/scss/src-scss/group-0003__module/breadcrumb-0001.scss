@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+// グローバルな領域に定義された変数とmixinを読み込み
+@import "../../src-common-scss/global-variable-and-mixin";
+
+
+
+.breadcrumb-0001{
+  .breadcrumb-0001__first-wrap{
+  }
+  .breadcrumb-0001__ul-ol-elm{
+    @include clearfix();
+    margin: 0;
+    padding: 0;
+    .breadcrumb-0001__li-elm{
+      float: left;
+      font-size: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      &:after{
+        content: '>';
+        padding: 0 4px;
+        display: inline;
+        font-size: 14px;
+      }
+      &:last-child{
+        &:after{
+          display: none;
+        }
+      }
+    }
+  }
+  .breadcrumb-0001__label{
+    font-size: 14px;
+  }
+}

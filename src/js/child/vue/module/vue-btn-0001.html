@@ -1,0 +1,27 @@
+<div class="btn-0001" v-bind:class="[modifierColor, modifierHeight, {'btn-0001--disabled': isDisabled}]">
+
+  <!--aタグのボタン-->
+  <div class="btn-0001__first-wrap" v-if="btnType === 'a'">
+    <a class="btn-0001__clickable-elm" href="{{aHref}}" v-on:click="clicked">
+      <span class="btn-0001__label">
+        {{txt.main}}
+      </span>
+    </a>
+  </div>
+
+  <!--aタグをクリックすることでsubmitするボタン-->
+  <div class="btn-0001__first-wrap" v-if="btnType === 'composite'">
+    <a class="btn-0001__clickable-elm" href="#" v-on:click="clicked">
+      <span class="btn-0001__label">
+        {{txt.main}}
+      </span>
+    </a>
+    <input class="btn-0001__type-submit-elm" type="submit" name="{{inputName}}" value="{{txt.main}}" v-bind:disabled="isDisabled">
+  </div>
+
+  <!--inputタグのボタン-->
+  <div class="btn-0001__first-wrap" v-if="btnType === 'input'">
+    <input class="btn-0001__clickable-elm" type="submit" name="{{inputName}}" value="{{txt.main}}" v-bind:disabled="isDisabled">
+  </div>
+
+</div>

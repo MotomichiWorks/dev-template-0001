@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+// ----------------------------
+// font-size
+// ----------------------------
+$font-size__0001:8;
+$font-size__0002:10;
+$font-size__0003:12;
+$font-size__0004:14;
+$font-size__0005:16;
+$font-size__0006:20;
+$font-size__0007:24;
+$font-size__0008:32;
+$font-size__0009:40;
+$font-size__0010:48;
+
+
+
+// ----------------------------
+// breakpoint
+// ----------------------------
+
+$breakpoint__size-xs        : 480px; // window幅が、$breakpoint__size-xs以下のとき、xs設定のスタイルが適用される
+$breakpoint__size-xs-enable : FALSE;
+
+$breakpoint__size-sm        : 768px; // window幅が、$breakpoint__size-sm以下のとき、sm設定のスタイルが適用される
+$breakpoint__size-sm-enable : FALSE;
+
+$breakpoint__size-md        : 992px; // window幅が、$breakpoint__size-md以下のとき、md設定のスタイルが適用される
+$breakpoint__size-md-enable : FALSE;
+
+$breakpoint__size-lg        : 1200px; // window幅が、$breakpoint__size-lg以上のとき、lg設定のスタイルが適用される
+$breakpoint__size-lg-enable : FALSE;
+
+
+
+
+
+
+// ----------------------------
+// container幅
+// ----------------------------
+
+$container-xs: 100%; // window幅がxsのときのコンテンツ表示領域の幅
+$container-sm: 750px; // window幅がsmのときのコンテンツ表示領域の幅
+$container-md: 970px; // window幅がmdのときのコンテンツ表示領域の幅
+$container-lg: 1170px; // window幅がlgのときのコンテンツ表示領域の幅
