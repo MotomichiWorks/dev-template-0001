@@ -59,6 +59,8 @@ http://motomichi-works.hatenablog.com/entry/2014/12/16/130302
 
 ## HeidiSQLまたはSequelproで、MySQLホストに接続する
 
+このvagrant環境内のMySQLについて、ユーザーはroot、パスワードはvagrantで設定済み。
+
 ### Macの場合
 http://motomichi-works.hatenablog.com/entry/2015/01/03/154630
 
