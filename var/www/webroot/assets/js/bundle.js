@@ -103,9 +103,8 @@
   \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*eslint-disable no-unused-vars*/
-	/*!
-	 * jQuery JavaScript Library v3.1.0
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	 * jQuery JavaScript Library v3.1.1
 	 * https://jquery.com/
 	 *
 	 * Includes Sizzle.js
@@ -115,7 +114,7 @@
 	 * Released under the MIT license
 	 * https://jquery.org/license
 	 *
-	 * Date: 2016-07-07T21:44Z
+	 * Date: 2016-09-22T22:30Z
 	 */
 	( function( global, factory ) {
 	
@@ -188,13 +187,13 @@
 			doc.head.appendChild( script ).parentNode.removeChild( script );
 		}
 	/* global Symbol */
-	// Defining this global in .eslintrc would create a danger of using the global
+	// Defining this global in .eslintrc.json would create a danger of using the global
 	// unguarded in another place, it seems safer to define global only for this module
 	
 	
 	
 	var
-		version = "3.1.0",
+		version = "3.1.1",
 	
 		// Define a local copy of jQuery
 		jQuery = function( selector, context ) {
@@ -234,13 +233,14 @@
 		// Get the Nth element in the matched element set OR
 		// Get the whole matched element set as a clean array
 		get: function( num ) {
-			return num != null ?
 	
-				// Return just the one element from the set
-				( num < 0 ? this[ num + this.length ] : this[ num ] ) :
+			// Return all the elements in a clean array
+			if ( num == null ) {
+				return slice.call( this );
+			}
 	
-				// Return all the elements in a clean array
-				slice.call( this );
+			// Return just the one element from the set
+			return num < 0 ? this[ num + this.length ] : this[ num ];
 		},
 	
 		// Take an array of elements and push it onto the stack
@@ -648,14 +648,14 @@
 	}
 	var Sizzle =
 	/*!
-	 * Sizzle CSS Selector Engine v2.3.0
+	 * Sizzle CSS Selector Engine v2.3.3
 	 * https://sizzlejs.com/
 	 *
 	 * Copyright jQuery Foundation and other contributors
 	 * Released under the MIT license
 	 * http://jquery.org/license
 	 *
-	 * Date: 2016-01-04
+	 * Date: 2016-08-08
 	 */
 	(function( window ) {
 	
@@ -801,7 +801,7 @@
 	
 		// CSS string/identifier serialization
 		// https://drafts.csswg.org/cssom/#common-serializing-idioms
-		rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\x80-\uFFFF\w-]/g,
+		rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
 		fcssescape = function( ch, asCodePoint ) {
 			if ( asCodePoint ) {
 	
@@ -828,7 +828,7 @@
 	
 		disabledAncestor = addCombinator(
 			function( elem ) {
-				return elem.disabled === true;
+				return elem.disabled === true && ("form" in elem || "label" in elem);
 			},
 			{ dir: "parentNode", next: "legend" }
 		);
@@ -1114,26 +1114,54 @@
 	 * @param {Boolean} disabled true for :disabled; false for :enabled
 	 */
 	function createDisabledPseudo( disabled ) {
-		// Known :disabled false positives:
-		// IE: *[disabled]:not(button, input, select, textarea, optgroup, option, menuitem, fieldset)
-		// not IE: fieldset[disabled] > legend:nth-of-type(n+2) :can-disable
+	
+		// Known :disabled false positives: fieldset[disabled] > legend:nth-of-type(n+2) :can-disable
 		return function( elem ) {
 	
-			// Check form elements and option elements for explicit disabling
-			return "label" in elem && elem.disabled === disabled ||
-				"form" in elem && elem.disabled === disabled ||
+			// Only certain elements can match :enabled or :disabled
+			// https://html.spec.whatwg.org/multipage/scripting.html#selector-enabled
+			// https://html.spec.whatwg.org/multipage/scripting.html#selector-disabled
+			if ( "form" in elem ) {
 	
-				// Check non-disabled form elements for fieldset[disabled] ancestors
-				"form" in elem && elem.disabled === false && (
-					// Support: IE6-11+
-					// Ancestry is covered for us
-					elem.isDisabled === disabled ||
+				// Check for inherited disabledness on relevant non-disabled elements:
+				// * listed form-associated elements in a disabled fieldset
+				//   https://html.spec.whatwg.org/multipage/forms.html#category-listed
+				//   https://html.spec.whatwg.org/multipage/forms.html#concept-fe-disabled
+				// * option elements in a disabled optgroup
+				//   https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
+				// All such elements have a "form" property.
+				if ( elem.parentNode && elem.disabled === false ) {
 	
-					// Otherwise, assume any non-<option> under fieldset[disabled] is disabled
-					/* jshint -W018 */
-					elem.isDisabled !== !disabled &&
-						("label" in elem || !disabledAncestor( elem )) !== disabled
-				);
+					// Option elements defer to a parent optgroup if present
+					if ( "label" in elem ) {
+						if ( "label" in elem.parentNode ) {
+							return elem.parentNode.disabled === disabled;
+						} else {
+							return elem.disabled === disabled;
+						}
+					}
+	
+					// Support: IE 6 - 11
+					// Use the isDisabled shortcut property to check for disabled fieldset ancestors
+					return elem.isDisabled === disabled ||
+	
+						// Where there is no isDisabled, check manually
+						/* jshint -W018 */
+						elem.isDisabled !== !disabled &&
+							disabledAncestor( elem ) === disabled;
+				}
+	
+				return elem.disabled === disabled;
+	
+			// Try to winnow out elements that can't be disabled before trusting the disabled property.
+			// Some victims get caught in our net (label, legend, menu, track), but it shouldn't
+			// even exist on them, let alone have a boolean value.
+			} else if ( "label" in elem ) {
+				return elem.disabled === disabled;
+			}
+	
+			// Remaining elements are neither :enabled nor :disabled
+			return false;
 		};
 	}
 	
@@ -1249,25 +1277,21 @@
 			return !document.getElementsByName || !document.getElementsByName( expando ).length;
 		});
 	
-		// ID find and filter
+		// ID filter and find
 		if ( support.getById ) {
-			Expr.find["ID"] = function( id, context ) {
-				if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
-					var m = context.getElementById( id );
-					return m ? [ m ] : [];
-				}
-			};
 			Expr.filter["ID"] = function( id ) {
 				var attrId = id.replace( runescape, funescape );
 				return function( elem ) {
 					return elem.getAttribute("id") === attrId;
 				};
 			};
+			Expr.find["ID"] = function( id, context ) {
+				if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
+					var elem = context.getElementById( id );
+					return elem ? [ elem ] : [];
+				}
+			};
 		} else {
-			// Support: IE6/7
-			// getElementById is not reliable as a find shortcut
-			delete Expr.find["ID"];
-	
 			Expr.filter["ID"] =  function( id ) {
 				var attrId = id.replace( runescape, funescape );
 				return function( elem ) {
@@ -1275,6 +1299,36 @@
 						elem.getAttributeNode("id");
 					return node && node.value === attrId;
 				};
+			};
+	
+			// Support: IE 6 - 7 only
+			// getElementById is not reliable as a find shortcut
+			Expr.find["ID"] = function( id, context ) {
+				if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
+					var node, i, elems,
+						elem = context.getElementById( id );
+	
+					if ( elem ) {
+	
+						// Verify the id attribute
+						node = elem.getAttributeNode("id");
+						if ( node && node.value === id ) {
+							return [ elem ];
+						}
+	
+						// Fall back on getElementsByName
+						elems = context.getElementsByName( id );
+						i = 0;
+						while ( (elem = elems[i++]) ) {
+							node = elem.getAttributeNode("id");
+							if ( node && node.value === id ) {
+								return [ elem ];
+							}
+						}
+					}
+	
+					return [];
+				}
 			};
 		}
 	
@@ -2316,6 +2370,7 @@
 						return matcher( elem, context, xml );
 					}
 				}
+				return false;
 			} :
 	
 			// Check against all ancestor/preceding elements
@@ -2360,6 +2415,7 @@
 						}
 					}
 				}
+				return false;
 			};
 	}
 	
@@ -2722,8 +2778,7 @@
 			// Reduce context if the leading compound selector is an ID
 			tokens = match[0] = match[0].slice( 0 );
 			if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
-					support.getById && context.nodeType === 9 && documentIsHTML &&
-					Expr.relative[ tokens[1].type ] ) {
+					context.nodeType === 9 && documentIsHTML && Expr.relative[ tokens[1].type ] ) {
 	
 				context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
 				if ( !context ) {
@@ -2905,24 +2960,29 @@
 			return jQuery.grep( elements, function( elem, i ) {
 				return !!qualifier.call( elem, i, elem ) !== not;
 			} );
-	
 		}
 	
+		// Single element
 		if ( qualifier.nodeType ) {
 			return jQuery.grep( elements, function( elem ) {
 				return ( elem === qualifier ) !== not;
 			} );
-	
 		}
 	
-		if ( typeof qualifier === "string" ) {
-			if ( risSimple.test( qualifier ) ) {
-				return jQuery.filter( qualifier, elements, not );
-			}
-	
-			qualifier = jQuery.filter( qualifier, elements );
+		// Arraylike of elements (jQuery, arguments, Array)
+		if ( typeof qualifier !== "string" ) {
+			return jQuery.grep( elements, function( elem ) {
+				return ( indexOf.call( qualifier, elem ) > -1 ) !== not;
+			} );
 		}
 	
+		// Simple selector that can be filtered directly, removing non-Elements
+		if ( risSimple.test( qualifier ) ) {
+			return jQuery.filter( qualifier, elements, not );
+		}
+	
+		// Complex selector, compare the two sets, removing non-Elements
+		qualifier = jQuery.filter( qualifier, elements );
 		return jQuery.grep( elements, function( elem ) {
 			return ( indexOf.call( qualifier, elem ) > -1 ) !== not && elem.nodeType === 1;
 		} );
@@ -2935,11 +2995,13 @@
 			expr = ":not(" + expr + ")";
 		}
 	
-		return elems.length === 1 && elem.nodeType === 1 ?
-			jQuery.find.matchesSelector( elem, expr ) ? [ elem ] : [] :
-			jQuery.find.matches( expr, jQuery.grep( elems, function( elem ) {
-				return elem.nodeType === 1;
-			} ) );
+		if ( elems.length === 1 && elem.nodeType === 1 ) {
+			return jQuery.find.matchesSelector( elem, expr ) ? [ elem ] : [];
+		}
+	
+		return jQuery.find.matches( expr, jQuery.grep( elems, function( elem ) {
+			return elem.nodeType === 1;
+		} ) );
 	};
 	
 	jQuery.fn.extend( {
@@ -3267,14 +3329,14 @@
 			return this.pushStack( matched );
 		};
 	} );
-	var rnotwhite = ( /\S+/g );
+	var rnothtmlwhite = ( /[^\x20\t\r\n\f]+/g );
 	
 	
 	
 	// Convert String-formatted options into Object-formatted ones
 	function createOptions( options ) {
 		var object = {};
-		jQuery.each( options.match( rnotwhite ) || [], function( _, flag ) {
+		jQuery.each( options.match( rnothtmlwhite ) || [], function( _, flag ) {
 			object[ flag ] = true;
 		} );
 		return object;
@@ -4039,13 +4101,16 @@
 			}
 		}
 	
-		return chainable ?
-			elems :
+		if ( chainable ) {
+			return elems;
+		}
 	
-			// Gets
-			bulk ?
-				fn.call( elems ) :
-				len ? fn( elems[ 0 ], key ) : emptyGet;
+		// Gets
+		if ( bulk ) {
+			return fn.call( elems );
+		}
+	
+		return len ? fn( elems[ 0 ], key ) : emptyGet;
 	};
 	var acceptData = function( owner ) {
 	
@@ -4182,7 +4247,7 @@
 					// Otherwise, create an array by matching non-whitespace
 					key = key in cache ?
 						[ key ] :
-						( key.match( rnotwhite ) || [] );
+						( key.match( rnothtmlwhite ) || [] );
 				}
 	
 				i = key.length;
@@ -4230,6 +4295,31 @@
 	var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
 		rmultiDash = /[A-Z]/g;
 	
+	function getData( data ) {
+		if ( data === "true" ) {
+			return true;
+		}
+	
+		if ( data === "false" ) {
+			return false;
+		}
+	
+		if ( data === "null" ) {
+			return null;
+		}
+	
+		// Only convert to a number if it doesn't change the string
+		if ( data === +data + "" ) {
+			return +data;
+		}
+	
+		if ( rbrace.test( data ) ) {
+			return JSON.parse( data );
+		}
+	
+		return data;
+	}
+	
 	function dataAttr( elem, key, data ) {
 		var name;
 	
@@ -4241,14 +4331,7 @@
 	
 			if ( typeof data === "string" ) {
 				try {
-					data = data === "true" ? true :
-						data === "false" ? false :
-						data === "null" ? null :
-	
-						// Only convert to a number if it doesn't change the string
-						+data + "" === data ? +data :
-						rbrace.test( data ) ? JSON.parse( data ) :
-						data;
+					data = getData( data );
 				} catch ( e ) {}
 	
 				// Make sure we set the data so it isn't changed later
@@ -4625,7 +4708,7 @@
 			return display;
 		}
 	
-		temp = doc.body.appendChild( doc.createElement( nodeName ) ),
+		temp = doc.body.appendChild( doc.createElement( nodeName ) );
 		display = jQuery.css( temp, "display" );
 	
 		temp.parentNode.removeChild( temp );
@@ -4743,15 +4826,23 @@
 	
 		// Support: IE <=9 - 11 only
 		// Use typeof to avoid zero-argument method invocation on host objects (#15151)
-		var ret = typeof context.getElementsByTagName !== "undefined" ?
-				context.getElementsByTagName( tag || "*" ) :
-				typeof context.querySelectorAll !== "undefined" ?
-					context.querySelectorAll( tag || "*" ) :
-				[];
+		var ret;
 	
-		return tag === undefined || tag && jQuery.nodeName( context, tag ) ?
-			jQuery.merge( [ context ], ret ) :
-			ret;
+		if ( typeof context.getElementsByTagName !== "undefined" ) {
+			ret = context.getElementsByTagName( tag || "*" );
+	
+		} else if ( typeof context.querySelectorAll !== "undefined" ) {
+			ret = context.querySelectorAll( tag || "*" );
+	
+		} else {
+			ret = [];
+		}
+	
+		if ( tag === undefined || tag && jQuery.nodeName( context, tag ) ) {
+			return jQuery.merge( [ context ], ret );
+		}
+	
+		return ret;
 	}
 	
 	
@@ -5025,7 +5116,7 @@
 			}
 	
 			// Handle multiple events separated by a space
-			types = ( types || "" ).match( rnotwhite ) || [ "" ];
+			types = ( types || "" ).match( rnothtmlwhite ) || [ "" ];
 			t = types.length;
 			while ( t-- ) {
 				tmp = rtypenamespace.exec( types[ t ] ) || [];
@@ -5107,7 +5198,7 @@
 			}
 	
 			// Once for each type.namespace in types; type may be omitted
-			types = ( types || "" ).match( rnotwhite ) || [ "" ];
+			types = ( types || "" ).match( rnothtmlwhite ) || [ "" ];
 			t = types.length;
 			while ( t-- ) {
 				tmp = rtypenamespace.exec( types[ t ] ) || [];
@@ -5233,51 +5324,58 @@
 		},
 	
 		handlers: function( event, handlers ) {
-			var i, matches, sel, handleObj,
+			var i, handleObj, sel, matchedHandlers, matchedSelectors,
 				handlerQueue = [],
 				delegateCount = handlers.delegateCount,
 				cur = event.target;
 	
-			// Support: IE <=9
 			// Find delegate handlers
-			// Black-hole SVG <use> instance trees (#13180)
-			//
-			// Support: Firefox <=42
-			// Avoid non-left-click in FF but don't block IE radio events (#3861, gh-2343)
-			if ( delegateCount && cur.nodeType &&
-				( event.type !== "click" || isNaN( event.button ) || event.button < 1 ) ) {
+			if ( delegateCount &&
+	
+				// Support: IE <=9
+				// Black-hole SVG <use> instance trees (trac-13180)
+				cur.nodeType &&
+	
+				// Support: Firefox <=42
+				// Suppress spec-violating clicks indicating a non-primary pointer button (trac-3861)
+				// https://www.w3.org/TR/DOM-Level-3-Events/#event-type-click
+				// Support: IE 11 only
+				// ...but not arrow key "clicks" of radio inputs, which can have `button` -1 (gh-2343)
+				!( event.type === "click" && event.button >= 1 ) ) {
 	
 				for ( ; cur !== this; cur = cur.parentNode || this ) {
 	
 					// Don't check non-elements (#13208)
 					// Don't process clicks on disabled elements (#6911, #8165, #11382, #11764)
-					if ( cur.nodeType === 1 && ( cur.disabled !== true || event.type !== "click" ) ) {
-						matches = [];
+					if ( cur.nodeType === 1 && !( event.type === "click" && cur.disabled === true ) ) {
+						matchedHandlers = [];
+						matchedSelectors = {};
 						for ( i = 0; i < delegateCount; i++ ) {
 							handleObj = handlers[ i ];
 	
 							// Don't conflict with Object.prototype properties (#13203)
 							sel = handleObj.selector + " ";
 	
-							if ( matches[ sel ] === undefined ) {
-								matches[ sel ] = handleObj.needsContext ?
+							if ( matchedSelectors[ sel ] === undefined ) {
+								matchedSelectors[ sel ] = handleObj.needsContext ?
 									jQuery( sel, this ).index( cur ) > -1 :
 									jQuery.find( sel, this, null, [ cur ] ).length;
 							}
-							if ( matches[ sel ] ) {
-								matches.push( handleObj );
+							if ( matchedSelectors[ sel ] ) {
+								matchedHandlers.push( handleObj );
 							}
 						}
-						if ( matches.length ) {
-							handlerQueue.push( { elem: cur, handlers: matches } );
+						if ( matchedHandlers.length ) {
+							handlerQueue.push( { elem: cur, handlers: matchedHandlers } );
 						}
 					}
 				}
 			}
 	
 			// Add the remaining (directly-bound) handlers
+			cur = this;
 			if ( delegateCount < handlers.length ) {
-				handlerQueue.push( { elem: this, handlers: handlers.slice( delegateCount ) } );
+				handlerQueue.push( { elem: cur, handlers: handlers.slice( delegateCount ) } );
 			}
 	
 			return handlerQueue;
@@ -5511,7 +5609,19 @@
 	
 			// Add which for click: 1 === left; 2 === middle; 3 === right
 			if ( !event.which && button !== undefined && rmouseEvent.test( event.type ) ) {
-				return ( button & 1 ? 1 : ( button & 2 ? 3 : ( button & 4 ? 2 : 0 ) ) );
+				if ( button & 1 ) {
+					return 1;
+				}
+	
+				if ( button & 2 ) {
+					return 3;
+				}
+	
+				if ( button & 4 ) {
+					return 2;
+				}
+	
+				return 0;
 			}
 	
 			return event.which;
@@ -6267,15 +6377,17 @@
 	}
 	
 	function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
-		var i = extra === ( isBorderBox ? "border" : "content" ) ?
-	
-			// If we already have the right measurement, avoid augmentation
-			4 :
-	
-			// Otherwise initialize for horizontal or vertical properties
-			name === "width" ? 1 : 0,
-	
+		var i,
 			val = 0;
+	
+		// If we already have the right measurement, avoid augmentation
+		if ( extra === ( isBorderBox ? "border" : "content" ) ) {
+			i = 4;
+	
+		// Otherwise initialize for horizontal or vertical properties
+		} else {
+			i = name === "width" ? 1 : 0;
+		}
 	
 		for ( ; i < 4; i += 2 ) {
 	
@@ -7129,7 +7241,7 @@
 				callback = props;
 				props = [ "*" ];
 			} else {
-				props = props.match( rnotwhite );
+				props = props.match( rnothtmlwhite );
 			}
 	
 			var prop,
@@ -7167,9 +7279,14 @@
 			opt.duration = 0;
 	
 		} else {
-			opt.duration = typeof opt.duration === "number" ?
-				opt.duration : opt.duration in jQuery.fx.speeds ?
-					jQuery.fx.speeds[ opt.duration ] : jQuery.fx.speeds._default;
+			if ( typeof opt.duration !== "number" ) {
+				if ( opt.duration in jQuery.fx.speeds ) {
+					opt.duration = jQuery.fx.speeds[ opt.duration ];
+	
+				} else {
+					opt.duration = jQuery.fx.speeds._default;
+				}
+			}
 		}
 	
 		// Normalize opt.queue - true/undefined/null -> "fx"
@@ -7519,7 +7636,10 @@
 		removeAttr: function( elem, value ) {
 			var name,
 				i = 0,
-				attrNames = value && value.match( rnotwhite );
+	
+				// Attribute names can contain non-HTML whitespace characters
+				// https://html.spec.whatwg.org/multipage/syntax.html#attributes-2
+				attrNames = value && value.match( rnothtmlwhite );
 	
 			if ( attrNames && elem.nodeType === 1 ) {
 				while ( ( name = attrNames[ i++ ] ) ) {
@@ -7626,12 +7746,19 @@
 					// Use proper attribute retrieval(#12072)
 					var tabindex = jQuery.find.attr( elem, "tabindex" );
 	
-					return tabindex ?
-						parseInt( tabindex, 10 ) :
+					if ( tabindex ) {
+						return parseInt( tabindex, 10 );
+					}
+	
+					if (
 						rfocusable.test( elem.nodeName ) ||
-							rclickable.test( elem.nodeName ) && elem.href ?
-								0 :
-								-1;
+						rclickable.test( elem.nodeName ) &&
+						elem.href
+					) {
+						return 0;
+					}
+	
+					return -1;
 				}
 			}
 		},
@@ -7648,9 +7775,14 @@
 	// on the option
 	// The getter ensures a default option is selected
 	// when in an optgroup
+	// eslint rule "no-unused-expressions" is disabled for this code
+	// since it considers such accessions noop
 	if ( !support.optSelected ) {
 		jQuery.propHooks.selected = {
 			get: function( elem ) {
+	
+				/* eslint no-unused-expressions: "off" */
+	
 				var parent = elem.parentNode;
 				if ( parent && parent.parentNode ) {
 					parent.parentNode.selectedIndex;
@@ -7658,6 +7790,9 @@
 				return null;
 			},
 			set: function( elem ) {
+	
+				/* eslint no-unused-expressions: "off" */
+	
 				var parent = elem.parentNode;
 				if ( parent ) {
 					parent.selectedIndex;
@@ -7688,7 +7823,13 @@
 	
 	
 	
-	var rclass = /[\t\r\n\f]/g;
+		// Strip and collapse whitespace according to HTML spec
+		// https://html.spec.whatwg.org/multipage/infrastructure.html#strip-and-collapse-whitespace
+		function stripAndCollapse( value ) {
+			var tokens = value.match( rnothtmlwhite ) || [];
+			return tokens.join( " " );
+		}
+	
 	
 	function getClass( elem ) {
 		return elem.getAttribute && elem.getAttribute( "class" ) || "";
@@ -7706,12 +7847,11 @@
 			}
 	
 			if ( typeof value === "string" && value ) {
-				classes = value.match( rnotwhite ) || [];
+				classes = value.match( rnothtmlwhite ) || [];
 	
 				while ( ( elem = this[ i++ ] ) ) {
 					curValue = getClass( elem );
-					cur = elem.nodeType === 1 &&
-						( " " + curValue + " " ).replace( rclass, " " );
+					cur = elem.nodeType === 1 && ( " " + stripAndCollapse( curValue ) + " " );
 	
 					if ( cur ) {
 						j = 0;
@@ -7722,7 +7862,7 @@
 						}
 	
 						// Only assign if different to avoid unneeded rendering.
-						finalValue = jQuery.trim( cur );
+						finalValue = stripAndCollapse( cur );
 						if ( curValue !== finalValue ) {
 							elem.setAttribute( "class", finalValue );
 						}
@@ -7748,14 +7888,13 @@
 			}
 	
 			if ( typeof value === "string" && value ) {
-				classes = value.match( rnotwhite ) || [];
+				classes = value.match( rnothtmlwhite ) || [];
 	
 				while ( ( elem = this[ i++ ] ) ) {
 					curValue = getClass( elem );
 	
 					// This expression is here for better compressibility (see addClass)
-					cur = elem.nodeType === 1 &&
-						( " " + curValue + " " ).replace( rclass, " " );
+					cur = elem.nodeType === 1 && ( " " + stripAndCollapse( curValue ) + " " );
 	
 					if ( cur ) {
 						j = 0;
@@ -7768,7 +7907,7 @@
 						}
 	
 						// Only assign if different to avoid unneeded rendering.
-						finalValue = jQuery.trim( cur );
+						finalValue = stripAndCollapse( cur );
 						if ( curValue !== finalValue ) {
 							elem.setAttribute( "class", finalValue );
 						}
@@ -7803,7 +7942,7 @@
 					// Toggle individual class names
 					i = 0;
 					self = jQuery( this );
-					classNames = value.match( rnotwhite ) || [];
+					classNames = value.match( rnothtmlwhite ) || [];
 	
 					while ( ( className = classNames[ i++ ] ) ) {
 	
@@ -7846,10 +7985,8 @@
 			className = " " + selector + " ";
 			while ( ( elem = this[ i++ ] ) ) {
 				if ( elem.nodeType === 1 &&
-					( " " + getClass( elem ) + " " ).replace( rclass, " " )
-						.indexOf( className ) > -1
-				) {
-					return true;
+					( " " + stripAndCollapse( getClass( elem ) ) + " " ).indexOf( className ) > -1 ) {
+						return true;
 				}
 			}
 	
@@ -7860,8 +7997,7 @@
 	
 	
 	
-	var rreturn = /\r/g,
-		rspaces = /[\x20\t\r\n\f]+/g;
+	var rreturn = /\r/g;
 	
 	jQuery.fn.extend( {
 		val: function( value ) {
@@ -7882,13 +8018,13 @@
 	
 					ret = elem.value;
 	
-					return typeof ret === "string" ?
+					// Handle most common string cases
+					if ( typeof ret === "string" ) {
+						return ret.replace( rreturn, "" );
+					}
 	
-						// Handle most common string cases
-						ret.replace( rreturn, "" ) :
-	
-						// Handle cases where value is null/undef or number
-						ret == null ? "" : ret;
+					// Handle cases where value is null/undef or number
+					return ret == null ? "" : ret;
 				}
 	
 				return;
@@ -7945,20 +8081,24 @@
 						// option.text throws exceptions (#14686, #14858)
 						// Strip and collapse whitespace
 						// https://html.spec.whatwg.org/#strip-and-collapse-whitespace
-						jQuery.trim( jQuery.text( elem ) ).replace( rspaces, " " );
+						stripAndCollapse( jQuery.text( elem ) );
 				}
 			},
 			select: {
 				get: function( elem ) {
-					var value, option,
+					var value, option, i,
 						options = elem.options,
 						index = elem.selectedIndex,
 						one = elem.type === "select-one",
 						values = one ? null : [],
-						max = one ? index + 1 : options.length,
-						i = index < 0 ?
-							max :
-							one ? index : 0;
+						max = one ? index + 1 : options.length;
+	
+					if ( index < 0 ) {
+						i = max;
+	
+					} else {
+						i = one ? index : 0;
+					}
 	
 					// Loop through all the selected options
 					for ( ; i < max; i++ ) {
@@ -8412,13 +8552,17 @@
 			.map( function( i, elem ) {
 				var val = jQuery( this ).val();
 	
-				return val == null ?
-					null :
-					jQuery.isArray( val ) ?
-						jQuery.map( val, function( val ) {
-							return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
-						} ) :
-						{ name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
+				if ( val == null ) {
+					return null;
+				}
+	
+				if ( jQuery.isArray( val ) ) {
+					return jQuery.map( val, function( val ) {
+						return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
+					} );
+				}
+	
+				return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
 			} ).get();
 		}
 	} );
@@ -8427,7 +8571,7 @@
 	var
 		r20 = /%20/g,
 		rhash = /#.*$/,
-		rts = /([?&])_=[^&]*/,
+		rantiCache = /([?&])_=[^&]*/,
 		rheaders = /^(.*?):[ \t]*([^\r\n]*)$/mg,
 	
 		// #7653, #8125, #8152: local protocol detection
@@ -8473,7 +8617,7 @@
 	
 			var dataType,
 				i = 0,
-				dataTypes = dataTypeExpression.toLowerCase().match( rnotwhite ) || [];
+				dataTypes = dataTypeExpression.toLowerCase().match( rnothtmlwhite ) || [];
 	
 			if ( jQuery.isFunction( func ) ) {
 	
@@ -8941,7 +9085,7 @@
 			s.type = options.method || options.type || s.method || s.type;
 	
 			// Extract dataTypes list
-			s.dataTypes = ( s.dataType || "*" ).toLowerCase().match( rnotwhite ) || [ "" ];
+			s.dataTypes = ( s.dataType || "*" ).toLowerCase().match( rnothtmlwhite ) || [ "" ];
 	
 			// A cross-domain request is in order when the origin doesn't match the current origin.
 			if ( s.crossDomain == null ) {
@@ -9013,9 +9157,9 @@
 					delete s.data;
 				}
 	
-				// Add anti-cache in uncached url if needed
+				// Add or update anti-cache param if needed
 				if ( s.cache === false ) {
-					cacheURL = cacheURL.replace( rts, "" );
+					cacheURL = cacheURL.replace( rantiCache, "$1" );
 					uncached = ( rquery.test( cacheURL ) ? "&" : "?" ) + "_=" + ( nonce++ ) + uncached;
 				}
 	
@@ -9754,7 +9898,7 @@
 			off = url.indexOf( " " );
 	
 		if ( off > -1 ) {
-			selector = jQuery.trim( url.slice( off ) );
+			selector = stripAndCollapse( url.slice( off ) );
 			url = url.slice( 0, off );
 		}
 	
@@ -10146,7 +10290,6 @@
 	
 	
 	
-	
 	var
 	
 		// Map over jQuery in case of overwrite
@@ -10173,6 +10316,9 @@
 	if ( !noGlobal ) {
 		window.jQuery = window.$ = jQuery;
 	}
+	
+	
+	
 	
 	
 	return jQuery;
@@ -10228,9 +10374,9 @@
 
 /***/ },
 /* 6 */
-/*!******************************************!*\
-  !*** ./~/vue/dist/vue.runtime.common.js ***!
-  \******************************************/
+/*!**********************************!*\
+  !*** ./~/vue/dist/vue.common.js ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -11384,7 +11530,7 @@
 	  if (child.mixins) {
 	    for (var i = 0, l = child.mixins.length; i < l; i++) {
 	      var mixin = child.mixins[i];
-	      if (mixin.prototype instanceof Vue$2) {
+	      if (mixin.prototype instanceof Vue$3) {
 	        mixin = mixin.options;
 	      }
 	      parent = mergeOptions(parent, mixin, vm);
@@ -13656,19 +13802,19 @@
 	  return options
 	}
 	
-	function Vue$2 (options) {
+	function Vue$3 (options) {
 	  if (process.env.NODE_ENV !== 'production' &&
-	    !(this instanceof Vue$2)) {
+	    !(this instanceof Vue$3)) {
 	    warn('Vue is a constructor and should be called with the `new` keyword');
 	  }
 	  this._init(options);
 	}
 	
-	initMixin(Vue$2);
-	stateMixin(Vue$2);
-	eventsMixin(Vue$2);
-	lifecycleMixin(Vue$2);
-	renderMixin(Vue$2);
+	initMixin(Vue$3);
+	stateMixin(Vue$3);
+	eventsMixin(Vue$3);
+	lifecycleMixin(Vue$3);
+	renderMixin(Vue$3);
 	
 	/*  */
 	
@@ -13939,13 +14085,13 @@
 	  initAssetRegisters(Vue);
 	}
 	
-	initGlobalAPI(Vue$2);
+	initGlobalAPI(Vue$3);
 	
-	Object.defineProperty(Vue$2.prototype, '$isServer', {
+	Object.defineProperty(Vue$3.prototype, '$isServer', {
 	  get: isServerRendering
 	});
 	
-	Vue$2.version = '2.1.10';
+	Vue$3.version = '2.1.10';
 	
 	/*  */
 	
@@ -14087,7 +14233,7 @@
 	  true
 	);
 	
-	
+	var isPreTag = function (tag) { return tag === 'pre'; };
 	
 	var isReservedTag = function (tag) {
 	  return isHTMLTag(tag) || isSVG(tag)
@@ -16392,20 +16538,20 @@
 	/*  */
 	
 	// install platform specific utils
-	Vue$2.config.isUnknownElement = isUnknownElement;
-	Vue$2.config.isReservedTag = isReservedTag;
-	Vue$2.config.getTagNamespace = getTagNamespace;
-	Vue$2.config.mustUseProp = mustUseProp;
+	Vue$3.config.isUnknownElement = isUnknownElement;
+	Vue$3.config.isReservedTag = isReservedTag;
+	Vue$3.config.getTagNamespace = getTagNamespace;
+	Vue$3.config.mustUseProp = mustUseProp;
 	
 	// install platform runtime directives & components
-	extend(Vue$2.options.directives, platformDirectives);
-	extend(Vue$2.options.components, platformComponents);
+	extend(Vue$3.options.directives, platformDirectives);
+	extend(Vue$3.options.components, platformComponents);
 	
 	// install platform patch function
-	Vue$2.prototype.__patch__ = inBrowser ? patch$1 : noop;
+	Vue$3.prototype.__patch__ = inBrowser ? patch$1 : noop;
 	
 	// wrap mount
-	Vue$2.prototype.$mount = function (
+	Vue$3.prototype.$mount = function (
 	  el,
 	  hydrating
 	) {
@@ -16427,7 +16573,7 @@
 	setTimeout(function () {
 	  if (config.devtools) {
 	    if (devtools) {
-	      devtools.emit('init', Vue$2);
+	      devtools.emit('init', Vue$3);
 	    } else if (
 	      process.env.NODE_ENV !== 'production' &&
 	      inBrowser && !isEdge && /Chrome\/\d+/.test(window.navigator.userAgent)
@@ -16440,15 +16586,2375 @@
 	  }
 	}, 0);
 	
-	module.exports = Vue$2;
+	/*  */
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 7), (function() { return this; }())))
+	// check whether current browser encodes a char inside attribute values
+	function shouldDecode (content, encoded) {
+	  var div = document.createElement('div');
+	  div.innerHTML = "<div a=\"" + content + "\">";
+	  return div.innerHTML.indexOf(encoded) > 0
+	}
+	
+	// #3663
+	// IE encodes newlines inside attribute values while other browsers don't
+	var shouldDecodeNewlines = inBrowser ? shouldDecode('\n', '&#10;') : false;
+	
+	/*  */
+	
+	var decoder;
+	
+	function decode (html) {
+	  decoder = decoder || document.createElement('div');
+	  decoder.innerHTML = html;
+	  return decoder.textContent
+	}
+	
+	/*  */
+	
+	var isUnaryTag = makeMap(
+	  'area,base,br,col,embed,frame,hr,img,input,isindex,keygen,' +
+	  'link,meta,param,source,track,wbr',
+	  true
+	);
+	
+	// Elements that you can, intentionally, leave open
+	// (and which close themselves)
+	var canBeLeftOpenTag = makeMap(
+	  'colgroup,dd,dt,li,options,p,td,tfoot,th,thead,tr,source',
+	  true
+	);
+	
+	// HTML5 tags https://html.spec.whatwg.org/multipage/indices.html#elements-3
+	// Phrasing Content https://html.spec.whatwg.org/multipage/dom.html#phrasing-content
+	var isNonPhrasingTag = makeMap(
+	  'address,article,aside,base,blockquote,body,caption,col,colgroup,dd,' +
+	  'details,dialog,div,dl,dt,fieldset,figcaption,figure,footer,form,' +
+	  'h1,h2,h3,h4,h5,h6,head,header,hgroup,hr,html,legend,li,menuitem,meta,' +
+	  'optgroup,option,param,rp,rt,source,style,summary,tbody,td,tfoot,th,thead,' +
+	  'title,tr,track',
+	  true
+	);
+	
+	/**
+	 * Not type-checking this file because it's mostly vendor code.
+	 */
+	
+	/*!
+	 * HTML Parser By John Resig (ejohn.org)
+	 * Modified by Juriy "kangax" Zaytsev
+	 * Original code by Erik Arvidsson, Mozilla Public License
+	 * http://erik.eae.net/simplehtmlparser/simplehtmlparser.js
+	 */
+	
+	// Regular Expressions for parsing tags and attributes
+	var singleAttrIdentifier = /([^\s"'<>/=]+)/;
+	var singleAttrAssign = /(?:=)/;
+	var singleAttrValues = [
+	  // attr value double quotes
+	  /"([^"]*)"+/.source,
+	  // attr value, single quotes
+	  /'([^']*)'+/.source,
+	  // attr value, no quotes
+	  /([^\s"'=<>`]+)/.source
+	];
+	var attribute = new RegExp(
+	  '^\\s*' + singleAttrIdentifier.source +
+	  '(?:\\s*(' + singleAttrAssign.source + ')' +
+	  '\\s*(?:' + singleAttrValues.join('|') + '))?'
+	);
+	
+	// could use https://www.w3.org/TR/1999/REC-xml-names-19990114/#NT-QName
+	// but for Vue templates we can enforce a simple charset
+	var ncname = '[a-zA-Z_][\\w\\-\\.]*';
+	var qnameCapture = '((?:' + ncname + '\\:)?' + ncname + ')';
+	var startTagOpen = new RegExp('^<' + qnameCapture);
+	var startTagClose = /^\s*(\/?)>/;
+	var endTag = new RegExp('^<\\/' + qnameCapture + '[^>]*>');
+	var doctype = /^<!DOCTYPE [^>]+>/i;
+	var comment = /^<!--/;
+	var conditionalComment = /^<!\[/;
+	
+	var IS_REGEX_CAPTURING_BROKEN = false;
+	'x'.replace(/x(.)?/g, function (m, g) {
+	  IS_REGEX_CAPTURING_BROKEN = g === '';
+	});
+	
+	// Special Elements (can contain anything)
+	var isScriptOrStyle = makeMap('script,style', true);
+	var reCache = {};
+	
+	var ltRE = /&lt;/g;
+	var gtRE = /&gt;/g;
+	var nlRE = /&#10;/g;
+	var ampRE = /&amp;/g;
+	var quoteRE = /&quot;/g;
+	
+	function decodeAttr (value, shouldDecodeNewlines) {
+	  if (shouldDecodeNewlines) {
+	    value = value.replace(nlRE, '\n');
+	  }
+	  return value
+	    .replace(ltRE, '<')
+	    .replace(gtRE, '>')
+	    .replace(ampRE, '&')
+	    .replace(quoteRE, '"')
+	}
+	
+	function parseHTML (html, options) {
+	  var stack = [];
+	  var expectHTML = options.expectHTML;
+	  var isUnaryTag$$1 = options.isUnaryTag || no;
+	  var index = 0;
+	  var last, lastTag;
+	  while (html) {
+	    last = html;
+	    // Make sure we're not in a script or style element
+	    if (!lastTag || !isScriptOrStyle(lastTag)) {
+	      var textEnd = html.indexOf('<');
+	      if (textEnd === 0) {
+	        // Comment:
+	        if (comment.test(html)) {
+	          var commentEnd = html.indexOf('-->');
+	
+	          if (commentEnd >= 0) {
+	            advance(commentEnd + 3);
+	            continue
+	          }
+	        }
+	
+	        // http://en.wikipedia.org/wiki/Conditional_comment#Downlevel-revealed_conditional_comment
+	        if (conditionalComment.test(html)) {
+	          var conditionalEnd = html.indexOf(']>');
+	
+	          if (conditionalEnd >= 0) {
+	            advance(conditionalEnd + 2);
+	            continue
+	          }
+	        }
+	
+	        // Doctype:
+	        var doctypeMatch = html.match(doctype);
+	        if (doctypeMatch) {
+	          advance(doctypeMatch[0].length);
+	          continue
+	        }
+	
+	        // End tag:
+	        var endTagMatch = html.match(endTag);
+	        if (endTagMatch) {
+	          var curIndex = index;
+	          advance(endTagMatch[0].length);
+	          parseEndTag(endTagMatch[1], curIndex, index);
+	          continue
+	        }
+	
+	        // Start tag:
+	        var startTagMatch = parseStartTag();
+	        if (startTagMatch) {
+	          handleStartTag(startTagMatch);
+	          continue
+	        }
+	      }
+	
+	      var text = (void 0), rest$1 = (void 0), next = (void 0);
+	      if (textEnd > 0) {
+	        rest$1 = html.slice(textEnd);
+	        while (
+	          !endTag.test(rest$1) &&
+	          !startTagOpen.test(rest$1) &&
+	          !comment.test(rest$1) &&
+	          !conditionalComment.test(rest$1)
+	        ) {
+	          // < in plain text, be forgiving and treat it as text
+	          next = rest$1.indexOf('<', 1);
+	          if (next < 0) { break }
+	          textEnd += next;
+	          rest$1 = html.slice(textEnd);
+	        }
+	        text = html.substring(0, textEnd);
+	        advance(textEnd);
+	      }
+	
+	      if (textEnd < 0) {
+	        text = html;
+	        html = '';
+	      }
+	
+	      if (options.chars && text) {
+	        options.chars(text);
+	      }
+	    } else {
+	      var stackedTag = lastTag.toLowerCase();
+	      var reStackedTag = reCache[stackedTag] || (reCache[stackedTag] = new RegExp('([\\s\\S]*?)(</' + stackedTag + '[^>]*>)', 'i'));
+	      var endTagLength = 0;
+	      var rest = html.replace(reStackedTag, function (all, text, endTag) {
+	        endTagLength = endTag.length;
+	        if (stackedTag !== 'script' && stackedTag !== 'style' && stackedTag !== 'noscript') {
+	          text = text
+	            .replace(/<!--([\s\S]*?)-->/g, '$1')
+	            .replace(/<!\[CDATA\[([\s\S]*?)]]>/g, '$1');
+	        }
+	        if (options.chars) {
+	          options.chars(text);
+	        }
+	        return ''
+	      });
+	      index += html.length - rest.length;
+	      html = rest;
+	      parseEndTag(stackedTag, index - endTagLength, index);
+	    }
+	
+	    if (html === last && options.chars) {
+	      options.chars(html);
+	      break
+	    }
+	  }
+	
+	  // Clean up any remaining tags
+	  parseEndTag();
+	
+	  function advance (n) {
+	    index += n;
+	    html = html.substring(n);
+	  }
+	
+	  function parseStartTag () {
+	    var start = html.match(startTagOpen);
+	    if (start) {
+	      var match = {
+	        tagName: start[1],
+	        attrs: [],
+	        start: index
+	      };
+	      advance(start[0].length);
+	      var end, attr;
+	      while (!(end = html.match(startTagClose)) && (attr = html.match(attribute))) {
+	        advance(attr[0].length);
+	        match.attrs.push(attr);
+	      }
+	      if (end) {
+	        match.unarySlash = end[1];
+	        advance(end[0].length);
+	        match.end = index;
+	        return match
+	      }
+	    }
+	  }
+	
+	  function handleStartTag (match) {
+	    var tagName = match.tagName;
+	    var unarySlash = match.unarySlash;
+	
+	    if (expectHTML) {
+	      if (lastTag === 'p' && isNonPhrasingTag(tagName)) {
+	        parseEndTag(lastTag);
+	      }
+	      if (canBeLeftOpenTag(tagName) && lastTag === tagName) {
+	        parseEndTag(tagName);
+	      }
+	    }
+	
+	    var unary = isUnaryTag$$1(tagName) || tagName === 'html' && lastTag === 'head' || !!unarySlash;
+	
+	    var l = match.attrs.length;
+	    var attrs = new Array(l);
+	    for (var i = 0; i < l; i++) {
+	      var args = match.attrs[i];
+	      // hackish work around FF bug https://bugzilla.mozilla.org/show_bug.cgi?id=369778
+	      if (IS_REGEX_CAPTURING_BROKEN && args[0].indexOf('""') === -1) {
+	        if (args[3] === '') { delete args[3]; }
+	        if (args[4] === '') { delete args[4]; }
+	        if (args[5] === '') { delete args[5]; }
+	      }
+	      var value = args[3] || args[4] || args[5] || '';
+	      attrs[i] = {
+	        name: args[1],
+	        value: decodeAttr(
+	          value,
+	          options.shouldDecodeNewlines
+	        )
+	      };
+	    }
+	
+	    if (!unary) {
+	      stack.push({ tag: tagName, lowerCasedTag: tagName.toLowerCase(), attrs: attrs });
+	      lastTag = tagName;
+	      unarySlash = '';
+	    }
+	
+	    if (options.start) {
+	      options.start(tagName, attrs, unary, match.start, match.end);
+	    }
+	  }
+	
+	  function parseEndTag (tagName, start, end) {
+	    var pos, lowerCasedTagName;
+	    if (start == null) { start = index; }
+	    if (end == null) { end = index; }
+	
+	    if (tagName) {
+	      lowerCasedTagName = tagName.toLowerCase();
+	    }
+	
+	    // Find the closest opened tag of the same type
+	    if (tagName) {
+	      for (pos = stack.length - 1; pos >= 0; pos--) {
+	        if (stack[pos].lowerCasedTag === lowerCasedTagName) {
+	          break
+	        }
+	      }
+	    } else {
+	      // If no tag name is provided, clean shop
+	      pos = 0;
+	    }
+	
+	    if (pos >= 0) {
+	      // Close all the open elements, up the stack
+	      for (var i = stack.length - 1; i >= pos; i--) {
+	        if (options.end) {
+	          options.end(stack[i].tag, start, end);
+	        }
+	      }
+	
+	      // Remove the open elements from the stack
+	      stack.length = pos;
+	      lastTag = pos && stack[pos - 1].tag;
+	    } else if (lowerCasedTagName === 'br') {
+	      if (options.start) {
+	        options.start(tagName, [], true, start, end);
+	      }
+	    } else if (lowerCasedTagName === 'p') {
+	      if (options.start) {
+	        options.start(tagName, [], false, start, end);
+	      }
+	      if (options.end) {
+	        options.end(tagName, start, end);
+	      }
+	    }
+	  }
+	}
+	
+	/*  */
+	
+	function parseFilters (exp) {
+	  var inSingle = false;
+	  var inDouble = false;
+	  var inTemplateString = false;
+	  var inRegex = false;
+	  var curly = 0;
+	  var square = 0;
+	  var paren = 0;
+	  var lastFilterIndex = 0;
+	  var c, prev, i, expression, filters;
+	
+	  for (i = 0; i < exp.length; i++) {
+	    prev = c;
+	    c = exp.charCodeAt(i);
+	    if (inSingle) {
+	      if (c === 0x27 && prev !== 0x5C) { inSingle = false; }
+	    } else if (inDouble) {
+	      if (c === 0x22 && prev !== 0x5C) { inDouble = false; }
+	    } else if (inTemplateString) {
+	      if (c === 0x60 && prev !== 0x5C) { inTemplateString = false; }
+	    } else if (inRegex) {
+	      if (c === 0x2f && prev !== 0x5C) { inRegex = false; }
+	    } else if (
+	      c === 0x7C && // pipe
+	      exp.charCodeAt(i + 1) !== 0x7C &&
+	      exp.charCodeAt(i - 1) !== 0x7C &&
+	      !curly && !square && !paren
+	    ) {
+	      if (expression === undefined) {
+	        // first filter, end of expression
+	        lastFilterIndex = i + 1;
+	        expression = exp.slice(0, i).trim();
+	      } else {
+	        pushFilter();
+	      }
+	    } else {
+	      switch (c) {
+	        case 0x22: inDouble = true; break         // "
+	        case 0x27: inSingle = true; break         // '
+	        case 0x60: inTemplateString = true; break // `
+	        case 0x28: paren++; break                 // (
+	        case 0x29: paren--; break                 // )
+	        case 0x5B: square++; break                // [
+	        case 0x5D: square--; break                // ]
+	        case 0x7B: curly++; break                 // {
+	        case 0x7D: curly--; break                 // }
+	      }
+	      if (c === 0x2f) { // /
+	        var j = i - 1;
+	        var p = (void 0);
+	        // find first non-whitespace prev char
+	        for (; j >= 0; j--) {
+	          p = exp.charAt(j);
+	          if (p !== ' ') { break }
+	        }
+	        if (!p || !/[\w$]/.test(p)) {
+	          inRegex = true;
+	        }
+	      }
+	    }
+	  }
+	
+	  if (expression === undefined) {
+	    expression = exp.slice(0, i).trim();
+	  } else if (lastFilterIndex !== 0) {
+	    pushFilter();
+	  }
+	
+	  function pushFilter () {
+	    (filters || (filters = [])).push(exp.slice(lastFilterIndex, i).trim());
+	    lastFilterIndex = i + 1;
+	  }
+	
+	  if (filters) {
+	    for (i = 0; i < filters.length; i++) {
+	      expression = wrapFilter(expression, filters[i]);
+	    }
+	  }
+	
+	  return expression
+	}
+	
+	function wrapFilter (exp, filter) {
+	  var i = filter.indexOf('(');
+	  if (i < 0) {
+	    // _f: resolveFilter
+	    return ("_f(\"" + filter + "\")(" + exp + ")")
+	  } else {
+	    var name = filter.slice(0, i);
+	    var args = filter.slice(i + 1);
+	    return ("_f(\"" + name + "\")(" + exp + "," + args)
+	  }
+	}
+	
+	/*  */
+	
+	var defaultTagRE = /\{\{((?:.|\n)+?)\}\}/g;
+	var regexEscapeRE = /[-.*+?^${}()|[\]\/\\]/g;
+	
+	var buildRegex = cached(function (delimiters) {
+	  var open = delimiters[0].replace(regexEscapeRE, '\\$&');
+	  var close = delimiters[1].replace(regexEscapeRE, '\\$&');
+	  return new RegExp(open + '((?:.|\\n)+?)' + close, 'g')
+	});
+	
+	function parseText (
+	  text,
+	  delimiters
+	) {
+	  var tagRE = delimiters ? buildRegex(delimiters) : defaultTagRE;
+	  if (!tagRE.test(text)) {
+	    return
+	  }
+	  var tokens = [];
+	  var lastIndex = tagRE.lastIndex = 0;
+	  var match, index;
+	  while ((match = tagRE.exec(text))) {
+	    index = match.index;
+	    // push text token
+	    if (index > lastIndex) {
+	      tokens.push(JSON.stringify(text.slice(lastIndex, index)));
+	    }
+	    // tag token
+	    var exp = parseFilters(match[1].trim());
+	    tokens.push(("_s(" + exp + ")"));
+	    lastIndex = index + match[0].length;
+	  }
+	  if (lastIndex < text.length) {
+	    tokens.push(JSON.stringify(text.slice(lastIndex)));
+	  }
+	  return tokens.join('+')
+	}
+	
+	/*  */
+	
+	function baseWarn (msg) {
+	  console.error(("[Vue parser]: " + msg));
+	}
+	
+	function pluckModuleFunction (
+	  modules,
+	  key
+	) {
+	  return modules
+	    ? modules.map(function (m) { return m[key]; }).filter(function (_) { return _; })
+	    : []
+	}
+	
+	function addProp (el, name, value) {
+	  (el.props || (el.props = [])).push({ name: name, value: value });
+	}
+	
+	function addAttr (el, name, value) {
+	  (el.attrs || (el.attrs = [])).push({ name: name, value: value });
+	}
+	
+	function addDirective (
+	  el,
+	  name,
+	  rawName,
+	  value,
+	  arg,
+	  modifiers
+	) {
+	  (el.directives || (el.directives = [])).push({ name: name, rawName: rawName, value: value, arg: arg, modifiers: modifiers });
+	}
+	
+	function addHandler (
+	  el,
+	  name,
+	  value,
+	  modifiers,
+	  important
+	) {
+	  // check capture modifier
+	  if (modifiers && modifiers.capture) {
+	    delete modifiers.capture;
+	    name = '!' + name; // mark the event as captured
+	  }
+	  if (modifiers && modifiers.once) {
+	    delete modifiers.once;
+	    name = '~' + name; // mark the event as once
+	  }
+	  var events;
+	  if (modifiers && modifiers.native) {
+	    delete modifiers.native;
+	    events = el.nativeEvents || (el.nativeEvents = {});
+	  } else {
+	    events = el.events || (el.events = {});
+	  }
+	  var newHandler = { value: value, modifiers: modifiers };
+	  var handlers = events[name];
+	  /* istanbul ignore if */
+	  if (Array.isArray(handlers)) {
+	    important ? handlers.unshift(newHandler) : handlers.push(newHandler);
+	  } else if (handlers) {
+	    events[name] = important ? [newHandler, handlers] : [handlers, newHandler];
+	  } else {
+	    events[name] = newHandler;
+	  }
+	}
+	
+	function getBindingAttr (
+	  el,
+	  name,
+	  getStatic
+	) {
+	  var dynamicValue =
+	    getAndRemoveAttr(el, ':' + name) ||
+	    getAndRemoveAttr(el, 'v-bind:' + name);
+	  if (dynamicValue != null) {
+	    return parseFilters(dynamicValue)
+	  } else if (getStatic !== false) {
+	    var staticValue = getAndRemoveAttr(el, name);
+	    if (staticValue != null) {
+	      return JSON.stringify(staticValue)
+	    }
+	  }
+	}
+	
+	function getAndRemoveAttr (el, name) {
+	  var val;
+	  if ((val = el.attrsMap[name]) != null) {
+	    var list = el.attrsList;
+	    for (var i = 0, l = list.length; i < l; i++) {
+	      if (list[i].name === name) {
+	        list.splice(i, 1);
+	        break
+	      }
+	    }
+	  }
+	  return val
+	}
+	
+	var len;
+	var str;
+	var chr;
+	var index$1;
+	var expressionPos;
+	var expressionEndPos;
+	
+	/**
+	 * parse directive model to do the array update transform. a[idx] = val => $$a.splice($$idx, 1, val)
+	 *
+	 * for loop possible cases:
+	 *
+	 * - test
+	 * - test[idx]
+	 * - test[test1[idx]]
+	 * - test["a"][idx]
+	 * - xxx.test[a[a].test1[idx]]
+	 * - test.xxx.a["asa"][test1[idx]]
+	 *
+	 */
+	
+	function parseModel (val) {
+	  str = val;
+	  len = str.length;
+	  index$1 = expressionPos = expressionEndPos = 0;
+	
+	  if (val.indexOf('[') < 0 || val.lastIndexOf(']') < len - 1) {
+	    return {
+	      exp: val,
+	      idx: null
+	    }
+	  }
+	
+	  while (!eof()) {
+	    chr = next();
+	    /* istanbul ignore if */
+	    if (isStringStart(chr)) {
+	      parseString(chr);
+	    } else if (chr === 0x5B) {
+	      parseBracket(chr);
+	    }
+	  }
+	
+	  return {
+	    exp: val.substring(0, expressionPos),
+	    idx: val.substring(expressionPos + 1, expressionEndPos)
+	  }
+	}
+	
+	function next () {
+	  return str.charCodeAt(++index$1)
+	}
+	
+	function eof () {
+	  return index$1 >= len
+	}
+	
+	function isStringStart (chr) {
+	  return chr === 0x22 || chr === 0x27
+	}
+	
+	function parseBracket (chr) {
+	  var inBracket = 1;
+	  expressionPos = index$1;
+	  while (!eof()) {
+	    chr = next();
+	    if (isStringStart(chr)) {
+	      parseString(chr);
+	      continue
+	    }
+	    if (chr === 0x5B) { inBracket++; }
+	    if (chr === 0x5D) { inBracket--; }
+	    if (inBracket === 0) {
+	      expressionEndPos = index$1;
+	      break
+	    }
+	  }
+	}
+	
+	function parseString (chr) {
+	  var stringQuote = chr;
+	  while (!eof()) {
+	    chr = next();
+	    if (chr === stringQuote) {
+	      break
+	    }
+	  }
+	}
+	
+	/*  */
+	
+	var dirRE = /^v-|^@|^:/;
+	var forAliasRE = /(.*?)\s+(?:in|of)\s+(.*)/;
+	var forIteratorRE = /\((\{[^}]*\}|[^,]*),([^,]*)(?:,([^,]*))?\)/;
+	var bindRE = /^:|^v-bind:/;
+	var onRE = /^@|^v-on:/;
+	var argRE = /:(.*)$/;
+	var modifierRE = /\.[^.]+/g;
+	
+	var decodeHTMLCached = cached(decode);
+	
+	// configurable state
+	var warn$1;
+	var platformGetTagNamespace;
+	var platformMustUseProp;
+	var platformIsPreTag;
+	var preTransforms;
+	var transforms;
+	var postTransforms;
+	var delimiters;
+	
+	/**
+	 * Convert HTML string to AST.
+	 */
+	function parse (
+	  template,
+	  options
+	) {
+	  warn$1 = options.warn || baseWarn;
+	  platformGetTagNamespace = options.getTagNamespace || no;
+	  platformMustUseProp = options.mustUseProp || no;
+	  platformIsPreTag = options.isPreTag || no;
+	  preTransforms = pluckModuleFunction(options.modules, 'preTransformNode');
+	  transforms = pluckModuleFunction(options.modules, 'transformNode');
+	  postTransforms = pluckModuleFunction(options.modules, 'postTransformNode');
+	  delimiters = options.delimiters;
+	  var stack = [];
+	  var preserveWhitespace = options.preserveWhitespace !== false;
+	  var root;
+	  var currentParent;
+	  var inVPre = false;
+	  var inPre = false;
+	  var warned = false;
+	  parseHTML(template, {
+	    expectHTML: options.expectHTML,
+	    isUnaryTag: options.isUnaryTag,
+	    shouldDecodeNewlines: options.shouldDecodeNewlines,
+	    start: function start (tag, attrs, unary) {
+	      // check namespace.
+	      // inherit parent ns if there is one
+	      var ns = (currentParent && currentParent.ns) || platformGetTagNamespace(tag);
+	
+	      // handle IE svg bug
+	      /* istanbul ignore if */
+	      if (isIE && ns === 'svg') {
+	        attrs = guardIESVGBug(attrs);
+	      }
+	
+	      var element = {
+	        type: 1,
+	        tag: tag,
+	        attrsList: attrs,
+	        attrsMap: makeAttrsMap(attrs),
+	        parent: currentParent,
+	        children: []
+	      };
+	      if (ns) {
+	        element.ns = ns;
+	      }
+	
+	      if (isForbiddenTag(element) && !isServerRendering()) {
+	        element.forbidden = true;
+	        process.env.NODE_ENV !== 'production' && warn$1(
+	          'Templates should only be responsible for mapping the state to the ' +
+	          'UI. Avoid placing tags with side-effects in your templates, such as ' +
+	          "<" + tag + ">" + ', as they will not be parsed.'
+	        );
+	      }
+	
+	      // apply pre-transforms
+	      for (var i = 0; i < preTransforms.length; i++) {
+	        preTransforms[i](element, options);
+	      }
+	
+	      if (!inVPre) {
+	        processPre(element);
+	        if (element.pre) {
+	          inVPre = true;
+	        }
+	      }
+	      if (platformIsPreTag(element.tag)) {
+	        inPre = true;
+	      }
+	      if (inVPre) {
+	        processRawAttrs(element);
+	      } else {
+	        processFor(element);
+	        processIf(element);
+	        processOnce(element);
+	        processKey(element);
+	
+	        // determine whether this is a plain element after
+	        // removing structural attributes
+	        element.plain = !element.key && !attrs.length;
+	
+	        processRef(element);
+	        processSlot(element);
+	        processComponent(element);
+	        for (var i$1 = 0; i$1 < transforms.length; i$1++) {
+	          transforms[i$1](element, options);
+	        }
+	        processAttrs(element);
+	      }
+	
+	      function checkRootConstraints (el) {
+	        if (process.env.NODE_ENV !== 'production' && !warned) {
+	          if (el.tag === 'slot' || el.tag === 'template') {
+	            warned = true;
+	            warn$1(
+	              "Cannot use <" + (el.tag) + "> as component root element because it may " +
+	              'contain multiple nodes:\n' + template
+	            );
+	          }
+	          if (el.attrsMap.hasOwnProperty('v-for')) {
+	            warned = true;
+	            warn$1(
+	              'Cannot use v-for on stateful component root element because ' +
+	              'it renders multiple elements:\n' + template
+	            );
+	          }
+	        }
+	      }
+	
+	      // tree management
+	      if (!root) {
+	        root = element;
+	        checkRootConstraints(root);
+	      } else if (!stack.length) {
+	        // allow root elements with v-if, v-else-if and v-else
+	        if (root.if && (element.elseif || element.else)) {
+	          checkRootConstraints(element);
+	          addIfCondition(root, {
+	            exp: element.elseif,
+	            block: element
+	          });
+	        } else if (process.env.NODE_ENV !== 'production' && !warned) {
+	          warned = true;
+	          warn$1(
+	            "Component template should contain exactly one root element:" +
+	            "\n\n" + template + "\n\n" +
+	            "If you are using v-if on multiple elements, " +
+	            "use v-else-if to chain them instead."
+	          );
+	        }
+	      }
+	      if (currentParent && !element.forbidden) {
+	        if (element.elseif || element.else) {
+	          processIfConditions(element, currentParent);
+	        } else if (element.slotScope) { // scoped slot
+	          currentParent.plain = false;
+	          var name = element.slotTarget || 'default';(currentParent.scopedSlots || (currentParent.scopedSlots = {}))[name] = element;
+	        } else {
+	          currentParent.children.push(element);
+	          element.parent = currentParent;
+	        }
+	      }
+	      if (!unary) {
+	        currentParent = element;
+	        stack.push(element);
+	      }
+	      // apply post-transforms
+	      for (var i$2 = 0; i$2 < postTransforms.length; i$2++) {
+	        postTransforms[i$2](element, options);
+	      }
+	    },
+	
+	    end: function end () {
+	      // remove trailing whitespace
+	      var element = stack[stack.length - 1];
+	      var lastNode = element.children[element.children.length - 1];
+	      if (lastNode && lastNode.type === 3 && lastNode.text === ' ') {
+	        element.children.pop();
+	      }
+	      // pop stack
+	      stack.length -= 1;
+	      currentParent = stack[stack.length - 1];
+	      // check pre state
+	      if (element.pre) {
+	        inVPre = false;
+	      }
+	      if (platformIsPreTag(element.tag)) {
+	        inPre = false;
+	      }
+	    },
+	
+	    chars: function chars (text) {
+	      if (!currentParent) {
+	        if (process.env.NODE_ENV !== 'production' && !warned && text === template) {
+	          warned = true;
+	          warn$1(
+	            'Component template requires a root element, rather than just text:\n\n' + template
+	          );
+	        }
+	        return
+	      }
+	      // IE textarea placeholder bug
+	      /* istanbul ignore if */
+	      if (isIE &&
+	          currentParent.tag === 'textarea' &&
+	          currentParent.attrsMap.placeholder === text) {
+	        return
+	      }
+	      var children = currentParent.children;
+	      text = inPre || text.trim()
+	        ? decodeHTMLCached(text)
+	        // only preserve whitespace if its not right after a starting tag
+	        : preserveWhitespace && children.length ? ' ' : '';
+	      if (text) {
+	        var expression;
+	        if (!inVPre && text !== ' ' && (expression = parseText(text, delimiters))) {
+	          children.push({
+	            type: 2,
+	            expression: expression,
+	            text: text
+	          });
+	        } else if (text !== ' ' || children[children.length - 1].text !== ' ') {
+	          currentParent.children.push({
+	            type: 3,
+	            text: text
+	          });
+	        }
+	      }
+	    }
+	  });
+	  return root
+	}
+	
+	function processPre (el) {
+	  if (getAndRemoveAttr(el, 'v-pre') != null) {
+	    el.pre = true;
+	  }
+	}
+	
+	function processRawAttrs (el) {
+	  var l = el.attrsList.length;
+	  if (l) {
+	    var attrs = el.attrs = new Array(l);
+	    for (var i = 0; i < l; i++) {
+	      attrs[i] = {
+	        name: el.attrsList[i].name,
+	        value: JSON.stringify(el.attrsList[i].value)
+	      };
+	    }
+	  } else if (!el.pre) {
+	    // non root node in pre blocks with no attributes
+	    el.plain = true;
+	  }
+	}
+	
+	function processKey (el) {
+	  var exp = getBindingAttr(el, 'key');
+	  if (exp) {
+	    if (process.env.NODE_ENV !== 'production' && el.tag === 'template') {
+	      warn$1("<template> cannot be keyed. Place the key on real elements instead.");
+	    }
+	    el.key = exp;
+	  }
+	}
+	
+	function processRef (el) {
+	  var ref = getBindingAttr(el, 'ref');
+	  if (ref) {
+	    el.ref = ref;
+	    el.refInFor = checkInFor(el);
+	  }
+	}
+	
+	function processFor (el) {
+	  var exp;
+	  if ((exp = getAndRemoveAttr(el, 'v-for'))) {
+	    var inMatch = exp.match(forAliasRE);
+	    if (!inMatch) {
+	      process.env.NODE_ENV !== 'production' && warn$1(
+	        ("Invalid v-for expression: " + exp)
+	      );
+	      return
+	    }
+	    el.for = inMatch[2].trim();
+	    var alias = inMatch[1].trim();
+	    var iteratorMatch = alias.match(forIteratorRE);
+	    if (iteratorMatch) {
+	      el.alias = iteratorMatch[1].trim();
+	      el.iterator1 = iteratorMatch[2].trim();
+	      if (iteratorMatch[3]) {
+	        el.iterator2 = iteratorMatch[3].trim();
+	      }
+	    } else {
+	      el.alias = alias;
+	    }
+	  }
+	}
+	
+	function processIf (el) {
+	  var exp = getAndRemoveAttr(el, 'v-if');
+	  if (exp) {
+	    el.if = exp;
+	    addIfCondition(el, {
+	      exp: exp,
+	      block: el
+	    });
+	  } else {
+	    if (getAndRemoveAttr(el, 'v-else') != null) {
+	      el.else = true;
+	    }
+	    var elseif = getAndRemoveAttr(el, 'v-else-if');
+	    if (elseif) {
+	      el.elseif = elseif;
+	    }
+	  }
+	}
+	
+	function processIfConditions (el, parent) {
+	  var prev = findPrevElement(parent.children);
+	  if (prev && prev.if) {
+	    addIfCondition(prev, {
+	      exp: el.elseif,
+	      block: el
+	    });
+	  } else if (process.env.NODE_ENV !== 'production') {
+	    warn$1(
+	      "v-" + (el.elseif ? ('else-if="' + el.elseif + '"') : 'else') + " " +
+	      "used on element <" + (el.tag) + "> without corresponding v-if."
+	    );
+	  }
+	}
+	
+	function findPrevElement (children) {
+	  var i = children.length;
+	  while (i--) {
+	    if (children[i].type === 1) {
+	      return children[i]
+	    } else {
+	      if (process.env.NODE_ENV !== 'production' && children[i].text !== ' ') {
+	        warn$1(
+	          "text \"" + (children[i].text.trim()) + "\" between v-if and v-else(-if) " +
+	          "will be ignored."
+	        );
+	      }
+	      children.pop();
+	    }
+	  }
+	}
+	
+	function addIfCondition (el, condition) {
+	  if (!el.ifConditions) {
+	    el.ifConditions = [];
+	  }
+	  el.ifConditions.push(condition);
+	}
+	
+	function processOnce (el) {
+	  var once = getAndRemoveAttr(el, 'v-once');
+	  if (once != null) {
+	    el.once = true;
+	  }
+	}
+	
+	function processSlot (el) {
+	  if (el.tag === 'slot') {
+	    el.slotName = getBindingAttr(el, 'name');
+	    if (process.env.NODE_ENV !== 'production' && el.key) {
+	      warn$1(
+	        "`key` does not work on <slot> because slots are abstract outlets " +
+	        "and can possibly expand into multiple elements. " +
+	        "Use the key on a wrapping element instead."
+	      );
+	    }
+	  } else {
+	    var slotTarget = getBindingAttr(el, 'slot');
+	    if (slotTarget) {
+	      el.slotTarget = slotTarget === '""' ? '"default"' : slotTarget;
+	    }
+	    if (el.tag === 'template') {
+	      el.slotScope = getAndRemoveAttr(el, 'scope');
+	    }
+	  }
+	}
+	
+	function processComponent (el) {
+	  var binding;
+	  if ((binding = getBindingAttr(el, 'is'))) {
+	    el.component = binding;
+	  }
+	  if (getAndRemoveAttr(el, 'inline-template') != null) {
+	    el.inlineTemplate = true;
+	  }
+	}
+	
+	function processAttrs (el) {
+	  var list = el.attrsList;
+	  var i, l, name, rawName, value, arg, modifiers, isProp;
+	  for (i = 0, l = list.length; i < l; i++) {
+	    name = rawName = list[i].name;
+	    value = list[i].value;
+	    if (dirRE.test(name)) {
+	      // mark element as dynamic
+	      el.hasBindings = true;
+	      // modifiers
+	      modifiers = parseModifiers(name);
+	      if (modifiers) {
+	        name = name.replace(modifierRE, '');
+	      }
+	      if (bindRE.test(name)) { // v-bind
+	        name = name.replace(bindRE, '');
+	        value = parseFilters(value);
+	        isProp = false;
+	        if (modifiers) {
+	          if (modifiers.prop) {
+	            isProp = true;
+	            name = camelize(name);
+	            if (name === 'innerHtml') { name = 'innerHTML'; }
+	          }
+	          if (modifiers.camel) {
+	            name = camelize(name);
+	          }
+	        }
+	        if (isProp || platformMustUseProp(el.tag, el.attrsMap.type, name)) {
+	          addProp(el, name, value);
+	        } else {
+	          addAttr(el, name, value);
+	        }
+	      } else if (onRE.test(name)) { // v-on
+	        name = name.replace(onRE, '');
+	        addHandler(el, name, value, modifiers);
+	      } else { // normal directives
+	        name = name.replace(dirRE, '');
+	        // parse arg
+	        var argMatch = name.match(argRE);
+	        if (argMatch && (arg = argMatch[1])) {
+	          name = name.slice(0, -(arg.length + 1));
+	        }
+	        addDirective(el, name, rawName, value, arg, modifiers);
+	        if (process.env.NODE_ENV !== 'production' && name === 'model') {
+	          checkForAliasModel(el, value);
+	        }
+	      }
+	    } else {
+	      // literal attribute
+	      if (process.env.NODE_ENV !== 'production') {
+	        var expression = parseText(value, delimiters);
+	        if (expression) {
+	          warn$1(
+	            name + "=\"" + value + "\": " +
+	            'Interpolation inside attributes has been removed. ' +
+	            'Use v-bind or the colon shorthand instead. For example, ' +
+	            'instead of <div id="{{ val }}">, use <div :id="val">.'
+	          );
+	        }
+	      }
+	      addAttr(el, name, JSON.stringify(value));
+	    }
+	  }
+	}
+	
+	function checkInFor (el) {
+	  var parent = el;
+	  while (parent) {
+	    if (parent.for !== undefined) {
+	      return true
+	    }
+	    parent = parent.parent;
+	  }
+	  return false
+	}
+	
+	function parseModifiers (name) {
+	  var match = name.match(modifierRE);
+	  if (match) {
+	    var ret = {};
+	    match.forEach(function (m) { ret[m.slice(1)] = true; });
+	    return ret
+	  }
+	}
+	
+	function makeAttrsMap (attrs) {
+	  var map = {};
+	  for (var i = 0, l = attrs.length; i < l; i++) {
+	    if (process.env.NODE_ENV !== 'production' && map[attrs[i].name] && !isIE) {
+	      warn$1('duplicate attribute: ' + attrs[i].name);
+	    }
+	    map[attrs[i].name] = attrs[i].value;
+	  }
+	  return map
+	}
+	
+	function isForbiddenTag (el) {
+	  return (
+	    el.tag === 'style' ||
+	    (el.tag === 'script' && (
+	      !el.attrsMap.type ||
+	      el.attrsMap.type === 'text/javascript'
+	    ))
+	  )
+	}
+	
+	var ieNSBug = /^xmlns:NS\d+/;
+	var ieNSPrefix = /^NS\d+:/;
+	
+	/* istanbul ignore next */
+	function guardIESVGBug (attrs) {
+	  var res = [];
+	  for (var i = 0; i < attrs.length; i++) {
+	    var attr = attrs[i];
+	    if (!ieNSBug.test(attr.name)) {
+	      attr.name = attr.name.replace(ieNSPrefix, '');
+	      res.push(attr);
+	    }
+	  }
+	  return res
+	}
+	
+	function checkForAliasModel (el, value) {
+	  var _el = el;
+	  while (_el) {
+	    if (_el.for && _el.alias === value) {
+	      warn$1(
+	        "<" + (el.tag) + " v-model=\"" + value + "\">: " +
+	        "You are binding v-model directly to a v-for iteration alias. " +
+	        "This will not be able to modify the v-for source array because " +
+	        "writing to the alias is like modifying a function local variable. " +
+	        "Consider using an array of objects and use v-model on an object property instead."
+	      );
+	    }
+	    _el = _el.parent;
+	  }
+	}
+	
+	/*  */
+	
+	var isStaticKey;
+	var isPlatformReservedTag;
+	
+	var genStaticKeysCached = cached(genStaticKeys$1);
+	
+	/**
+	 * Goal of the optimizer: walk the generated template AST tree
+	 * and detect sub-trees that are purely static, i.e. parts of
+	 * the DOM that never needs to change.
+	 *
+	 * Once we detect these sub-trees, we can:
+	 *
+	 * 1. Hoist them into constants, so that we no longer need to
+	 *    create fresh nodes for them on each re-render;
+	 * 2. Completely skip them in the patching process.
+	 */
+	function optimize (root, options) {
+	  if (!root) { return }
+	  isStaticKey = genStaticKeysCached(options.staticKeys || '');
+	  isPlatformReservedTag = options.isReservedTag || no;
+	  // first pass: mark all non-static nodes.
+	  markStatic(root);
+	  // second pass: mark static roots.
+	  markStaticRoots(root, false);
+	}
+	
+	function genStaticKeys$1 (keys) {
+	  return makeMap(
+	    'type,tag,attrsList,attrsMap,plain,parent,children,attrs' +
+	    (keys ? ',' + keys : '')
+	  )
+	}
+	
+	function markStatic (node) {
+	  node.static = isStatic(node);
+	  if (node.type === 1) {
+	    // do not make component slot content static. this avoids
+	    // 1. components not able to mutate slot nodes
+	    // 2. static slot content fails for hot-reloading
+	    if (
+	      !isPlatformReservedTag(node.tag) &&
+	      node.tag !== 'slot' &&
+	      node.attrsMap['inline-template'] == null
+	    ) {
+	      return
+	    }
+	    for (var i = 0, l = node.children.length; i < l; i++) {
+	      var child = node.children[i];
+	      markStatic(child);
+	      if (!child.static) {
+	        node.static = false;
+	      }
+	    }
+	  }
+	}
+	
+	function markStaticRoots (node, isInFor) {
+	  if (node.type === 1) {
+	    if (node.static || node.once) {
+	      node.staticInFor = isInFor;
+	    }
+	    // For a node to qualify as a static root, it should have children that
+	    // are not just static text. Otherwise the cost of hoisting out will
+	    // outweigh the benefits and it's better off to just always render it fresh.
+	    if (node.static && node.children.length && !(
+	      node.children.length === 1 &&
+	      node.children[0].type === 3
+	    )) {
+	      node.staticRoot = true;
+	      return
+	    } else {
+	      node.staticRoot = false;
+	    }
+	    if (node.children) {
+	      for (var i = 0, l = node.children.length; i < l; i++) {
+	        markStaticRoots(node.children[i], isInFor || !!node.for);
+	      }
+	    }
+	    if (node.ifConditions) {
+	      walkThroughConditionsBlocks(node.ifConditions, isInFor);
+	    }
+	  }
+	}
+	
+	function walkThroughConditionsBlocks (conditionBlocks, isInFor) {
+	  for (var i = 1, len = conditionBlocks.length; i < len; i++) {
+	    markStaticRoots(conditionBlocks[i].block, isInFor);
+	  }
+	}
+	
+	function isStatic (node) {
+	  if (node.type === 2) { // expression
+	    return false
+	  }
+	  if (node.type === 3) { // text
+	    return true
+	  }
+	  return !!(node.pre || (
+	    !node.hasBindings && // no dynamic bindings
+	    !node.if && !node.for && // not v-if or v-for or v-else
+	    !isBuiltInTag(node.tag) && // not a built-in
+	    isPlatformReservedTag(node.tag) && // not a component
+	    !isDirectChildOfTemplateFor(node) &&
+	    Object.keys(node).every(isStaticKey)
+	  ))
+	}
+	
+	function isDirectChildOfTemplateFor (node) {
+	  while (node.parent) {
+	    node = node.parent;
+	    if (node.tag !== 'template') {
+	      return false
+	    }
+	    if (node.for) {
+	      return true
+	    }
+	  }
+	  return false
+	}
+	
+	/*  */
+	
+	var fnExpRE = /^\s*([\w$_]+|\([^)]*?\))\s*=>|^function\s*\(/;
+	var simplePathRE = /^\s*[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['.*?']|\[".*?"]|\[\d+]|\[[A-Za-z_$][\w$]*])*\s*$/;
+	
+	// keyCode aliases
+	var keyCodes = {
+	  esc: 27,
+	  tab: 9,
+	  enter: 13,
+	  space: 32,
+	  up: 38,
+	  left: 37,
+	  right: 39,
+	  down: 40,
+	  'delete': [8, 46]
+	};
+	
+	var modifierCode = {
+	  stop: '$event.stopPropagation();',
+	  prevent: '$event.preventDefault();',
+	  self: 'if($event.target !== $event.currentTarget)return;',
+	  ctrl: 'if(!$event.ctrlKey)return;',
+	  shift: 'if(!$event.shiftKey)return;',
+	  alt: 'if(!$event.altKey)return;',
+	  meta: 'if(!$event.metaKey)return;'
+	};
+	
+	function genHandlers (events, native) {
+	  var res = native ? 'nativeOn:{' : 'on:{';
+	  for (var name in events) {
+	    res += "\"" + name + "\":" + (genHandler(name, events[name])) + ",";
+	  }
+	  return res.slice(0, -1) + '}'
+	}
+	
+	function genHandler (
+	  name,
+	  handler
+	) {
+	  if (!handler) {
+	    return 'function(){}'
+	  } else if (Array.isArray(handler)) {
+	    return ("[" + (handler.map(function (handler) { return genHandler(name, handler); }).join(',')) + "]")
+	  } else if (!handler.modifiers) {
+	    return fnExpRE.test(handler.value) || simplePathRE.test(handler.value)
+	      ? handler.value
+	      : ("function($event){" + (handler.value) + "}")
+	  } else {
+	    var code = '';
+	    var keys = [];
+	    for (var key in handler.modifiers) {
+	      if (modifierCode[key]) {
+	        code += modifierCode[key];
+	      } else {
+	        keys.push(key);
+	      }
+	    }
+	    if (keys.length) {
+	      code = genKeyFilter(keys) + code;
+	    }
+	    var handlerCode = simplePathRE.test(handler.value)
+	      ? handler.value + '($event)'
+	      : handler.value;
+	    return 'function($event){' + code + handlerCode + '}'
+	  }
+	}
+	
+	function genKeyFilter (keys) {
+	  return ("if(" + (keys.map(genFilterCode).join('&&')) + ")return;")
+	}
+	
+	function genFilterCode (key) {
+	  var keyVal = parseInt(key, 10);
+	  if (keyVal) {
+	    return ("$event.keyCode!==" + keyVal)
+	  }
+	  var alias = keyCodes[key];
+	  return ("_k($event.keyCode," + (JSON.stringify(key)) + (alias ? ',' + JSON.stringify(alias) : '') + ")")
+	}
+	
+	/*  */
+	
+	function bind$2 (el, dir) {
+	  el.wrapData = function (code) {
+	    return ("_b(" + code + ",'" + (el.tag) + "'," + (dir.value) + (dir.modifiers && dir.modifiers.prop ? ',true' : '') + ")")
+	  };
+	}
+	
+	/*  */
+	
+	var baseDirectives = {
+	  bind: bind$2,
+	  cloak: noop
+	};
+	
+	/*  */
+	
+	// configurable state
+	var warn$2;
+	var transforms$1;
+	var dataGenFns;
+	var platformDirectives$1;
+	var isPlatformReservedTag$1;
+	var staticRenderFns;
+	var onceCount;
+	var currentOptions;
+	
+	function generate (
+	  ast,
+	  options
+	) {
+	  // save previous staticRenderFns so generate calls can be nested
+	  var prevStaticRenderFns = staticRenderFns;
+	  var currentStaticRenderFns = staticRenderFns = [];
+	  var prevOnceCount = onceCount;
+	  onceCount = 0;
+	  currentOptions = options;
+	  warn$2 = options.warn || baseWarn;
+	  transforms$1 = pluckModuleFunction(options.modules, 'transformCode');
+	  dataGenFns = pluckModuleFunction(options.modules, 'genData');
+	  platformDirectives$1 = options.directives || {};
+	  isPlatformReservedTag$1 = options.isReservedTag || no;
+	  var code = ast ? genElement(ast) : '_c("div")';
+	  staticRenderFns = prevStaticRenderFns;
+	  onceCount = prevOnceCount;
+	  return {
+	    render: ("with(this){return " + code + "}"),
+	    staticRenderFns: currentStaticRenderFns
+	  }
+	}
+	
+	function genElement (el) {
+	  if (el.staticRoot && !el.staticProcessed) {
+	    return genStatic(el)
+	  } else if (el.once && !el.onceProcessed) {
+	    return genOnce(el)
+	  } else if (el.for && !el.forProcessed) {
+	    return genFor(el)
+	  } else if (el.if && !el.ifProcessed) {
+	    return genIf(el)
+	  } else if (el.tag === 'template' && !el.slotTarget) {
+	    return genChildren(el) || 'void 0'
+	  } else if (el.tag === 'slot') {
+	    return genSlot(el)
+	  } else {
+	    // component or element
+	    var code;
+	    if (el.component) {
+	      code = genComponent(el.component, el);
+	    } else {
+	      var data = el.plain ? undefined : genData(el);
+	
+	      var children = el.inlineTemplate ? null : genChildren(el, true);
+	      code = "_c('" + (el.tag) + "'" + (data ? ("," + data) : '') + (children ? ("," + children) : '') + ")";
+	    }
+	    // module transforms
+	    for (var i = 0; i < transforms$1.length; i++) {
+	      code = transforms$1[i](el, code);
+	    }
+	    return code
+	  }
+	}
+	
+	// hoist static sub-trees out
+	function genStatic (el) {
+	  el.staticProcessed = true;
+	  staticRenderFns.push(("with(this){return " + (genElement(el)) + "}"));
+	  return ("_m(" + (staticRenderFns.length - 1) + (el.staticInFor ? ',true' : '') + ")")
+	}
+	
+	// v-once
+	function genOnce (el) {
+	  el.onceProcessed = true;
+	  if (el.if && !el.ifProcessed) {
+	    return genIf(el)
+	  } else if (el.staticInFor) {
+	    var key = '';
+	    var parent = el.parent;
+	    while (parent) {
+	      if (parent.for) {
+	        key = parent.key;
+	        break
+	      }
+	      parent = parent.parent;
+	    }
+	    if (!key) {
+	      process.env.NODE_ENV !== 'production' && warn$2(
+	        "v-once can only be used inside v-for that is keyed. "
+	      );
+	      return genElement(el)
+	    }
+	    return ("_o(" + (genElement(el)) + "," + (onceCount++) + (key ? ("," + key) : "") + ")")
+	  } else {
+	    return genStatic(el)
+	  }
+	}
+	
+	function genIf (el) {
+	  el.ifProcessed = true; // avoid recursion
+	  return genIfConditions(el.ifConditions.slice())
+	}
+	
+	function genIfConditions (conditions) {
+	  if (!conditions.length) {
+	    return '_e()'
+	  }
+	
+	  var condition = conditions.shift();
+	  if (condition.exp) {
+	    return ("(" + (condition.exp) + ")?" + (genTernaryExp(condition.block)) + ":" + (genIfConditions(conditions)))
+	  } else {
+	    return ("" + (genTernaryExp(condition.block)))
+	  }
+	
+	  // v-if with v-once should generate code like (a)?_m(0):_m(1)
+	  function genTernaryExp (el) {
+	    return el.once ? genOnce(el) : genElement(el)
+	  }
+	}
+	
+	function genFor (el) {
+	  var exp = el.for;
+	  var alias = el.alias;
+	  var iterator1 = el.iterator1 ? ("," + (el.iterator1)) : '';
+	  var iterator2 = el.iterator2 ? ("," + (el.iterator2)) : '';
+	  el.forProcessed = true; // avoid recursion
+	  return "_l((" + exp + ")," +
+	    "function(" + alias + iterator1 + iterator2 + "){" +
+	      "return " + (genElement(el)) +
+	    '})'
+	}
+	
+	function genData (el) {
+	  var data = '{';
+	
+	  // directives first.
+	  // directives may mutate the el's other properties before they are generated.
+	  var dirs = genDirectives(el);
+	  if (dirs) { data += dirs + ','; }
+	
+	  // key
+	  if (el.key) {
+	    data += "key:" + (el.key) + ",";
+	  }
+	  // ref
+	  if (el.ref) {
+	    data += "ref:" + (el.ref) + ",";
+	  }
+	  if (el.refInFor) {
+	    data += "refInFor:true,";
+	  }
+	  // pre
+	  if (el.pre) {
+	    data += "pre:true,";
+	  }
+	  // record original tag name for components using "is" attribute
+	  if (el.component) {
+	    data += "tag:\"" + (el.tag) + "\",";
+	  }
+	  // module data generation functions
+	  for (var i = 0; i < dataGenFns.length; i++) {
+	    data += dataGenFns[i](el);
+	  }
+	  // attributes
+	  if (el.attrs) {
+	    data += "attrs:{" + (genProps(el.attrs)) + "},";
+	  }
+	  // DOM props
+	  if (el.props) {
+	    data += "domProps:{" + (genProps(el.props)) + "},";
+	  }
+	  // event handlers
+	  if (el.events) {
+	    data += (genHandlers(el.events)) + ",";
+	  }
+	  if (el.nativeEvents) {
+	    data += (genHandlers(el.nativeEvents, true)) + ",";
+	  }
+	  // slot target
+	  if (el.slotTarget) {
+	    data += "slot:" + (el.slotTarget) + ",";
+	  }
+	  // scoped slots
+	  if (el.scopedSlots) {
+	    data += (genScopedSlots(el.scopedSlots)) + ",";
+	  }
+	  // inline-template
+	  if (el.inlineTemplate) {
+	    var inlineTemplate = genInlineTemplate(el);
+	    if (inlineTemplate) {
+	      data += inlineTemplate + ",";
+	    }
+	  }
+	  data = data.replace(/,$/, '') + '}';
+	  // v-bind data wrap
+	  if (el.wrapData) {
+	    data = el.wrapData(data);
+	  }
+	  return data
+	}
+	
+	function genDirectives (el) {
+	  var dirs = el.directives;
+	  if (!dirs) { return }
+	  var res = 'directives:[';
+	  var hasRuntime = false;
+	  var i, l, dir, needRuntime;
+	  for (i = 0, l = dirs.length; i < l; i++) {
+	    dir = dirs[i];
+	    needRuntime = true;
+	    var gen = platformDirectives$1[dir.name] || baseDirectives[dir.name];
+	    if (gen) {
+	      // compile-time directive that manipulates AST.
+	      // returns true if it also needs a runtime counterpart.
+	      needRuntime = !!gen(el, dir, warn$2);
+	    }
+	    if (needRuntime) {
+	      hasRuntime = true;
+	      res += "{name:\"" + (dir.name) + "\",rawName:\"" + (dir.rawName) + "\"" + (dir.value ? (",value:(" + (dir.value) + "),expression:" + (JSON.stringify(dir.value))) : '') + (dir.arg ? (",arg:\"" + (dir.arg) + "\"") : '') + (dir.modifiers ? (",modifiers:" + (JSON.stringify(dir.modifiers))) : '') + "},";
+	    }
+	  }
+	  if (hasRuntime) {
+	    return res.slice(0, -1) + ']'
+	  }
+	}
+	
+	function genInlineTemplate (el) {
+	  var ast = el.children[0];
+	  if (process.env.NODE_ENV !== 'production' && (
+	    el.children.length > 1 || ast.type !== 1
+	  )) {
+	    warn$2('Inline-template components must have exactly one child element.');
+	  }
+	  if (ast.type === 1) {
+	    var inlineRenderFns = generate(ast, currentOptions);
+	    return ("inlineTemplate:{render:function(){" + (inlineRenderFns.render) + "},staticRenderFns:[" + (inlineRenderFns.staticRenderFns.map(function (code) { return ("function(){" + code + "}"); }).join(',')) + "]}")
+	  }
+	}
+	
+	function genScopedSlots (slots) {
+	  return ("scopedSlots:{" + (Object.keys(slots).map(function (key) { return genScopedSlot(key, slots[key]); }).join(',')) + "}")
+	}
+	
+	function genScopedSlot (key, el) {
+	  return key + ":function(" + (String(el.attrsMap.scope)) + "){" +
+	    "return " + (el.tag === 'template'
+	      ? genChildren(el) || 'void 0'
+	      : genElement(el)) + "}"
+	}
+	
+	function genChildren (el, checkSkip) {
+	  var children = el.children;
+	  if (children.length) {
+	    var el$1 = children[0];
+	    // optimize single v-for
+	    if (children.length === 1 &&
+	        el$1.for &&
+	        el$1.tag !== 'template' &&
+	        el$1.tag !== 'slot') {
+	      return genElement(el$1)
+	    }
+	    var normalizationType = getNormalizationType(children);
+	    return ("[" + (children.map(genNode).join(',')) + "]" + (checkSkip
+	        ? normalizationType ? ("," + normalizationType) : ''
+	        : ''))
+	  }
+	}
+	
+	// determine the normalization needed for the children array.
+	// 0: no normalization needed
+	// 1: simple normalization needed (possible 1-level deep nested array)
+	// 2: full normalization needed
+	function getNormalizationType (children) {
+	  var res = 0;
+	  for (var i = 0; i < children.length; i++) {
+	    var el = children[i];
+	    if (el.type !== 1) {
+	      continue
+	    }
+	    if (needsNormalization(el) ||
+	        (el.ifConditions && el.ifConditions.some(function (c) { return needsNormalization(c.block); }))) {
+	      res = 2;
+	      break
+	    }
+	    if (maybeComponent(el) ||
+	        (el.ifConditions && el.ifConditions.some(function (c) { return maybeComponent(c.block); }))) {
+	      res = 1;
+	    }
+	  }
+	  return res
+	}
+	
+	function needsNormalization (el) {
+	  return el.for !== undefined || el.tag === 'template' || el.tag === 'slot'
+	}
+	
+	function maybeComponent (el) {
+	  return !isPlatformReservedTag$1(el.tag)
+	}
+	
+	function genNode (node) {
+	  if (node.type === 1) {
+	    return genElement(node)
+	  } else {
+	    return genText(node)
+	  }
+	}
+	
+	function genText (text) {
+	  return ("_v(" + (text.type === 2
+	    ? text.expression // no need for () because already wrapped in _s()
+	    : transformSpecialNewlines(JSON.stringify(text.text))) + ")")
+	}
+	
+	function genSlot (el) {
+	  var slotName = el.slotName || '"default"';
+	  var children = genChildren(el);
+	  var res = "_t(" + slotName + (children ? ("," + children) : '');
+	  var attrs = el.attrs && ("{" + (el.attrs.map(function (a) { return ((camelize(a.name)) + ":" + (a.value)); }).join(',')) + "}");
+	  var bind$$1 = el.attrsMap['v-bind'];
+	  if ((attrs || bind$$1) && !children) {
+	    res += ",null";
+	  }
+	  if (attrs) {
+	    res += "," + attrs;
+	  }
+	  if (bind$$1) {
+	    res += (attrs ? '' : ',null') + "," + bind$$1;
+	  }
+	  return res + ')'
+	}
+	
+	// componentName is el.component, take it as argument to shun flow's pessimistic refinement
+	function genComponent (componentName, el) {
+	  var children = el.inlineTemplate ? null : genChildren(el, true);
+	  return ("_c(" + componentName + "," + (genData(el)) + (children ? ("," + children) : '') + ")")
+	}
+	
+	function genProps (props) {
+	  var res = '';
+	  for (var i = 0; i < props.length; i++) {
+	    var prop = props[i];
+	    res += "\"" + (prop.name) + "\":" + (transformSpecialNewlines(prop.value)) + ",";
+	  }
+	  return res.slice(0, -1)
+	}
+	
+	// #3895, #4268
+	function transformSpecialNewlines (text) {
+	  return text
+	    .replace(/\u2028/g, '\\u2028')
+	    .replace(/\u2029/g, '\\u2029')
+	}
+	
+	/*  */
+	
+	/**
+	 * Compile a template.
+	 */
+	function compile$1 (
+	  template,
+	  options
+	) {
+	  var ast = parse(template.trim(), options);
+	  optimize(ast, options);
+	  var code = generate(ast, options);
+	  return {
+	    ast: ast,
+	    render: code.render,
+	    staticRenderFns: code.staticRenderFns
+	  }
+	}
+	
+	/*  */
+	
+	// operators like typeof, instanceof and in are allowed
+	var prohibitedKeywordRE = new RegExp('\\b' + (
+	  'do,if,for,let,new,try,var,case,else,with,await,break,catch,class,const,' +
+	  'super,throw,while,yield,delete,export,import,return,switch,default,' +
+	  'extends,finally,continue,debugger,function,arguments'
+	).split(',').join('\\b|\\b') + '\\b');
+	// check valid identifier for v-for
+	var identRE = /[A-Za-z_$][\w$]*/;
+	// strip strings in expressions
+	var stripStringRE = /'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|`(?:[^`\\]|\\.)*\$\{|\}(?:[^`\\]|\\.)*`|`(?:[^`\\]|\\.)*`/g;
+	
+	// detect problematic expressions in a template
+	function detectErrors (ast) {
+	  var errors = [];
+	  if (ast) {
+	    checkNode(ast, errors);
+	  }
+	  return errors
+	}
+	
+	function checkNode (node, errors) {
+	  if (node.type === 1) {
+	    for (var name in node.attrsMap) {
+	      if (dirRE.test(name)) {
+	        var value = node.attrsMap[name];
+	        if (value) {
+	          if (name === 'v-for') {
+	            checkFor(node, ("v-for=\"" + value + "\""), errors);
+	          } else {
+	            checkExpression(value, (name + "=\"" + value + "\""), errors);
+	          }
+	        }
+	      }
+	    }
+	    if (node.children) {
+	      for (var i = 0; i < node.children.length; i++) {
+	        checkNode(node.children[i], errors);
+	      }
+	    }
+	  } else if (node.type === 2) {
+	    checkExpression(node.expression, node.text, errors);
+	  }
+	}
+	
+	function checkFor (node, text, errors) {
+	  checkExpression(node.for || '', text, errors);
+	  checkIdentifier(node.alias, 'v-for alias', text, errors);
+	  checkIdentifier(node.iterator1, 'v-for iterator', text, errors);
+	  checkIdentifier(node.iterator2, 'v-for iterator', text, errors);
+	}
+	
+	function checkIdentifier (ident, type, text, errors) {
+	  if (typeof ident === 'string' && !identRE.test(ident)) {
+	    errors.push(("- invalid " + type + " \"" + ident + "\" in expression: " + text));
+	  }
+	}
+	
+	function checkExpression (exp, text, errors) {
+	  try {
+	    new Function(("return " + exp));
+	  } catch (e) {
+	    var keywordMatch = exp.replace(stripStringRE, '').match(prohibitedKeywordRE);
+	    if (keywordMatch) {
+	      errors.push(
+	        "- avoid using JavaScript keyword as property name: " +
+	        "\"" + (keywordMatch[0]) + "\" in expression " + text
+	      );
+	    } else {
+	      errors.push(("- invalid expression: " + text));
+	    }
+	  }
+	}
+	
+	/*  */
+	
+	function transformNode (el, options) {
+	  var warn = options.warn || baseWarn;
+	  var staticClass = getAndRemoveAttr(el, 'class');
+	  if (process.env.NODE_ENV !== 'production' && staticClass) {
+	    var expression = parseText(staticClass, options.delimiters);
+	    if (expression) {
+	      warn(
+	        "class=\"" + staticClass + "\": " +
+	        'Interpolation inside attributes has been removed. ' +
+	        'Use v-bind or the colon shorthand instead. For example, ' +
+	        'instead of <div class="{{ val }}">, use <div :class="val">.'
+	      );
+	    }
+	  }
+	  if (staticClass) {
+	    el.staticClass = JSON.stringify(staticClass);
+	  }
+	  var classBinding = getBindingAttr(el, 'class', false /* getStatic */);
+	  if (classBinding) {
+	    el.classBinding = classBinding;
+	  }
+	}
+	
+	function genData$1 (el) {
+	  var data = '';
+	  if (el.staticClass) {
+	    data += "staticClass:" + (el.staticClass) + ",";
+	  }
+	  if (el.classBinding) {
+	    data += "class:" + (el.classBinding) + ",";
+	  }
+	  return data
+	}
+	
+	var klass$1 = {
+	  staticKeys: ['staticClass'],
+	  transformNode: transformNode,
+	  genData: genData$1
+	};
+	
+	/*  */
+	
+	function transformNode$1 (el, options) {
+	  var warn = options.warn || baseWarn;
+	  var staticStyle = getAndRemoveAttr(el, 'style');
+	  if (staticStyle) {
+	    /* istanbul ignore if */
+	    if (process.env.NODE_ENV !== 'production') {
+	      var expression = parseText(staticStyle, options.delimiters);
+	      if (expression) {
+	        warn(
+	          "style=\"" + staticStyle + "\": " +
+	          'Interpolation inside attributes has been removed. ' +
+	          'Use v-bind or the colon shorthand instead. For example, ' +
+	          'instead of <div style="{{ val }}">, use <div :style="val">.'
+	        );
+	      }
+	    }
+	    el.staticStyle = JSON.stringify(parseStyleText(staticStyle));
+	  }
+	
+	  var styleBinding = getBindingAttr(el, 'style', false /* getStatic */);
+	  if (styleBinding) {
+	    el.styleBinding = styleBinding;
+	  }
+	}
+	
+	function genData$2 (el) {
+	  var data = '';
+	  if (el.staticStyle) {
+	    data += "staticStyle:" + (el.staticStyle) + ",";
+	  }
+	  if (el.styleBinding) {
+	    data += "style:(" + (el.styleBinding) + "),";
+	  }
+	  return data
+	}
+	
+	var style$1 = {
+	  staticKeys: ['staticStyle'],
+	  transformNode: transformNode$1,
+	  genData: genData$2
+	};
+	
+	var modules$1 = [
+	  klass$1,
+	  style$1
+	];
+	
+	/*  */
+	
+	var warn$3;
+	
+	function model$1 (
+	  el,
+	  dir,
+	  _warn
+	) {
+	  warn$3 = _warn;
+	  var value = dir.value;
+	  var modifiers = dir.modifiers;
+	  var tag = el.tag;
+	  var type = el.attrsMap.type;
+	  if (process.env.NODE_ENV !== 'production') {
+	    var dynamicType = el.attrsMap['v-bind:type'] || el.attrsMap[':type'];
+	    if (tag === 'input' && dynamicType) {
+	      warn$3(
+	        "<input :type=\"" + dynamicType + "\" v-model=\"" + value + "\">:\n" +
+	        "v-model does not support dynamic input types. Use v-if branches instead."
+	      );
+	    }
+	  }
+	  if (tag === 'select') {
+	    genSelect(el, value, modifiers);
+	  } else if (tag === 'input' && type === 'checkbox') {
+	    genCheckboxModel(el, value, modifiers);
+	  } else if (tag === 'input' && type === 'radio') {
+	    genRadioModel(el, value, modifiers);
+	  } else {
+	    genDefaultModel(el, value, modifiers);
+	  }
+	  // ensure runtime directive metadata
+	  return true
+	}
+	
+	function genCheckboxModel (
+	  el,
+	  value,
+	  modifiers
+	) {
+	  if (process.env.NODE_ENV !== 'production' &&
+	    el.attrsMap.checked != null) {
+	    warn$3(
+	      "<" + (el.tag) + " v-model=\"" + value + "\" checked>:\n" +
+	      "inline checked attributes will be ignored when using v-model. " +
+	      'Declare initial values in the component\'s data option instead.'
+	    );
+	  }
+	  var number = modifiers && modifiers.number;
+	  var valueBinding = getBindingAttr(el, 'value') || 'null';
+	  var trueValueBinding = getBindingAttr(el, 'true-value') || 'true';
+	  var falseValueBinding = getBindingAttr(el, 'false-value') || 'false';
+	  addProp(el, 'checked',
+	    "Array.isArray(" + value + ")" +
+	      "?_i(" + value + "," + valueBinding + ")>-1" + (
+	        trueValueBinding === 'true'
+	          ? (":(" + value + ")")
+	          : (":_q(" + value + "," + trueValueBinding + ")")
+	      )
+	  );
+	  addHandler(el, 'click',
+	    "var $$a=" + value + "," +
+	        '$$el=$event.target,' +
+	        "$$c=$$el.checked?(" + trueValueBinding + "):(" + falseValueBinding + ");" +
+	    'if(Array.isArray($$a)){' +
+	      "var $$v=" + (number ? '_n(' + valueBinding + ')' : valueBinding) + "," +
+	          '$$i=_i($$a,$$v);' +
+	      "if($$c){$$i<0&&(" + value + "=$$a.concat($$v))}" +
+	      "else{$$i>-1&&(" + value + "=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}" +
+	    "}else{" + value + "=$$c}",
+	    null, true
+	  );
+	}
+	
+	function genRadioModel (
+	    el,
+	    value,
+	    modifiers
+	) {
+	  if (process.env.NODE_ENV !== 'production' &&
+	    el.attrsMap.checked != null) {
+	    warn$3(
+	      "<" + (el.tag) + " v-model=\"" + value + "\" checked>:\n" +
+	      "inline checked attributes will be ignored when using v-model. " +
+	      'Declare initial values in the component\'s data option instead.'
+	    );
+	  }
+	  var number = modifiers && modifiers.number;
+	  var valueBinding = getBindingAttr(el, 'value') || 'null';
+	  valueBinding = number ? ("_n(" + valueBinding + ")") : valueBinding;
+	  addProp(el, 'checked', ("_q(" + value + "," + valueBinding + ")"));
+	  addHandler(el, 'click', genAssignmentCode(value, valueBinding), null, true);
+	}
+	
+	function genDefaultModel (
+	  el,
+	  value,
+	  modifiers
+	) {
+	  if (process.env.NODE_ENV !== 'production') {
+	    if (el.tag === 'input' && el.attrsMap.value) {
+	      warn$3(
+	        "<" + (el.tag) + " v-model=\"" + value + "\" value=\"" + (el.attrsMap.value) + "\">:\n" +
+	        'inline value attributes will be ignored when using v-model. ' +
+	        'Declare initial values in the component\'s data option instead.'
+	      );
+	    }
+	    if (el.tag === 'textarea' && el.children.length) {
+	      warn$3(
+	        "<textarea v-model=\"" + value + "\">:\n" +
+	        'inline content inside <textarea> will be ignored when using v-model. ' +
+	        'Declare initial values in the component\'s data option instead.'
+	      );
+	    }
+	  }
+	
+	  var type = el.attrsMap.type;
+	  var ref = modifiers || {};
+	  var lazy = ref.lazy;
+	  var number = ref.number;
+	  var trim = ref.trim;
+	  var event = lazy || (isIE && type === 'range') ? 'change' : 'input';
+	  var needCompositionGuard = !lazy && type !== 'range';
+	  var isNative = el.tag === 'input' || el.tag === 'textarea';
+	
+	  var valueExpression = isNative
+	    ? ("$event.target.value" + (trim ? '.trim()' : ''))
+	    : trim ? "(typeof $event === 'string' ? $event.trim() : $event)" : "$event";
+	  valueExpression = number || type === 'number'
+	    ? ("_n(" + valueExpression + ")")
+	    : valueExpression;
+	
+	  var code = genAssignmentCode(value, valueExpression);
+	  if (isNative && needCompositionGuard) {
+	    code = "if($event.target.composing)return;" + code;
+	  }
+	
+	  // inputs with type="file" are read only and setting the input's
+	  // value will throw an error.
+	  if (process.env.NODE_ENV !== 'production' &&
+	      type === 'file') {
+	    warn$3(
+	      "<" + (el.tag) + " v-model=\"" + value + "\" type=\"file\">:\n" +
+	      "File inputs are read only. Use a v-on:change listener instead."
+	    );
+	  }
+	
+	  addProp(el, 'value', isNative ? ("_s(" + value + ")") : ("(" + value + ")"));
+	  addHandler(el, event, code, null, true);
+	  if (trim || number || type === 'number') {
+	    addHandler(el, 'blur', '$forceUpdate()');
+	  }
+	}
+	
+	function genSelect (
+	    el,
+	    value,
+	    modifiers
+	) {
+	  if (process.env.NODE_ENV !== 'production') {
+	    el.children.some(checkOptionWarning);
+	  }
+	
+	  var number = modifiers && modifiers.number;
+	  var assignment = "Array.prototype.filter" +
+	    ".call($event.target.options,function(o){return o.selected})" +
+	    ".map(function(o){var val = \"_value\" in o ? o._value : o.value;" +
+	    "return " + (number ? '_n(val)' : 'val') + "})" +
+	    (el.attrsMap.multiple == null ? '[0]' : '');
+	
+	  var code = genAssignmentCode(value, assignment);
+	  addHandler(el, 'change', code, null, true);
+	}
+	
+	function checkOptionWarning (option) {
+	  if (option.type === 1 &&
+	    option.tag === 'option' &&
+	    option.attrsMap.selected != null) {
+	    warn$3(
+	      "<select v-model=\"" + (option.parent.attrsMap['v-model']) + "\">:\n" +
+	      'inline selected attributes on <option> will be ignored when using v-model. ' +
+	      'Declare initial values in the component\'s data option instead.'
+	    );
+	    return true
+	  }
+	  return false
+	}
+	
+	function genAssignmentCode (value, assignment) {
+	  var modelRs = parseModel(value);
+	  if (modelRs.idx === null) {
+	    return (value + "=" + assignment)
+	  } else {
+	    return "var $$exp = " + (modelRs.exp) + ", $$idx = " + (modelRs.idx) + ";" +
+	      "if (!Array.isArray($$exp)){" +
+	        value + "=" + assignment + "}" +
+	      "else{$$exp.splice($$idx, 1, " + assignment + ")}"
+	  }
+	}
+	
+	/*  */
+	
+	function text (el, dir) {
+	  if (dir.value) {
+	    addProp(el, 'textContent', ("_s(" + (dir.value) + ")"));
+	  }
+	}
+	
+	/*  */
+	
+	function html (el, dir) {
+	  if (dir.value) {
+	    addProp(el, 'innerHTML', ("_s(" + (dir.value) + ")"));
+	  }
+	}
+	
+	var directives$1 = {
+	  model: model$1,
+	  text: text,
+	  html: html
+	};
+	
+	/*  */
+	
+	var cache = Object.create(null);
+	
+	var baseOptions = {
+	  expectHTML: true,
+	  modules: modules$1,
+	  staticKeys: genStaticKeys(modules$1),
+	  directives: directives$1,
+	  isReservedTag: isReservedTag,
+	  isUnaryTag: isUnaryTag,
+	  mustUseProp: mustUseProp,
+	  getTagNamespace: getTagNamespace,
+	  isPreTag: isPreTag
+	};
+	
+	function compile$$1 (
+	  template,
+	  options
+	) {
+	  options = options
+	    ? extend(extend({}, baseOptions), options)
+	    : baseOptions;
+	  return compile$1(template, options)
+	}
+	
+	function compileToFunctions (
+	  template,
+	  options,
+	  vm
+	) {
+	  var _warn = (options && options.warn) || warn;
+	  // detect possible CSP restriction
+	  /* istanbul ignore if */
+	  if (process.env.NODE_ENV !== 'production') {
+	    try {
+	      new Function('return 1');
+	    } catch (e) {
+	      if (e.toString().match(/unsafe-eval|CSP/)) {
+	        _warn(
+	          'It seems you are using the standalone build of Vue.js in an ' +
+	          'environment with Content Security Policy that prohibits unsafe-eval. ' +
+	          'The template compiler cannot work in this environment. Consider ' +
+	          'relaxing the policy to allow unsafe-eval or pre-compiling your ' +
+	          'templates into render functions.'
+	        );
+	      }
+	    }
+	  }
+	  var key = options && options.delimiters
+	    ? String(options.delimiters) + template
+	    : template;
+	  if (cache[key]) {
+	    return cache[key]
+	  }
+	  var res = {};
+	  var compiled = compile$$1(template, options);
+	  res.render = makeFunction(compiled.render);
+	  var l = compiled.staticRenderFns.length;
+	  res.staticRenderFns = new Array(l);
+	  for (var i = 0; i < l; i++) {
+	    res.staticRenderFns[i] = makeFunction(compiled.staticRenderFns[i]);
+	  }
+	  if (process.env.NODE_ENV !== 'production') {
+	    if (res.render === noop || res.staticRenderFns.some(function (fn) { return fn === noop; })) {
+	      _warn(
+	        "failed to compile template:\n\n" + template + "\n\n" +
+	        detectErrors(compiled.ast).join('\n') +
+	        '\n\n',
+	        vm
+	      );
+	    }
+	  }
+	  return (cache[key] = res)
+	}
+	
+	function makeFunction (code) {
+	  try {
+	    return new Function(code)
+	  } catch (e) {
+	    return noop
+	  }
+	}
+	
+	/*  */
+	
+	var idToTemplate = cached(function (id) {
+	  var el = query(id);
+	  return el && el.innerHTML
+	});
+	
+	var mount = Vue$3.prototype.$mount;
+	Vue$3.prototype.$mount = function (
+	  el,
+	  hydrating
+	) {
+	  el = el && query(el);
+	
+	  /* istanbul ignore if */
+	  if (el === document.body || el === document.documentElement) {
+	    process.env.NODE_ENV !== 'production' && warn(
+	      "Do not mount Vue to <html> or <body> - mount to normal elements instead."
+	    );
+	    return this
+	  }
+	
+	  var options = this.$options;
+	  // resolve template/el and convert to render function
+	  if (!options.render) {
+	    var template = options.template;
+	    if (template) {
+	      if (typeof template === 'string') {
+	        if (template.charAt(0) === '#') {
+	          template = idToTemplate(template);
+	          /* istanbul ignore if */
+	          if (process.env.NODE_ENV !== 'production' && !template) {
+	            warn(
+	              ("Template element not found or is empty: " + (options.template)),
+	              this
+	            );
+	          }
+	        }
+	      } else if (template.nodeType) {
+	        template = template.innerHTML;
+	      } else {
+	        if (process.env.NODE_ENV !== 'production') {
+	          warn('invalid template option:' + template, this);
+	        }
+	        return this
+	      }
+	    } else if (el) {
+	      template = getOuterHTML(el);
+	    }
+	    if (template) {
+	      var ref = compileToFunctions(template, {
+	        warn: warn,
+	        shouldDecodeNewlines: shouldDecodeNewlines,
+	        delimiters: options.delimiters
+	      }, this);
+	      var render = ref.render;
+	      var staticRenderFns = ref.staticRenderFns;
+	      options.render = render;
+	      options.staticRenderFns = staticRenderFns;
+	    }
+	  }
+	  return mount.call(this, el, hydrating)
+	};
+	
+	/**
+	 * Get outerHTML of elements, taking care
+	 * of SVG elements in IE as well.
+	 */
+	function getOuterHTML (el) {
+	  if (el.outerHTML) {
+	    return el.outerHTML
+	  } else {
+	    var container = document.createElement('div');
+	    container.appendChild(el.cloneNode(true));
+	    return container.innerHTML
+	  }
+	}
+	
+	Vue$3.compile = compileToFunctions;
+	
+	module.exports = Vue$3;
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 7), (function() { return this; }())))
 
 /***/ },
 /* 7 */
-/*!**********************************************************!*\
-  !*** (webpack)/~/node-libs-browser/~/process/browser.js ***!
-  \**********************************************************/
+/*!******************************!*\
+  !*** ./~/process/browser.js ***!
+  \******************************/
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -16678,7 +19184,7 @@
   \*****************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"badge-0001\" v-bind:class=\"[modifierColor]\">\r\n  <p class=\"badge-0001__first-wrap\">\r\n    {{txt.main}}\r\n  </p>\r\n</div>\r\n";
+	module.exports = "<div class=\"badge-0001\" v-bind:class=\"[modifierColor]\">\n  <p class=\"badge-0001__first-wrap\">\n    {{txt.main}}\n  </p>\n</div>\n";
 
 /***/ },
 /* 10 */
@@ -16709,7 +19215,7 @@
   \**********************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div v-if=\"1 < items.length\" class=\"breadcrumb-0001\">\r\n  <div class=\"breadcrumb-0001__first-wrap\">\r\n    <ul class=\"breadcrumb-0001__ul-ol-elm\">\r\n      <li class=\"breadcrumb-0001__li-elm\" v-for=\"item in items\">\r\n        <a v-if=\"0 < item.aHref.length\" class=\"breadcrumb-0001__label\" href=\"{{item.aHref}}\">{{item.txt}}</a>\r\n        <span v-else class=\"breadcrumb-0001__label\">{{item.txt}}</span>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n";
+	module.exports = "<div v-if=\"1 < items.length\" class=\"breadcrumb-0001\">\n  <div class=\"breadcrumb-0001__first-wrap\">\n    <ul class=\"breadcrumb-0001__ul-ol-elm\">\n      <li class=\"breadcrumb-0001__li-elm\" v-for=\"item in items\">\n        <a v-if=\"0 < item.aHref.length\" class=\"breadcrumb-0001__label\" href=\"{{item.aHref}}\">{{item.txt}}</a>\n        <span v-else class=\"breadcrumb-0001__label\">{{item.txt}}</span>\n      </li>\n    </ul>\n  </div>\n</div>\n";
 
 /***/ },
 /* 12 */
@@ -16800,7 +19306,7 @@
   \***************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"btn-0001\" v-bind:class=\"[modifierColor, modifierHeight, {'btn-0001--disabled': isDisabled}]\">\r\n\r\n  <!--aタグのボタン-->\r\n  <div class=\"btn-0001__first-wrap\" v-if=\"btnType === 'a'\">\r\n    <a class=\"btn-0001__clickable-elm\" href=\"{{aHref}}\" v-on:click=\"clicked\">\r\n      <span class=\"btn-0001__label\">\r\n        {{txt.main}}\r\n      </span>\r\n    </a>\r\n  </div>\r\n\r\n  <!--aタグをクリックすることでsubmitするボタン-->\r\n  <div class=\"btn-0001__first-wrap\" v-if=\"btnType === 'composite'\">\r\n    <a class=\"btn-0001__clickable-elm\" href=\"#\" v-on:click=\"clicked\">\r\n      <span class=\"btn-0001__label\">\r\n        {{txt.main}}\r\n      </span>\r\n    </a>\r\n    <input class=\"btn-0001__type-submit-elm\" type=\"submit\" name=\"{{inputName}}\" value=\"{{txt.main}}\" v-bind:disabled=\"isDisabled\">\r\n  </div>\r\n\r\n  <!--inputタグのボタン-->\r\n  <div class=\"btn-0001__first-wrap\" v-if=\"btnType === 'input'\">\r\n    <input class=\"btn-0001__clickable-elm\" type=\"submit\" name=\"{{inputName}}\" value=\"{{txt.main}}\" v-bind:disabled=\"isDisabled\">\r\n  </div>\r\n\r\n</div>\r\n";
+	module.exports = "<div class=\"btn-0001\" v-bind:class=\"[modifierColor, modifierHeight, {'btn-0001--disabled': isDisabled}]\">\n\n  <!--aタグのボタン-->\n  <div class=\"btn-0001__first-wrap\" v-if=\"btnType === 'a'\">\n    <a class=\"btn-0001__clickable-elm\" href=\"{{aHref}}\" v-on:click=\"clicked\">\n      <span class=\"btn-0001__label\">\n        {{txt.main}}\n      </span>\n    </a>\n  </div>\n\n  <!--aタグをクリックすることでsubmitするボタン-->\n  <div class=\"btn-0001__first-wrap\" v-if=\"btnType === 'composite'\">\n    <a class=\"btn-0001__clickable-elm\" href=\"#\" v-on:click=\"clicked\">\n      <span class=\"btn-0001__label\">\n        {{txt.main}}\n      </span>\n    </a>\n    <input class=\"btn-0001__type-submit-elm\" type=\"submit\" name=\"{{inputName}}\" value=\"{{txt.main}}\" v-bind:disabled=\"isDisabled\">\n  </div>\n\n  <!--inputタグのボタン-->\n  <div class=\"btn-0001__first-wrap\" v-if=\"btnType === 'input'\">\n    <input class=\"btn-0001__clickable-elm\" type=\"submit\" name=\"{{inputName}}\" value=\"{{txt.main}}\" v-bind:disabled=\"isDisabled\">\n  </div>\n\n</div>\n";
 
 /***/ },
 /* 14 */
@@ -16838,7 +19344,7 @@
   \*************************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"flash-message-0001\" v-bind:class=\"[modifierColor]\">\r\n  <div class=\"flash-message-0001__first-wrap\">\r\n    <div class=\"flash-message-0001__second-wrap\">\r\n      <slot name=\"slot-0001\"></slot>\r\n    </div>\r\n  </div>\r\n</div>\r\n";
+	module.exports = "<div class=\"flash-message-0001\" v-bind:class=\"[modifierColor]\">\n  <div class=\"flash-message-0001__first-wrap\">\n    <div class=\"flash-message-0001__second-wrap\">\n      <slot name=\"slot-0001\"></slot>\n    </div>\n  </div>\n</div>\n";
 
 /***/ },
 /* 16 */
@@ -16874,7 +19380,7 @@
   \******************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<footer class=\"footer-0001\">\r\n  <div class=\"footer-0001__first-wrap\">\r\n    <span class=\"footer-0001__second-wrap\">\r\n      <small class=\"footer-0001__copy-wrap\">\r\n        <a class=\"footer-0001__copy\" href=\"{{params.logo.aHref}}\">\r\n          {{params.logo.txt}}\r\n        </a>\r\n      </small>\r\n    </span>\r\n  </div>\r\n</footer>\r\n";
+	module.exports = "<footer class=\"footer-0001\">\n  <div class=\"footer-0001__first-wrap\">\n    <span class=\"footer-0001__second-wrap\">\n      <small class=\"footer-0001__copy-wrap\">\n        <a class=\"footer-0001__copy\" href=\"{{params.logo.aHref}}\">\n          {{params.logo.txt}}\n        </a>\n      </small>\n    </span>\n  </div>\n</footer>\n";
 
 /***/ },
 /* 18 */
@@ -16904,7 +19410,7 @@
   \******************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<header class=\"header-0001\">\r\n  <div class=\"header-0001__first-wrap\">\r\n    <span class=\"header-0001__second-wrap\">\r\n      <div class=\"header-0001__third-wrap\">\r\n        <div class=\"header-0001__logo-wrap\">\r\n          <a class=\"header-0001__logo-text\" href=\"#\">Practice.MotomichiWorks</a>\r\n        </div>\r\n\r\n        <nav v-if=\"isLoggedIn\" class=\"header-0001__user-nav\">\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            [&nbsp;\r\n          </span>\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            <a class=\"header-0001__user-nav__anc-elm\" href=\"#\">\r\n              ログアウト\r\n            </a>\r\n          </span>\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            &nbsp;]\r\n          </span>\r\n        </nav>\r\n        <div v-if=\"isLoggedIn\" class=\"header-0001__info\">サンプルユーザーさん</div>\r\n\r\n        <nav v-else class=\"header-0001__user-nav\">\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            [&nbsp;\r\n          </span>\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            <a class=\"header-0001__user-nav__anc-elm\" href=\"#\">\r\n              ログイン\r\n            </a>\r\n          </span>\r\n          &nbsp;|&nbsp;\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            <a class=\"header-0001__user-nav__anc-elm\" href=\"#\">\r\n              会員登録\r\n            </a>\r\n          </span>\r\n          <span class=\"header-0001__user-nav__text-wrap\">\r\n            &nbsp;]\r\n          </span>\r\n        </nav>\r\n\r\n      </div>\r\n      <div class=\"header-0001__fourth-wrap\">\r\n        <nav class=\"header-0001__global-nav\">\r\n          <ul class=\"header-0001__global-nav__ul-lv-1\">\r\n            <li class=\"header-0001__global-nav__li-lv-1\">\r\n              <a class=\"header-0001__global-nav__anc-lv-1\" href=\"#\">トップ</a>\r\n            </li>\r\n            <li class=\"header-0001__global-nav__li-lv-1\">\r\n              <a class=\"header-0001__global-nav__anc-lv-1\" href=\"#\">お問い合わせ</a>\r\n            </li>\r\n            <li class=\"header-0001__global-nav__li-lv-1\">\r\n              <a class=\"header-0001__global-nav__anc-lv-1\" href=\"#\" target=\"_blank\">スタイルガイド</a>\r\n            </li>\r\n          </ul>\r\n        </nav>\r\n\r\n        <nav v-if=\"isLoggedIn\" class=\"header-0001__mypage-nav\">\r\n          <ul class=\"header-0001__mypage-nav__ul-lv-1\">\r\n            <li class=\"header-0001__mypage-nav__li-lv-1\">\r\n              <a class=\"header-0001__mypage-nav__anc-lv-1\" href=\"#\">\r\n                マイページ\r\n              </a>\r\n            </li>\r\n            <li class=\"header-0001__mypage-nav__li-lv-1\">\r\n              <a class=\"header-0001__mypage-nav__anc-lv-1\" href=\"#\">\r\n                記事管理\r\n              </a>\r\n              <ul class=\"header-0001__mypage-nav__ul-lv-2\">\r\n                <li class=\"header-0001__mypage-nav__li-lv-2\">\r\n                  <a class=\"header-0001__mypage-nav__anchor-lv-2\" href=\"#\">\r\n                    記事投稿\r\n                  </a>\r\n                </li>\r\n              </ul>\r\n            </li>\r\n            <li class=\"header-0001__mypage-nav__li-lv-1\">\r\n              <a class=\"header-0001__mypage-nav__anc-lv-1\" href=\"#\">\r\n                タグ管理\r\n              </a>\r\n            </li>\r\n          </ul>\r\n        </nav>\r\n\r\n      </div>\r\n    </span>\r\n  </div>\r\n</header>\r\n";
+	module.exports = "<header class=\"header-0001\">\n  <div class=\"header-0001__first-wrap\">\n    <span class=\"header-0001__second-wrap\">\n      <div class=\"header-0001__third-wrap\">\n        <div class=\"header-0001__logo-wrap\">\n          <a class=\"header-0001__logo-text\" href=\"#\">Practice.MotomichiWorks</a>\n        </div>\n\n        <nav v-if=\"isLoggedIn\" class=\"header-0001__user-nav\">\n          <span class=\"header-0001__user-nav__text-wrap\">\n            [&nbsp;\n          </span>\n          <span class=\"header-0001__user-nav__text-wrap\">\n            <a class=\"header-0001__user-nav__anc-elm\" href=\"#\">\n              ログアウト\n            </a>\n          </span>\n          <span class=\"header-0001__user-nav__text-wrap\">\n            &nbsp;]\n          </span>\n        </nav>\n        <div v-if=\"isLoggedIn\" class=\"header-0001__info\">サンプルユーザーさん</div>\n\n        <nav v-else class=\"header-0001__user-nav\">\n          <span class=\"header-0001__user-nav__text-wrap\">\n            [&nbsp;\n          </span>\n          <span class=\"header-0001__user-nav__text-wrap\">\n            <a class=\"header-0001__user-nav__anc-elm\" href=\"#\">\n              ログイン\n            </a>\n          </span>\n          &nbsp;|&nbsp;\n          <span class=\"header-0001__user-nav__text-wrap\">\n            <a class=\"header-0001__user-nav__anc-elm\" href=\"#\">\n              会員登録\n            </a>\n          </span>\n          <span class=\"header-0001__user-nav__text-wrap\">\n            &nbsp;]\n          </span>\n        </nav>\n\n      </div>\n      <div class=\"header-0001__fourth-wrap\">\n        <nav class=\"header-0001__global-nav\">\n          <ul class=\"header-0001__global-nav__ul-lv-1\">\n            <li class=\"header-0001__global-nav__li-lv-1\">\n              <a class=\"header-0001__global-nav__anc-lv-1\" href=\"#\">トップ</a>\n            </li>\n            <li class=\"header-0001__global-nav__li-lv-1\">\n              <a class=\"header-0001__global-nav__anc-lv-1\" href=\"#\">お問い合わせ</a>\n            </li>\n            <li class=\"header-0001__global-nav__li-lv-1\">\n              <a class=\"header-0001__global-nav__anc-lv-1\" href=\"#\" target=\"_blank\">スタイルガイド</a>\n            </li>\n          </ul>\n        </nav>\n\n        <nav v-if=\"isLoggedIn\" class=\"header-0001__mypage-nav\">\n          <ul class=\"header-0001__mypage-nav__ul-lv-1\">\n            <li class=\"header-0001__mypage-nav__li-lv-1\">\n              <a class=\"header-0001__mypage-nav__anc-lv-1\" href=\"#\">\n                マイページ\n              </a>\n            </li>\n            <li class=\"header-0001__mypage-nav__li-lv-1\">\n              <a class=\"header-0001__mypage-nav__anc-lv-1\" href=\"#\">\n                記事管理\n              </a>\n              <ul class=\"header-0001__mypage-nav__ul-lv-2\">\n                <li class=\"header-0001__mypage-nav__li-lv-2\">\n                  <a class=\"header-0001__mypage-nav__anchor-lv-2\" href=\"#\">\n                    記事投稿\n                  </a>\n                </li>\n              </ul>\n            </li>\n            <li class=\"header-0001__mypage-nav__li-lv-1\">\n              <a class=\"header-0001__mypage-nav__anc-lv-1\" href=\"#\">\n                タグ管理\n              </a>\n            </li>\n          </ul>\n        </nav>\n\n      </div>\n    </span>\n  </div>\n</header>\n";
 
 /***/ },
 /* 20 */
@@ -17020,7 +19526,7 @@
   \*******************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"heading-0001 {{modifierLv}}\">\r\n  <div class=\"heading-0001__table\">\r\n    <span class=\"heading-0001__tr\">\r\n      <div v-if=\"hasIcon\" class=\"heading-0001__icon-wrap\">\r\n        <div class=\"heading-0001__icon\">\r\n          <!--icon-->\r\n        </div>\r\n      </div>\r\n      <h1 v-if=\"tagName === 'h1'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h1>\r\n      <h2 v-if=\"tagName === 'h2'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h2>\r\n      <h3 v-if=\"tagName === 'h3'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h3>\r\n      <h4 v-if=\"tagName === 'h4'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h4>\r\n      <h5 v-if=\"tagName === 'h5'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h5>\r\n      <h6 v-if=\"tagName === 'h6'\" class=\"heading-0001__h-elm\">\r\n        {{txt.main}}\r\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\r\n          {{txt.sub}}\r\n        </span>\r\n      </h6>\r\n      <span v-if=\"hasBtn\" class=\"heading-0001__btn-wrap\">\r\n        <vue-btn-0001\r\n          :txt=\"{main: btnTxt.main}\"\r\n          :modifier=\"{color: btnModifier.color, height: btnModifier.height}\"\r\n          :btn-type=\"btnBtnType\"\r\n          :a-href=\"btnAHref\" />\r\n      </span>\r\n    </span>\r\n  </div>\r\n</div>\r\n";
+	module.exports = "<div class=\"heading-0001 {{modifierLv}}\">\n  <div class=\"heading-0001__table\">\n    <span class=\"heading-0001__tr\">\n      <div v-if=\"hasIcon\" class=\"heading-0001__icon-wrap\">\n        <div class=\"heading-0001__icon\">\n          <!--icon-->\n        </div>\n      </div>\n      <h1 v-if=\"tagName === 'h1'\" class=\"heading-0001__h-elm\">\n        {{txt.main}}\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\n          {{txt.sub}}\n        </span>\n      </h1>\n      <h2 v-if=\"tagName === 'h2'\" class=\"heading-0001__h-elm\">\n        {{txt.main}}\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\n          {{txt.sub}}\n        </span>\n      </h2>\n      <h3 v-if=\"tagName === 'h3'\" class=\"heading-0001__h-elm\">\n        {{txt.main}}\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\n          {{txt.sub}}\n        </span>\n      </h3>\n      <h4 v-if=\"tagName === 'h4'\" class=\"heading-0001__h-elm\">\n        {{txt.main}}\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\n          {{txt.sub}}\n        </span>\n      </h4>\n      <h5 v-if=\"tagName === 'h5'\" class=\"heading-0001__h-elm\">\n        {{txt.main}}\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\n          {{txt.sub}}\n        </span>\n      </h5>\n      <h6 v-if=\"tagName === 'h6'\" class=\"heading-0001__h-elm\">\n        {{txt.main}}\n        <span class=\"heading-0001__sub-heading\" v-if=\"txt.sub !== ''\">\n          {{txt.sub}}\n        </span>\n      </h6>\n      <span v-if=\"hasBtn\" class=\"heading-0001__btn-wrap\">\n        <vue-btn-0001\n          :txt=\"{main: btnTxt.main}\"\n          :modifier=\"{color: btnModifier.color, height: btnModifier.height}\"\n          :btn-type=\"btnBtnType\"\n          :a-href=\"btnAHref\" />\n      </span>\n    </span>\n  </div>\n</div>\n";
 
 /***/ },
 /* 22 */
@@ -17058,7 +19564,7 @@
   \************************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"loading-icon-0001\" v-bind:class=\"[modifierSize]\"></div>\r\n";
+	module.exports = "<div class=\"loading-icon-0001\" v-bind:class=\"[modifierSize]\"></div>\n";
 
 /***/ },
 /* 24 */
@@ -17103,7 +19609,7 @@
   \*********************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"paginator-0001\">\r\n  <div class=\"paginator-0001__first-wrap\">\r\n    <span class=\"paginator-0001__second-wrap\">\r\n      <div class=\"paginator-0001__info-wrap\">\r\n        <p class=\"paginator-0001__info\">\r\n          {{pagesLength}}ページ中 {{currentPage}}ページ目\r\n        </p>\r\n        <p class=\"paginator-0001__info\">\r\n          {{itemsLength}}件中 {{startIndex}}-{{endIndex}}件目\r\n        </p>\r\n      </div>\r\n      <ul class=\"paginator-0001__ul-ol-elm\">\r\n        <li class=\"paginator-0001__li-elm-first paginator-0001__li-elm-first--disabled\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&lt;&lt;</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-prev paginator-0001__li-elm-prev--disabled\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&lt;</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">1</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--ellipsis\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">...</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">4</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--disabled\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">5</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--current\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">6</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">7</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">8</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">9</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--ellipsis\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">...</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-num\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">10</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-next\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&gt;</a>\r\n        </li>\r\n        <li class=\"paginator-0001__li-elm-last paginator-0001__li-elm-last--disabled\">\r\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&gt;&gt;</a>\r\n        </li>\r\n      </ul>\r\n    </span>\r\n  </div>\r\n</div>\r\n";
+	module.exports = "<div class=\"paginator-0001\">\n  <div class=\"paginator-0001__first-wrap\">\n    <span class=\"paginator-0001__second-wrap\">\n      <div class=\"paginator-0001__info-wrap\">\n        <p class=\"paginator-0001__info\">\n          {{pagesLength}}ページ中 {{currentPage}}ページ目\n        </p>\n        <p class=\"paginator-0001__info\">\n          {{itemsLength}}件中 {{startIndex}}-{{endIndex}}件目\n        </p>\n      </div>\n      <ul class=\"paginator-0001__ul-ol-elm\">\n        <li class=\"paginator-0001__li-elm-first paginator-0001__li-elm-first--disabled\">\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&lt;&lt;</a>\n        </li>\n        <li class=\"paginator-0001__li-elm-prev paginator-0001__li-elm-prev--disabled\">\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&lt;</a>\n        </li>\n        <li class=\"paginator-0001__li-elm-num\">\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">1</a>\n        </li>\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--ellipsis\">\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">...</a>\n        </li>\n        <li class=\"paginator-0001__li-elm-num\">\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">4</a>\n        </li>\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--disabled\">\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">5</a>\n        </li>\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--current\">\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">6</a>\n        </li>\n        <li class=\"paginator-0001__li-elm-num\">\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">7</a>\n        </li>\n        <li class=\"paginator-0001__li-elm-num\">\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">8</a>\n        </li>\n        <li class=\"paginator-0001__li-elm-num\">\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">9</a>\n        </li>\n        <li class=\"paginator-0001__li-elm-num paginator-0001__li-elm-num--ellipsis\">\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">...</a>\n        </li>\n        <li class=\"paginator-0001__li-elm-num\">\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">10</a>\n        </li>\n        <li class=\"paginator-0001__li-elm-next\">\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&gt;</a>\n        </li>\n        <li class=\"paginator-0001__li-elm-last paginator-0001__li-elm-last--disabled\">\n          <a class=\"paginator-0001__anc-elm\" href=\"#\">&gt;&gt;</a>\n        </li>\n      </ul>\n    </span>\n  </div>\n</div>\n";
 
 /***/ },
 /* 26 */
@@ -17151,7 +19657,7 @@
   \*********************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"step-info-0001\" v-bind:class=\"[modifierColumn]\">\r\n  <div class=\"step-info-0001__first-wrap\">\r\n    <ul class=\"step-info-0001__ul-ol-elm\">\r\n      <li class=\"step-info-0001__li-elm\" v-for=\"item in items\">\r\n        <div class=\"step-info-0001__num\" v-bind:class=\"{ 'step-info-0001__num--active': item.isActive }\">\r\n          {{$index + 1}}\r\n        </div>\r\n        <span class=\"step-info-0001__text\" v-bind:class=\"{ 'step-info-0001__text--active': item.isActive }\">\r\n          {{item.text}}\r\n        </span>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n";
+	module.exports = "<div class=\"step-info-0001\" v-bind:class=\"[modifierColumn]\">\n  <div class=\"step-info-0001__first-wrap\">\n    <ul class=\"step-info-0001__ul-ol-elm\">\n      <li class=\"step-info-0001__li-elm\" v-for=\"item in items\">\n        <div class=\"step-info-0001__num\" v-bind:class=\"{ 'step-info-0001__num--active': item.isActive }\">\n          {{$index + 1}}\n        </div>\n        <span class=\"step-info-0001__text\" v-bind:class=\"{ 'step-info-0001__text--active': item.isActive }\">\n          {{item.text}}\n        </span>\n      </li>\n    </ul>\n  </div>\n</div>\n";
 
 /***/ },
 /* 28 */
@@ -17182,7 +19688,7 @@
   \*******************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"tooltip-0001\">\r\n  <div class=\"tooltip-0001__contents-wrap\">\r\n    <slot name=\"slot-0001\"></slot>\r\n  </div>\r\n  <a class=\"tooltip-0001__icon\" href=\"#\">\r\n    ?\r\n  </a>\r\n</div>\r\n";
+	module.exports = "<div class=\"tooltip-0001\">\n  <div class=\"tooltip-0001__contents-wrap\">\n    <slot name=\"slot-0001\"></slot>\n  </div>\n  <a class=\"tooltip-0001__icon\" href=\"#\">\n    ?\n  </a>\n</div>\n";
 
 /***/ }
 /******/ ]);
