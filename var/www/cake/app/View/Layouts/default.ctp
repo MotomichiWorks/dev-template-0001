@@ -18,47 +18,47 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
-<html id="vue-app">
+<html>
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo $cakeDescription ?>:
 		<?php echo $this->fetch('title'); ?>
 	</title>
-  <?php
-  echo $this->Html->meta('icon');
-  echo $this->Html->css('cake.generic');
-  echo $this->Html->css('/assets/css/style1');
-  echo $this->Html->css('/assets/css/style2');
-  echo $this->fetch('meta');
-  echo $this->fetch('css');
-  echo $this->fetch('script');
-  ?>
+	<?php
+	echo $this->Html->meta('icon');
+	echo $this->Html->css('cake.generic');
+	echo $this->Html->css('/assets/css/style1');
+	echo $this->Html->css('/assets/css/style2');
+	echo $this->fetch('meta');
+	echo $this->fetch('css');
+	echo $this->fetch('script');
+	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
-		<div>
-
-			<?php echo $this->Session->flash(); ?>
-
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
-			?>
-			<p>
-				<?php echo $cakeVersion; ?>
-			</p>
-		</div>
-	</div>
+	<div id="vue-app">
+		<div id="container">
+			<div id="header">
+				<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+			<!--/#header--></div>
+			<div>
+				<?php echo $this->Session->flash(); ?>
+				<?php echo $this->fetch('content'); ?>
+			</div>
+			<div id="footer">
+				<?php echo $this->Html->link(
+						$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
+						'http://www.cakephp.org/',
+						array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
+					);
+				?>
+				<p>
+					<?php echo $cakeVersion; ?>
+				</p>
+			<!--/#footer--></div>
+		<!--/#container--></div>
+	<!--/#vue-app--></div>
 	<?php echo $this->element('sql_dump'); ?>
-  <?php echo $this->Html->script('/assets/js/bundle'); ?>
+	<?php echo $this->Html->script('/assets/js/bundle.js?ver=20170210'); ?>
 </body>
 </html>
